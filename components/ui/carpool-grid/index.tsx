@@ -1,10 +1,11 @@
+import { User } from "@supabase/supabase-js"
 import { CarpoolCard } from "../carpool-card"
 
 interface CarpoolGridProps {
-  prompt?: string
+  user: User
 }
 
-export async function CarpoolGrid({ prompt }: CarpoolGridProps) {
+export function CarpoolGrid({ user }: CarpoolGridProps) {
   const trips = [{
     "id": "",
     "origin": "",

@@ -12,6 +12,7 @@ import { CarpoolCount } from './ui/carpool-count';
 import { CarpoolForm } from './ui/carpool-form';
 import { HowMercuryWorks } from './how-mercury-works';
 import { WhyChooseMercury } from './why-choose-mercury';
+import { CarpoolGrid } from './ui/carpool-grid';
 
 type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 type Product = Database['public']['Tables']['products']['Row'];
@@ -39,11 +40,16 @@ export default function MercuryHome({
         <CarpoolCount />
 
         <div className="max-w-md space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-          <CarpoolForm user={user}/>
-              </div>
-
-        <HowMercuryWorks />
-        <WhyChooseMercury />
+          <CarpoolForm user={user} />
+        </div>
+        {!user ?
+          <>
+            <HowMercuryWorks />
+            <WhyChooseMercury />
+          </> : <>
+            <CarpoolGrid user={user}/>
+          </>
+        }
       </div>
 
     </>);
