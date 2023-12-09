@@ -105,16 +105,28 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
 
   async function sendEmail() {
     try {
-      const res = await fetch('/api/send', {
-        method: 'POST',
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify(trip,)
-      })
-      const data = await res.json();
-      console.log(data);
+      /*   const res = await fetch('/api/send', {
+           method: 'POST',
+           headers: new Headers({ 'Content-Type': 'application/json' }),
+           body: JSON.stringify(trip,)
+         })
+         const data = await res.json();
+         console.log(data);*/
+      const url = "/api/save-trip";
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(trip),
+      };
+
+      const response = await fetch(url, options);
+      const data = await response.json();
     } catch (err) {
       console.error(err);
     }
+
   }
 
 

@@ -210,29 +210,29 @@ export interface Database {
       }
       trips: {
         Row: {
-          origin: string | null,
-          destination: string | null,
-          id: string | null,
-          date: any | null,
-          user_id: string,
-          price: string
+          origin: string | null
+          destination: string | null
+          id: string | null
+          date: string | null
+          user_id: string
+          price: string | null
         }
         Insert: {
-          origin?: string | null,
-          destination?: string | null,
+          origin?: string | null
+          destination?: string | null
           user_id?: string
-          id: string | null,
-          date?: any | null
-          price?: string
+          id: string | null
+          date?: string | null
+          price?: string | null
 
         }
         Update: {
-          origin?: string | null,
-          destination?: string | null,
+          origin?: string | null
+          destination?: string | null
           user_id?: string
-          id?: string | null,
-          date?: any | null,
-          price?: string
+          id?: string | null
+          date?: string | null
+          price?: string | null
         }
         Relationships: [
           {
