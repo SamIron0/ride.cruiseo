@@ -37,8 +37,6 @@ export const HowMercuryWorks: React.FC = () =>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-black">Hop Out</h3>
                 <p className="text-base pb-2 font-normal text-gray-500 dark:text-gray-500">Arrive at your destination.
                 </p>
-                <button className="inline-flex items-center px-4 py-2 text-sm font-medium  border  rounded-lg  focus:z-10 focus:ring-4 focus:outline-none focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 focus:ring-gray-700">Try it Out <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg></button>
             </li>
         </ol>
     </div>

@@ -7,15 +7,20 @@ interface CarpoolCardProps {
 export function CarpoolCard({ user }: CarpoolCardProps) {
 
   return (
-    <div className="bg-gray-700 p-2 border border-1 rounded-md ">
+    <div className="bg-gray-200 p-2 border border-1 rounded-md ">
       <div className="flex items-center space-x-3 rtl:space-x-reverse">
         <div className="flex-shrink-0">
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Destination
-                     </p>
-          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+            Origin: Db
+          </p>
+          <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
+            Destination: Db
+          </p>
+          <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
+            Est. Arrival: Db
+          </p>          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
             email@flowbite.com
           </p>
         </div>
