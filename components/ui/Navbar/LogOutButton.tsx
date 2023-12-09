@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import s from './Navbar.module.css';
 
-export default function SignOutButton() {
+export default function LogOutButton() {
   const router = useRouter();
   const { supabase } = useSupabase();
   const handleSignOut = async () => {
@@ -14,10 +14,9 @@ export default function SignOutButton() {
   }
   return (
     <button
-      className={s.link}
       onClick={handleSignOut}
-    >
-      Sign out
+      className=" flex mr-1 justify-center bg-black rounded-lg items-center">
+      <p className="text-white px-4 py-1 ">Sign Out</p>
     </button>
   );
 }

@@ -1,8 +1,14 @@
 import SupabaseProvider from './supabase-provider';
 import Footer from '@/components/ui/Footer';
 import Navbar from '@/components/ui/Navbar';
+import { cn } from '@/utils/helpers';
 import { PropsWithChildren } from 'react';
 import 'styles/main.css';
+import { Inter } from "next/font/google"
+
+
+const BODY_PADDING = "px-4 sm:px-6"
+const inter = Inter({ subsets: ["latin"] })
 
 const meta = {
   title: 'Next.js Subscription Starter',
@@ -46,13 +52,13 @@ export default function RootLayout({
 }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className="bg-black loading">
+      <body className={cn(inter.className, "antialiased bg-gray-100")}>
         <SupabaseProvider>
           {/* @ts-expect-error */}
           <Navbar />
           <main
             id="skip"
-            className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
+            className={cn("min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto", BODY_PADDING)}
           >
             {children}
           </main>

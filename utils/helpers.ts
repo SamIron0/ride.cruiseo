@@ -2,6 +2,14 @@ import { Database } from '@/types_db';
 
 type Price = Database['public']['Tables']['prices']['Row'];
 
+import { clsx, type ClassValue } from "clsx"
+import { customAlphabet } from "nanoid"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 export const getURL = () => {
   let url =
     process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.

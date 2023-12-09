@@ -11,7 +11,7 @@ export default function AuthUI() {
     <div className="flex flex-col space-y-4">
       <Auth
         supabaseClient={supabase}
-        providers={['github']}
+        providers={[]}
         redirectTo={`${getURL()}/auth/callback`}
         magicLink={true}
         appearance={{
@@ -19,7 +19,7 @@ export default function AuthUI() {
           variables: {
             default: {
               colors: {
-                brand: '#404040',
+                brand: '#000000',
                 brandAccent: '#52525b'
               }
             }

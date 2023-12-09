@@ -1,4 +1,4 @@
-import Pricing from '@/components/Pricing';
+import MercuryHome from '@/components/mercuryHome';
 import {
   getSession,
   getSubscription,
@@ -13,11 +13,9 @@ export default async function PricingPage() {
   ]);
 
   return (
-    <Pricing
+    <MercuryHome
       session={session}
       user={session?.user}
-      products={products}
-      subscription={subscription}
     />
   );
 }
