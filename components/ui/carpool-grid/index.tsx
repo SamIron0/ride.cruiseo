@@ -18,6 +18,7 @@ export function CarpoolGrid({ user }: CarpoolGridProps) {
     "destination": "",
     "date": ""
   }]
+  
 
   return (
     <div className="animate-in fade-in mt-36 slide-in-from-bottom-4 duration-1200 w-full ease-in-out">
