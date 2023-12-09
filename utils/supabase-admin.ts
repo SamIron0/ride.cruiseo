@@ -16,10 +16,13 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
-export const createOrRetrieveTrip = async (
-  trip: Trip,
-  id: string,
-) => {
+export const createOrRetrieveTrip = async ({
+  trip,
+  id
+}: {
+  trip: Trip;
+  id: string;
+})=> {
   const { data, error: supabaseError } = await supabaseAdmin
     .from("trips")
     .insert([
@@ -91,14 +94,14 @@ const createOrRetrieveCustomer = async ({
       }
     };
     if (email) customerData.email = email;
-    //const customer = await stripe.customers.create(customerData);
+    const customer = await stripe.customers.create(customerData);
     // Now insert the customer ID into our Supabase mapping table.
     const { error: supabaseError } = await supabaseAdmin
       .from('customers')
-      .insert([{ id: uuid, stripe_customer_id: uuidv4() }]);
+      .insert([{ id: uuid, stripe_customer_id: customer.id }]);
     if (supabaseError) throw supabaseError;
     console.log(`New customer created and inserted for ${uuid}.`);
-    return uuidv4();
+    return customer.id;
   }
   return data.stripe_customer_id;
 };

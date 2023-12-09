@@ -94,8 +94,8 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         date: date,
         price: price
       });
-      toast.success('Trip requested!')
     }
+    console.log("thannk god")
   }
 
   useEffect(() => {
@@ -105,13 +105,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
 
   async function sendEmail() {
     try {
-      /*   const res = await fetch('/api/send', {
-           method: 'POST',
-           headers: new Headers({ 'Content-Type': 'application/json' }),
-           body: JSON.stringify(trip,)
-         })
-         const data = await res.json();
-         console.log(data);*/
       const url = "/api/save-trip";
       const options = {
         method: "POST",
@@ -122,11 +115,11 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       };
 
       const response = await fetch(url, options);
-      const data = await response.json();
+      //const data = await response.json();
     } catch (err) {
       console.error(err);
     }
-
+    toast.success('Trip requested!')
   }
 
 
