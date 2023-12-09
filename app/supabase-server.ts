@@ -50,6 +50,9 @@ export async function getSubscription() {
   }
 }
 
+
+
+
 export const getActiveProductsWithPrices = async () => {
   const supabase = createServerSupabaseClient();
   const { data, error } = await supabase

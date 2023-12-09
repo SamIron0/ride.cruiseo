@@ -12,7 +12,7 @@ export default function Footer() {
             href="/"
             className="flex items-center flex-initial font-bold md:mr-24"
           >
-            <span className="mr-2 border rounded-full">
+            <span className="mr-2 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21"
@@ -52,7 +52,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-black">
-        <div>
+        <div className='text-white'>
           <span>
             &copy; {new Date().getFullYear()} mercury. All rights reserved.
           </span>

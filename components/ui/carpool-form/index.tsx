@@ -18,6 +18,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false);
+  const [price, setPrice] = useState('');
   const [origin, setOrigin] = useState('');
   const [originIsValid, setOriginIsValid] = useState(true);
   const [destination, setDestination] = useState('');
@@ -35,7 +36,8 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     origin: origin,
     destination: destination,
     email: email,
-    date: date
+    date: date,
+    price: price,
   });
 
   const handleTripDetailsSubmit = (event: { preventDefault: () => void }) => {
@@ -48,14 +50,14 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   const requestButton = () => {
     if (!user) {
       return (<>
-        <Link href="/signin" className="inline-flex mt-8 items-center px-[102px] py-2 text-sm font-medium  border rounded-lg  bg-gray-800 text-white border-gray-600 hover:text-white hover:bg-gray-700">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <Link href="/signin" className="inline-flex mt-8 items-center px-[98px] py-2 text-sm font-medium  border rounded-lg  bg-gray-800 text-white border-gray-600 hover:text-white hover:bg-gray-700">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </Link>
       </>)
     }
     else {
       return (<>
-        <button onClick={handleConfirm} className="inline-flex mt-8 items-center px-[102px] py-2 text-sm font-medium  border rounded-lg  bg-gray-800 text-white border-gray-600 hover:text-white hover:bg-gray-700 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <button onClick={handleConfirm} className="inline-flex mt-8 items-center px-[98px] py-2 text-sm font-medium  border rounded-lg  bg-gray-800 text-white border-gray-600 hover:text-white hover:bg-gray-700 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </button>
       </>)
@@ -89,7 +91,8 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         origin: origin,
         destination: destination,
         email: email,
-        date: date
+        date: date,
+        price: price
       });
       toast.success('Trip requested!')
     }
@@ -162,8 +165,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
             </p>
           }
         </div>
-
-
         <DateTime onDateTimeChange={handleDateTimeChange} />
         {requestButton()}
       </form>

@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/ui/Button';
-import { Database } from '@/types_db';
+import { Database, Json } from '@/types_db';
 import { postData } from '@/utils/helpers';
 import { getStripe } from '@/utils/stripe-client';
 import { Session, User } from '@supabase/supabase-js';
@@ -13,6 +13,7 @@ import { CarpoolForm } from './ui/carpool-form';
 import { HowMercuryWorks } from './how-mercury-works';
 import { WhyChooseMercury } from './why-choose-mercury';
 import { CarpoolGrid } from './ui/carpool-grid';
+import { UserDetails } from '@/types';
 
 type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 type Product = Database['public']['Tables']['products']['Row'];
@@ -21,13 +22,16 @@ type Price = Database['public']['Tables']['prices']['Row'];
 interface Props {
   session: Session | null;
   user: User | null | undefined;
+  userDetails: UserDetails | null;
 }
 
 
 export default function MercuryHome({
   session,
   user,
+  userDetails,
 }: Props) {
+
 
   const router = useRouter();
   return (
@@ -47,7 +51,7 @@ export default function MercuryHome({
             <HowMercuryWorks />
             <WhyChooseMercury />
           </> : <>
-            <CarpoolGrid user={user}/>
+            <CarpoolGrid user={user} userDetails={userDetails} />
           </>
         }
       </div>

@@ -176,6 +176,7 @@ export interface Database {
       }
       users: {
         Row: {
+          trips: Json[] | null
           avatar_url: string | null
           billing_address: Json | null
           full_name: string | null
@@ -183,6 +184,7 @@ export interface Database {
           payment_method: Json | null
         }
         Insert: {
+          trips?: Json[] | null
           avatar_url?: string | null
           billing_address?: Json | null
           full_name?: string | null
@@ -190,6 +192,7 @@ export interface Database {
           payment_method?: Json | null
         }
         Update: {
+          trips?: Json[] | null
           avatar_url?: string | null
           billing_address?: Json | null
           full_name?: string | null
@@ -200,6 +203,41 @@ export interface Database {
           {
             foreignKeyName: "users_id_fkey"
             columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      trips: {
+        Row: {
+          origin: string | null,
+          destination: string | null,
+          id: string | null,
+          date: any | null,
+          user_id: string,
+          price: string
+        }
+        Insert: {
+          origin?: string | null,
+          destination?: string | null,
+          user_id?: string
+          id: string | null,
+          date?: any | null
+          price?: string
+
+        }
+        Update: {
+          origin?: string | null,
+          destination?: string | null,
+          user_id?: string
+          id?: string | null,
+          date?: any | null,
+          price?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -216,14 +254,14 @@ export interface Database {
       pricing_plan_interval: "day" | "week" | "month" | "year"
       pricing_type: "one_time" | "recurring"
       subscription_status:
-        | "trialing"
-        | "active"
-        | "canceled"
-        | "incomplete"
-        | "incomplete_expired"
-        | "past_due"
-        | "unpaid"
-        | "paused"
+      | "trialing"
+      | "active"
+      | "canceled"
+      | "incomplete"
+      | "incomplete_expired"
+      | "past_due"
+      | "unpaid"
+      | "paused"
     }
     CompositeTypes: {
       [_ in never]: never

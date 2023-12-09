@@ -1,11 +1,11 @@
-import { User } from "@supabase/supabase-js"
+import { Trip } from "@/types";
 
 interface CarpoolCardProps {
-  user: User
+  trip: Trip 
 }
 
-export function CarpoolCard({ user }: CarpoolCardProps) {
-
+export function CarpoolCard({ trip }: CarpoolCardProps) {
+ 
   return (
     <div className="bg-gray-200 p-2 border border-1 rounded-md ">
       <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -13,13 +13,13 @@ export function CarpoolCard({ user }: CarpoolCardProps) {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Origin: Db
+            Origin: {trip.origin}
           </p>
           <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Destination: Db
+            Destination: {trip.destination}
           </p>
           <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Est. Arrival: Db
+            Price: {trip?.price}
           </p>          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
             email@flowbite.com
           </p>

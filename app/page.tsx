@@ -2,20 +2,24 @@ import MercuryHome from '@/components/mercuryHome';
 import {
   getSession,
   getSubscription,
-  getActiveProductsWithPrices
+  getActiveProductsWithPrices,
+  getUserDetails
 } from '@/app/supabase-server';
+import { UserDetails } from '@/types';
 
 export default async function PricingPage() {
-  const [session, products, subscription] = await Promise.all([
+  const userDetails: UserDetails | null =await getUserDetails();
+
+  const [session, subscription] = await Promise.all([
     getSession(),
-    getActiveProductsWithPrices(),
-    getSubscription()
+        getSubscription()
   ]);
 
   return (
     <MercuryHome
       session={session}
       user={session?.user}
+      userDetails={userDetails}
     />
   );
 }
