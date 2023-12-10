@@ -4,7 +4,6 @@ import { Trip } from "@/types";
 import { Json } from "@/types_db";
 import { useState } from "react";
 import { UserDetails } from "@/types";
-import { retrieveTrips } from "@/utils/supabase-admin";
 
 interface CarpoolGridProps {
   user: User;

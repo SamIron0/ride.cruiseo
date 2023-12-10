@@ -22,8 +22,7 @@ export default async function PricingPage() {
     //router.push('/signin');
   } else {
     trips = await retrieveTrips(session?.user?.id);
-    console.log("trips:"+ trips)
-
+    console.log("trips length :"+ trips?.length)
   }
   return (
     <MercuryHome
