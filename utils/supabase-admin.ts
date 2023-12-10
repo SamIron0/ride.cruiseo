@@ -15,6 +15,7 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+
 export const createTrip = async ({
   trip,
   id
