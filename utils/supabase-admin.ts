@@ -35,19 +35,30 @@ export const createTrip = async ({
         price: trip.price,
       },
     ]);
+  let trips = await retrieveTrips(id);
+
+  trips.push(trip);
+
+  await supabaseAdmin
+    .from('users')
+    .update({ trips })
+    .eq('id', id);
+
   if (supabaseError) throw supabaseError;
   console.log(`New trip inserted for user.`);
   return trip.destination;
 };
-
 export const retrieveTrips = async (userId: string) => {
-  console.log(userId);
-  return (await supabaseAdmin
+  const { data: users } = await supabaseAdmin
     .from('users')
     .select('trips')
-    .eq('id', userId)
-    .single()).data?.trips;
+    .eq('id', userId);
+
+  let userTrips = users?.[0]?.trips || [];
+
+  return userTrips;
 }
+
 
 const upsertProductRecord = async (product: Stripe.Product) => {
   const productData: Product = {

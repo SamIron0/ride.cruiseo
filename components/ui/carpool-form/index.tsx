@@ -37,9 +37,9 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     {
       origin: origin,
       destination: destination,
-      id: "id",
-      date: date,
-      user_id: "user_id",
+      id: "",
+      date: "",
+      user_id: "",
       price: price
     }
   );
@@ -93,20 +93,24 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
 
     if (confirm) {
-      await setTrip({
+      setTrip({
         id: uuidv4(),
         origin: origin,
         destination: destination,
         user_id: user?.id || uuidv4(),
-        date: "date",
+        date: date,
         price: price
       })
-      sendEmail()
+      //sendEmail();
     }
   }
+  useEffect(() => {
+    if (trip?.date != "") sendEmail();
+  }, [trip]);
+
 
   async function sendEmail() {
-    console.log("saving trip, trip date:" + trip?.date)
+    console.log("trip id:" + trip?.id)
     try {
       const url = "/api/save-trip";
       const options = {
@@ -119,9 +123,9 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
 
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       toast.success('Trip requested!')
-
+      return true
     } catch (err) {
       console.error(err);
     }
