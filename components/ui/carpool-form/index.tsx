@@ -8,6 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Trip } from "@/types";
 import { User } from "@supabase/supabase-js"
 import Link from "next/link"
+import { v4 as uuidv4 } from 'uuid';
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -32,13 +33,16 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   const [date, setDate] = useState('');
   const [dateIsValid, setDateIsValid] = useState(true);
   const adminEmail = "samuelironkwec@gmail.com"
-  const [trip, setTrip] = useState<Trip | null>({
-    origin: origin,
-    destination: destination,
-    email: email,
-    date: date,
-    price: price,
-  });
+  const [trip, setTrip] = useState<Trip | null>(
+    {
+      origin: origin,
+      destination: destination,
+      id: "id",
+      date: date,
+      user_id: "user_id",
+      price: price
+    }
+  );
 
   const handleTripDetailsSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -63,9 +67,11 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       </>)
     }
   }
-  const handleConfirm = (event: { preventDefault: () => void }) => {
+  let confirm = true;
+
+  const handleConfirm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
-    let confirm = true;
+
     // create a trip with entered info and send it to api
     if (origin === "") {
       setOriginIsValid(false);
@@ -87,21 +93,17 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
 
     if (confirm) {
-      setTrip({
+      await setTrip({
+        id: uuidv4(),
         origin: origin,
         destination: destination,
-        email: email,
+        user_id: user?.id || uuidv4(),
         date: date,
         price: price
-      });
+      })
+      sendEmail()
     }
-    console.log("thannk god")
   }
-
-  useEffect(() => {
-    if (origin !== "")
-      sendEmail();
-  }, [trip]);
 
   async function sendEmail() {
     try {
@@ -115,16 +117,19 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       };
 
       const response = await fetch(url, options);
-      //const data = await response.json();
+      const data = await response.json();
+      console.log(data);
+      toast.success('Trip requested!')
+
     } catch (err) {
       console.error(err);
     }
-    toast.success('Trip requested!')
   }
 
 
   return (
     <div className="flex flex-col items-center">
+
       <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full px-4">
         <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
 
@@ -173,6 +178,10 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         <DateTime onDateTimeChange={handleDateTimeChange} />
         {requestButton()}
       </form>
+      <div><Toaster
+        position="top-center"
+        reverseOrder={false}
+      /></div>
     </div>
   )
 }

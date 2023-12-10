@@ -6,7 +6,6 @@ import Stripe from 'stripe';
 import type { Database } from 'types_db';
 import { v4 as uuidv4 } from 'uuid';
 
-let userID = uuidv4();
 type Product = Database['public']['Tables']['products']['Row'];
 type Price = Database['public']['Tables']['prices']['Row'];
 // Note: supabaseAdmin uses the SERVICE_ROLE_KEY which you must only use in a secure server-side context
@@ -16,28 +15,38 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
-export const createOrRetrieveTrip = async ({
+export const createTrip = async ({
   trip,
   id
 }: {
   trip: Trip;
   id: string;
-})=> {
+}) => {
   const { data, error: supabaseError } = await supabaseAdmin
     .from("trips")
     .insert([
       {
         origin: trip.origin,
         destination: trip.destination,
-        id: userID,
+        id: uuidv4(),
         date: trip.date,
         user_id: id,
+        price: trip.price,
       },
     ]);
   if (supabaseError) throw supabaseError;
-  console.log(`New mealplan inserted for}.`);
-  return trip.email;
+  console.log(`New mealplan inserted for user.`);
+  return trip.destination;
 };
+
+export const retrieveTrips = async (userId: string) => {
+  return (await supabaseAdmin
+    .from('users')
+    .select('trips')
+    .eq('id', userId)
+    .single()).data?.trips;
+}
+
 const upsertProductRecord = async (product: Stripe.Product) => {
   const productData: Product = {
     id: product.id,

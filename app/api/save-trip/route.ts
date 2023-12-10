@@ -2,7 +2,7 @@ import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/
 import { NextApiHandler } from "next";
 import {
     createOrRetrieveCustomer,
-    createOrRetrieveTrip
+    createTrip
 } from '@/utils/supabase-admin';
 import { Trip } from "@/types";
 import { Database } from "@/types_db";
@@ -19,7 +19,7 @@ export async function POST(req: Request,) {
             const {
                 data: { session }
             } = await supabase.auth.getSession();
-            const session2 = await getSession()
+            //const session2 = await getSession()
 
             if (!session) {
                 return new Response(JSON.stringify({
@@ -27,12 +27,13 @@ export async function POST(req: Request,) {
                     description: 'The user does not have an active session or is not authenticated'
                 }), { status: 500 });
             }
+            console.log(trip.date);
 
-            const tripID = await createOrRetrieveTrip({
-                trip: trip,
-                id: session.user.id,
+
+            const tripID = await createTrip({
+             trip: trip,
+               id: session.user.id,
             });
-
             if (tripID != undefined) {
                 const response = "Trip saved";
                 return new Response(JSON.stringify(response), {

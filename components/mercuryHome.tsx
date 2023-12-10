@@ -13,21 +13,21 @@ import { CarpoolForm } from './ui/carpool-form';
 import { HowMercuryWorks } from './how-mercury-works';
 import { WhyChooseMercury } from './why-choose-mercury';
 import { CarpoolGrid } from './ui/carpool-grid';
-import { UserDetails } from '@/types';
+import { Trip, UserDetails } from '@/types';
 
 type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 type Product = Database['public']['Tables']['products']['Row'];
 type Price = Database['public']['Tables']['prices']['Row'];
 
 interface Props {
-  session: Session | null;
+  trips: Trip[] | null | undefined;
   user: User | null | undefined;
   userDetails: UserDetails | null;
 }
 
 
 export default function MercuryHome({
-  session,
+  trips,
   user,
   userDetails,
 }: Props) {
@@ -51,7 +51,7 @@ export default function MercuryHome({
             <HowMercuryWorks />
             <WhyChooseMercury />
           </> : <>
-            <CarpoolGrid user={user} userDetails={userDetails} />
+            <CarpoolGrid user={user} trips={trips} />
           </>
         }
       </div>

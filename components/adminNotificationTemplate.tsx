@@ -7,7 +7,6 @@ export default function AdminNotificationTemplate(tripDetails: Trip) {
         <div>
             <p>Origin: {tripDetails.origin}</p>
             <p>Destination: {tripDetails.destination}</p>
-            <p>Email: {tripDetails.email}</p>
             <p>Date: {tripDetails.date}</p>
         </div>
     )

@@ -1,3 +1,5 @@
+import { Trip } from "./types"
+
 export type Json =
   | string
   | number
@@ -176,7 +178,7 @@ export interface Database {
       }
       users: {
         Row: {
-          trips: Json[] | null
+          trips: Trip[] | null
           avatar_url: string | null
           billing_address: Json | null
           full_name: string | null
@@ -184,7 +186,7 @@ export interface Database {
           payment_method: Json | null
         }
         Insert: {
-          trips?: Json[] | null
+          trips?: Trip[] | null
           avatar_url?: string | null
           billing_address?: Json | null
           full_name?: string | null
@@ -192,7 +194,7 @@ export interface Database {
           payment_method?: Json | null
         }
         Update: {
-          trips?: Json[] | null
+          trips?: Trip[] | null
           avatar_url?: string | null
           billing_address?: Json | null
           full_name?: string | null
