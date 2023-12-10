@@ -69,6 +69,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
   }
   let confirm = true;
+const router = useRouter()
 
   const handleConfirm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -111,7 +112,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
 
 
   async function sendEmail() {
-    console.log("trip id:" + trip?.id)
     try {
       const url = "/api/save-trip";
       const options = {
@@ -126,6 +126,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       const data = await response.json();
       //console.log(data);
       toast.success('Trip requested!')
+      router.refresh()
 
     } catch (err) {
       console.error(err);
