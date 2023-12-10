@@ -9,6 +9,7 @@ import { Trip } from "@/types";
 import { User } from "@supabase/supabase-js"
 import Link from "next/link"
 import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation';
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -125,7 +126,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       const data = await response.json();
       //console.log(data);
       toast.success('Trip requested!')
-      return true
+
     } catch (err) {
       console.error(err);
     }

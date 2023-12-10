@@ -1,27 +1,32 @@
 import { Trip } from "@/types";
 
 interface CarpoolCardProps {
-  trip: Trip 
+  trip: Trip
 }
 
 export function CarpoolCard({ trip }: CarpoolCardProps) {
- 
+
   return (
     <div className="bg-gray-200 p-2 border border-1 rounded-md ">
       <div className="flex items-center space-x-3 rtl:space-x-reverse">
         <div className="flex-shrink-0">
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Origin: {trip.origin}
+          <p className="text-sm flex ffelx-row font-semibold text-gray-900 truncate dark:text-white">
+            Origin: <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+              {trip.origin}</p>
           </p>
           <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Destination: {trip.destination}
+            Destination: <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+              {trip.destination}</p>
           </p>
           <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
-            Price: {trip?.price}
-          </p>          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-            email@flowbite.com
+            Price: <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+              {trip.price}</p>
+          </p>
+          <p className="text-sm font-semibold text-gray-900 truncate dark:text-white">
+            Est. dropoff: <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+              {trip.date}</p>
           </p>
         </div>
         <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">

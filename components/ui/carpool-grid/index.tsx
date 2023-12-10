@@ -1,3 +1,4 @@
+
 import { User } from "@supabase/supabase-js"
 import { CarpoolCard } from "../carpool-card"
 import { Trip } from "@/types";
@@ -29,7 +30,7 @@ export function CarpoolGrid({ user, trips }: CarpoolGridProps) {
       <h2 className="font-semibold text-md text-left w-full mb-3">My Trips</h2>
       <div className="grid gƒrid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-items-stretch w-full">
         {usersTrips?.map((trip) => (
-          <><>dsf</>
+          <>
             <CarpoolCard trip={trip} /></>
         ))}
       </div>
