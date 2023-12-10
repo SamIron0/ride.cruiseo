@@ -40,8 +40,7 @@ export const createTrip = async ({
 };
 
 export const retrieveTrips = async (userId: string) => {
-
-  console.log(userID);
+  console.log(userId);
   return (await supabaseAdmin
     .from('users')
     .select('trips')
