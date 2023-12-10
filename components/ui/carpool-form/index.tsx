@@ -98,7 +98,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         origin: origin,
         destination: destination,
         user_id: user?.id || uuidv4(),
-        date: date,
+        date: "date",
         price: price
       })
       sendEmail()
@@ -106,6 +106,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   }
 
   async function sendEmail() {
+    console.log("saving trip, trip date:" + trip?.date)
     try {
       const url = "/api/save-trip";
       const options = {

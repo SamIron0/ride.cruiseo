@@ -35,7 +35,7 @@ export const createTrip = async ({
       },
     ]);
   if (supabaseError) throw supabaseError;
-  console.log(`New mealplan inserted for user.`);
+  console.log(`New trip inserted for user.`);
   return trip.destination;
 };
 

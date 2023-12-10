@@ -27,7 +27,7 @@ export async function POST(req: Request,) {
                     description: 'The user does not have an active session or is not authenticated'
                 }), { status: 500 });
             }
-            console.log(trip.date);
+            console.log("trip date: "+trip.date);
 
 
             const tripID = await createTrip({
