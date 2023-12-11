@@ -10,6 +10,7 @@ import { User } from "@supabase/supabase-js"
 import Link from "next/link"
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
+import { Resend } from 'resend';
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -69,7 +70,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
   }
   let confirm = true;
-const router = useRouter()
+  const router = useRouter()
 
   const handleConfirm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -110,7 +111,21 @@ const router = useRouter()
     if (trip?.date != "") sendEmail();
   }, [trip]);
 
+  async function sendBookingEmail() {
+console.log("sending email")
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    try {
+      await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: ['samuelironkwec@gmail.com'],
+        subject: 'hello world',
+        text: 'it works!'
+      })
+    } catch (err) {
+      console.error(err);
+    }
 
+  }
   async function sendEmail() {
     try {
       const url = "/api/save-trip";
@@ -126,6 +141,7 @@ const router = useRouter()
       const data = await response.json();
       //console.log(data);
       toast.success('Trip requested!')
+      sendBookingEmail();
       router.refresh()
 
     } catch (err) {
