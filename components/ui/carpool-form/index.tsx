@@ -163,6 +163,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
           </div>
         }
         <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex px-1 w-full ">
+          <input></input>
           <input
             value={destination}
             onChange={e => setDestination(e.target.value)}
