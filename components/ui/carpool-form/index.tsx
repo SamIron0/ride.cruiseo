@@ -146,7 +146,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
             value={origin}
             onChange={e => setOrigin(e.target.value)}
             placeholder="Enter an Origin"
-            className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none py-4 px-2 font-mono text-sm h-10 w-full "
+            className="bg-transparent text-white placeholder:text-gray-400 px-2 font-mono text-sm h-10 w-full "
           />
 
         </div>
