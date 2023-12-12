@@ -159,10 +159,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex px-1 w-full ">
           
           <input
-            value={destination}
             onChange={e => setDestination(e.target.value)}
-            name="prompt"
-            
             placeholder="Enter a Destination"
             className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-4 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
           />
