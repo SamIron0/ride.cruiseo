@@ -146,7 +146,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
             value={origin}
             onChange={e => setOrigin(e.target.value)}
             placeholder="Enter an Origin"
-            className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0 text-[16px] font-mono  h-10 w-full "
+            className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
           />
 
         </div>
@@ -155,12 +155,12 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
             Origin cannot be blank
           </div>
         }
-        <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex px-1 w-full text-[16px]">
+        <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex px-1 w-full ">
 
           <input
             onChange={e => setDestination(e.target.value)}
             placeholder="Enter a Destination"
-            className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none py-4 px-2 font-mono text-sm h-10 w-full"
+            className="bg-transparent text-white placeholder:text-gray-400 ring-0 text-[16px] outline-none py-4 px-2 font-mono text-sm h-10 w-full"
           />
           {!destinationIsValid &&
             <p className="text-red-500 mb-5 font-mono text-sm">
