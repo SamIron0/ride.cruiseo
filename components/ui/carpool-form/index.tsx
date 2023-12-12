@@ -145,8 +145,14 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
           <input
             value={origin}
             onChange={e => setOrigin(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault()
+                submitRef.current?.click()
+              }
+            }}
             placeholder="Enter an Origin"
-            className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-4 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
+            className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none  py-4 px-2 font-mono text-sm h-10 w-full "
           />
 
         </div>
@@ -168,7 +174,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
               }
             }}
             placeholder="Enter a Destination"
-            className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-4 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
+            className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none py-4 px-2 font-mono text-sm h-10 w-full"
           />
           {!destinationIsValid &&
             <p className="text-red-500 mb-5 font-mono text-sm">
