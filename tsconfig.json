@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/api/save-trip"  ],
+, "app/api/save-trip","app/api/send"  ],
   "exclude": [
     "node_modules"
   ]

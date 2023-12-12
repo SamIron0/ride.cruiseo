@@ -11,6 +11,7 @@ import Link from "next/link"
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
 import { Resend } from 'resend';
+import { EmailTemplate } from "@/components/email-template"
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -69,6 +70,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       </>)
     }
   }
+  
   let confirm = true;
   const router = useRouter()
 
@@ -111,21 +113,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     if (trip?.date != "") sendEmail();
   }, [trip]);
 
-  async function sendBookingEmail() {
-console.log("sending email")
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    try {
-      await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
-        to: ['samuelironkwec@gmail.com'],
-        subject: 'hello world',
-        text: 'it works!'
-      })
-    } catch (err) {
-      console.error(err);
-    }
-
-  }
   async function sendEmail() {
     try {
       const url = "/api/save-trip";
@@ -141,7 +128,6 @@ console.log("sending email")
       const data = await response.json();
       //console.log(data);
       toast.success('Trip requested!')
-      sendBookingEmail();
       router.refresh()
 
     } catch (err) {
