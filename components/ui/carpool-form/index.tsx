@@ -160,7 +160,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
           <input
             onChange={e => setDestination(e.target.value)}
             placeholder="Enter a Destination"
-            className="bg-transparent text-white placeholder:text-gray-400 ring-0 text-[16px] outline-none py-4 px-2 font-mono text-sm h-10 w-full"
+            className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
           />
           {!destinationIsValid &&
             <p className="text-red-500 mb-5 font-mono text-sm">
