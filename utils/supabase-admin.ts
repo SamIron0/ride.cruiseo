@@ -15,7 +15,29 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+export const deleteTrip = async (tripId: string, userId: string) => {
+  console.log("trip idsa: " + tripId)
+  // delete from trips array
+  await supabaseAdmin
+    .from("trips")
+    .delete()
+    .eq("id", tripId)
 
+  // delete from users array
+  const user = await supabaseAdmin
+    .from('users')
+    .select('trips')
+    .eq('id', userId)
+    .single();
+
+  if (user.data && user.data.trips) {
+    user.data.trips = user.data.trips.filter(trip => trip.id !== tripId);
+    const { data, error } = await supabaseAdmin
+      .from('users')
+      .update({ trips: user.data.trips })
+      .eq('id', userId);
+  }
+}
 export const createTrip = async ({
   trip,
   id
@@ -29,7 +51,7 @@ export const createTrip = async ({
       {
         origin: trip.origin,
         destination: trip.destination,
-        id: uuidv4(),
+        id: trip.id,
         date: trip.date,
         user_id: id,
         price: trip.price,

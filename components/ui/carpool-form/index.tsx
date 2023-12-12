@@ -10,6 +10,8 @@ import { User } from "@supabase/supabase-js"
 import Link from "next/link"
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
+import { Resend } from 'resend';
+import { EmailTemplate } from "@/components/email-template"
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -68,8 +70,9 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       </>)
     }
   }
+  
   let confirm = true;
-const router = useRouter()
+  const router = useRouter()
 
   const handleConfirm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -109,7 +112,6 @@ const router = useRouter()
   useEffect(() => {
     if (trip?.date != "") sendEmail();
   }, [trip]);
-
 
   async function sendEmail() {
     try {
