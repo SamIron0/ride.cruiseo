@@ -145,7 +145,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
           <input
             value={origin}
             onChange={e => setOrigin(e.target.value)}
-            type="text"
             name="prompt"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -167,7 +166,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
           <input
             value={destination}
             onChange={e => setDestination(e.target.value)}
-            type="text"
             name="prompt"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
