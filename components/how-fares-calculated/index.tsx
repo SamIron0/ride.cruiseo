@@ -4,9 +4,9 @@ export function HowFaresCalculated() {
         <div className="lg:flex items-center  p-8 sm:p-12  w-full text-white bg-black">
 
             {/* First div */}
-            <div className="lg:w-1/2 pr-4 sm:w-full">
+            <div className="lg:w-1/2 pr-4 lg:pr-8 sm:w-full">
                 <h1 className=" text-white pb-6 pt-4 font-medium text-3xl">How Fares Are Calculated</h1>
-                <div className="pl-3">
+                <div className="pl-3 max-w-3xl">
                     <div className="flex mt-1 sm:mt-0 pb-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide pt-1.5 lucide-target"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
                         </svg>
