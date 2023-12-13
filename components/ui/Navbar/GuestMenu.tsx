@@ -6,7 +6,7 @@ import { useSupabase } from "@/app/supabase-provider";
 import { User } from "@supabase/supabase-js";
 
 export default function GuestMenu() {
-    const BODY_PADDING = "px-4 sm:px-6"
+    const BODY_PADDING = "px-12 sm:px-6"
     const router = useRouter();
     const { supabase } = useSupabase();
     //setUserEmail(user.email || "")
@@ -16,7 +16,7 @@ export default function GuestMenu() {
     return (
         <>
             <div className={cn(
-                "top-0 sticky z-20 w-full py-3 px-12 bg-gray-100 flex flex-row flex-nowrap justify-between mx-auto h-14 items-stretch animate-in fade-in slide-in-from-top-4 duration-1000 ease-in-out",
+                "top-0 sticky z-20 w-full bg-gray-100 flex flex-row flex-nowrap justify-between mx-auto h-14 items-stretch animate-in fade-in slide-in-from-top-4 duration-1000 ease-in-out",
                 BODY_PADDING
             )}>
                 <Link
