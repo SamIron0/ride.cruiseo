@@ -139,7 +139,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   return (
     <div className="flex flex-col items-center">
 
-      <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full px-4">
+      <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
         <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
           <input
             value={origin}
