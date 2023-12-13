@@ -13,7 +13,7 @@ interface Prop {
 
 export default function UserMenu({ user }: Prop) {
     const [isOpen, setIsOpen] = useState(false);
-    const BODY_PADDING = "px-4 sm:px-6"
+    const BODY_PADDING = "px-4 sm:px-12"
     // const [userName, setUserName] = useState("")
     //   const [userEmail, setUserEmail] = useState("")
     const router = useRouter();

@@ -6,7 +6,7 @@ import { useSupabase } from "@/app/supabase-provider";
 import { User } from "@supabase/supabase-js";
 
 export default function GuestMenu() {
-    const BODY_PADDING = "px-12 sm:px-6"
+    const BODY_PADDING = "px-4 sm:px-12"
     const router = useRouter();
     const { supabase } = useSupabase();
     //setUserEmail(user.email || "")
