@@ -9,7 +9,7 @@ export const HowMercuryWorks: React.FC = () =>
     <div className="p-8 sm:p-12 w-full pb-16">
         <h1 className="pt-48 font-medium text-black text-3xl mb-12">How Mercury Works</h1>
 
-        <ol className="relative  border-s w-full border-black ">
+        <ol className="relative  border-s max-w-3xl border-black ">
             <li className="mb-8 ms-4 ">
                 <div className="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 bg-black"></div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-black">Request</h3>
