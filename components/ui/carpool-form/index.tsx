@@ -12,7 +12,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
 import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
-declare var google: any;
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -136,33 +135,13 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
   }
 
-  const center = { lat: 50.064192, lng: -130.605469 };
-  // Create a bounding box with sides ~10km away from the center point
-  const defaultBounds = {
-    north: center.lat + 0.1,
-    south: center.lat - 0.1,
-    east: center.lng + 0.1,
-    west: center.lng - 0.1,
-  };
-  const input = document.getElementById("pac-input") as HTMLInputElement;
-  const options = {
-  //  bounds: defaultBounds,
-    componentRestrictions: { country: "ca" },
-    fields: ["address_components", "geometry", "icon", "name"],
-    strictBounds: false,
-  };
-  const inputRef = useRef();
-
-  const autocomplete = new google.maps.places.Autocomplete(inputRef.current, options);
 
   return (
     <div className="flex flex-col items-center">
 
       <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full px-4">
         <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
-
           <input
-            ref={inputRef}
             value={origin}
             onChange={e => setOrigin(e.target.value)}
             placeholder="Enter an Origin"
