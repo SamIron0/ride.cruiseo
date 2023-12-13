@@ -4,7 +4,7 @@ export function HowFaresCalculated() {
         <div className="lg:flex items-center  p-8 sm:p-12  w-full text-white bg-black">
 
             {/* First div */}
-            <div className="lg:w-1/2 pr-4 lg:pr-8 sm:w-full">
+            <div className="lg:w-1/2 lg:pr-12 sm:w-full">
                 <h1 className=" text-white pb-6 pt-4 font-medium text-3xl">How Fares Are Calculated</h1>
                 <div className="pl-3 max-w-3xl">
                     <div className="flex justify-start pb-1">
