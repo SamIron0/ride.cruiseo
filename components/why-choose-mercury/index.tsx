@@ -2,7 +2,7 @@
 
 export function WhyChooseMercury() {
     return (
-        <div className="sm:p-12 p-4">
+        <div className="sm:p-12 p-6">
             <h1 className="pt-24 text-black font-medium text-3xl">Why Go With Mercury</h1>
             <div className="animate-in fade-in mt-8 slide-in-from-bottom-4 duration-1200 w-full ease-in-out">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 justify-items-stretch w-full">
