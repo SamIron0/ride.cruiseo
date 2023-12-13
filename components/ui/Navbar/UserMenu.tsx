@@ -34,7 +34,7 @@ export default function UserMenu({ user }: Prop) {
     return (
         <>
             <div className={cn(
-                "top-0 sticky z-20 w-full py-3 bg-gray-100 flex flex-row flex-nowrap justify-between max-w-5xl mx-auto h-14 items-stretch animate-in fade-in slide-in-from-top-4 duration-1000 ease-in-out",
+                "top-0 sticky z-20 w-full py-12 bg-gray-100 flex flex-row flex-nowrap justify-between mx-auto h-14 items-stretch animate-in fade-in slide-in-from-top-4 duration-1000 ease-in-out",
                 BODY_PADDING
             )}>
                 <Link

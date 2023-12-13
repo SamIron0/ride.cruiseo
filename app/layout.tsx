@@ -7,7 +7,7 @@ import 'styles/main.css';
 import { Inter } from "next/font/google"
 
 
-const BODY_PADDING = "px-4 sm:px-6"
+const BODY_PADDING = ""
 const inter = Inter({ subsets: ["latin"] })
 
 
@@ -64,7 +64,7 @@ export default function RootLayout({
           <Navbar />
           <main
             id="skip"
-            className={cn("min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto", BODY_PADDING)}
+            className={cn("min-h-screen flex items-stretch flex-col pb-28 mx-auto")}
           >
             {children}
           </main>

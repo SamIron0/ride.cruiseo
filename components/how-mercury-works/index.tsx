@@ -6,7 +6,7 @@ interface HowMercuryWorksProps {
 }
 
 export const HowMercuryWorks: React.FC = () =>
-    <div className="p-2">
+    <div className="p-12 mb-8">
         <h1 className="pt-48 font-medium text-black text-3xl mb-12">How Mercury Works</h1>
 
         <ol className="relative  border-s w-full border-gray-400 ">
@@ -19,12 +19,12 @@ export const HowMercuryWorks: React.FC = () =>
             <li className="mb-8 ms-4">
                 <div className="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 bg-gray-400"></div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-black">Match</h3>
-                <p className="text-base font-normal text-gray-500 dark:text-gray-500">We work on the backend to match you with other riders following similar routes.</p>
+                <p className="text-base font-normal text-gray-500 dark:text-gray-500">We match you with other riders following similar routes. The more riders you match with, the cheaper the trip. Maximum, 3 riders per trip.</p>
             </li>
             <li className="mb-8 ms-4">
                 <div className="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 bg-gray-400"></div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-black">Pay</h3>
-                <p className="text-base font-normal text-gray-500 dark:text-gray-500">You are sent a payment link and your trip in automatically confirmed once payment is complete. You will be refunded the balance as more riders join your trip.</p>
+                <p className="text-base font-normal text-gray-500 dark:text-gray-500">You are sent a payment link and your trip is confirmed once payment is complete. You will be refunded the balance as more riders join your trip.</p>
             </li>
             <li className="ms-4 mb-8">
                 <div className="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 bg-gray-400"></div>

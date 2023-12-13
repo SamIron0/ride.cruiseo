@@ -14,6 +14,7 @@ import { HowMercuryWorks } from './how-mercury-works';
 import { WhyChooseMercury } from './why-choose-mercury';
 import { CarpoolGrid } from './ui/carpool-grid';
 import { Trip, UserDetails } from '@/types';
+import { HowFaresCalculated } from './how-fares-calculated';
 
 type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 type Product = Database['public']['Tables']['products']['Row'];
@@ -36,7 +37,7 @@ export default function MercuryHome({
   const router = useRouter();
   return (
     <>
-      <div className="py-[15vh] sm:py-[20vh] flex flex-col items-center justify-center">
+      <div className="flex flex-col pt-20 items-center justify-center">
         <h1 className="font-medium text-4xl text-black mb-3 animate-in fade-in slide-in-from-bottom-3 duration-1000 ease-in-out">
           Book A Ride
         </h1>
@@ -49,6 +50,7 @@ export default function MercuryHome({
         {!user ?
           <>
             <HowMercuryWorks />
+            <HowFaresCalculated />
             <WhyChooseMercury />
           </> : <>
             <CarpoolGrid user={user} trips={trips} />
