@@ -37,7 +37,7 @@ export default function MercuryHome({
   const router = useRouter();
   return (
     <>
-      <div className="flex flex-col pt-20 items-center justify-center">
+      <div className="flex flex-col pt-32 items-center justify-center">
         <h1 className="font-medium text-4xl text-black mb-3 animate-in fade-in slide-in-from-bottom-3 duration-1000 ease-in-out">
           Book A Ride
         </h1>
