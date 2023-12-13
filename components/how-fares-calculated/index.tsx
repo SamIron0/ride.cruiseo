@@ -1,10 +1,10 @@
 "use client"
 export function HowFaresCalculated() {
     return (
-        <div className="lg:flex p-8 sm:p-12  w-full text-white bg-black">
+        <div className="lg:flex items-center  p-8 sm:p-12  w-full text-white bg-black">
 
             {/* First div */}
-            <div className="lg:w-1/2 flex itmes-center sm:w-full">
+            <div className="lg:w-1/2 sm:w-full">
                 <h1 className=" text-white pb-6 pt-4 font-medium text-3xl">How Fares Are Calculated</h1>
                 <ul className="pl-3">
                     <span className="lg:max-w-md">
