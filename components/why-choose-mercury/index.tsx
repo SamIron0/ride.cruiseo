@@ -1,9 +1,11 @@
 "use client"
 
+import Link from "next/link"
+
 export function WhyChooseMercury() {
     return (
         <div className="sm:p-12 p-6">
-            <h1 className="pt-6 text-black font-medium text-3xl">Why Go With Mercury</h1>
+            <h1 className="pt-6 text-black  font-medium text-3xl">Why Go With Mercury</h1>
             <div className="animate-in fade-in mt-8 slide-in-from-bottom-4 duration-1200 w-full ease-in-out">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 justify-items-stretch w-full">
                     <div className=" text-black p-2 ">
@@ -25,6 +27,11 @@ export function WhyChooseMercury() {
 
                 </div>
             </div>
+            <Link href="/signin" className="inline-flex mt-8 items-center px-8 py-2 text-sm font-medium  border rounded-lg  bg-fuchsia-700 text-white border-fuchsia-500	 hover:text-white hover:bg-fuchsia-600">
+                Try it Out
+                 <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+            </svg>
+            </Link>
         </div>
     )
 }
