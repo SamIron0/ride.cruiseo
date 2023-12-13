@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
 import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
+declare var google: any;
 
 interface CarpoolFormProps {
   user: User | null | undefined
