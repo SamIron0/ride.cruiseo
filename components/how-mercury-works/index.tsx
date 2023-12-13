@@ -6,7 +6,7 @@ interface HowMercuryWorksProps {
 }
 
 export const HowMercuryWorks: React.FC = () =>
-    <div className="p-12 w-full mb-4">
+    <div className="p-4 sm:p-12 w-full mb-4">
         <h1 className="pt-48 font-medium text-black text-3xl mb-12">How Mercury Works</h1>
 
         <ol className="relative  border-s w-full border-black ">

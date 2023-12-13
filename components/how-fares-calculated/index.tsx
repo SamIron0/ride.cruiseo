@@ -1,7 +1,7 @@
 "use client"
 export function HowFaresCalculated() {
     return (
-        <div className="lg:flex p-12 items-center w-full text-white bg-black">
+        <div className="lg:flex p-4 sm:p-12 items-center w-full text-white bg-black">
 
             {/* First div */}
             <div className="lg:w-1/2 sm:w-full">
