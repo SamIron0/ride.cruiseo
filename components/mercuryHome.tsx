@@ -44,7 +44,7 @@ export default function MercuryHome({
 
         <CarpoolCount />
 
-        <div className="max-w-md space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
+        <div className="max-w-md space-y-4 px-4 sm:px-0.5 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
           <CarpoolForm user={user} />
         </div>
         {!user ?
