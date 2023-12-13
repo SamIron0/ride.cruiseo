@@ -14,7 +14,7 @@ import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
 
 interface CarpoolFormProps {
-  user: User | null | undefinedx
+  user: User | null | undefined
 }
 
 
