@@ -14,7 +14,7 @@ import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
 
 interface CarpoolFormProps {
-  user: User | null | undefined
+  user: User | null | undefinedx
 }
 
 
@@ -145,11 +145,12 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   };
   const input = document.getElementById("pac-input") as HTMLInputElement;
   const options = {
-    bounds: defaultBounds,
-    componentRestrictions: { country: "us" },
+  //  bounds: defaultBounds,
+    componentRestrictions: { country: "ca" },
     fields: ["address_components", "geometry", "icon", "name"],
     strictBounds: false,
   };
+  const inputRef = useRef();
 
   const autocomplete = new google.maps.places.Autocomplete(inputRef.current, options);
 
