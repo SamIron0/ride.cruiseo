@@ -33,7 +33,7 @@ export const HowMercuryWorks: React.FC = () =>
                 </p>
             </li>
             <li className="ms-4">
-                <div className="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 bg-gray-400"></div>
+                <div className="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 bg-black"></div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-black">Hop Out</h3>
                 <p className="text-base pb-2 font-normal text-gray-500 dark:text-gray-500">Arrive at your destination.
                 </p>
