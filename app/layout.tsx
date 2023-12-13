@@ -10,6 +10,7 @@ import { Inter } from "next/font/google"
 const BODY_PADDING = "px-4 sm:px-6"
 const inter = Inter({ subsets: ["latin"] })
 
+
 const meta = {
   title: 'Next.js Subscription Starter',
   description: 'Brought to you by Vercel, Stripe, and Supabase.',
