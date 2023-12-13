@@ -53,7 +53,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <script async
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30zdd2kq7wtyjWmu5RM8Ms6oVDttTaO0&libraries=places&callback=initMap">
+        </script>
       </head>
       <body className={cn(inter.className, "antialiased bg-gray-100")}>
         <SupabaseProvider>
