@@ -9,6 +9,21 @@ export default function GuestMenu() {
     const BODY_PADDING = "px-4 sm:px-12"
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+    const closeMenuOnOutsideClick = (event: { target: any; }) => {
+        if (isOpen && menuRef.current && !menuRef.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', closeMenuOnOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', closeMenuOnOutsideClick);
+        };
+    }, [isOpen]);
+    const menuRef = useRef<HTMLDivElement>(null);
+
     return (
         <>
             <div className={cn(
@@ -72,7 +87,7 @@ export default function GuestMenu() {
                 </div>
 
                 {isOpen ?
-                    <div id="dropdownInformation" className="z-10 mt-14 sm:mr-8 mr-6 absolute top-0 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                    <div ref={menuRef} id="dropdownInformation" className="z-10 mt-14 sm:mr-8 mr-6 absolute top-0 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                             <div className="font-medium truncate">Welcome</div>
                         </div>
@@ -83,7 +98,7 @@ export default function GuestMenu() {
 
                         </ul>
                         <div className="py-2">
-                            <Link href="/contactus" className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Contact Us</Link>
+                            <a href="/contactus" className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Contact Us</a>
                         </div>
                     </div>
                     : <></>
