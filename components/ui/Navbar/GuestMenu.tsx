@@ -46,7 +46,7 @@ export default function GuestMenu() {
                             <div className="relative py-3 mx-auto sm:max-w-xl">
                                 <nav>
                                     <button
-                                        className="relative w-10 h-10 text-gray-500 bg-white rounded-sm focus:outline-none"
+                                        className="relative w-10 h-10 text-gray-500 rounded-sm focus:outline-none"
                                         onClick={() => setIsOpen(!isOpen)}>
                                         <span className="sr-only">Open main menu</span>
                                         <div className="absolute block w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
