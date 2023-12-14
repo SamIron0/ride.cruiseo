@@ -56,7 +56,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
         </div>
         <div className="flex-1 h-full relative">
           <X
-            size={16}
+            size={20}
             color="black"
             onClick={deleteTrip}
             className="absolute top-0 right-0"
