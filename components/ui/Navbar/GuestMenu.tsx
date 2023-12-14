@@ -8,7 +8,7 @@ import { User } from "@supabase/supabase-js";
 export default function GuestMenu() {
     const BODY_PADDING = "px-4 sm:px-12"
     const router = useRouter();
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <>
             <div className={cn(
@@ -47,7 +47,7 @@ export default function GuestMenu() {
                                 <nav>
                                     <button
                                         className="relative w-10 h-10 text-gray-500 bg-white rounded-sm focus:outline-none"
-                                        onClick={() => setOpen(!open)}>
+                                        onClick={() => setIsOpen(!isOpen)}>
                                         <span className="sr-only">Open main menu</span>
                                         <div className="absolute block w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
                                             <span
