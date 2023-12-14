@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react"; 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
@@ -31,6 +31,23 @@ export default function UserMenu({ user }: Prop) {
         event.preventDefault()
         setIsOpen(!isOpen)
     }
+    const closeMenuOnOutsideClick = (event: { target: any; }) => {
+        if (isOpen && menuRef.current && !menuRef.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', closeMenuOnOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', closeMenuOnOutsideClick);
+        };
+    }, [isOpen]);
+
+    const menuRef = useRef<HTMLDivElement>(null);
+
+
     return (
         <>
             <div className={cn(
@@ -73,8 +90,9 @@ export default function UserMenu({ user }: Prop) {
                 </button>
 
                 </div>
+
                 {isOpen ?
-                    <div id="dropdownInformation" className="z-10 mt-14 sm:mr-8 mr-6 absolute top-0 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                    <div ref={menuRef} id="dropdownInformation" className="z-10 mt-14 sm:mr-8 mr-6 absolute top-0 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                             <div>{userName}</div>
                             <div className="font-medium truncate">{userEmail}</div>
@@ -91,7 +109,6 @@ export default function UserMenu({ user }: Prop) {
                     </div>
                     : <></>
                 }
-
             </div>
 
 
