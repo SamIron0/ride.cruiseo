@@ -42,7 +42,7 @@ export default function GuestMenu() {
                         </Link>
                     </div>
                     <>
-                        <div className="flex flex-col justify-center min-h-screen py-6 bg-gray-100 sm:py-12">
+                        <div className="flex flex-col justify-center min-h-screen py-6 sm:py-12">
                             <div className="relative py-3 mx-auto sm:max-w-xl">
                                 <nav>
                                     <button
@@ -78,12 +78,12 @@ export default function GuestMenu() {
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
                             <li>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
+                                <a href="/" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
                             </li>
 
                         </ul>
                         <div className="py-2">
-                            <Link href="/" className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Contact Us</Link>
+                            <Link href="/contactus" className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Contact Us</Link>
                         </div>
                     </div>
                     : <></>
