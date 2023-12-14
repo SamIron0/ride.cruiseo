@@ -212,13 +212,13 @@ export interface Database {
       }
       trips: {
         Row: {
-          origin: string | null
-          destination: string | null
-          id: string | null
-          date: string | null
+          origin: string
+          destination: string
+          id: string
+          date: string
           user_id: string
-          price: string | null
-          status: string | null
+          price: string
+          status: string
         }
         Insert: {
           origin?: string | null
