@@ -38,19 +38,19 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
       <div className="flex items-center h-full space-x-4 rtl:space-x-reverse">
         <div className="flex-1 w-7/10">
           <p className="text-sm flex  font-semibold text-gray-900 truncate dark:text-white">
-            Origin: <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+            Origin: <p className="text-sm pl-1 text-gray-500 truncate dark:text-gray-400">
               {trip.origin}</p>
           </p>
           <p className="text-sm flex font-semibold text-gray-900 truncate dark:text-white">
-            Destination: <p className="text-sm  text-gray-500 truncate dark:text-gray-400">
+            Destination: <p className="text-sm pl-1  text-gray-500 truncate dark:text-gray-400">
               {trip.destination}</p>
           </p>
           <p className="text-sm flex font-semibold text-gray-900 truncate dark:text-white">
-            Price: <p className="text-sm   text-gray-500 truncate dark:text-gray-400">
+            Price: <p className="text-sm pl-1   text-gray-500 truncate dark:text-gray-400">
               {trip.price}</p>
           </p>
           <p className="text-sm flex font-semibold text-gray-900 truncate dark:text-white">
-            Pickup: <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+            Pickup: <p className="text-sm pl-1 text-gray-500 truncate dark:text-gray-400">
               {trip.date}</p>
           </p>
         </div>

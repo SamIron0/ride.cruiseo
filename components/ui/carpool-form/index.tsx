@@ -106,7 +106,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         destination: destination,
         user_id: user?.id || uuidv4(),
         date: date,
-        price: price,
+        price: "N/A",
         status: "Pending"
       })
       //sendEmail();
