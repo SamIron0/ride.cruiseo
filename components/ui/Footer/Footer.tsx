@@ -31,12 +31,20 @@ export default function Footer() {
         </div>
         <div className="col-span-1 lg:col-span-2">
           <ul className="flex flex-col flex-initial md:flex-1">
-            <li className="py-3 md:py-0 md:pb-4">
+          <li className="py-3 md:py-0 md:pb-4">
               <Link
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
                 Home
+              </Link>
+            </li>
+            <li className="py-3 md:py-0 md:pb-4">
+              <Link
+                href="/contactus"
+                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
+              >
+                Contact Us
               </Link>
             </li>
 
