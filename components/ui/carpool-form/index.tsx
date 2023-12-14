@@ -30,6 +30,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   const [name, setName] = useState('');
   const [nameIsValid, setNameIsValid] = useState(true);
   const [email, setEmail] = useState(user?.email);
+  const [status, setStatus] = useState("Pending");
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [number, setNumber] = useState('');
   const [numberIsValid, setNumberIsValid] = useState(true);
@@ -43,7 +44,8 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       id: "",
       date: "",
       user_id: "",
-      price: price
+      price: price,
+      status:"",
     }
   );
 
@@ -57,14 +59,14 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   const requestButton = () => {
     if (!user) {
       return (<>
-        <Link href="/signin" className="inline-flex mt-8 items-center px-[98px] py-2 text-sm font-medium  border rounded-lg  bg-fuchsia-700 text-white border-fuchsia-500	 hover:text-white hover:bg-fuchsia-600">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <Link href="/signin" className="inline-flex mt-8 items-center px-[98px] py-2 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400	 hover:text-white hover:bg-fuchsia-500">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </Link>
       </>)
     }
     else {
       return (<>
-        <button onClick={handleConfirm} className="inline-flex mt-8 items-center px-[98px] py-2 text-sm font-medium  border rounded-lg  bg-fuchsia-700 text-white border-fuchsia-500 hover:text-white hover:bg-fuchsia-600 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <button onClick={handleConfirm} className="inline-flex mt-8 items-center px-[98px] py-2 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400 hover:text-white hover:bg-fuchsia-500 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </button>
       </>)
@@ -104,7 +106,8 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         destination: destination,
         user_id: user?.id || uuidv4(),
         date: date,
-        price: price
+        price: price,
+        status: "Pending"
       })
       //sendEmail();
     }

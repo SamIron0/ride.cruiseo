@@ -218,6 +218,7 @@ export interface Database {
           date: string | null
           user_id: string
           price: string | null
+          status: string | null
         }
         Insert: {
           origin?: string | null
@@ -226,6 +227,7 @@ export interface Database {
           id: string | null
           date?: string | null
           price?: string | null
+          status?: string | null
 
         }
         Update: {
@@ -235,6 +237,8 @@ export interface Database {
           id?: string | null
           date?: string | null
           price?: string | null
+          status?: string | null
+
         }
         Relationships: [
           {

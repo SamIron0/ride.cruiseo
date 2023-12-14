@@ -55,6 +55,7 @@ export const createTrip = async ({
         date: trip.date,
         user_id: id,
         price: trip.price,
+        status: "Pending"
       },
     ]);
   let trips = await retrieveTrips(id);

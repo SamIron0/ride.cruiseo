@@ -11,6 +11,8 @@ interface CarpoolCardProps {
 
 export function CarpoolCard({ trip }: CarpoolCardProps) {
   const router = useRouter()
+  let innerBg = trip.status == "Pending" ? "bg-yellow-500" : trip.status == "Confirmed" ? "bg-green-500" : "bg-blue-500"
+  let outerBg = trip.status == "Pending" ? "bg-yellow-100 text-yellow-800" : trip.status == "Confirmed" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"
   async function deleteTrip() {
     try {
       const url = "/api/delete-trip";
@@ -76,9 +78,9 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
               target.style.transform = 'scale(1.0)';
             }}
           />
-          <span className="absolute bottom-0 right-0 inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-            <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-            Pending
+          <span className={`${outerBg} absolute bottom-0 right-0 inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
+            <span className={`${innerBg} w-2 h-2 me-1 rounded-full`}></span>
+            {trip.status}
           </span>
         </div>
       </div>

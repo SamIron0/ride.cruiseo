@@ -7,6 +7,7 @@ export interface Trip {
     date: string | null
     user_id: string
     price: string | null
+    status: string | null
 }
 
 

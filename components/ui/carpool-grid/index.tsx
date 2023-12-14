@@ -18,7 +18,8 @@ export function CarpoolGrid({ user, trips }: CarpoolGridProps) {
       origin: j?.origin,
       destination: j.destination,
       date: j.date,
-      price: j.price
+      price: j.price,
+      status: j.status
     })));
 
 
