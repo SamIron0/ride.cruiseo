@@ -13,6 +13,17 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const router = useRouter()
   let innerBg = trip.status == "Pending" ? "bg-yellow-500" : trip.status == "Confirmed" ? "bg-green-500" : "bg-blue-500"
   let outerBg = trip.status == "Pending" ? "bg-yellow-100 text-yellow-800" : trip.status == "Confirmed" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"
+  const parsedDate = new Date(trip.date);
+  // Extract the relevant components
+  const month = parsedDate.toLocaleString('en-US', { month: 'short' });
+  const day = parsedDate.getDate();
+  const hours = parsedDate.getHours() % 12 || 12; // Convert to 12-hour format
+  const minutes = parsedDate.getMinutes();
+  const amPm = parsedDate.getHours() < 12 ? 'AM' : 'PM';
+
+  // Construct the formatted date
+  const formattedDate = `${month} ${day}, ${hours}:${minutes} ${amPm}`;
+
   async function deleteTrip() {
     try {
       const url = "/api/delete-trip";
@@ -51,7 +62,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
           </p>
           <p className="text-sm flex font-semibold text-gray-900 truncate dark:text-white">
             Pickup: <p className="text-sm pl-1 text-gray-500 truncate dark:text-gray-400">
-              {trip.date}</p>
+              {formattedDate}</p>
           </p>
         </div>
         <div className="flex-1 h-full relative">
