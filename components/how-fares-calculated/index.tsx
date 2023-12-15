@@ -10,7 +10,7 @@ export function HowFaresCalculated() {
                     <div className="flex justify-start pb-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide flex-shrink-0 pt-1.5 lucide-target"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
                         </svg>
-                        <p className="pl-1"> Mercury calculates trip fares based on both time and distance.</p>
+                        <p className="pl-1"> Cruiseo calculates trip fares based on both time and distance.</p>
                     </div>
                     <div className="flex justify-start pb-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide flex-shrink-0  pt-1.5 lucide-target"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
