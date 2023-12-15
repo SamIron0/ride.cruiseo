@@ -26,7 +26,7 @@ export default function Footer() {
                 className="lucide lucide-car-front">
                 <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8" /><path d="M7 14h.01" /><path d="M17 14h.01" /><rect width="18" height="8" x="3" y="10" rx="2" /><path d="M5 18v2" /><path d="M19 18v2" /></svg>
             </span>
-            <span>mercury</span>
+            <span>cruiseo</span>
           </Link>
         </div>
         <div className="col-span-1 lg:col-span-2">
@@ -54,7 +54,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-black">
         <div className='text-white'>
           <span>
-            &copy; {new Date().getFullYear()} mercury. All rights reserved.
+            &copy; {new Date().getFullYear()} cruiseo. All rights reserved.
           </span>
         </div>
 
