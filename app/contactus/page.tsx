@@ -25,7 +25,7 @@ export default async function ContactUs() {
                             </div>
                             <div className="ml-3 mt-2 grow">
                                 <p className="text-neutral-500 dark:text-neutral-200">
-                                    support@example.com
+                                    customersupport@cruiseo.xyz
                                 </p>
                                 <p className="text-neutral-500 dark:text-neutral-200">
                                     +1 360 804 7005
