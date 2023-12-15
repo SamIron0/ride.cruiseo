@@ -23,7 +23,6 @@ const meta = {
 export const metadata = {
   title: meta.title,
   description: meta.description,
-  cardImage: meta.cardImage,
   robots: meta.robots,
   favicon: meta.favicon,
   url: meta.url,
@@ -31,17 +30,14 @@ export const metadata = {
   openGraph: {
     url: meta.url,
     title: meta.title,
-    description: meta.description,
-    cardImage: meta.cardImage,
-    type: meta.type,
+    description: meta.description,    type: meta.type,
     site_name: meta.title
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@cruiseo_CA',
+    site: '@cruiseo_ca',
     title: meta.title,
     description: meta.description,
-    cardImage: meta.cardImage
   }
 };
 
