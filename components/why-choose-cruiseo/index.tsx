@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-export function WhyChooseMercury() {
+export function WhyChooseCruiseo() {
     return (
         <div className="sm:p-12 p-6">
             <h1 className="pt-6 text-black  font-medium text-3xl">Why Go With Cruiseo</h1>

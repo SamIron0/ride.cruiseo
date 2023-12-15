@@ -1,13 +1,13 @@
 "use client"
 
 
-interface HowMercuryWorksProps {
+interface HowCruiseoWorksProps {
     setFocus: () => void;
 }
 
-export const HowMercuryWorks: React.FC = () =>
+export const HowCruiseoWorks: React.FC = () =>
     <div className="p-8 sm:p-12 w-full pb-16">
-        <h1 className="pt-48 font-medium text-black text-3xl mb-12">How Mercury Works</h1>
+        <h1 className="pt-48 font-medium text-black text-3xl mb-12">How Cruiseo Works</h1>
 
         <ol className="relative  border-s max-w-3xl border-black ">
             <li className="mb-8 ms-4 ">

@@ -10,8 +10,8 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CarpoolCount } from './ui/carpool-count';
 import { CarpoolForm } from './ui/carpool-form';
-import { HowMercuryWorks } from './how-cruiseo-works';
-import { WhyChooseMercury } from './why-choose-cruiseo';
+import { HowCruiseoWorks } from './how-cruiseo-works';
+import { WhyChooseCruiseo } from './why-choose-cruiseo';
 import { CarpoolGrid } from './ui/carpool-grid';
 import { Trip, UserDetails } from '@/types';
 import { HowFaresCalculated } from './how-fares-calculated';
@@ -27,7 +27,7 @@ interface Props {
 }
 
 
-export default function MercuryHome({
+export default function CruiseoHome({
   trips,
   user,
   userDetails,
@@ -49,9 +49,9 @@ export default function MercuryHome({
         </div>
         {!user ?
           <>
-            <HowMercuryWorks />
+            <HowCruiseoWorks />
             <HowFaresCalculated />
-            <WhyChooseMercury />
+            <WhyChooseCruiseo />
           </> : <>
             <CarpoolGrid user={user} trips={trips} />
           </>

@@ -1,4 +1,4 @@
-import MercuryHome from '@/components/mercuryHome';
+import CruiseoHome from '@/components/cruiseoHome';
 import {
   getSession,
   getSubscription,
@@ -25,7 +25,7 @@ export default async function PricingPage() {
     console.log("trips length :"+ trips?.length)
   }
   return (
-    <MercuryHome
+    <CruiseoHome
       trips={trips}
       user={session?.user}
       userDetails={userDetails}
