@@ -12,12 +12,11 @@ const inter = Inter({ subsets: ["latin"] })
 
 
 const meta = {
-  title: 'Next.js Subscription Starter',
-  description: 'Brought to you by Vercel, Stripe, and Supabase.',
-  cardImage: '/og.png',
+  title: 'Cruise Ride Share',
+  description: 'Brought to you by Samuel.',
   robots: 'follow, index',
   favicon: '/favicon.ico',
-  url: 'https://subscription-starter.vercel.app',
+  url: 'https://cruiseo.xyz',
   type: 'website'
 };
 
@@ -39,7 +38,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@vercel',
+    site: '@cruiseo_CA',
     title: meta.title,
     description: meta.description,
     cardImage: meta.cardImage
