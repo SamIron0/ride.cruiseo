@@ -56,6 +56,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={cn(inter.className, "antialiased bg-gray-100")}>
@@ -73,6 +74,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </SupabaseProvider>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
       </body>
     </html>
   );
