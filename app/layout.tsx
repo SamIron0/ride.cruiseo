@@ -5,7 +5,7 @@ import { cn } from '@/utils/helpers';
 import { PropsWithChildren } from 'react';
 import 'styles/main.css';
 import { Inter } from "next/font/google"
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const BODY_PADDING = ""
 const inter = Inter({ subsets: ["latin"] })
