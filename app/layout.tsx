@@ -6,6 +6,7 @@ import { PropsWithChildren } from 'react';
 import 'styles/main.css';
 import { Inter } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/react';
 
 const BODY_PADDING = ""
 const inter = Inter({ subsets: ["latin"] })
@@ -67,7 +68,8 @@ export default function RootLayout({
           >
             {children}
             <SpeedInsights />
-
+            <Analytics />
+            
           </main>
           <Footer />
         </SupabaseProvider>
