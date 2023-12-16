@@ -66,6 +66,8 @@ export default function RootLayout({
             className={cn("min-h-screen flex items-stretch flex-col pb-28 mx-auto")}
           >
             {children}
+            <SpeedInsights />
+
           </main>
           <Footer />
         </SupabaseProvider>
