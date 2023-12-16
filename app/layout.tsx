@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 
 const meta = {
-  title: 'Cruise Ride Share',
+  title: 'Cruiseo Ride Share',
   description: 'Brought to you by Samuel.',
   robots: 'follow, index',
   favicon: '/favicon.ico',
