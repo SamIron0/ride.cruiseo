@@ -50,6 +50,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LSKBCKW7SS"></script>
+        <script>
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-LSKBCKW7SS');
+          `}
+        </script>
+
+
         <script async
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30zdd2kq7wtyjWmu5RM8Ms6oVDttTaO0&libraries=places&callback=initMap">
         </script>
@@ -70,7 +84,7 @@ export default function RootLayout({
             {children}
             <SpeedInsights />
             <Analytics />
-            
+
           </main>
           <Footer />
         </SupabaseProvider>
