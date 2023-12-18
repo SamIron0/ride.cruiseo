@@ -12,11 +12,21 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
 import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
+import React, { ChangeEvent, FormEvent } from 'react';
 
 interface CarpoolFormProps {
   user: User | null | undefined
 }
 
+
+interface AddressProps {
+  name: string;
+  street_address: string;
+  city: string;
+  state: string;
+  zip_code: string;
+  googleMapLink: string;
+}
 
 export function CarpoolForm({ user }: CarpoolFormProps) {
   const submitRef = useRef<React.ElementRef<"button">>(null)
@@ -45,9 +55,10 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
       date: "",
       user_id: "",
       price: price,
-      status:"",
+      status: "",
     }
   );
+
 
   const handleTripDetailsSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -138,6 +149,47 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
   }
 
+  let autocomplete: google.maps.places.Autocomplete | null = null;
+  /*
+      super(props);
+      this.state = this.initialState();
+      this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+    
+  */
+  //let autocomplete: any;
+
+  autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete') as HTMLInputElement, {});
+
+  if (autocomplete) {
+    autocomplete.addListener("place_changed", handlePlaceSelect);
+  }
+
+
+  const [address, setAddress] = useState<AddressProps>();
+  function handlePlaceSelect() {
+    if (autocomplete) {
+      const addressObject = autocomplete.getPlace();
+      if (addressObject) {
+        const address = addressObject.address_components || [];
+        setAddress({
+          name: addressObject.name || '',
+          street_address: `${address[0]?.long_name || ''} ${address[1]?.long_name || ''}`,
+          city: address[4]?.long_name || '',
+          state: address[6]?.short_name || '',
+          zip_code: address[8]?.short_name || '',
+          googleMapLink: addressObject.url || ''
+        });
+      }
+    }
+
+
+  }
+  function clearForm() {
+    // Implement the logic to clear the form fields if needed
+  }
+
 
   return (
     <div className="flex flex-col items-center">
@@ -172,12 +224,23 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         </div>
         <DateTime onDateTimeChange={handleDateTimeChange} />
         {requestButton()}
-      </form>
+
+        <div>
+          <h1>Add New Parlor</h1>
+          <input
+            id="autocomplete"
+            className="input-field"
+            ref="input"
+            type="text"
+          />
+        </div>
+
+      </form >
       <div><Toaster
         position="top-center"
         reverseOrder={false}
       /></div>
-    </div>
+    </div >
   )
 }
 function saveSettings(settings: any): Promise<unknown> {
