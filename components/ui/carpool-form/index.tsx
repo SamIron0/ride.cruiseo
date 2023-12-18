@@ -149,7 +149,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
   }
 
-  let autocomplete: google.maps.places.Autocomplete | null = null;
   /*
       super(props);
       this.state = this.initialState();
@@ -160,32 +159,6 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   */
   //let autocomplete: any;
 
-  autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete') as HTMLInputElement, {});
-
-  if (autocomplete) {
-    autocomplete.addListener("place_changed", handlePlaceSelect);
-  }
-
-
-  const [address, setAddress] = useState<AddressProps>();
-  function handlePlaceSelect() {
-    if (autocomplete) {
-      const addressObject = autocomplete.getPlace();
-      if (addressObject) {
-        const address = addressObject.address_components || [];
-        setAddress({
-          name: addressObject.name || '',
-          street_address: `${address[0]?.long_name || ''} ${address[1]?.long_name || ''}`,
-          city: address[4]?.long_name || '',
-          state: address[6]?.short_name || '',
-          zip_code: address[8]?.short_name || '',
-          googleMapLink: addressObject.url || ''
-        });
-      }
-    }
-
-
-  }
   function clearForm() {
     // Implement the logic to clear the form fields if needed
   }
@@ -225,15 +198,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
         <DateTime onDateTimeChange={handleDateTimeChange} />
         {requestButton()}
 
-        <div>
-          <h1>Add New Parlor</h1>
-          <input
-            id="autocomplete"
-            className="input-field"
-            ref="input"
-            type="text"
-          />
-        </div>
+        
 
       </form >
       <div><Toaster
