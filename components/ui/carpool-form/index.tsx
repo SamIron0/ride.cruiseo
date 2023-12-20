@@ -244,7 +244,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
             <input
               value={origin}
               onChange={e => setOriginAndSuggestions(e.target.value)}
-              placeholder="Enter an Origin"
+              placeholder="Enter a Destination"
               className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
             />
           </div>
@@ -257,7 +257,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
           {originSuggestionIsOpen &&
             <div
               ref={originRef}
-              className={formattedOriginOptions.length > 0 ? "w-3/4 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+              className={formattedOriginOptions.length > 0 ? "w-w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
             >
               {formattedOriginOptions?.map((formatOption, index) => (
                 <button
@@ -274,7 +274,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
               value={destination}
               onChange={e => setDestinationAndSuggestions(e.target.value)}
               placeholder="Enter an Origin"
-              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[19px] font-mono  h-10 w-full "
+              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
             />
           </div>
 
@@ -286,7 +286,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
           {destinationSuggestionIsOpen && (
             <div
               ref={destinationRef}
-              className={formattedDestinationOptions.length > 0 ? "w-3/4 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+              className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
             >
               {formattedDestinationOptions?.map((formatOption, index) => (
                 <button
