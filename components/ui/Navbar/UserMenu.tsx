@@ -105,7 +105,7 @@ export default function UserMenu({ user }: Prop) {
 
                         </ul>
                         <div className="py-2">
-                            <Link href="/contactus" className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Contact Us</Link>
+                            <a href="/contactus" className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Contact Us</a>
                         </div>
                         <div className="py-2">
                             <button onClick={handleSignOut} className="block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</button>
