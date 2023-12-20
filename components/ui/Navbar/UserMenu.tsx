@@ -51,7 +51,7 @@ export default function UserMenu({ user }: Prop) {
     return (
         <>
             <div className={cn(
-                "top-0 sticky z-20 w-full bg-gray-100 flex flex-row flex-nowrap justify-between mx-auto h-14 items-stretch animate-in fade-in slide-in-from-top-4 duration-1000 ease-in-out px-4 sm:px-12"
+                "top-0 sticky z-20 w-full bg-gray-100 flex flex-row flex-nowrap justify-between mx-auto h-14 items-stretch animate-in fade-in slide-in-from-top-4 duration-1000 ease-in-out px-6 sm:px-12"
             )}>
                 <Link
                     className="text-black text-lg font-medium flex flex-row flex-nowrap items-center justify-center gap-x-1.5 pr-1.5 leading-none rounded-lg"
