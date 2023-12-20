@@ -239,35 +239,33 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
     <div className="flex flex-col items-center">
 
       <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
-        <div className="w-full">
-          <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
-            <input
-              value={origin}
-              onChange={e => setOriginAndSuggestions(e.target.value)}
-              placeholder="Enter a Destination"
-              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
-            />
-          </div>
-
-          {!originIsValid &&
-            <div className="text-red-500 text-left font-mono text-xs">
-              Origin cannot be blank
-            </div>
-          }
-          {originSuggestionIsOpen &&
-            <div
-              ref={originRef}
-              className={formattedOriginOptions.length > 0 ? "w-w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
-            >
-              {formattedOriginOptions?.map((formatOption, index) => (
-                <button
-                  onClick={() => onOriginSuggestionClick(formatOption.value)}
-                  className="text-md hover:bg-gray-100 text-left w-full p-1"
-                  key={index}>{formatOption.value}</button>
-              ))}
-            </div>
-          }
+        <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
+          <input
+            value={origin}
+            onChange={e => setOriginAndSuggestions(e.target.value)}
+            placeholder="Enter a Destination"
+            className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
+          />
         </div>
+
+        {!originIsValid &&
+          <div className="text-red-500 text-left font-mono text-xs">
+            Origin cannot be blank
+          </div>
+        }
+        {originSuggestionIsOpen &&
+          <div
+            ref={originRef}
+            className={formattedOriginOptions.length > 0 ? "w-w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+          >
+            {formattedOriginOptions?.map((formatOption, index) => (
+              <button
+                onClick={() => onOriginSuggestionClick(formatOption.value)}
+                className="text-md hover:bg-gray-100 text-left w-full p-1"
+                key={index}>{formatOption.value}</button>
+            ))}
+          </div>
+        }
         <div className="w-full">
           <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
             <input
