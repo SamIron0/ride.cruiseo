@@ -50,8 +50,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-
-
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-LSKBCKW7SS"></script>
         <script>
           {`
@@ -64,8 +62,6 @@ export default function RootLayout({
         </script>
 
 
-        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30zdd2kq7wtyjWmu5RM8Ms6oVDttTaO0&libraries=places&callback=initMap">
-        </script>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

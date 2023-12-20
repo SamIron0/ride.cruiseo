@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useCallback, useRef, useState } from "react"
 import { SubmitButton } from "./submit-button"
 import DateTime from "@/components/ui/dateTime"
 import { CarpoolGrid } from "../carpool-grid"
@@ -13,6 +13,11 @@ import { useRouter } from 'next/navigation';
 import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
 import React, { ChangeEvent, FormEvent } from 'react';
+
+//import useAddressPredictions from "./useAddressPredictions";
+import { Loader } from "@googlemaps/js-api-loader"
+import { debounce } from "lodash";
+import getAddressPredictions from "./getAddressPredictions"
 
 interface CarpoolFormProps {
   user: User | null | undefined
@@ -28,7 +33,7 @@ interface AddressProps {
   googleMapLink: string;
 }
 
-export function CarpoolForm({ user }: CarpoolFormProps) {
+export const CarpoolForm = ({ user }: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +51,21 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
   const [numberIsValid, setNumberIsValid] = useState(true);
   const [date, setDate] = useState('');
   const [dateIsValid, setDateIsValid] = useState(true);
+  const [originSuggestionIsOpen, setOriginSuggestionIsOpen] = useState(true);
+  const [destinationSuggestionIsOpen, setDestinationSuggestionIsOpen] = useState(true);
   const adminEmail = "samuelironkwec@gmail.com"
+  const [input, setInput] = useState('');
+  //const [prediction, setPredictions] = useState<any>();
+  const originPredictions = getAddressPredictions(origin);
+  const destinationPredictions = getAddressPredictions(destination);
+
+  const formatOptions = (predictions: string[]): { label: string; value: string }[] => {
+    return predictions.map((prediction) => ({
+      label: prediction,
+      value: prediction, // You can customize how the 'value' is generated
+    }));
+  };
+
   const [trip, setTrip] = useState<Trip | null>(
     {
       origin: origin,
@@ -140,8 +159,8 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
 
       const response = await fetch(url, options);
       const data = await response.json();
-      //console.log(data);
       toast.success('Trip requested!')
+      clearForm();
       router.refresh()
 
     } catch (err) {
@@ -149,57 +168,137 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
     }
   }
 
-  /*
-      super(props);
-      this.state = this.initialState();
-      this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    
-  */
-  //let autocomplete: any;
-
   function clearForm() {
-    // Implement the logic to clear the form fields if needed
+    setOrigin("")
+    setDate("")
+    setDestination("")
   }
 
+  let formattedOriginOptions = formatOptions(originPredictions);
+  let formattedDestinationOptions = formatOptions(destinationPredictions);
+  function setOriginAndSuggestions(value: string) {
+    setOrigin(value);
+    if (value.length > 0) {
+      setOriginSuggestionIsOpen(true)
+    }
+    else
+      setDestinationSuggestionIsOpen(false)
+  }
+  function setDestinationAndSuggestions(value: string) {
+    setDestination(value);
+    if (value.length > 0) {
+      setDestinationSuggestionIsOpen(true)
+    }
+    else
+      setDestinationSuggestionIsOpen(false)
+  }
+  function onOriginSuggestionClick(value: any) {
+    setOrigin(value);
+    setOriginSuggestionIsOpen(false)
 
+  }
+  function onDestinationSuggestionClick(value: any) {
+    setDestination(value);
+    setDestinationSuggestionIsOpen(false)
+  }
+  const destinationRef = useRef<any>();
+  const originRef = useRef<any>();
+  useEffect(() => {
+    const handleOutsideDestinationClick = (event: any) => {
+      if (destinationRef.current && !(destinationRef.current as HTMLElement).contains(event.target)) {
+        // Clicked outside the destination suggestion, close it
+        setDestinationSuggestionIsOpen(false);
+      }
+    };
+
+    // Add event listener when the component mounts
+    document.addEventListener('click', handleOutsideDestinationClick);
+
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener('click', handleOutsideDestinationClick);
+    };
+  }, []);
+  useEffect(() => {
+    const handleOutsideOriginClick = (event: any) => {
+      if (originRef.current && !(originRef.current as HTMLElement).contains(event.target)) {
+        // Clicked outside the destination suggestion, close it
+        setOriginSuggestionIsOpen(false);
+      }
+    };
+
+    // Add event listener when the component mounts
+    document.addEventListener('click', handleOutsideOriginClick);
+
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener('click', handleOutsideOriginClick);
+    };
+  }, []);
   return (
     <div className="flex flex-col items-center">
 
       <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
-        <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
-          <input
-            value={origin}
-            onChange={e => setOrigin(e.target.value)}
-            placeholder="Enter an Origin"
-            className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
-          />
-
-        </div>
-        {!originIsValid &&
-          <div className="text-red-500 text-left font-mono text-xs">
-            Origin cannot be blank
+        <div className="w-full">
+          <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
+            <input
+              value={origin}
+              onChange={e => setOriginAndSuggestions(e.target.value)}
+              placeholder="Enter an Origin"
+              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
+            />
           </div>
-        }
-        <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex px-1 w-full ">
 
-          <input
-            onChange={e => setDestination(e.target.value)}
-            placeholder="Enter a Destination"
-            className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
-          />
-          {!destinationIsValid &&
-            <p className="text-red-500 mb-5 font-mono text-sm">
-              Destination cannot be blank
-            </p>
+          {!originIsValid &&
+            <div className="text-red-500 text-left font-mono text-xs">
+              Origin cannot be blank
+            </div>
           }
+          {originSuggestionIsOpen &&
+            <div
+              ref={originRef}
+              className={formattedOriginOptions.length > 0 ? "w-3/4 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+            >
+              {formattedOriginOptions?.map((formatOption, index) => (
+                <button
+                  onClick={() => onOriginSuggestionClick(formatOption.value)}
+                  className="text-md hover:bg-gray-100 text-left w-full p-1"
+                  key={index}>{formatOption.value}</button>
+              ))}
+            </div>
+          }
+        </div>
+        <div className="w-full">
+          <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
+            <input
+              value={destination}
+              onChange={e => setDestinationAndSuggestions(e.target.value)}
+              placeholder="Enter an Origin"
+              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[19px] font-mono  h-10 w-full "
+            />
+          </div>
+
+          {!destinationIsValid &&
+            <div className="text-red-500 text-left font-mono text-xs">
+              Destination cannot be blank
+            </div>
+          }
+          {destinationSuggestionIsOpen && (
+            <div
+              ref={destinationRef}
+              className={formattedDestinationOptions.length > 0 ? "w-3/4 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+            >
+              {formattedDestinationOptions?.map((formatOption, index) => (
+                <button
+                  onClick={() => onDestinationSuggestionClick(formatOption.value)}
+                  className="text-md hover:bg-gray-100 text-left w-full p-1"
+                  key={index}>{formatOption.value}</button>
+              ))}
+            </div>
+          )}
         </div>
         <DateTime onDateTimeChange={handleDateTimeChange} />
         {requestButton()}
-
-        
-
       </form >
       <div><Toaster
         position="top-center"
@@ -211,4 +310,7 @@ export function CarpoolForm({ user }: CarpoolFormProps) {
 function saveSettings(settings: any): Promise<unknown> {
   throw new Error("Function not implemented.")
 }
+
+
+
 
