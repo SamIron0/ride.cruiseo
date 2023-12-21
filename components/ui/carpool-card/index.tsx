@@ -55,14 +55,14 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   }
   return (
     <div className=" ">
-        <Modal visible={state} onClose={()=>closeHandler}>
-          <Modal.Title>Cancel Trip</Modal.Title>
-          <Modal.Content>
-            <p>Are you sure you want to cancel the trip?</p>
-          </Modal.Content>
-          <Modal.Action onClick={() => deleteTrip().then(() => setVisible(false))}>Yes, Im sure</Modal.Action>
-          <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
-        </Modal>      <Fieldset>
+      <Modal visible={state} onClose={() => closeHandler}>
+        <Modal.Title>Cancel Trip</Modal.Title>
+        <Modal.Content>
+          <p>Are you sure you want to cancel the trip?</p>
+        </Modal.Content>
+        <Modal.Action onClick={() => deleteTrip().then(() => setState(false))}>Yes, Im sure</Modal.Action>
+        <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
+      </Modal>      <Fieldset>
         <Fieldset.Title >
           <span className={`${outerBg} inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
             <span className={`${innerBg} w-2 h-2 me-1 rounded-full`}></span>
