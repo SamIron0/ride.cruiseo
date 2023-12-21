@@ -55,16 +55,17 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
 
   return (
     <div className=" ">
-      <Modal {...bindings}>
-        <Modal.Title>Modal</Modal.Title>
-        <Modal.Subtitle>This is a modal</Modal.Subtitle>
-        <Modal.Content>
-          <p>Some content contained within the modal.</p>
-        </Modal.Content>
-        <Modal.Action onClick={() => deleteTrip().then(activateWarning)}>Yes, Im sure</Modal.Action>
-        <Modal.Action passive onClick={() => setVisible(false)}>No, cancel</Modal.Action>
-      </Modal>
-
+      {visible &&
+        <Modal {...bindings}>
+          <Modal.Title>Modal</Modal.Title>
+          <Modal.Subtitle>This is a modal</Modal.Subtitle>
+          <Modal.Content>
+            <p>Some content contained within the modal.</p>
+          </Modal.Content>
+          <Modal.Action onClick={() => deleteTrip().then(activateWarning)}>Yes, Im sure</Modal.Action>
+          <Modal.Action passive onClick={() => setVisible(false)}>No, cancel</Modal.Action>
+        </Modal>
+      }
       <Fieldset>
         <Fieldset.Title >
           <span className={`${outerBg} inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
