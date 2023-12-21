@@ -22,11 +22,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const [warningActive, setWarningActive] = useState(false)
   // Construct the formatted date
   const formattedDate = `${month} ${day}, ${hours}:${minutes} ${amPm}`;
-  function handleXClick() {
-    trip.status == "Pening" ?
-      deleteTrip
-      : activateWarning()
-  }
+
   function activateWarning() {
     // pop up screen  asking user if they want  to  continue cancelling trip
     setWarningActive(!warningActive)
@@ -57,12 +53,11 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
     <div className=" ">
       {visible &&
         <Modal {...bindings}>
-          <Modal.Title>Modal</Modal.Title>
-          <Modal.Subtitle>This is a modal</Modal.Subtitle>
+          <Modal.Title>Cancel Trip</Modal.Title>
           <Modal.Content>
-            <p>Some content contained within the modal.</p>
+            <p>Are you sure you want to cancel the trip?</p>
           </Modal.Content>
-          <Modal.Action onClick={() => deleteTrip().then(activateWarning)}>Yes, Im sure</Modal.Action>
+          <Modal.Action onClick={() => deleteTrip().then(() => setVisible(false))}>Yes, Im sure</Modal.Action>
           <Modal.Action passive onClick={() => setVisible(false)}>No, cancel</Modal.Action>
         </Modal>
       }
