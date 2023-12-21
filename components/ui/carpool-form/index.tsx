@@ -182,7 +182,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
       setOriginSuggestionIsOpen(true)
     }
     else
-      setDestinationSuggestionIsOpen(false)
+      setOriginSuggestionIsOpen(false)
   }
   function setDestinationAndSuggestions(value: string) {
     setDestination(value);
@@ -243,7 +243,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
             <input
               value={origin}
               onChange={e => setOriginAndSuggestions(e.target.value)}
-              placeholder="Enter a Destination"
+              placeholder="Enter an Origin"
               className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
             />
           </div>
@@ -272,7 +272,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
             <input
               value={destination}
               onChange={e => setDestinationAndSuggestions(e.target.value)}
-              placeholder="Enter an Origin"
+              placeholder="Enter a Destination"
               className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
             />
           </div>
