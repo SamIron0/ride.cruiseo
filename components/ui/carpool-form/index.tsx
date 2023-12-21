@@ -256,7 +256,7 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
         {originSuggestionIsOpen &&
           <div
             ref={originRef}
-            className={formattedOriginOptions.length > 0 ? "w-w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+            className={formattedOriginOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
           >
             {formattedOriginOptions?.map((formatOption, index) => (
               <button
