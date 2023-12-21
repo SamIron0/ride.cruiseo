@@ -55,7 +55,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   }
   return (
     <div className=" ">
-        <Modal visible={state} onClose={closeHandler}>
+        <Modal visible={state} onClose={()=>closeHandler}>
           <Modal.Title>Cancel Trip</Modal.Title>
           <Modal.Content>
             <p>Are you sure you want to cancel the trip?</p>
