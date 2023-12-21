@@ -76,13 +76,13 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
         </Fieldset.Title>
         <Fieldset.Subtitle>
           <div className="flex-1">
-            <p className="font-medium ">Origin: <span className="font-normal">{trip.origin}</span></p>
-            <p className="font-medium ">Destination: <span className="font-normal">{trip.destination}</span></p>
-            <p className="font-medium ">Date: <span className="font-normal">{formattedDate}</span></p>
+            <p className="font-semibold ">Origin: <span className="font-normal">{trip.origin}</span></p>
+            <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination}</span></p>
+            <p className="font-semibold ">Date: <span className="font-normal">{formattedDate}</span></p>
           </div>
         </Fieldset.Subtitle>
         <Fieldset.Footer>
-          <p className="font-medium ">Price: <span className="font-normal">{trip.price}</span></p>
+          <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
           <Button auto type="secondary" scale={1 / 3} onClick={() => handleXClick()} font="12px">Cancel</Button>        </Fieldset.Footer>
       </Fieldset>
     </div>
