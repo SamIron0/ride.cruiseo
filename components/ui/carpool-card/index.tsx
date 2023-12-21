@@ -47,18 +47,22 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
       console.error(err);
     }
   }
-  const { visible, setVisible, bindings } = useModal()
-
+  const [state, setState] = useState(false)
+  const handler = () => setState(true)
+  const closeHandler = (event) => {
+    setState(false)
+    console.log('closed')
+  }
   return (
     <div className=" ">
       {visible &&
-        <Modal {...bindings}>
+        <Modal visible={state} onClose={closeHandler}>
           <Modal.Title>Cancel Trip</Modal.Title>
           <Modal.Content>
             <p>Are you sure you want to cancel the trip?</p>
           </Modal.Content>
           <Modal.Action onClick={() => deleteTrip().then(() => setVisible(false))}>Yes, Im sure</Modal.Action>
-          <Modal.Action passive onClick={() => setVisible(false)}>No, cancel</Modal.Action>
+          <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
         </Modal>
       }
       <Fieldset>
