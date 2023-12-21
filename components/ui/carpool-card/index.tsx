@@ -81,7 +81,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
         </Fieldset.Subtitle>
         <Fieldset.Footer>
           <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
-          <Button auto type="secondary" scale={1 / 3} onClick={() => handleXClick()} font="12px">Cancel</Button>        </Fieldset.Footer>
+          <Button auto type="secondary" scale={1 / 3} onClick={() => setVisible(true)} font="12px">Cancel</Button>        </Fieldset.Footer>
       </Fieldset>
     </div>
   )
