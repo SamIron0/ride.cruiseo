@@ -4,7 +4,7 @@ import router from "next/router";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
-import { Button, Fieldset, useModal } from "@geist-ui/core";
+import { Button, Fieldset, useModal, Modal } from "@geist-ui/core";
 interface CarpoolCardProps {
   trip: Trip
 }
