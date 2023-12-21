@@ -49,7 +49,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   }
   const [state, setState] = useState(false)
   const handler = () => setState(true)
-  const closeHandler = (event) => {
+  const closeHandler = (event: any) => {
     setState(false)
     console.log('closed')
   }
