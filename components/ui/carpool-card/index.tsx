@@ -47,12 +47,12 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
       console.error(err);
     }
   }
-  const { visible, setVisible } = useModal()
+  const { visible, setVisible, bindings } = useModal()
 
   return (
     <div className=" ">
       {visible &&
-        <Modal>
+        <Modal {...bindings}>
           <Modal.Title>Cancel Trip</Modal.Title>
           <Modal.Content>
             <p>Are you sure you want to cancel the trip?</p>
