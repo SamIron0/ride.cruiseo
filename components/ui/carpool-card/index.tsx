@@ -19,14 +19,9 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const hours = parsedDate.getHours() % 12 || 12; // Convert to 12-hour format
   const minutes = parsedDate.getMinutes();
   const amPm = parsedDate.getHours() < 12 ? 'AM' : 'PM';
-  const [warningActive, setWarningActive] = useState(false)
   // Construct the formatted date
   const formattedDate = `${month} ${day}, ${hours}:${minutes} ${amPm}`;
 
-  function activateWarning() {
-    // pop up screen  asking user if they want  to  continue cancelling trip
-    setWarningActive(!warningActive)
-  }
   async function deleteTrip() {
     try {
       const url = "/api/delete-trip";
@@ -55,7 +50,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   }
   return (
     <div className=" ">
-      <Modal visible={state} onClose={() => closeHandler}>
+      <Modal visible={state} onClose={() => closeHandler()}>
         <Modal.Title>Cancel Trip</Modal.Title>
         <Modal.Content>
           <p>Are you sure you want to cancel the trip?</p>
@@ -78,7 +73,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
         </Fieldset.Subtitle>
         <Fieldset.Footer>
           <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
-          <Button auto type="secondary" scale={1 / 3} onClick={() => setVisible(true)} font="12px">Cancel</Button>        </Fieldset.Footer>
+          <Button auto type="secondary" scale={1 / 3} font="12px">Cancel</Button>        </Fieldset.Footer>
       </Fieldset>
     </div>
   )
