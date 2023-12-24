@@ -56,24 +56,24 @@ export default function CruiseoHome({
 
   return (
     <>
-      <div className="flex flex-col pt-4 items-center justify-center">
-        <div className="max-w-md space-y-4 px-6 sm:px-0.5 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
+      <div className="flex flex-col items-center justify-center">
+        <div className="max-w-md space-y-4 px-6 sm:px-1 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="bg-black text-gray-400 py-3 mt-2 mb-2 rounded-full shadow-lg h-fit flex px-1 items-center w-full transition-all duration-300 ease-in-out transform hover:scale-105">
-            <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
-              <path d="M440-40v-80q-125-14-214.5-103.5T122-438H42v-80h80q14-125 103.5-214.5T440-836v-80h80v80q125 14 214.5 103.5T838-518h80v80h-80q-14 125-103.5 214.5T520-120v80h-80Zm40-158q116 0 198-82t82-198q0-116-82-198t-198-82q-116 0-198 82t-82 198q0 116 82 198t198 82Z" />
-            </svg>
-            <p className='pl-1'>Anywhere</p>
+            className="bg-black px-4 text-white py-2 my-2 rounded-full shadow-lg h-fit flex items-center  w-full transition-all duration-300 ease-in-out transform hover:shadow-2xl ">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+              <path fill='rgb(156 163 175)' d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" /></svg>
+            <p className='pl-1 text-gray-400'>Anywhere</p>
           </button>
           {isOpen && (
-            <div ref={tripDropdownRef} id="dropdownInformation" className="w-5/6 md:3/5 lg:w-2/5 z-10 p-2 absolute mt-2 bg-white rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+
+            <div ref={tripDropdownRef} id="dropdownInformation" className="w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2">
               <CarpoolForm user={user} />
             </div>)}
         </div>
+        <AllTripsGrid />
         {!user ?
           <>
-            <AllTripsGrid />
             <HowCruiseoWorks />
             <HowFaresCalculated />
             <WhyChooseCruiseo />
