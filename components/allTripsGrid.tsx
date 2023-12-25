@@ -100,8 +100,8 @@ export function AllTripsGrid() {
             </>
             }
                 value="1">
-                <div className="animate-in fade-in md:px-24 sm:p-12 px-8 pt-4 slide-in-from-bottom-4 duration-1200 w-full ease-in-out">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center w-full">
+                <div className="p-4 sm:px-24">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
                         {allTrips?.map((trip) => (
                             <>
                                 <TripCard trip={trip} /></>
