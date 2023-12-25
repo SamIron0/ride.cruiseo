@@ -56,7 +56,7 @@ export default function CruiseoHome({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
+      <div className={`flex flex-col items-center bg-gray-100 justify-center ${isOpen ? 'backdrop-blur-md' : ''}`}>
         <div className="max-w-md space-y-4 px-6 sm:px-1 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -67,7 +67,7 @@ export default function CruiseoHome({
           </button>
           {isOpen && (
 
-            <div ref={tripDropdownRef} id="dropdownInformation" className="w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2">
+            <div ref={tripDropdownRef} id="dropdownInformation" className="w-4/5 md:3/5 lg:w-2/5 z-10 p-3 w-50 absolute mt-0.5 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2">
               <CarpoolForm user={user} />
             </div>)}
         </div>
