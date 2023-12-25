@@ -239,7 +239,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   }, []);
   return (
     <div className="flex flex-col p-4 h-screen w-full ">
-      <div className="sm:px-24 md:px-36 lg:px-52 ">
+      <div className="sm:px-24 md:px-36 lg:px-64 ">
         <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
@@ -249,10 +249,10 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               <span>
                 <h1 className="font-mono font-bold  text-black text-lg">Where to?</h1>
               </span>
-              <div className="bg-black mt-4 rounded-xl justify-center shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
+              <div className="bg-black mt-4 rounded-xl justify-center shadow-lg h-fit flex flex-col px-1 items-center w-full ">
                 <input
                   value={destination}
-                  onChange={e => setDestinationAndSuggestions(e.target.value)}
+                  onChange={e => setDestinationAndSuggestions(e.target.value)}gg
                   placeholder="Enter a Destination"
                   className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14  w-full"
                 />
