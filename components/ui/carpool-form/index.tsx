@@ -240,7 +240,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
       <div className="pl-2 text-left">
         <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
       </div>
-      <div className="flex flex-col border-gray-200 p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
+      <div className="flex flex-col border-gray-200 border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
 
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
           <div className="w-full">
@@ -249,7 +249,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                 value={origin}
                 onChange={e => setOriginAndSuggestions(e.target.value)}
                 placeholder="Enter an Origin"
-                className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 max-w-lg "
+                className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10  "
               />
             </div>
 
