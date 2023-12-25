@@ -246,7 +246,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
 
             <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
               <div className="w-full">
-                <h1 className="font-mono font-bold  text-black text-[30px] mb-3">Where to?</h1>
+                <h1 className="font-mono font-semi-bold  text-black text-[25px] mb-3">Where to?</h1>
                 <div className="bg-black mt-5 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-l ">
                   <input
                     value={origin}
@@ -275,7 +275,12 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   </div>
                 }
               </div>
+            </form ></div>
+          <div>
+            <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full">
+                <h1 className="font-mono font-semi-bold  text-black text-[25px] mb-3">Where to?</h1>
+
                 <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
                   <input
                     value={destination}
@@ -304,20 +309,24 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   </div>
                 )}
               </div>
-              <DateTime onDateTimeChange={handleDateTimeChange} />
-              {requestButton()}
-            </form ></div>
-          <div>
-            <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
-
             </div>
+            <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full">
+                <h1 className="font-mono font-semi-bold  text-black text-[25px] mb-3">Where to?</h1>
+
+                <DateTime onDateTimeChange={handleDateTimeChange} />
+
+              </div>
+            </div>
+            {requestButton()}
+
             <Toaster
               position="top-center"
               reverseOrder={false}
             /></div>
         </div >
 
-     
+
       </div>
     </div>
 
