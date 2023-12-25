@@ -18,7 +18,7 @@ export function AllTripsGrid() {
         times: ["6:30am", '7:45am', '12:00pm']
     }, {
         title: "Supertstore",
-        image: '/realCanadian.jpg',
+        image: '/superstore.jpg',
         times: ["6:30am", '7:45am', '12:00pm']
     },
     {
@@ -129,7 +129,7 @@ export function AllTripsGrid() {
                 </div>
             </Tabs.Item>
             <Tabs.Item
-                label={<> <svg xmlns="http://www.w3.org/2000/svg" height="38" viewBox="0 -960 960 960" width="24"><path d="M640-80q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170T640-80Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm-480 0q-33 0-56.5-23.5T80-240v-304q0-8 1.5-16t4.5-16l80-184h-6q-17 0-28.5-11.5T120-800v-40q0-17 11.5-28.5T160-880h280q17 0 28.5 11.5T480-840v40q0 17-11.5 28.5T440-760h-6l66 152q-19 10-36 21t-32 25l-84-198h-96l-92 216v304h170q5 21 13.5 41.5T364-160H160Zm480-440q-42 0-71-29t-29-71q0-42 29-71t71-29v200q0-42 29-71t71-29q42 0 71 29t29 71H640Z" /></svg> School </>} value="4">
+                label={<> <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 44v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z" /></svg> School </>} value="4">
                 <div className="animate-in fade-in md:px-24 px-10 sm:p-12  pt-4 slide-in-from-bottom-4 duration-1200 w-full ease-in-out">
                     <div className="grid grid-cols-1 justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-stretch w-full">
                         {groceryTrips?.map((trip) => (
@@ -139,7 +139,7 @@ export function AllTripsGrid() {
                 </div>
             </Tabs.Item>
             <Tabs.Item
-                label={<> <svg xmlns="http://www.w3.org/2000/svg" height="38" viewBox="0 -960 960 960" width="24"><path d="M640-80q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170T640-80Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm-480 0q-33 0-56.5-23.5T80-240v-304q0-8 1.5-16t4.5-16l80-184h-6q-17 0-28.5-11.5T120-800v-40q0-17 11.5-28.5T160-880h280q17 0 28.5 11.5T480-840v40q0 17-11.5 28.5T440-760h-6l66 152q-19 10-36 21t-32 25l-84-198h-96l-92 216v304h170q5 21 13.5 41.5T364-160H160Zm480-440q-42 0-71-29t-29-71q0-42 29-71t71-29v200q0-42 29-71t71-29q42 0 71 29t29 71H640Z" /></svg> Cinema </>} value="5w">
+                label={<> <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z" /></svg> Cinema </>} value="5w">
                 <div className="animate-in fade-in md:px-24 px-10  pt-4 sm:p-12 slide-in-from-bottom-4 duration-1200 w-full ease-in-out">
                     <div className="justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-stretch w-full">
                         {groceryTrips?.map((trip) => (
