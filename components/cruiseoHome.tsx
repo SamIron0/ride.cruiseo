@@ -54,37 +54,37 @@ export default function CruiseoHome({
 
   const tripDropdownRef = useRef<HTMLDivElement>(null);
 
+
   return (
     <>
-  
-      <div className={`flex flex-col items-center justify-center`}>
-        <div className="max-w-md space-y-4 px-6 sm:px-1 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="bg-black px-4 text-white py-2 my-2 rounded-full shadow-lg h-fit flex items-center  w-full transition-all duration-300 ease-in-out transform hover:scale-105 ">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-              <path fill='rgb(156 163 175)' d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" /></svg>
-            <p className='pl-1 text-gray-400'>Anywhere</p>
-          </button>
-          {isOpen && (
+      {!isOpen ? (
+        <div className={`flex flex-col items-center justify-center`}>
+          <div className="max-w-md space-y-4 px-6 sm:px-1 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="bg-black px-4 text-white py-2 my-2 rounded-full shadow-lg h-fit flex items-center  w-full transition-all duration-300 ease-in-out transform hover:scale-105 ">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path fill='rgb(156 163 175)' d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" /></svg>
+              <p className='pl-1 text-gray-400'>Anywhere</p>
+            </button>
 
-            <div ref={tripDropdownRef} id="dropdownInformation" className="w-4/5 md:3/5 lg:w-2/5 z-10 p-3 w-50 absolute mt-0.5 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2">
-              <CarpoolForm user={user} />
-            </div>)}
-        </div>
-        <div className='max-w-full'>
-          <AllTripsGrid />
-        </div>
-        {!user ?
-          <>
-            <HowCruiseoWorks />
-            <HowFaresCalculated />
-            <WhyChooseCruiseo />
-          </> : <>
-            <CarpoolGrid user={user} trips={trips} />
-          </>
-        }
-      </div>
+
+          </div>
+          <div className='max-w-full'>
+            <AllTripsGrid />
+          </div>
+          {!user ?
+            <>
+              <HowCruiseoWorks />
+              <HowFaresCalculated />
+              <WhyChooseCruiseo />
+            </> : <>
+              <CarpoolGrid user={user} trips={trips} />
+            </>
+          }
+        </div>)
+        : <CarpoolForm user={user} onClose={()=>setIsOpen(!isOpen)} />
+      }
     </>);
 }
 

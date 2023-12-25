@@ -21,6 +21,7 @@ import getAddressPredictions from "./getAddressPredictions"
 
 interface CarpoolFormProps {
   user: User | null | undefined
+  onClose: () => void;
 }
 
 
@@ -33,7 +34,7 @@ interface AddressProps {
   googleMapLink: string;
 }
 
-export const CarpoolForm = ({ user }: CarpoolFormProps) => {
+export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false);
@@ -235,70 +236,74 @@ export const CarpoolForm = ({ user }: CarpoolFormProps) => {
     };
   }, []);
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col p-12 lg:p-24 h-screen items-center">
+      <div className="pl-2">
+        <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+      </div>
+      <div className="flex flex-col rounded- p-4 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
 
-      <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
-        <div className="w-full">
-          <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
-            <input
-              value={origin}
-              onChange={e => setOriginAndSuggestions(e.target.value)}
-              placeholder="Enter an Origin"
-              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
-            />
+        <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
+          <div className="w-full">
+            <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
+              <input
+                value={origin}
+                onChange={e => setOriginAndSuggestions(e.target.value)}
+                placeholder="Enter an Origin"
+                className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 max-w-lg "
+              />
+            </div>
+
+            {!originIsValid &&
+              <div className="text-red-500 text-left font-mono text-xs">
+                Origin cannot be blank
+              </div>
+            }
+            {originSuggestionIsOpen &&
+              <div
+                ref={originRef}
+                className={formattedOriginOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+              >
+                {formattedOriginOptions?.map((formatOption, index) => (
+                  <button
+                    onClick={() => onOriginSuggestionClick(formatOption.value)}
+                    className="text-md hover:bg-gray-100 text-left w-full p-1"
+                    key={index}>{formatOption.value}</button>
+                ))}
+              </div>
+            }
           </div>
+          <div className="w-full">
+            <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
+              <input
+                value={destination}
+                onChange={e => setDestinationAndSuggestions(e.target.value)}
+                placeholder="Enter a Destination"
+                className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
+              />
+            </div>
 
-          {!originIsValid &&
-            <div className="text-red-500 text-left font-mono text-xs">
-              Origin cannot be blank
-            </div>
-          }
-          {originSuggestionIsOpen &&
-            <div
-              ref={originRef}
-              className={formattedOriginOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
-            >
-              {formattedOriginOptions?.map((formatOption, index) => (
-                <button
-                  onClick={() => onOriginSuggestionClick(formatOption.value)}
-                  className="text-md hover:bg-gray-100 text-left w-full p-1"
-                  key={index}>{formatOption.value}</button>
-              ))}
-            </div>
-          }
-        </div>
-        <div className="w-full">
-          <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center w-full ">
-            <input
-              value={destination}
-              onChange={e => setDestinationAndSuggestions(e.target.value)}
-              placeholder="Enter a Destination"
-              className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
-            />
+            {!destinationIsValid &&
+              <div className="text-red-500 text-left font-mono text-xs">
+                Destination cannot be blank
+              </div>
+            }
+            {destinationSuggestionIsOpen && (
+              <div
+                ref={destinationRef}
+                className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+              >
+                {formattedDestinationOptions?.map((formatOption, index) => (
+                  <button
+                    onClick={() => onDestinationSuggestionClick(formatOption.value)}
+                    className="text-md hover:bg-gray-100 text-left w-full p-1"
+                    key={index}>{formatOption.value}</button>
+                ))}
+              </div>
+            )}
           </div>
-
-          {!destinationIsValid &&
-            <div className="text-red-500 text-left font-mono text-xs">
-              Destination cannot be blank
-            </div>
-          }
-          {destinationSuggestionIsOpen && (
-            <div
-              ref={destinationRef}
-              className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
-            >
-              {formattedDestinationOptions?.map((formatOption, index) => (
-                <button
-                  onClick={() => onDestinationSuggestionClick(formatOption.value)}
-                  className="text-md hover:bg-gray-100 text-left w-full p-1"
-                  key={index}>{formatOption.value}</button>
-              ))}
-            </div>
-          )}
-        </div>
-        <DateTime onDateTimeChange={handleDateTimeChange} />
-        {requestButton()}
-      </form >
+          <DateTime onDateTimeChange={handleDateTimeChange} />
+          {requestButton()}
+        </form ></div>
       <div><Toaster
         position="top-center"
         reverseOrder={false}
