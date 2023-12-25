@@ -7,11 +7,11 @@ export function TripCard({ trip }: TripCardProps) {
   return (
     <div className="relative flex flex-col mt-6 text-gray-700 ">
       <div
-        className="relative -mt-6 w-md h-sm overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
+        className="relative -mt-6 max-w-sm max-h-sm overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
         <img
           src={trip.image}
           alt="card-image"
-          className="w-full h-full " />
+          className="" />
       </div>
       <div className="pt-3">
         <h5 className="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
