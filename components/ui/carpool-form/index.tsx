@@ -243,42 +243,41 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
         <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
-          {destinationIsOpen ? (<div
-            className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-            <div className="w-full flex flex-col justify-center">
-              <span>
-                <h1 className="font-mono font-bold  text-black text-lg">Where to?</h1>
-              </span>
-              <div className="bg-black mt-4 rounded-xl justify-center shadow-lg h-fit flex flex-col px-1 items-center w-full ">
-                <input
-                  value={destination}
-                  onChange={e => setDestinationAndSuggestions(e.target.value)}
-                  placeholder="Enter a Destination"
-                  className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14  w-full"
-                />
+         
+          {destinationIsOpen ? (
+            <div
+              className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full">
+                <h1 className="font-mono font-bold  text-black text-lg ">Where to?</h1>
+                <div className="bg-black mt-4 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
+                  <input
+                    value={origin}
+                    onChange={e => setDestinationAndSuggestions(e.target.value)}
+                    placeholder="Search Destinations"
+                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14 w-full "
+                  />
+                </div>
+
+                {!destinationIsValid &&
+                  <div className="text-red-500 text-left font-mono text-xs">
+                    Origin cannot be blank
+                  </div>
+                }
+                {destinationSuggestionIsOpen &&
+                  <div
+                    ref={destinationRef}
+                    className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                  >
+                    {formattedDestinationOptions?.map((formatOption, index) => (
+                      <button
+                        onClick={() => onDestinationSuggestionClick(formatOption.value)}
+                        className="text-md hover:bg-gray-100 text-left w-full p-1"
+                        key={index}>{formatOption.value}</button>
+                    ))}
+                  </div>
+                }
               </div>
-
-              {!destinationIsValid &&
-                <div className="text-red-500 text-left font-mono text-xs">
-                  Destination cannot be blank
-                </div>
-              }
-              {destinationSuggestionIsOpen && (
-                <div
-                  ref={destinationRef}
-                  className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 absolute mt-16 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
-                >
-                  {formattedDestinationOptions?.map((formatOption, index) => (
-                    <button
-                      onClick={() => onDestinationSuggestionClick(formatOption.value)}
-                      className="text-md hover:bg-gray-100 text-left w-full p-1"
-                      key={index}>{formatOption.value}</button>
-                  ))}
-                </div>
-              )}
             </div>
-
-          </div>
           ) : <div
             onClick={() => {
               setDateIsOpen(false);
@@ -303,7 +302,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   <input
                     value={origin}
                     onChange={e => setOriginAndSuggestions(e.target.value)}
-                    placeholder="Search Destinations"
+                    placeholder="Search Pickup"
                     className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14 w-full "
                   />
                 </div>
