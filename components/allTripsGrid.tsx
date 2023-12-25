@@ -64,7 +64,7 @@ export function AllTripsGrid() {
     };
 
     return (
-        <Tabs initialValue="1" align="center" hideDivider onChange={handleTabChange} leftSpace={0}>
+        <Tabs initialValue="1" align="center"  onChange={handleTabChange} leftSpace={0}>
             <Tabs.Item label={<> <svg
                 className={`h-30 ${activeTab === '1' ? 'text-black' : 'text-gray-500'}`}
                 xmlns="http://www.w3.org/2000/svg"

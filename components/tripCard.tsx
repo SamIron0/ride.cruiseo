@@ -5,12 +5,13 @@ interface TripCardProps {
 }
 export function TripCard({ trip }: TripCardProps) {
   return (
-    <div className="relative flex flex-col mt-6 text-gray-700 w-md">
+    <div className="relative flex flex-col mt-6 text-gray-700 ">
       <div
-        className="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
+        className="relative -mt-6 w-md h-md overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
         <img
           src={trip.image}
-          alt="card-image" />
+          alt="card-image"
+          className="w-full h-full " />
       </div>
       <div className="pt-3">
         <h5 className="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -19,7 +20,7 @@ export function TripCard({ trip }: TripCardProps) {
         <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
           Arrival Time: {trip.times}
         </p>
-     </div>
+      </div>
     </div>
   )
 }
