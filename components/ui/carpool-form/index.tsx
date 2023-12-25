@@ -252,7 +252,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               <div className="bg-black mt-4 rounded-xl justify-center shadow-lg h-fit flex flex-col px-1 items-center w-full ">
                 <input
                   value={destination}
-                  onChange={e => setDestinationAndSuggestions(e.target.value)}gg
+                  onChange={e => setDestinationAndSuggestions(e.target.value)}
                   placeholder="Enter a Destination"
                   className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14  w-full"
                 />
