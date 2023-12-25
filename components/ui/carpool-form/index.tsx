@@ -240,8 +240,8 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   return (
     <div className="flex flex-col p-4 h-screen w-full ">
       <div className="sm:px-24 md:px-36 lg:px-52 ">
-        <div onClick={() => onClose()} className="mb-2 w-10 h-10 flex justify-center items-center rounded-full border border-gray-300">
-          <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
+        <div onClick={() => onClose()} className="mb-2 w-8 h-8 flex justify-center items-center rounded-full border border-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
           {destinationIsOpen ? (<div
             className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
