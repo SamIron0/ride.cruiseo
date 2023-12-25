@@ -99,7 +99,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     }
     else {
       return (<>
-        <button onClick={handleConfirm} className="inline-flex mt-8 items-center w-full py-3 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400 hover:text-white hover:bg-fuchsia-500 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <button onClick={handleConfirm} className="inline-flex mt-8 items-center justify-center  w-full py-3 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400 hover:text-white hover:bg-fuchsia-500 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </button>
       </>)
@@ -238,26 +238,31 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     };
   }, []);
   return (
-    <div className="flex flex-col p-4 h-screen w-full ">
-      <div className="sm:px-24 md:px-44 lg:px-80">
+    <div className="flex flex-col justif-center p-4 px-3 h-screen w-full ">
+      <div className="max-w-xl">
         <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
-         
+
           {destinationIsOpen ? (
             <div
               className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full">
                 <h1 className="font-mono font-bold  text-black text-lg ">Where to?</h1>
-                <div className="bg-black mt-4 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
-                  <input
-                    value={origin}
-                    onChange={e => setDestinationAndSuggestions(e.target.value)}
-                    placeholder="Search Destinations"
-                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14 w-full "
-                  />
-                </div>
 
+                <div className="relative">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                  </div>
+                  <input
+                    value={destination}
+                    onChange={e => setDestinationAndSuggestions(e.target.value)}
+                    placeholder={"Search Destinations"}
+                    type="search" 
+                    className="block w-full p-4 mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
+                </div>
                 {!destinationIsValid &&
                   <div className="text-red-500 text-left font-mono text-xs">
                     Origin cannot be blank
@@ -266,7 +271,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                 {destinationSuggestionIsOpen &&
                   <div
                     ref={destinationRef}
-                    className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                    className={formattedDestinationOptions.length > 0 ? "w-5/6 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                   >
                     {formattedDestinationOptions?.map((formatOption, index) => (
                       <button
@@ -298,13 +303,18 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full">
                 <h1 className="font-mono font-bold  text-black text-lg ">From where?</h1>
-                <div className="bg-black mt-4 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
+                <div className="relative">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                  </div>
                   <input
                     value={origin}
                     onChange={e => setOriginAndSuggestions(e.target.value)}
-                    placeholder="Search Pickup"
-                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14 w-full "
-                  />
+                    placeholder={"Search"}
+                    type="search" 
+                    className="block w-full p-4 mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
                 </div>
 
                 {!originIsValid &&
@@ -315,7 +325,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                 {originSuggestionIsOpen &&
                   <div
                     ref={originRef}
-                    className={formattedOriginOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                    className={formattedOriginOptions.length > 0 ? "w-5/6 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                   >
                     {formattedOriginOptions?.map((formatOption, index) => (
                       <button
