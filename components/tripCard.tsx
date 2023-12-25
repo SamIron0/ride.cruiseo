@@ -7,7 +7,7 @@ export function TripCard({ trip }: TripCardProps) {
   return (
     <div className="relative flex flex-col mt-6 text-gray-700 ">
       <div
-        className="relative -mt-6 max-w-sm max-h-sm overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
+        className="relative -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
         <img
           src={trip.image}
           alt="card-image"
