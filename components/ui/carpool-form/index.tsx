@@ -290,7 +290,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
             <div className="w-full flex flex-col justify-center">
 
               <span>
-                <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
+                <h1 className="font-mono font-bold  text-black text-lg">Where to?</h1>
               </span>
             </div>
           </div>}
@@ -339,7 +339,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
             <div className="w-full flex flex-col justify-center">
 
               <span>
-                <h1 className="font-mono font-bold  text-black text-lg mb-3">From where?</h1>
+                <h1 className="font-mono font-bold  text-black text-lg">From where?</h1>
               </span>
             </div>
           </div>}
@@ -348,7 +348,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
 
               className="flex flex-col z-20 mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full flex flex-col justify-center">
-                <h1 className="font-mono font-bold  text-black text-lg  mb-3">When?</h1>
+                <h1 className="font-mono font-bold  text-black text-lg">When?</h1>
                 <DateTime onDateTimeChange={handleDateTimeChange} />
 
               </div>
