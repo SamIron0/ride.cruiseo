@@ -266,7 +266,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               {destinationSuggestionIsOpen && (
                 <div
                   ref={destinationRef}
-                  className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                  className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 absolute mt-16 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                 >
                   {formattedDestinationOptions?.map((formatOption, index) => (
                     <button
