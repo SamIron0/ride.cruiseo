@@ -280,7 +280,14 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               </div>
 
             </div>
-            ) : <></>}
+            ) : <div className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full flex flex-col justify-center">
+
+                <span>
+                  <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
+                </span>
+              </div>
+            </div>}
             {destinationIsOpen ? (
               <div className="flex z-10 flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
@@ -314,7 +321,14 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   }
                 </div>
               </div>
-            ) : <></>}
+            ) : <div className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full flex flex-col justify-center">
+
+                <span>
+                  <h1 className="font-mono font-bold  text-black text-lg mb-3">From where?</h1>
+                </span>
+              </div>
+            </div>}
             {dateIsOpen ? (
               <div className="flex flex-col z-20 mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full flex flex-col justify-center">
@@ -324,7 +338,14 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
 
                 </div>
               </div>
-            ) : <></>
+            ) : <div className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full flex flex-col justify-center">
+
+                <span>
+                  <h1 className="font-mono font-bold  text-black text-lg mb-3">When?</h1>
+                </span>
+              </div>
+            </div>
             }
             <>
               {requestButton()}
