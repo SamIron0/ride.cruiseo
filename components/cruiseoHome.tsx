@@ -71,7 +71,9 @@ export default function CruiseoHome({
               <CarpoolForm user={user} />
             </div>)}
         </div>
-        <AllTripsGrid />
+        <div className='max-w-full'>
+          <AllTripsGrid />
+        </div>
         {!user ?
           <>
             <HowCruiseoWorks />
