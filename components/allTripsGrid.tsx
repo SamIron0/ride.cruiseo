@@ -102,9 +102,9 @@ export function AllTripsGrid() {
             }
                 value="1">
                 <div className="sm:px-24 ">
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
+                    <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {allTrips?.map((trip) => (
-                            <div className="px-4 mt-2">
+                            <div className="mt-2">
                                 <TripCard trip={trip} />
                             </div>
                         ))}</div>
