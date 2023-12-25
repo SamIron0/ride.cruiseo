@@ -238,16 +238,16 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   return (
     <div className="overlay">
       <div className="flex  flex-col  p-4 h-screen w-full ">
-        <div className="sm:px-24 ">
+        <div className="sm:px-24 md:px-30 lg:px-52 ">
           <div className="pb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svgf" height="36" viewBox="0 -960 960 960" width="36"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
           </div>
           <div className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
 
-            <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 items-center w-full">
+            <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
               <div className="w-full">
-                <h1 className="font-mono text-black mb-3">Where to?</h1>
-                <div className="bg-black mt-5 rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-xl ">
+                <h1 className="font-mono font-bold  text-black text-[30px] mb-3">Where to?</h1>
+                <div className="bg-black mt-5 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-l ">
                   <input
                     value={origin}
                     onChange={e => setOriginAndSuggestions(e.target.value)}
@@ -281,7 +281,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                     value={destination}
                     onChange={e => setDestinationAndSuggestions(e.target.value)}
                     placeholder="Enter a Destination"
-                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
+                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14  max-w-l  "
                   />
                 </div>
 
@@ -308,7 +308,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               {requestButton()}
             </form ></div>
           <div>
-            <div className="flex flex-col mb-4 border-gray-500 border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
+            <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-2xl rounded-3xl shadow-blue-gray-500/40">
 
             </div>
             <Toaster
@@ -317,16 +317,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
             /></div>
         </div >
 
-        <style jsx>{`
-        .overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 999; // Adjust this value if needed
-        }
-      `}</style>
+     
       </div>
     </div>
 
