@@ -55,8 +55,8 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   const [originSuggestionIsOpen, setOriginSuggestionIsOpen] = useState(true);
   const [destinationSuggestionIsOpen, setDestinationSuggestionIsOpen] = useState(true);
   const adminEmail = "samuelironkwec@gmail.com"
-  const [originIsOpen, seOriginIsOpen] = useState(true);
-  const [destinationIsOpen, setDestinationIsOpen] = useState(false);
+  const [originIsOpen, setOriginIsOpen] = useState(false);
+  const [destinationIsOpen, setDestinationIsOpen] = useState(true);
   const [dateIsOpen, setDateIsOpen] = useState(false);
   //const [prediction, setPredictions] = useState<any>();
   const originPredictions = getAddressPredictions(origin);
@@ -238,147 +238,151 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     };
   }, []);
   return (
-    <div className="overlay">
-      <div className="flex  flex-col  p-4 h-screen w-full ">
-        <div className="sm:px-24 md:px-36 lg:px-52 ">
-          <div onClick={() => setIsOpen(!isOpen)} className="pb-3">
-            <svg xmlns="http://www.w3.org/2000/svgf" height="36" viewBox="0 -960 960 960" width="36"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+    <div className="flex  flex-col  p-4 h-screen w-full ">
+      <div className="sm:px-24 md:px-36 lg:px-52 ">
+        <div onClick={() => setIsOpen(!isOpen)} className="pb-3">
+          <svg xmlns="http://www.w3.org/2000/svgf" height="36" viewBox="0 -960 960 960" width="36"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+        </div>
+        <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
+          {destinationIsOpen ? (<div
+
+            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            <div className="w-full flex flex-col justify-center">
+              <span>
+                <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
+              </span>
+              <div className="bg-black mt-5 rounded-xl justify-center shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
+                <input
+                  value={destination}
+                  onChange={e => setDestinationAndSuggestions(e.target.value)}
+                  placeholder="Enter a Destination"
+                  className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14  w-full"
+                />
+              </div>
+
+              {!destinationIsValid &&
+                <div className="text-red-500 text-left font-mono text-xs">
+                  Destination cannot be blank
+                </div>
+              }
+              {destinationSuggestionIsOpen && (
+                <div
+                  ref={destinationRef}
+                  className={formattedDestinationOptions.length > 0 ? "w-9/10 md:3/5 lg:w-2/5 z-10 p-2  absolute mt-16 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                >
+                  {formattedDestinationOptions?.map((formatOption, index) => (
+                    <button
+                      onClick={() => onDestinationSuggestionClick(formatOption.value)}
+                      className="text-md hover:bg-gray-100 text-left w-full p-1"
+                      key={index}>{formatOption.value}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+
           </div>
-          <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
-            {destinationIsOpen ? (<div
-              onClick={() => {
-                setDateIsOpen(false);
-                setOriginSuggestionIsOpen(true);
-                setDestinationIsOpen(false);
-              }}
-              className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-              <div className="w-full flex flex-col justify-center">
-                <span>
-                  <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
-                </span>
-                <div className="bg-black mt-5 rounded-xl justify-center shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
+          ) : <div
+            onClick={() => {
+              setDateIsOpen(false);
+              setOriginSuggestionIsOpen(false);
+              setDestinationIsOpen(true);
+            }}
+            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            <div className="w-full flex flex-col justify-center">
+
+              <span>
+                <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
+              </span>
+            </div>
+          </div>}
+          {originIsOpen ? (
+            <div
+
+              className="flex z-10 flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full">
+                <h1 className="font-mono font-bold  text-black text-lg  mb-3">From where?</h1>
+                <div className="bg-black mt-5 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
                   <input
-                    value={destination}
-                    onChange={e => setDestinationAndSuggestions(e.target.value)}
-                    placeholder="Enter a Destination"
-                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14  w-full"
+                    value={origin}
+                    onChange={e => setOriginAndSuggestions(e.target.value)}
+                    placeholder="Search Destinations"
+                    className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14 w-full "
                   />
                 </div>
 
-                {!destinationIsValid &&
+                {!originIsValid &&
                   <div className="text-red-500 text-left font-mono text-xs">
-                    Destination cannot be blank
+                    Origin cannot be blank
                   </div>
                 }
-                {destinationSuggestionIsOpen && (
+                {originSuggestionIsOpen &&
                   <div
-                    ref={destinationRef}
-                    className={formattedDestinationOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                    ref={originRef}
+                    className={formattedOriginOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                   >
-                    {formattedDestinationOptions?.map((formatOption, index) => (
+                    {formattedOriginOptions?.map((formatOption, index) => (
                       <button
-                        onClick={() => onDestinationSuggestionClick(formatOption.value)}
+                        onClick={() => onOriginSuggestionClick(formatOption.value)}
                         className="text-md hover:bg-gray-100 text-left w-full p-1"
                         key={index}>{formatOption.value}</button>
                     ))}
                   </div>
-                )}
-              </div>
-
-            </div>
-            ) : <div className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-              <div className="w-full flex flex-col justify-center">
-
-                <span>
-                  <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
-                </span>
-              </div>
-            </div>}
-            {originIsOpen ? (
-              <div
-                onClick={() => {
-                  setDateIsOpen(false);
-                  setOriginSuggestionIsOpen(true);
-                  setDestinationIsOpen(false);
-                }}
-                className="flex z-10 flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-                <div className="w-full">
-                  <h1 className="font-mono font-bold  text-black text-lg  mb-3">From where?</h1>
-                  <div className="bg-black mt-5 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
-                    <input
-                      value={origin}
-                      onChange={e => setOriginAndSuggestions(e.target.value)}
-                      placeholder="Search Destinations"
-                      className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-14 w-full "
-                    />
-                  </div>
-
-                  {!originIsValid &&
-                    <div className="text-red-500 text-left font-mono text-xs">
-                      Origin cannot be blank
-                    </div>
-                  }
-                  {originSuggestionIsOpen &&
-                    <div
-                      ref={originRef}
-                      className={formattedOriginOptions.length > 0 ? "w-5/6 md:3/5 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
-                    >
-                      {formattedOriginOptions?.map((formatOption, index) => (
-                        <button
-                          onClick={() => onOriginSuggestionClick(formatOption.value)}
-                          className="text-md hover:bg-gray-100 text-left w-full p-1"
-                          key={index}>{formatOption.value}</button>
-                      ))}
-                    </div>
-                  }
-                </div>
-              </div>
-            ) : <div className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-              <div className="w-full flex flex-col justify-center">
-
-                <span>
-                  <h1 className="font-mono font-bold  text-black text-lg mb-3">From where?</h1>
-                </span>
-              </div>
-            </div>}
-            {dateIsOpen ? (
-              <div
-                onClick={() => {
-                  setDateIsOpen(true);
-                  setOriginSuggestionIsOpen(false);
-                  setDestinationIsOpen(false);
-                }}
-                className="flex flex-col z-20 mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-                <div className="w-full flex flex-col justify-center">
-                  <h1 className="font-mono font-bold  text-black text-lg  mb-3">When?</h1>
-
-                  <DateTime onDateTimeChange={handleDateTimeChange} />
-
-                </div>
-              </div>
-            ) : <div className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-              <div className="w-full flex flex-col justify-center">
-
-                <span>
-                  <h1 className="font-mono font-bold  text-black text-lg mb-3">When?</h1>
-                </span>
+                }
               </div>
             </div>
-            }
-            <div className="w-full">
-              {requestButton()}
+          ) : <div
+            onClick={() => {
+              setDateIsOpen(false);
+              setOriginIsOpen(true);
+              setDestinationIsOpen(false);
+            }}
+            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            <div className="w-full flex flex-col justify-center">
+
+              <span>
+                <h1 className="font-mono font-bold  text-black text-lg mb-3">From where?</h1>
+              </span>
             </div>
-          </form >
-          <div>
+          </div>}
+          {dateIsOpen ? (
+            <div
 
-            <Toaster
-              position="top-center"
-              reverseOrder={false}
-            /></div>
-        </div >
+              className="flex flex-col z-20 mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="w-full flex flex-col justify-center">
+                <h1 className="font-mono font-bold  text-black text-lg  mb-3">When?</h1>
 
+                <DateTime onDateTimeChange={handleDateTimeChange} />
 
+              </div>
+            </div>
+          ) : <div
+            onClick={() => {
+              setDateIsOpen(true);
+              setOriginIsOpen(false);
+              setDestinationIsOpen(false);
+            }}
+            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            <div className="w-full flex flex-col justify-center">
+
+              <span>
+                <h1 className="font-mono font-bold  text-black text-lg mb-3">When?</h1>
+              </span>
+            </div>
+          </div>
+          }
+          <div className="w-full">
+            {requestButton()}
+          </div>
+        </form >
+        <div>
+
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          /></div>
       </div >
+
+
     </div >
 
   )
