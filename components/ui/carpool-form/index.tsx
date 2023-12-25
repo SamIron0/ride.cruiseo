@@ -240,8 +240,8 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   return (
     <div className="flex  flex-col  p-4 h-screen w-full ">
       <div className="sm:px-24 md:px-36 lg:px-52 ">
-        <div  onClick={() => setIsOpen(false)} className="pb-3 rounded-full border border-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>        </div>
+        <div onClick={() => onClose()} className="p-3 rounded-full border border-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
           {destinationIsOpen ? (<div
 
@@ -349,7 +349,6 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               className="flex flex-col z-20 mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full flex flex-col justify-center">
                 <h1 className="font-mono font-bold  text-black text-lg  mb-3">When?</h1>
-
                 <DateTime onDateTimeChange={handleDateTimeChange} />
 
               </div>
