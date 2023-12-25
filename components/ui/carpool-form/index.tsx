@@ -244,7 +244,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
         <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
           {destinationIsOpen ? (<div
-            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
             <div className="w-full flex flex-col justify-center">
               <span>
                 <h1 className="font-mono font-bold  text-black text-lg mb-3">Where to?</h1>
@@ -285,7 +285,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               setOriginIsOpen(false);
               setDestinationIsOpen(true);
             }}
-            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
             <div className="w-full flex flex-col justify-center">
 
               <span>
@@ -296,7 +296,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
           {originIsOpen ? (
             <div
 
-              className="flex z-10 flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full">
                 <h1 className="font-mono font-bold  text-black text-lg  mb-3">From where?</h1>
                 <div className="bg-black mt-5 justify-center rounded-xl shadow-lg h-fit flex flex-col px-1 items-center max-w-lg ">
@@ -334,7 +334,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               setOriginIsOpen(true);
               setDestinationIsOpen(false);
             }}
-            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
             <div className="w-full flex flex-col justify-center">
 
               <span>
@@ -345,7 +345,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
           {dateIsOpen ? (
             <div
 
-              className="flex flex-col z-20 mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
               <div className="w-full flex flex-col justify-center">
                 <h1 className="font-mono font-bold  text-black text-lg mb-3">When?</h1>
                 <DateTime onDateTimeChange={handleDateTimeChange} />
@@ -358,7 +358,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               setOriginIsOpen(false);
               setDestinationIsOpen(false);
             }}
-            className="flex z-1 mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+            className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
             <div className="w-full flex flex-col justify-center">
 
               <span>
