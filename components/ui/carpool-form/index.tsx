@@ -261,7 +261,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                       value={destination}
                       onChange={e => setDestinationAndSuggestions(e.target.value)}
                       placeholder={"Search Destinations"}
-                      className="block w-full outline-none p-4 mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
+                      className="block w-full outline-none p-4 ring-0  text-[16px] mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
                   </div>
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left font-mono text-xs">
