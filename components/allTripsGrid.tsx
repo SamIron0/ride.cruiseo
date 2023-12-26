@@ -15,47 +15,47 @@ export function AllTripsGrid() {
     let allTrips = [{
         title: "Walmart",
         image: '/walmart.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     }, {
         title: "Supertstore",
         image: '/superstore.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     },
     {
         title: "Safeway",
         image: '/safeway.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     },
     ]
 
     let airportTrips = [{
         title: "Toronto Pearson International Airport",
         image: '/yyz.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am",
     },
     {
         title: "Winnipeg Richardson International Airport",
         image: '/ywc.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     }, {
         title: "Calgary Airport",
         image: '/yyc.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     },]
 
     let groceryTrips = [{
         title: "Toronto Pearson International Airport",
         image: '/yyz.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     },
     {
         title: "Winnipeg Richardson International Airport",
         image: '/ywc.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     }, {
         title: "Calgary Airport",
         image: '/yyc.jpg',
-        times: ["6:30am", '7:45am', '12:00pm']
+        times: "6:30am"
     },]
     const [activeTab, setActiveTab] = useState('1');
 

@@ -14,11 +14,11 @@ export function TripCard({ trip }: TripCardProps) {
           className="" />
       </div>
       <div className="pt-3">
-        <h5 className="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+        <h5 className="block font-sans text-lg antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
           {trip.title}
         </h5>
         <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-          Arrival Time: {trip.times}
+          Next arrives: {trip.times}
         </p>
       </div>
     </div>

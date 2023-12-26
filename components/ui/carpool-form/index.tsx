@@ -241,7 +241,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     <div className="flex flex-col items-center 2xl:px-22  h-screen w-full ">
       <div className="w-full flex p-6 flex-col items-center justify-center">
         <div className="w-full sm:px-28 md:px-44 lg:px-72 xl:px-96  3xl:[450px] pt-2 h-full">
-          <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center hover:scale-105 items-center rounded-full border border-gray-500">
+          <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center hover:scale-110 items-center rounded-full border border-gray-500">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
           <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col items-center px-1 justify-center  w-full">
 
@@ -277,8 +277,11 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                       {formattedDestinationOptions?.map((formatOption, index) => (
                         <button
                           onClick={() => onDestinationSuggestionClick(formatOption.value)}
-                          className="text-md hover:bg-gray-100 text-left w-full p-1"
-                          key={index}>{formatOption.value}</button>
+                          className="text-md hover:bg-gray-100 flex text-left w-full p-1"
+                          key={index}>
+                          <div className="bg-gray-200 flex justify-center items-center h-3 w-3"> <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" /></svg></div>
+                          {formatOption.value}
+                        </button>
                       ))}
                     </div>
                   }
@@ -315,8 +318,8 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                       onChange={e => setOriginAndSuggestions(e.target.value)}
                       placeholder={"Search"}
                       className="bg-transparent p-4 placeholder:text-gray-400 text-gray-900 ring-0  rounded-lg ps-10 border focus:ring-black focus:border-black bg-gray-100 border-gray-400 outline-none w-full ">
-                        
-                      </input>
+
+                    </input>
                   </div>
 
                   {!originIsValid &&
