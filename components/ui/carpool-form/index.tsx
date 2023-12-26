@@ -238,7 +238,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     };
   }, []);
   return (
-    <div className="flex flex-col items-center 2xl:px-10 3xl:px-22  h-screen w-full ">
+    <div className="flex flex-col items-center 2xl:px-22  h-screen w-full ">
       <div className="w-full flex p-6 flex-col items-center justify-center">
         <div className="w-full sm:px-28 md:px-44 lg:px-72 xl:px-96  3xl:[450px] pt-2 h-full">
           <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center hover:scale-105 items-center rounded-full border border-gray-500">
@@ -272,7 +272,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   {destinationSuggestionIsOpen &&
                     <div
                       ref={destinationRef}
-                      className={formattedDestinationOptions.length > 0 ? "w-5/6 md:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-4/6 md:w-3/6 2xl:4/6 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                     >
                       {formattedDestinationOptions?.map((formatOption, index) => (
                         <button
