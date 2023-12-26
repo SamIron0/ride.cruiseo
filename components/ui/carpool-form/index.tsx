@@ -92,14 +92,14 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   const requestButton = () => {
     if (!user) {
       return (<>
-        <Link href="/signin" className="inline-flex mt-8 items-center px-[98px] py-3 w-full text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400	 hover:text-white hover:bg-fuchsia-500">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <Link href="/signin" className="inline-flex mt-8 items-center px-[98px] justify-center py-3 w-full text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400	 hover:text-white hover:bg-fuchsia-500">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </Link>
       </>)
     }
     else {
       return (<>
-        <button onClick={handleConfirm} className="inline-flex mt-8 items-center justify-center  w-full py-3 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400 hover:text-white hover:bg-fuchsia-500 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <button onClick={handleConfirm} className="inline-flex mt-8 items-center   w-full py-3 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400 hover:text-white hover:bg-fuchsia-500 ">Request <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
         </button>
       </>)
@@ -238,11 +238,11 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     };
   }, []);
   return (
-    <div className="flex flex-col justif-center p-4 px-3 h-screen w-full ">
+    <div className="flex flex-col justify-center p-4 px-3 h-screen w-full ">
       <div className="max-w-xl">
         <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
-        <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col px-1 justify-center items-center w-full">
+        <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex px-1 justify-center items-center w-full">
 
           {destinationIsOpen ? (
             <div
@@ -260,7 +260,6 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                     value={destination}
                     onChange={e => setDestinationAndSuggestions(e.target.value)}
                     placeholder={"Search Destinations"}
-                    type="search" 
                     className="block w-full p-4 mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
                 </div>
                 {!destinationIsValid &&
@@ -313,7 +312,6 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                     value={origin}
                     onChange={e => setOriginAndSuggestions(e.target.value)}
                     placeholder={"Search"}
-                    type="search" 
                     className="block w-full p-4 mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
                 </div>
 
