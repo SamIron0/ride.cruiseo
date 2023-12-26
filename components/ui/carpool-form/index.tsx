@@ -258,16 +258,14 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                       </svg>
                     </div>
                     <input
-                      value={origin}
-                      onChange={e => setOriginAndSuggestions(e.target.value)}
-                      placeholder="Enter an Origin"
-                      className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono   "
-                    />
-                    <input
                       value={destination}
                       onChange={e => setDestinationAndSuggestions(e.target.value)}
+                      placeholder="Enter an Origin"
+                      className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  mt-4 ps-10  outline-none  text-[16px] font-mono  h-10 w-full "
+                    />
+                    <input
                       placeholder={"Search Destinations"}
-                      className="block w-full h-10 outline-none p-4 ring-0  text-[16px] mt-4 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
+                      className="block w-full outline-none p-4 ring-0  text-[16px] text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-100 focus:ring-black focus:border-black  " />
                   </div>
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left font-mono text-xs">
