@@ -242,7 +242,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
       <div className="max-w-xl">
         <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
-        <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex items-center px-1 justify-center  w-full">
+        <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col items-center px-1 justify-center  w-full">
 
           {destinationIsOpen ? (
             <div
