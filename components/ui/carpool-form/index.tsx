@@ -240,7 +240,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   return (
     <div className="flex flex-col items-center p-4 px-3 h-screen w-full ">
       <div className="w-full flex flex-col items-center justify-center">
-        <div className="w-3xl pt-10 h-full">
+        <div className="w-8/10 pt-10 h-full">
           <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
           <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col items-center px-1 justify-center  w-full">
@@ -257,6 +257,12 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                       </svg>
                     </div>
+                    <input
+                      value={origin}
+                      onChange={e => setOriginAndSuggestions(e.target.value)}
+                      placeholder="Enter an Origin"
+                      className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  outline-none  text-[16px] font-mono  h-10 w-full "
+                    />
                     <input
                       value={destination}
                       onChange={e => setDestinationAndSuggestions(e.target.value)}
