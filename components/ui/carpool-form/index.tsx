@@ -240,7 +240,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
   return (
     <div className="flex flex-col items-center p-4 px-3 h-screen w-full ">
       <div className="w-full flex flex-col items-center justify-center">
-        <div className="w-full px-24 sm:px-36 lg:px-64 pt-10 h-full">
+        <div className="w-full px-8 sm:px-40 lg:px-64 pt-10 h-full">
           <div onClick={() => onClose()} className="mb-4 ml-3 w-8 h-8 flex justify-center items-center rounded-full border border-gray-500">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>        </div>
           <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col items-center px-1 justify-center  w-full">
@@ -260,13 +260,10 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                     <input
                       value={destination}
                       onChange={e => setDestinationAndSuggestions(e.target.value)}
-                      placeholder="Enter an Origin"
-                      className="bg-transparent text-white placeholder:text-gray-400 px-2 ring-0  mt-4 ps-10 border focus:ring-black focus:border-black bg-gray-100 border-gray-400 outline-none  text-[16px] font-mono  h-10 w-full "
+                      placeholder="Search Destinations"
+                      className="bg-transparent p-4 placeholder:text-gray-400 text-gray-900 ring-0  mt-4 rounded-lg ps-10 border focus:ring-black focus:border-black bg-gray-100 border-gray-400 outline-none  text-[16px] font-mono  h-10 w-full "
                     />
-                    <input
-                      placeholder={"Search Destinations"}
-                      className="block w-full outline-none p-4 ring-0  text-[16px] text-sm text-gray-900  rounded-lg    " />
-                  </div>
+                     </div>
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left font-mono text-xs">
                       Origin cannot be blank
