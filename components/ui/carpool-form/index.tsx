@@ -249,7 +249,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               <div
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className="font-mono font-bold  text-black text-lg ">Where to?</h1>
+                  <h1 className=" font-bold  text-black text-lg ">Where to?</h1>
 
                   <div className="mt-2 relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -265,21 +265,21 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                     />
                   </div>
                   {!destinationIsValid &&
-                    <div className="text-red-500 text-left font-mono text-xs">
-                      Origin cannot be blank
+                    <div className="text-red-500 text-left  text-xs">
+                      Destination cannot be blank
                     </div>
                   }
                   {destinationSuggestionIsOpen &&
                     <div
                       ref={destinationRef}
-                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-4/6 md:w-3/6 2xl:4/6 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-3.5/6 md:w-3/7 2xl:w-4/6 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                     >
                       {formattedDestinationOptions?.map((formatOption, index) => (
                         <button
                           onClick={() => onDestinationSuggestionClick(formatOption.value)}
-                          className="text-md hover:bg-gray-100 flex text-left w-full p-1"
+                          className="text-md hover:bg-gray-100 flex items-center text-left w-full p-1"
                           key={index}>
-                          <div className="bg-gray-200 flex justify-center items-center h-3 w-3"> <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" /></svg></div>
+                          <div className="bg-gray-100 flex rounded-xl justify-center items-center p-2 mr-3"> <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" /></svg></div>
                           {formatOption.value}
                         </button>
                       ))}
@@ -297,7 +297,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               <div className="w-full flex flex-col justify-center">
 
                 <span>
-                  <h1 className="font-mono font-bold  text-black text-lg">Where to?</h1>
+                  <h1 className=" font-bold  text-black text-lg">Where to?</h1>
                 </span>
               </div>
             </div>}
@@ -306,7 +306,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
 
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className="font-mono font-bold  text-black text-lg ">From where?</h1>
+                  <h1 className=" font-bold  text-black text-lg ">From where?</h1>
                   <div className="mt-2  relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -323,7 +323,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   </div>
 
                   {!originIsValid &&
-                    <div className="text-red-500 text-left font-mono text-xs">
+                    <div className="text-red-500 text-left  text-xs">
                       Origin cannot be blank
                     </div>
                   }
@@ -352,7 +352,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               <div className="w-full flex flex-col justify-center">
 
                 <span>
-                  <h1 className="font-mono font-bold  text-black text-lg">From where?</h1>
+                  <h1 className=" font-bold  text-black text-lg">From where?</h1>
                 </span>
               </div>
             </div>}
@@ -361,7 +361,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
 
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full flex flex-col justify-center">
-                  <h1 className="font-mono font-bold  text-black text-lg">When?</h1>
+                  <h1 className=" font-bold  text-black text-lg">When?</h1>
                   <DateTime onDateTimeChange={handleDateTimeChange} />
 
                 </div>
@@ -376,7 +376,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
               <div className="w-full flex flex-col justify-center">
 
                 <span>
-                  <h1 className="font-mono font-bold  text-black text-lg ">When?</h1>
+                  <h1 className=" font-bold  text-black text-lg ">When?</h1>
                 </span>
               </div>
             </div>
