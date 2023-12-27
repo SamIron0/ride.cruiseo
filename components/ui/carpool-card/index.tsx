@@ -21,34 +21,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const amPm = parsedDate.getHours() < 12 ? 'AM' : 'PM';
   // Construct the formatted date
   const formattedDate = `${month} ${day}, ${hours}:${minutes} ${amPm}`;
-  const [region, setRegion] = useState("");
-  const [locationFetched, setLocationFetched] = useState(false); // New state variable
-
-  const fetchLocation = async () => {
-    try {
-      const res = await fetch('/api/getLocation');
-      if (res.status === 200) { // valid response
-        const data = await res.json();
-        setRegion(data.location.region_name);
-        console.log(data.location);
-        setLocationFetched(true); // Mark location as fetched
-      } else {
-        console.error("An error occurred while fetching the location");
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching the location:", error);
-    }
-  };
-  useEffect(() => {
-    if (!locationFetched) {
-      // Fetch location only if it hasn't been fetched yet
-      fetchLocation();
-    } else {
-      // Fetch data only when location has been fetched
-
-    }
-  }, []);
-
+  
   async function deleteTrip() {
     try {
       const url = "/api/delete-trip";
