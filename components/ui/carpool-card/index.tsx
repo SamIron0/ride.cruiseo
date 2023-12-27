@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import router from "next/router";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button, Fieldset, useModal, Modal } from "@geist-ui/core";
 interface CarpoolCardProps {
   trip: Trip
