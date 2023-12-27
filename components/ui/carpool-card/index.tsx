@@ -21,6 +21,33 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const amPm = parsedDate.getHours() < 12 ? 'AM' : 'PM';
   // Construct the formatted date
   const formattedDate = `${month} ${day}, ${hours}:${minutes} ${amPm}`;
+  const [region, setRegion] = useState("");
+  const [locationFetched, setLocationFetched] = useState(false); // New state variable
+
+  const fetchLocation = async () => {
+    try {
+      const res = await fetch('/api/getLocation');
+      if (res.status === 200) { // valid response
+        const data = await res.json();
+        setRegion(data.location.region_name);
+        console.log(data.location);
+        setLocationFetched(true); // Mark location as fetched
+      } else {
+        console.error("An error occurred while fetching the location");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching the location:", error);
+    }
+  };
+  useEffect(() => {
+    if (!locationFetched) {
+      // Fetch location only if it hasn't been fetched yet
+      fetchLocation();
+    } else {
+      // Fetch data only when location has been fetched
+
+    }
+  }, []);
 
   async function deleteTrip() {
     try {
@@ -49,32 +76,35 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
     console.log('closed')
   }
   return (
-    <div className=" ">
-      <Modal visible={state} onClose={() => closeHandler()}>
-        <Modal.Title>Cancel Trip</Modal.Title>
-        <Modal.Content>
-          <p>Are you sure you want to cancel the trip?</p>
-        </Modal.Content>
-        <Modal.Action onClick={() => deleteTrip().then(() => setState(false))}>Yes, Im sure</Modal.Action>
-        <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
-      </Modal>      <Fieldset>
-        <Fieldset.Title >
-          <span className={`${outerBg} inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
-            <span className={`${innerBg} w-2 h-2 me-1 rounded-full`}></span>
-            {trip.status}
-          </span>
-        </Fieldset.Title>
-        <Fieldset.Subtitle>
-          <div className="flex-1">
-            <p className="font-semibold ">Origin: <span className="font-normal">{trip.origin}</span></p>
-            <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination}</span></p>
-            <p className="font-semibold ">Date: <span className="font-normal">{formattedDate}</span></p>
-          </div>
-        </Fieldset.Subtitle>
-        <Fieldset.Footer>
-          <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
-          <Button auto type="secondary" scale={1 / 3} font="12px">Cancel</Button>        </Fieldset.Footer>
-      </Fieldset>
-    </div>
-  )
+    <GeistProvider>
+      <CssBaseline />
+
+      <div className=" ">
+        <Modal visible={state} onClose={() => closeHandler()}>
+          <Modal.Title>Cancel Trip</Modal.Title>
+          <Modal.Content>
+            <p>Are you sure you want to cancel the trip?</p>
+          </Modal.Content>
+          <Modal.Action onClick={() => deleteTrip().then(() => setState(false))}>Yes, Im sure</Modal.Action>
+          <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
+        </Modal>      <Fieldset>
+          <Fieldset.Title >
+            <span className={`${outerBg} inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
+              <span className={`${innerBg} w-2 h-2 me-1 rounded-full`}></span>
+              {trip.status}
+            </span>
+          </Fieldset.Title>
+          <Fieldset.Subtitle>
+            <div className="flex-1">
+              <p className="font-semibold ">Origin: <span className="font-normal">{trip.origin}</span></p>
+              <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination}</span></p>
+              <p className="font-semibold ">Date: <span className="font-normal">{formattedDate}</span></p>
+            </div>
+          </Fieldset.Subtitle>
+          <Fieldset.Footer>
+            <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
+            <Button auto type="secondary" scale={1 / 3} font="12px">Cancel</Button>        </Fieldset.Footer>
+        </Fieldset>
+      </div>
+    </GeistProvider>)
 }
