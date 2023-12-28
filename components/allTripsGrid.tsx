@@ -125,7 +125,7 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {destinations?.map((destination) => (
-                            <div className="mt-2" onClick={() => onSelectDestination(destination.address)}>                            >
+                            <div className="mt-2" onClick={() => onSelectDestination(destination.address)}>
                                 <DestinationCard destination={destination} />
                             </div>
                         ))}</div>
@@ -139,8 +139,7 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {shopDestinations?.map((shop) => (
                             <button
-                                onClick={() => onSelectDestination(shop.address)}>
-                                <> <DestinationCard destination={shop} /></>
+                                onClick={() => onSelectDestination(shop.address)}>                               <> <DestinationCard destination={shop} /></>
                             </button>))}</div>
                 </div>
             </Tabs.Item>
