@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import router from "next/router";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button, Fieldset, useModal, Modal } from "@geist-ui/core";
 interface CarpoolCardProps {
   trip: Trip
@@ -21,7 +21,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const amPm = parsedDate.getHours() < 12 ? 'AM' : 'PM';
   // Construct the formatted date
   const formattedDate = `${month} ${day}, ${hours}:${minutes} ${amPm}`;
-
+  
   async function deleteTrip() {
     try {
       const url = "/api/delete-trip";
@@ -75,5 +75,5 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
           <Button auto type="secondary" scale={1 / 3} onClick={handler} font="12px">Cancel</Button>        </Fieldset.Footer>
       </Fieldset>
     </div>
-  )
+  )   
 }
