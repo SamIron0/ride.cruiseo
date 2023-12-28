@@ -139,7 +139,8 @@ export function AllTripsGrid() {
             setGroceryDestinations(filterDestinations(destinations, 'Grocery'));
             setSchoolDestinations(filterDestinations(destinations, 'School'))
 
-        }
+        };
+        fetchData()
     }, []);
 
     return (
