@@ -71,8 +71,9 @@ export const getActiveProductsWithPrices = async () => {
 
 export const retrieveDestinations = async (location: string) => {
   const supabase = createServerSupabaseClient();
-    const { data: destinations } = await supabase
+  const { data: destinations } = await supabase
     .from('destinations')
     .select('*')
+    console.log("retrieved destinations: " + destinations)
   return destinations;
 }

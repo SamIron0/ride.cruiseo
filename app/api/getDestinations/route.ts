@@ -6,7 +6,6 @@ import { createTrip, deleteTrip } from "@/utils/supabase-admin";
 import { retrieveDestinations } from "@/app/supabase-server";
 export async function POST(req: Request,) {
     if (req.method === 'POST') {
-
         try {
             const location = await req.json();
 
@@ -19,9 +18,7 @@ export async function POST(req: Request,) {
                     status: 200
                 });
             }
-            return new Response(JSON.stringify(response), {
-                status: 200
-            });
+          
         } catch (err: any) {
             return new Response(JSON.stringify({ error: { statusCode: 500, message: err.message } }));
         }
