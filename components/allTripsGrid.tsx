@@ -116,14 +116,18 @@ export function AllTripsGrid() {
     };
     const fetchDestinations = async () => {
         try {
-            const res = await fetch('/api/getDestinations');
-            if (res.status === 200) { // valid response
-                const data = await res.json();
-                setAllDestinations(data);
-                console.log(data);
-            } else {
-                console.error("An error occurred while fetching destinations");
-            }
+            const url = "/api/getDestinations";
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(region),
+            };
+            const response = await fetch(url, options);
+            const data = await response.json();
+            console.log(data);
+            setAllDestinations(data);
         } catch (error) {
             console.error("An error occurred while fetching destinations:", error);
         }
