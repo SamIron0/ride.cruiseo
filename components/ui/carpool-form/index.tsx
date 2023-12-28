@@ -235,7 +235,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
               <div
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className=" font-semi-bold  text-black text-lg ">Where to?</h1>
+                  <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
 
                   <div className="mt-2 relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -292,7 +292,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
 
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className=" font-bold  text-black text-lg ">From where?</h1>
+                  <h1 className=" font-semibold  text-black text-lg ">From where?</h1>
                   <div className="mt-2  relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -316,7 +316,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
                   {originSuggestionIsOpen &&
                     <div
                       ref={originRef}
-                      className={formattedOriginOptions.length > 0 ? "w-5/6 lg:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                      className={formattedOriginOptions.length > 0 ? "w-5/6 sm:w-3/5 md:w-3/6 lg:w-3/7 xl:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                     >
                       {formattedOriginOptions?.map((formatOption, index) => (
                         <button
@@ -347,7 +347,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
 
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full flex flex-col justify-center">
-                  <h1 className=" font-bold  text-black text-lg">When?</h1>
+                  <h1 className=" font-semibold  text-black text-lg">When?</h1>
                   <DateTime onDateTimeChange={handleDateTimeChange} />
 
                 </div>
