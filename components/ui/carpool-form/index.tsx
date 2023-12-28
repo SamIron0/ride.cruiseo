@@ -22,26 +22,17 @@ import getAddressPredictions from "./getAddressPredictions"
 interface CarpoolFormProps {
   user: User | null | undefined
   onClose: () => void;
+  selectedDestination: string;
 }
 
-
-interface AddressProps {
-  name: string;
-  street_address: string;
-  city: string;
-  state: string;
-  zip_code: string;
-  googleMapLink: string;
-}
-
-export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
+export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false);
   const [price, setPrice] = useState('');
   const [origin, setOrigin] = useState('');
   const [originIsValid, setOriginIsValid] = useState(true);
-  const [destination, setDestination] = useState('');
+  const [destination, setDestination] = useState(selectedDestination);
   const [destinationIsValid, setDestinationIsValid] = useState(true);
   const [name, setName] = useState('');
   const [nameIsValid, setNameIsValid] = useState(true);
@@ -116,20 +107,15 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
     if (origin === "") {
       setOriginIsValid(false);
       confirm = false;
-      console.log("origin")
     }
 
     if (destination === "") {
       setDestinationIsValid(false);
       confirm = false;
-      console.log("destination")
-
     }
     if (date === "") {
       setDateIsValid(false);
       confirm = false;
-      console.log("date")
-
     }
 
     if (confirm) {
@@ -272,7 +258,7 @@ export const CarpoolForm = ({ user, onClose }: CarpoolFormProps) => {
                   {destinationSuggestionIsOpen &&
                     <div
                       ref={destinationRef}
-                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-3.5/6 md:w-3/7 2xl:w-4/6 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-3/5 md:w-3/6 lg:w-3/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                     >
                       {formattedDestinationOptions?.map((formatOption, index) => (
                         <button

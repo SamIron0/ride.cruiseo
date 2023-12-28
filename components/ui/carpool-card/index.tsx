@@ -35,7 +35,6 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
 
       const response = await fetch(url, options);
       const data = await response.json();
-      //console.log(data);
       toast.success('Trip deleted!')
       router.refresh()
     } catch (err) {
@@ -46,7 +45,6 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const handler = () => setState(true)
   const closeHandler = () => {
     setState(false)
-    console.log('closed')
   }
   return (
     <div >

@@ -15,8 +15,13 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+export const retrieveDestinations = async (location: string) => {
+  const { data: destinations } = await supabaseAdmin
+    .from('destinations')
+    .select('*')
+  return destinations;
+}
 export const deleteTrip = async (tripId: string, userId: string) => {
-  console.log("trip idsa: " + tripId)
   // delete from trips array
   await supabaseAdmin
     .from("trips")

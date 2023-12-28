@@ -54,7 +54,12 @@ export default function CruiseoHome({
 
   const tripDropdownRef = useRef<HTMLDivElement>(null);
 
+  const [selectedDestination, setSelectedDestination] = useState<string>('');
 
+  const handleDestinationSelect = (destination: string) => {
+    setSelectedDestination(destination);
+    setIsOpen(true); // Open the CarpoolForm when a destination is selected
+  };
   return (
     <>
       {!isOpen ? (
@@ -71,7 +76,7 @@ export default function CruiseoHome({
 
           </div>
           <div className='max-w-full'>
-            <AllTripsGrid />
+            <AllTripsGrid onSelectDestination={handleDestinationSelect}/>
           </div>
           {!user ?
             <>
@@ -83,7 +88,7 @@ export default function CruiseoHome({
             </>
           }
         </div>)
-        : <CarpoolForm user={user} onClose={()=>setIsOpen(!isOpen)} />
+        : <CarpoolForm user={user} selectedDestination={selectedDestination} onClose={()=>setIsOpen(!isOpen)} />
       }
     </>);
 }

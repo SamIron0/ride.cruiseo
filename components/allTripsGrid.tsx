@@ -7,56 +7,10 @@ import { Tabs, } from '@geist-ui/core'
 import { useState, useEffect } from 'react'
 
 interface AllTripsGridProps {
-    user: User;
-    trips: Trip[] | null | undefined;
+    onSelectDestination: (destination: string) => void;
 }
 
-export function AllTripsGrid() {
-    /*   let destinations = [{
-           title: "Walmart",
-           image: '/walmart.jpg',
-           times: "6:30am"
-       }, {
-           title: "Supertstore",
-           image: '/superstore.jpg',
-           times: "6:30am"
-       },
-       {
-           title: "Safeway",
-           image: '/safeway.jpg',
-           times: "6:30am"
-       },
-       ]
-   
-       let airportTrips = [{
-           title: "Toronto Pearson International Airport",
-           image: '/yyz.jpg',
-           times: "6:30am",
-       },
-       {
-           title: "Winnipeg Richardson International Airport",
-           image: '/ywc.jpg',
-           times: "6:30am"
-       }, {
-           title: "Calgary Airport",
-           image: '/yyc.jpg',
-           times: "6:30am"
-       },]
-   
-       let groceryTrips = [{
-           title: "Toronto Pearson International Airport",
-           image: '/yyz.jpg',
-           times: "6:30am"
-       },
-       {
-           title: "Winnipeg Richardson International Airport",
-           image: '/ywc.jpg',
-           times: "6:30am"
-       }, {
-           title: "Calgary Airport",
-           image: '/yyc.jpg',
-           times: "6:30am"
-       },]*/
+export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
     const [activeTab, setActiveTab] = useState('1');
 
     function handleTabChange(value: any) {
@@ -91,13 +45,18 @@ export function AllTripsGrid() {
     const [locationFetched, setLocationFetched] = useState(false); // New state variable
     const [destinations, setAllDestinations] = useState<Destination[]>([]); // New state variable
     const [airportDestinations, setAirportDestinations] = useState<Destination[]>([]); // New state variable
-    const [groceryDestinations, setGroceryDestinations] = useState<Destination[]>([]); // New state variable
+    const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
     const [schoolDestinations, setSchoolDestinations] = useState<Destination[]>([]); // New state variable
     const [cinemaDestinations, setCinemaDestinations] = useState<Destination[]>([]); // New state variable
     function filterDestinations(destinations: Destination[], category: string): Destination[] {
-        return destinations.filter(destination => destination.category === category);
+        const result: Destination[] = [];
+        destinations.map((destination) => {
+            if (destination.category == category) {
+                result.push(destination)
+            }
+        })
+        return result
     }
-
 
     const fetchLocation = async () => {
         try {
@@ -105,7 +64,6 @@ export function AllTripsGrid() {
             if (res.status === 200) { // valid response
                 const data = await res.json();
                 setRegion(data.location.region_name);
-                console.log(data.location);
                 setLocationFetched(true); // Mark location as fetched
             } else {
                 console.error("An error occurred while fetching the location");
@@ -126,8 +84,13 @@ export function AllTripsGrid() {
             };
             const response = await fetch(url, options);
             const data = await response.json();
-            console.log(data);
             setAllDestinations(data);
+
+            setCinemaDestinations(filterDestinations(data, 'Cinema'));
+            setAirportDestinations(filterDestinations(data, 'Airport'));
+            setSchoolDestinations(filterDestinations(data, 'School'));
+            setShopDestinations(filterDestinations(data, 'Shop'));
+
         } catch (error) {
             console.error("An error occurred while fetching destinations:", error);
         }
@@ -138,11 +101,6 @@ export function AllTripsGrid() {
             await fetchLocation();
             // Fetch data only when location has been fetched
             await fetchDestinations();
-            setCinemaDestinations(filterDestinations(destinations, 'Cinema'));
-            setAirportDestinations(filterDestinations(destinations, 'Airport'));
-            setGroceryDestinations(filterDestinations(destinations, 'Grocery'));
-            setSchoolDestinations(filterDestinations(destinations, 'School'))
-
         };
         fetchData()
     }, []);
@@ -168,7 +126,10 @@ export function AllTripsGrid() {
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {destinations?.map((destination) => (
                             <div className="mt-2">
-                                <DestinationCard destination={destination} />
+                                <button
+                                    onClick={() => onSelectDestination(destination.address)}>
+                                    <DestinationCard destination={destination} />
+                                </button>
                             </div>
                         ))}</div>
                 </div>
@@ -179,10 +140,11 @@ export function AllTripsGrid() {
                 </svg> Groceries </>} value="2">
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-                        {groceryDestinations?.map((grocery) => (
-                            <>
-                                <DestinationCard destination={grocery} /></>
-                        ))}</div>
+                        {shopDestinations?.map((shop) => (
+                            <button
+                                onClick={() => onSelectDestination(shop.address)}>
+                                <DestinationCard destination={shop} />
+                            </button>))}</div>
                 </div>
             </Tabs.Item>
             <Tabs.Item
@@ -195,9 +157,10 @@ export function AllTripsGrid() {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {airportDestinations?.map((airport) => (
-                            <>
-                                <DestinationCard destination={airport} /></>
-                        ))}</div>
+                            <button
+                                onClick={() => onSelectDestination(airport.address)}>
+                                <DestinationCard destination={airport} />
+                            </button>))}</div>
                 </div>
             </Tabs.Item>
             <Tabs.Item
@@ -205,9 +168,10 @@ export function AllTripsGrid() {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {schoolDestinations?.map((school) => (
-                            <>
-                                <DestinationCard destination={school} /></>
-                        ))}</div>
+                            <button
+                                onClick={() => onSelectDestination(school.address)}>
+                                <DestinationCard destination={school} />
+                            </button>))}</div>
                 </div>
             </Tabs.Item>
             <Tabs.Item
@@ -218,9 +182,10 @@ export function AllTripsGrid() {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {cinemaDestinations?.map((cinema) => (
-                            <>
-                                <DestinationCard destination={cinema} /></>
-                        ))}</div>
+                            <button
+                                onClick={() => onSelectDestination(cinema.address)}>
+                                <DestinationCard destination={cinema} />
+                            </button>))}</div>
                 </div>
             </Tabs.Item>
         </Tabs>

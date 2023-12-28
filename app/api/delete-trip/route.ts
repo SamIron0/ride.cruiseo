@@ -22,7 +22,6 @@ export async function POST(req: Request,) {
                     description: 'The user does not have an active session or is not authenticated'
                 }), { status: 500 });
             }
-            console.log("trip id: " + trip.id);
 
             if (trip.id != null) {
                 const tripID = await deleteTrip(trip.id, session.user.id);
@@ -37,7 +36,6 @@ export async function POST(req: Request,) {
                 });
             }
         } catch (err: any) {
-            //console.log(err);
             return new Response(JSON.stringify({ error: { statusCode: 500, message: err.message } }));
         }
     } else {
