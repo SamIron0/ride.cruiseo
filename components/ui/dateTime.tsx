@@ -27,7 +27,7 @@ export default function DateTime({ onDateTimeChange }: DateTimeProps) {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
           <DateTimePicker
-            label="Pick Up"
+            label="Arrival Time"
             value={selectedDateTime}
             onChange={handleChange}
             viewRenderers={{
