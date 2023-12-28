@@ -9,8 +9,14 @@ export interface Trip {
     price: string
     status: string
 }
-
-
+export interface Destination {
+    id: string
+    address: string
+    category: string
+    photo: string
+    trip_ids: string
+    name: string
+}
 export interface UserDetails {
     trips: Trip[] | null
     avatar_url: string | null

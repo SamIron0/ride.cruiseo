@@ -242,9 +242,44 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "users_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
+            foreignKeyName: "trips_id_fkey"
+            columns: ["trip_id"]
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      destinations: {
+        Row: {
+          id: string
+          address: string
+          category: string
+          photo: string
+          trip_ids: string
+          name: string
+        }
+        Insert: {
+          id: string | null
+          address?: string | null
+          category?: string
+          photo?: string | null
+          trip_ids?: string | null
+          name?: string | null
+        }
+        Update: {
+          id: string | null
+          address?: string | null
+          category?: string
+          photo?: string | null
+          trip_ids?: string | null
+          name?: string | null
+       
+        }
+        Relationships: [
+          {
+            foreignKeyName: "destinations_id_fkey"
+            columns: ["destination_id"]
+            referencedRelation: "destinations"
             referencedColumns: ["id"]
           }
         ]

@@ -68,3 +68,11 @@ export const getActiveProductsWithPrices = async () => {
   }
   return data ?? [];
 };
+
+export const retrieveDestinations = async (location: string) => {
+  const supabase = createServerSupabaseClient();
+    const { data: destinations } = await supabase
+    .from('destinations')
+    .select('*')
+  return destinations;
+}
