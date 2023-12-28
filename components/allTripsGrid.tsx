@@ -130,26 +130,16 @@ export function AllTripsGrid() {
     };
     useEffect(() => {
         const fetchData = async () => {
-            if (!locationFetched) {
-                // Fetch location only if it hasn't been fetched yet
-                await fetchLocation();
-            } else {
-                // Fetch data only when location has been fetched
-                useEffect(() => {
-                    const fetchData = async () => {                            // Fetch location only if it hasn't been fetched yet
-                        fetchDestinations();
-                        setCinemaDestinations(filterDestinations(destinations, 'Cinema'));
-                        setAirportDestinations(filterDestinations(destinations, 'Airport'));
-                        setGroceryDestinations(filterDestinations(destinations, 'Grocery'));
-                        setSchoolDestinations(filterDestinations(destinations, 'School'))
-                    };
+            // Fetch location only if it hasn't been fetched yet
+            await fetchLocation();
+            // Fetch data only when location has been fetched
+            await fetchDestinations();
+            setCinemaDestinations(filterDestinations(destinations, 'Cinema'));
+            setAirportDestinations(filterDestinations(destinations, 'Airport'));
+            setGroceryDestinations(filterDestinations(destinations, 'Grocery'));
+            setSchoolDestinations(filterDestinations(destinations, 'School'))
 
-                    fetchData();
-                }, []);
-            }
-        };
-
-        fetchData();
+        }
     }, []);
 
     return (
