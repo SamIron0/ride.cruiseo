@@ -19,10 +19,10 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             {destination.name}
           </h5>
 
-          <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+          <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             {destination.address}
           </p>
-          <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+          <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             Arrives:
           </p>
         </div>

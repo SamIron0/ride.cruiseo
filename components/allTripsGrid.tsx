@@ -121,11 +121,12 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                 All Destinations
             </>
             }
+
                 value="1">
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {destinations?.map((destination) => (
-                            <div className="mt-2" onClick={() => onSelectDestination(destination.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(destination.address)}>
                                 <DestinationCard destination={destination} />
                             </div>
                         ))}</div>
@@ -138,9 +139,11 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {shopDestinations?.map((shop) => (
-                            <button
-                                onClick={() => onSelectDestination(shop.address)}>                               <> <DestinationCard destination={shop} /></>
-                            </button>))}</div>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(shop.address)}>
+                                <DestinationCard destination={shop} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </Tabs.Item>
             <Tabs.Item
@@ -153,10 +156,9 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {airportDestinations?.map((airport) => (
-                            <button
-                                onClick={() => onSelectDestination(airport.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(airport.address)}>
                                 <DestinationCard destination={airport} />
-                            </button>))}</div>
+                            </div>))}</div>
                 </div>
             </Tabs.Item>
             <Tabs.Item
@@ -164,10 +166,9 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {schoolDestinations?.map((school) => (
-                            <button
-                                onClick={() => onSelectDestination(school.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(school.address)}>
                                 <DestinationCard destination={school} />
-                            </button>))}</div>
+                            </div>))}</div>
                 </div>
             </Tabs.Item>
             <Tabs.Item
@@ -178,10 +179,9 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {cinemaDestinations?.map((cinema) => (
-                            <button
-                                onClick={() => onSelectDestination(cinema.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(cinema.address)}>
                                 <DestinationCard destination={cinema} />
-                            </button>))}</div>
+                            </div>))}</div>
                 </div>
             </Tabs.Item>
         </Tabs>

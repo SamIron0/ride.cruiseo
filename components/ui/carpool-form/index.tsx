@@ -235,7 +235,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
               <div
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className=" font-bold  text-black text-lg ">Where to?</h1>
+                  <h1 className=" font-semi-bold  text-black text-lg ">Where to?</h1>
 
                   <div className="mt-2 relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -258,7 +258,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
                   {destinationSuggestionIsOpen &&
                     <div
                       ref={destinationRef}
-                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-3/5 md:w-3/6 lg:w-3/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
+                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-3/5 md:w-3/6 lg:w-3/7 xl:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
                     >
                       {formattedDestinationOptions?.map((formatOption, index) => (
                         <button
