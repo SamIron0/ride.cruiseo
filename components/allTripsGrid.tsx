@@ -137,11 +137,11 @@ export function AllTripsGrid() {
                 // Fetch data only when location has been fetched
                 useEffect(() => {
                     const fetchData = async () => {                            // Fetch location only if it hasn't been fetched yet
-                        await fetchLocation();
-                        setCinemaDestinations(filterDestinations(cinemaDestinations, 'Cinema'));
-                        setAirportDestinations(filterDestinations(airportDestinations, 'Airport'));
-                        setGroceryDestinations(filterDestinations(groceryDestinations, 'Grocery'));
-                        setSchoolDestinations(filterDestinations(schoolDestinations, 'School'))
+                        fetchDestinations();
+                        setCinemaDestinations(filterDestinations(destinations, 'Cinema'));
+                        setAirportDestinations(filterDestinations(destinations, 'Airport'));
+                        setGroceryDestinations(filterDestinations(destinations, 'Grocery'));
+                        setSchoolDestinations(filterDestinations(destinations, 'School'))
                     };
 
                     fetchData();
