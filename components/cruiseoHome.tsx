@@ -1,3 +1,4 @@
+'use client'
 import Button from '@/components/ui/Button';
 import { Database, Json } from '@/types_db';
 import { postData } from '@/utils/helpers';
@@ -128,7 +129,9 @@ export default function CruiseoHome({
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetchLocation();
+      // get user's locatiion, then set available destinations
+            await fetchLocation();
+            
       await fetchDestinations();
     };
     fetchData()
