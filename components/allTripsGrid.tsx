@@ -8,9 +8,14 @@ import { useState, useEffect } from 'react'
 
 interface AllTripsGridProps {
     onSelectDestination: (destination: string) => void;
+    destinations: Destination[];
+    airportDestinations: Destination[];
+    schoolDestinations: Destination[];
+    shopDestinations: Destination[];
+    cinemaDestinations: Destination[];
 }
 
-export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
+export function AllTripsGrid({ onSelectDestination, destinations, airportDestinations, schoolDestinations, shopDestinations, cinemaDestinations }: AllTripsGridProps) {
     const [activeTab, setActiveTab] = useState('1');
 
     function handleTabChange(value: any) {
@@ -40,70 +45,6 @@ export function AllTripsGrid({ onSelectDestination }: AllTripsGridProps) {
 
     const align = isLargeScreen ? "center" : '';
     const leftSpace = isLargeScreen ? 0 : '';
-
-    const [region, setRegion] = useState("");
-    const [locationFetched, setLocationFetched] = useState(false); // New state variable
-    const [destinations, setAllDestinations] = useState<Destination[]>([]); // New state variable
-    const [airportDestinations, setAirportDestinations] = useState<Destination[]>([]); // New state variable
-    const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
-    const [schoolDestinations, setSchoolDestinations] = useState<Destination[]>([]); // New state variable
-    const [cinemaDestinations, setCinemaDestinations] = useState<Destination[]>([]); // New state variable
-    function filterDestinations(destinations: Destination[], category: string): Destination[] {
-        const result: Destination[] = [];
-        destinations.map((destination) => {
-            if (destination.category == category) {
-                result.push(destination)
-            }
-        })
-        return result
-    }
-
-    const fetchLocation = async () => {
-        try {
-            const res = await fetch('/api/getLocation');
-            if (res.status === 200) { // valid response
-                const data = await res.json();
-                setRegion(data.location.region_name);
-                setLocationFetched(true); // Mark location as fetched
-            } else {
-                console.error("An error occurred while fetching the location");
-            }
-        } catch (error) {
-            console.error("An error occurred while fetching the location:", error);
-        }
-    };
-    const fetchDestinations = async () => {
-        try {
-            const url = "/api/getDestinations";
-            const options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(region),
-            };
-            const response = await fetch(url, options);
-            const data = await response.json();
-            setAllDestinations(data);
-
-            setCinemaDestinations(filterDestinations(data, 'Cinema'));
-            setAirportDestinations(filterDestinations(data, 'Airport'));
-            setSchoolDestinations(filterDestinations(data, 'School'));
-            setShopDestinations(filterDestinations(data, 'Shop'));
-
-        } catch (error) {
-            console.error("An error occurred while fetching destinations:", error);
-        }
-    };
-    useEffect(() => {
-        const fetchData = async () => {
-            // Fetch location only if it hasn't been fetched yet
-            await fetchLocation();
-            // Fetch data only when location has been fetched
-            await fetchDestinations();
-        };
-        fetchData()
-    }, []);
 
     return (
 

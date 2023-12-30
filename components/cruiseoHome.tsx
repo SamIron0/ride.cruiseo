@@ -38,6 +38,69 @@ export default function CruiseoHome({
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
+
+  const [region, setRegion] = useState("");
+  const [locationFetched, setLocationFetched] = useState(false); // New state variable
+  const [destinations, setAllDestinations] = useState<Destination[]>([]); // New state variable
+  const [airportDestinations, setAirportDestinations] = useState<Destination[]>([]); // New state variable
+  const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
+  const [schoolDestinations, setSchoolDestinations] = useState<Destination[]>([]); // New state variable
+  const [cinemaDestinations, setCinemaDestinations] = useState<Destination[]>([]); // New state variable
+  function filterDestinations(destinations: Destination[], category: string): Destination[] {
+      const result: Destination[] = [];
+      destinations.map((destination) => {
+          if (destination.category == category) {
+              result.push(destination)
+          }
+      })
+      return result
+  }
+
+  const fetchLocation = async () => {
+      try {
+          const res = await fetch('/api/getLocation');
+          if (res.status === 200) { // valid response
+              const data = await res.json();
+              setRegion(data.location.region_name);
+              setLocationFetched(true); // Mark location as fetched
+          } else {
+              console.error("An error occurred while fetching the location");
+          }
+      } catch (error) {
+          console.error("An error occurred while fetching the location:", error);
+      }
+  };
+  const fetchDestinations = async () => {
+      try {
+          const url = "/api/getDestinations";
+          const options = {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify(region),
+          };
+          const response = await fetch(url, options);
+          const data = await response.json();
+          setAllDestinations(data);
+          setCinemaDestinations(filterDestinations(data, 'Cinema'));
+          setAirportDestinations(filterDestinations(data, 'Airport'));
+          setSchoolDestinations(filterDestinations(data, 'School'));
+          setShopDestinations(filterDestinations(data, 'Shop'));
+
+      } catch (error) {
+          console.error("An error occurred while fetching destinations:", error);
+      }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+        await fetchLocation();
+        await fetchDestinations();
+    };
+    fetchData()
+}, []);
+
   const closeMenuOnOutsideClick = (event: { target: any; }) => {
     if (isOpen && tripDropdownRef.current && !tripDropdownRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -76,7 +139,7 @@ export default function CruiseoHome({
 
           </div>
           <div className='max-w-full'>
-            <AllTripsGrid onSelectDestination={handleDestinationSelect}/>
+            <AllTripsGrid onSelectDestination={handleDestinationSelect} destinations={destinations} airportDestinations={airportDestinations} schoolDestinations={schoolDestinations} shopDestinations={shopDestinations} cinemaDestinations={cinemaDestinations}/>
           </div>
           {!user ?
             <>
