@@ -1,9 +1,8 @@
-'use client';
 import Button from '@/components/ui/Button';
 import { Database, Json } from '@/types_db';
 import { postData } from '@/utils/helpers';
 import { getStripe } from '@/utils/stripe-client';
-import { Session, User} from '@supabase/supabase-js';
+import { Session, User } from '@supabase/supabase-js';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
@@ -12,7 +11,7 @@ import { CarpoolForm } from './ui/carpool-form';
 import { HowCruiseoWorks } from './how-cruiseo-works';
 import { WhyChooseCruiseo } from './why-choose-cruiseo';
 import { CarpoolGrid } from './ui/carpool-grid';
-import { Trip, UserDetails,Destination } from '@/types';
+import { Trip, UserDetails, Destination } from '@/types';
 import { HowFaresCalculated } from './how-fares-calculated';
 import { AllTripsGrid } from './allTripsGrid';
 
@@ -46,60 +45,94 @@ export default function CruiseoHome({
   const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
   const [schoolDestinations, setSchoolDestinations] = useState<Destination[]>([]); // New state variable
   const [cinemaDestinations, setCinemaDestinations] = useState<Destination[]>([]); // New state variable
+
+
+  class GeoCoordinate {
+    constructor(public latitude: number, public longitude: number) { }
+  }
+
+  function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
+    const earthRadius = 6371; // Earth's radius in kilometers
+
+    const dLat = toRadians(coord2.latitude - coord1.latitude);
+    const dLon = toRadians(coord2.longitude - coord1.longitude);
+
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRadians(coord1.latitude)) * Math.cos(toRadians(coord2.latitude)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const distance = earthRadius * c; // Distance in kilometers
+    return distance;
+  }
+
+  function toRadians(degrees: number): number {
+    return degrees * (Math.PI / 180);
+  }
+
+  // Example usage:
+  const point1 = new GeoCoordinate(37.7749, -122.4194); // San Francisco, CA
+  const point2 = new GeoCoordinate(34.0522, -118.2437); // Los Angeles, CA
+
+  const distance = calculateHaversineDistance(point1, point2);
+  console.log(`The distance between the two points is approximately ${distance.toFixed(2)} kilometers.`);
+
+
   function filterDestinations(destinations: Destination[], category: string): Destination[] {
-      const result: Destination[] = [];
-      destinations.map((destination) => {
-          if (destination.category == category) {
-              result.push(destination)
-          }
-      })
-      return result
+    const result: Destination[] = [];
+    destinations.map((destination) => {
+      if (destination.category == category) {
+        result.push(destination)
+      }
+    })
+    return result
   }
 
   const fetchLocation = async () => {
-      try {
-          const res = await fetch('/api/getLocation');
-          if (res.status === 200) { // valid response
-              const data = await res.json();
-              setRegion(data.location.region_name);
-              setLocationFetched(true); // Mark location as fetched
-          } else {
-              console.error("An error occurred while fetching the location");
-          }
-      } catch (error) {
-          console.error("An error occurred while fetching the location:", error);
+    try {
+      const res = await fetch('/api/getLocation');
+      if (res.status === 200) { // valid response
+        const data = await res.json();
+        setRegion(data.location.region_name);
+        setLocationFetched(true); // Mark location as fetched
+      } else {
+        console.error("An error occurred while fetching the location");
       }
+    } catch (error) {
+      console.error("An error occurred while fetching the location:", error);
+    }
   };
   const fetchDestinations = async () => {
-      try {
-          const url = "/api/getDestinations";
-          const options = {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify(region),
-          };
-          const response = await fetch(url, options);
-          const data = await response.json();
-          setAllDestinations(data);
-          setCinemaDestinations(filterDestinations(data, 'Cinema'));
-          setAirportDestinations(filterDestinations(data, 'Airport'));
-          setSchoolDestinations(filterDestinations(data, 'School'));
-          setShopDestinations(filterDestinations(data, 'Shop'));
+    try {
+      const url = "/api/getDestinations";
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(region),
+      };
+      const response = await fetch(url, options);
+      const data = await response.json();
+      setAllDestinations(data);
+      setCinemaDestinations(filterDestinations(data, 'Cinema'));
+      setAirportDestinations(filterDestinations(data, 'Airport'));
+      setSchoolDestinations(filterDestinations(data, 'School'));
+      setShopDestinations(filterDestinations(data, 'Shop'));
 
-      } catch (error) {
-          console.error("An error occurred while fetching destinations:", error);
-      }
+    } catch (error) {
+      console.error("An error occurred while fetching destinations:", error);
+    }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-        await fetchLocation();
-        await fetchDestinations();
+      await fetchLocation();
+      await fetchDestinations();
     };
     fetchData()
-}, []);
+  }, []);
 
   const closeMenuOnOutsideClick = (event: { target: any; }) => {
     if (isOpen && tripDropdownRef.current && !tripDropdownRef.current.contains(event.target)) {
@@ -139,7 +172,7 @@ export default function CruiseoHome({
 
           </div>
           <div className='max-w-full'>
-            <AllTripsGrid onSelectDestination={handleDestinationSelect} destinations={destinations} airportDestinations={airportDestinations} schoolDestinations={schoolDestinations} shopDestinations={shopDestinations} cinemaDestinations={cinemaDestinations}/>
+            <AllTripsGrid onSelectDestination={handleDestinationSelect} destinations={destinations} airportDestinations={airportDestinations} schoolDestinations={schoolDestinations} shopDestinations={shopDestinations} cinemaDestinations={cinemaDestinations} />
           </div>
           {!user ?
             <>
@@ -151,7 +184,7 @@ export default function CruiseoHome({
             </>
           }
         </div>)
-        : <CarpoolForm user={user} selectedDestination={selectedDestination} onClose={()=>setIsOpen(!isOpen)} />
+        : <CarpoolForm user={user} selectedDestination={selectedDestination} onClose={() => setIsOpen(!isOpen)} />
       }
     </>);
 }
