@@ -1,5 +1,4 @@
 'use client';
-
 import Button from '@/components/ui/Button';
 import { Database, Json } from '@/types_db';
 import { postData } from '@/utils/helpers';
@@ -13,7 +12,7 @@ import { CarpoolForm } from './ui/carpool-form';
 import { HowCruiseoWorks } from './how-cruiseo-works';
 import { WhyChooseCruiseo } from './why-choose-cruiseo';
 import { CarpoolGrid } from './ui/carpool-grid';
-import { Trip, UserDetails } from '@/types';
+import { Trip, UserDetails,Destination } from '@/types';
 import { HowFaresCalculated } from './how-fares-calculated';
 import { AllTripsGrid } from './allTripsGrid';
 

@@ -1,7 +1,7 @@
 'use client'
 import { User } from "@supabase/supabase-js"
 import { CarpoolCard } from "./ui/carpool-card";
-import { Destination, Trip } from "@/types";
+import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs, } from '@geist-ui/core'
 import { useState, useEffect } from 'react'
