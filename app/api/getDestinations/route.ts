@@ -8,6 +8,7 @@ import { filterDestinations } from "./controller"
 
 export async function POST(req: Request) {
     const location = await req.json();
+    console.log(location)
     if (req.method === 'POST') {
         try {
             const destinations = await retrieveDestinations(location ? location : "");
