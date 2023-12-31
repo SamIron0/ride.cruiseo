@@ -67,7 +67,7 @@ export default function CruiseoHome({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(),
+        body: JSON.stringify(location),
       };
       const response = await fetch(url, options);
       const data = await response.json();

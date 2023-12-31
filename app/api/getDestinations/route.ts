@@ -26,7 +26,7 @@ function toRadians(degrees: number): number {
 }
 
 export async function POST(req: Request) {
-    const location = req.body
+    const location = await req.json();
     if (req.method === 'POST') {
         try {
 
