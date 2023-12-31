@@ -43,7 +43,9 @@ export async function POST(req: Request,) {
                 }
             };
 
-            const point1 = new GeoCoordinate(37.7749, -122.4194); // San Francisco, CA
+            const point1 : GeoCoordinate = (
+                37.7749, -122.4194
+            ); // San Francisco, CA
             const point2 = new GeoCoordinate(34.0522, -118.2437); // Los Angeles, CA
 
             const distance = calculateHaversineDistance(point1, point2);
