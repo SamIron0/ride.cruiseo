@@ -1,9 +1,8 @@
-import { Request } from 'express'; // Assuming Request is imported from express
 
 import { retrieveDestinations } from "@/utils/supabase-admin";
 
 class GeoCoordinate {
-    constructor(public latitude: number, public longitude: number) {}
+    constructor(public latitude: number, public longitude: number) { }
 }
 
 function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
