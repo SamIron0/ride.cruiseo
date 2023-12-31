@@ -26,23 +26,10 @@ function toRadians(degrees: number): number {
 }
 
 export async function POST(req: Request,) {
-    let location = ''
+    let location = req.body
     if (req.method === 'POST') {
         try {
-            const fetchLocation = async () => {
-                try {
-                    const res = await fetch('/api/getLocation');
-                    if (res.status === 200) { // valid response
-                        const data = await res.json();
-                        location = data.location.region_name;
-                    } else {
-                        console.error("An error occurred while fetching the location");
-                    }
-                } catch (error) {
-                    console.error("An error occurred while fetching the location:", error);
-                }
-            };
-
+           
             const point1: GeoCoordinate = {
                 latitude: 37.7749,
                 longitude: -122.4194
