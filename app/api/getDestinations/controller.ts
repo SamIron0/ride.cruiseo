@@ -24,7 +24,7 @@ export function filterDestinations(region: any, destinations: any) {
     
     console.log("filtering: " + region);
     console.log("destination: " + destinations);
-    console.log("longitude: " + regionƒ.longitude);
+    console.log("longitude: " + region.longitude);
     const point2: GeoCoordinate = {
         latitude: 34.0522,
         longitude: -118.2437
