@@ -40,44 +40,11 @@ export default function CruiseoHome({
 
 
   const [region, setRegion] = useState("");
-  const [locationFetched, setLocationFetched] = useState(false); // New state variable
   const [destinations, setAllDestinations] = useState<Destination[]>([]); // New state variable
   const [airportDestinations, setAirportDestinations] = useState<Destination[]>([]); // New state variable
   const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
   const [schoolDestinations, setSchoolDestinations] = useState<Destination[]>([]); // New state variable
   const [cinemaDestinations, setCinemaDestinations] = useState<Destination[]>([]); // New state variable
-
-
-  class GeoCoordinate {
-    constructor(public latitude: number, public longitude: number) { }
-  }
-
-  function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
-    const earthRadius = 6371; // Earth's radius in kilometers
-
-    const dLat = toRadians(coord2.latitude - coord1.latitude);
-    const dLon = toRadians(coord2.longitude - coord1.longitude);
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRadians(coord1.latitude)) * Math.cos(toRadians(coord2.latitude)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    const distance = earthRadius * c; // Distance in kilometers
-    return distance;
-  }
-
-  function toRadians(degrees: number): number {
-    return degrees * (Math.PI / 180);
-  }
-
-  // Example usage:
-  const point1 = new GeoCoordinate(37.7749, -122.4194); // San Francisco, CA
-  const point2 = new GeoCoordinate(34.0522, -118.2437); // Los Angeles, CA
-
-  const distance = calculateHaversineDistance(point1, point2);
-  console.log(`The distance between the two points is approximately ${distance.toFixed(2)} kilometers.`);
 
 
   function filterDestinations(destinations: Destination[], category: string): Destination[] {
@@ -90,20 +57,7 @@ export default function CruiseoHome({
     return result
   }
 
-  const fetchLocation = async () => {
-    try {
-      const res = await fetch('/api/getLocation');
-      if (res.status === 200) { // valid response
-        const data = await res.json();
-        setRegion(data.location.region_name);
-        setLocationFetched(true); // Mark location as fetched
-      } else {
-        console.error("An error occurred while fetching the location");
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching the location:", error);
-    }
-  };
+  
   const fetchDestinations = async () => {
     try {
       const url = "/api/getDestinations";
@@ -129,8 +83,6 @@ export default function CruiseoHome({
 
   useEffect(() => {
     const fetchData = async () => {
-      // get user's locatiion, then set available destinations
-            await fetchLocation();
             
       await fetchDestinations();
     };
