@@ -102,6 +102,7 @@ export default function CruiseoHome({
   useEffect(() => {
     const fetchData = async () => {
       fetchLocation();
+      fetchDestinations()
     }
     fetchData()
   }, []);
