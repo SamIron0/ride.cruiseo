@@ -28,9 +28,7 @@ export function filterDestinations(location: any, destinations: any) {
         latitude: 34.0522,
         longitude: -118.2437
     };
-    return {
-
-    }
+    
     // const distance = calculateHaversineDistance(point1, point2);
 
 }
