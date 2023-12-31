@@ -42,7 +42,7 @@ export async function POST(req: Request) {
             const distance = calculateHaversineDistance(point1, point2);
             console.log(`The distance between the two points is approximately ${distance.toFixed(2)} kilometers.`);
 
-            const destinations = await retrieveDestinations(location ? locaation : "");
+            const destinations = await retrieveDestinations(location ? location : "");
             let response;
             // filter destinations to only give contain destinations based on users location
 
