@@ -7,11 +7,11 @@ import { retrieveDestinations } from "@/utils/supabase-admin";
 import { filterDestinations } from "./controller"
 
 export async function POST(req: Request) {
-    const location = await req.json();
-    console.log(location)
+    const region = await req.json();
+    console.log(region)
     if (req.method === 'POST') {
         try {
-            const destinations = await retrieveDestinations(location ? location : "");
+            const destinations = await retrieveDestinations(region ? region : "");
             let response;
             // filter destinations to only give contain destinations based on users location
             filterDestinations(location, destinations)

@@ -44,7 +44,6 @@ export default function CruiseoHome({
   const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
   const [schoolDestinations, setSchoolDestinations] = useState<Destination[]>([]); // New state variable
   const [cinemaDestinations, setCinemaDestinations] = useState<Destination[]>([]); // New state variable
-  const [location, setLocation] = useState('');
 
 
   function filterDestinations(destinations: Destination[], category: string): Destination[] {
@@ -65,8 +64,8 @@ export default function CruiseoHome({
       const res = await fetch('/api/getLocation');
       if (res.status === 200) { // valid response
         const data = await res.json();
-        setRegion(data.location.region_name);
-        console.log(data.location);
+        setRegion(data.location);
+        //console.log(data.location);
         setLocationFetched(true); // Mark location as fetched
       } else {
         console.error("An error occurred while fetching the location");
@@ -83,7 +82,7 @@ export default function CruiseoHome({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(location),
+        body: JSON.stringify(region),
       };
       const response = await fetch(url, options);
       const data = await response.json();
