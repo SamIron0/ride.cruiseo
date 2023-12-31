@@ -4,7 +4,7 @@ import { Database } from "@/types_db";
 import { cookies } from "next/headers";
 import { createTrip, deleteTrip } from "@/utils/supabase-admin";
 import { retrieveDestinations } from "@/utils/supabase-admin";
-import { filterDestinations } from "@/controller"
+import { filterDestinations } from "@/api/getDestinations/controller"
 
 export async function POST(req: Request) {
     const location = await req.json();
