@@ -44,8 +44,9 @@ export async function POST(req: Request,) {
             };
 
 
-            class GeoCoordinate {
-                constructor(public latitude: number, public longitude: number) { }
+            interface GeoCoordinate {
+                latitude: number;
+                longitude: number;
             }
 
 
