@@ -25,8 +25,8 @@ function toRadians(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
 
-export async function POST(req: Request,) {
-    let location = req.body
+export async function POST(req: Request) {
+    const location = req.body
     if (req.method === 'POST') {
         try {
            
