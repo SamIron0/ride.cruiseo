@@ -26,6 +26,6 @@ export function filterDestinations(location:any,destinations) {
         latitude: 34.0522,
         longitude: -118.2437
     };
-    const distance = calculateHaversineDistance(point1, point2);
+   // const distance = calculateHaversineDistance(point1, point2);
 
 }
