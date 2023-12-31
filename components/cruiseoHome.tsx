@@ -86,12 +86,13 @@ export default function CruiseoHome({
       };
       const response = await fetch(url, options);
       const data = await response.json();
-      setAllDestinations(data);
-      setCinemaDestinations(filterDestinations(data, 'Cinema'));
-      setAirportDestinations(filterDestinations(data, 'Airport'));
-      setSchoolDestinations(filterDestinations(data, 'School'));
-      setShopDestinations(filterDestinations(data, 'Shop'));
-
+      if (data) {
+        setAllDestinations(data);
+        setCinemaDestinations(filterDestinations(data, 'Cinema'));
+        setAirportDestinations(filterDestinations(data, 'Airport'));
+        setSchoolDestinations(filterDestinations(data, 'School'));
+        setShopDestinations(filterDestinations(data, 'Shop'));
+      }
     } catch (error) {
       console.error("An error occurred while fetching destinations:", error);
     }
