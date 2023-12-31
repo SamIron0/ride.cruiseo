@@ -1,14 +1,14 @@
 import { GeoCoordinate } from "@/types";
-
+const point1: GeoCoordinate = {
+    latitude: 37.7749,
+    longitude: -122.4194
+};
+const point2: GeoCoordinate = {
+    latitude: 34.0522,
+    longitude: -118.2437
+};
 function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
-    const point1: GeoCoordinate = {
-        latitude: 37.7749,
-        longitude: -122.4194
-    };
-    const point2: GeoCoordinate = {
-        latitude: 34.0522,
-        longitude: -118.2437
-    };
+
     const earthRadius = 6371; // Earth's radius in kilometers
 
     const dLat = toRadians(coord2.latitude - coord1.latitude);
