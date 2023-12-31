@@ -12,7 +12,6 @@ export async function POST(req: Request) {
     if (req.method === 'POST') {
         try {
             const destinations = await retrieveDestinations(location ? location : "");
-
             let response;
             // filter destinations to only give contain destinations based on users location
             filterDestinations(location, destinations)
