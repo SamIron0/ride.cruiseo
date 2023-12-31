@@ -65,7 +65,7 @@ export default function CruiseoHome({
       if (res.status === 200) { // valid response
         const data = await res.json();
         setRegion(data.location);
-        console.log("In fetch location: "+data.location);
+        console.log("In fetch location: " + data.location);
         setLocationFetched(true); // Mark location as fetched
       } else {
         console.error("An error occurred while fetching the location");
@@ -101,10 +101,15 @@ export default function CruiseoHome({
   useEffect(() => {
     const fetchData = async () => {
       await fetchLocation();
-      await fetchDestinations();
+      locationFetched(true)
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (locationFetched)
+      fetchDestinations()
+  }, [region]);
 
   const closeMenuOnOutsideClick = (event: { target: any; }) => {
     if (isOpen && tripDropdownRef.current && !tripDropdownRef.current.contains(event.target)) {
