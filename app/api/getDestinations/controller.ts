@@ -20,12 +20,9 @@ function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate
 function toRadians(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
-export function filterDestinations() {
-    const point1: GeoCoordinate = {
-        latitude: 37.7749,
-        longitude: -122.4194
-    };
-    const point2: GeoCoordinate = {
+export function filterDestinations(location:any,destinations) {
+    console.log("filtering: " + location);
+      const point2: GeoCoordinate = {
         latitude: 34.0522,
         longitude: -118.2437
     };
