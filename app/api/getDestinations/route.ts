@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const location = req.body
     if (req.method === 'POST') {
         try {
-           
+
             const point1: GeoCoordinate = {
                 latitude: 37.7749,
                 longitude: -122.4194
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
             const distance = calculateHaversineDistance(point1, point2);
             console.log(`The distance between the two points is approximately ${distance.toFixed(2)} kilometers.`);
 
-            const destinations = await retrieveDestinations(location);
+            const destinations = await retrieveDestinations(location ? locaation : "");
             let response;
             // filter destinations to only give contain destinations based on users location
 
