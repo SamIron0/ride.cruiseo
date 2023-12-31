@@ -1,3 +1,5 @@
+import { GeoCoordinate } from "@/types";
+
 function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
     const point1: GeoCoordinate = {
         latitude: 37.7749,
