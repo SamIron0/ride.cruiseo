@@ -39,7 +39,6 @@ export default function CruiseoHome({
   const [isOpen, setIsOpen] = useState(false);
 
 
-  const [region, setRegion] = useState("");
   const [destinations, setAllDestinations] = useState<Destination[]>([]); // New state variable
   const [airportDestinations, setAirportDestinations] = useState<Destination[]>([]); // New state variable
   const [shopDestinations, setShopDestinations] = useState<Destination[]>([]); // New state variable
