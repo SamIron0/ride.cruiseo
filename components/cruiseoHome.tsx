@@ -58,7 +58,24 @@ export default function CruiseoHome({
     return result
   }
 
+  const [region, setRegion] = useState("");
+  const [locationFetched, setLocationFetched] = useState(false); // New state variable
 
+  const fetchLocation = async () => {
+    try {
+      const res = await fetch('/api/getLocation');
+      if (res.status === 200) { // valid response
+        const data = await res.json();
+        setRegion(data.location.region_name);
+        console.log(data.location);
+        setLocationFetched(true); // Mark location as fetched
+      } else {
+        console.error("An error occurred while fetching the location");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching the location:", error);
+    }
+  };
   const fetchDestinations = async () => {
     try {
       const url = "/api/getDestinations";
@@ -81,25 +98,11 @@ export default function CruiseoHome({
       console.error("An error occurred while fetching destinations:", error);
     }
   };
-  const fetchLocation = async () => {
-    try {
-      const res = await fetch('/api/getLocation');
-      if (res.status === 200) { // valid response
-        const data = await res.json();
-        setLocation(data.location.region_name)
-      } else {
-        console.error("An error occurred while fetching the location");
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching the location:", error);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetchLocation()
-      await fetchDestinations();
-    };
+      fetchLocation();
+    }
     fetchData()
   }, []);
 
