@@ -43,10 +43,14 @@ export async function POST(req: Request,) {
                 }
             };
 
-            const point1 : GeoCoordinate = (
-                37.7749, -122.4194
-            ); // San Francisco, CA
-            const point2 = new GeoCoordinate(34.0522, -118.2437); // Los Angeles, CA
+            const point1: GeoCoordinate = {
+                latitude: 37.7749,
+                longitude: -122.4194
+            };
+            const point2: GeoCoordinate = {
+                latitude: 34.0522,
+                longitude: -118.2437
+            };
 
             const distance = calculateHaversineDistance(point1, point2);
             console.log(`The distance between the two points is approximately ${distance.toFixed(2)} kilometers.`);
