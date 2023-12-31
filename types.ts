@@ -9,6 +9,12 @@ export interface Trip {
     price: string
     status: string
 }
+
+export interface GeoCoordinate {
+    latitude: number;
+    longitude: number;
+}
+
 export interface Destination {
     id: string
     address: string

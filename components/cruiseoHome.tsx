@@ -57,7 +57,7 @@ export default function CruiseoHome({
     return result
   }
 
-  
+
   const fetchDestinations = async () => {
     try {
       const url = "/api/getDestinations";
@@ -66,7 +66,7 @@ export default function CruiseoHome({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(region),
+        body: JSON.stringify(),
       };
       const response = await fetch(url, options);
       const data = await response.json();
@@ -83,7 +83,7 @@ export default function CruiseoHome({
 
   useEffect(() => {
     const fetchData = async () => {
-            
+
       await fetchDestinations();
     };
     fetchData()

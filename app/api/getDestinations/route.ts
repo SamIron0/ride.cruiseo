@@ -1,6 +1,6 @@
 import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Trip } from "@/types";
-import { Database } from "@/types_db";
+import { Database, GeoCoordinate } from "@/types_db";
 import { cookies } from "next/headers";
 import { createTrip, deleteTrip } from "@/utils/supabase-admin";
 import { retrieveDestinations } from "@/utils/supabase-admin";
@@ -43,14 +43,6 @@ export async function POST(req: Request,) {
                 }
             };
 
-
-            interface GeoCoordinate {
-                latitude: number;
-                longitude: number;
-            }
-
-
-            // Example usage:
             const point1 = new GeoCoordinate(37.7749, -122.4194); // San Francisco, CA
             const point2 = new GeoCoordinate(34.0522, -118.2437); // Los Angeles, CA
 
