@@ -4,6 +4,27 @@ import { Database } from "@/types_db";
 import { cookies } from "next/headers";
 import { createTrip, deleteTrip } from "@/utils/supabase-admin";
 import { retrieveDestinations } from "@/utils/supabase-admin";
+
+function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
+                const earthRadius = 6371; // Earth's radius in kilometers
+
+                const dLat = toRadians(coord2.latitude - coord1.latitude);
+                const dLon = toRadians(coord2.longitude - coord1.longitude);
+
+                const a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(toRadians(coord1.latitude)) * Math.cos(toRadians(coord2.latitude)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+                const distance = earthRadius * c; // Distance in kilometers
+                return distance;
+            }
+
+            function toRadians(degrees: number): number {
+                return degrees * (Math.PI / 180);
+            }
+
 export async function POST(req: Request,) {
     let location = ''
     if (req.method === 'POST') {
@@ -28,26 +49,7 @@ export async function POST(req: Request,) {
                 constructor(public latitude: number, public longitude: number) { }
             }
 
-            function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
-                const earthRadius = 6371; // Earth's radius in kilometers
-
-                const dLat = toRadians(coord2.latitude - coord1.latitude);
-                const dLon = toRadians(coord2.longitude - coord1.longitude);
-
-                const a =
-                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(toRadians(coord1.latitude)) * Math.cos(toRadians(coord2.latitude)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-
-                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-                const distance = earthRadius * c; // Distance in kilometers
-                return distance;
-            }
-
-            function toRadians(degrees: number): number {
-                return degrees * (Math.PI / 180);
-            }
-
+            
             // Example usage:
             const point1 = new GeoCoordinate(37.7749, -122.4194); // San Francisco, CA
             const point2 = new GeoCoordinate(34.0522, -118.2437); // Los Angeles, CA
