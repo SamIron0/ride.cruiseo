@@ -5,7 +5,7 @@ import { SubmitButton } from "./submit-button"
 import DateTime from "@/components/ui/dateTime"
 import { CarpoolGrid } from "../carpool-grid"
 import toast, { Toaster } from 'react-hot-toast';
-import { Trip } from "@/types";
+import { Destination, Trip } from "@/types";
 import { User } from "@supabase/supabase-js"
 import Link from "next/link"
 import { v4 as uuidv4 } from 'uuid';
@@ -22,7 +22,7 @@ import getAddressPredictions from "./getAddressPredictions"
 interface CarpoolFormProps {
   user: User | null | undefined
   onClose: () => void;
-  selectedDestination: string;
+  selectedDestination: Destination | undefined;
 }
 
 export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormProps) => {
@@ -51,7 +51,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
   const [dateIsOpen, setDateIsOpen] = useState(false);
   //const [prediction, setPredictions] = useState<any>();
   const originPredictions = getAddressPredictions(origin);
-  const destinationPredictions = getAddressPredictions(destination);
+  //const destinationPredictions = getAddressPredictions(destination);
 
   const formatOptions = (predictions: string[]): { label: string; value: string }[] => {
     return predictions.map((prediction) => ({
@@ -60,17 +60,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
     }));
   };
 
-  const [trip, setTrip] = useState<Trip | null>(
-    {
-      origin: origin,
-      destination: destination,
-      id: "",
-      date: "",
-      user_id: "",
-      price: price,
-      status: "",
-    }
-  );
+  const [trip, setTrip] = useState<Trip | null>();
 
 
   const handleTripDetailsSubmit = (event: { preventDefault: () => void }) => {
@@ -103,22 +93,11 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
   const handleConfirm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
 
-    // create a trip with entered info and send it to api
-    if (origin === "") {
-      setOriginIsValid(false);
-      confirm = false;
-    }
 
-    if (destination === "") {
+    if (destination != undefined && origin != "" && date != "") {
       setDestinationIsValid(false);
-      confirm = false;
-    }
-    if (date === "") {
+      setOriginIsValid(false);
       setDateIsValid(false);
-      confirm = false;
-    }
-
-    if (confirm) {
       setTrip({
         id: uuidv4(),
         origin: origin,
@@ -128,7 +107,6 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
         price: "N/A",
         status: "Pending"
       })
-      //sendEmail();
     }
   }
   useEffect(() => {
@@ -160,11 +138,11 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
   function clearForm() {
     setOrigin("")
     setDate("")
-    setDestination("")
+    setDestination(undefined)
   }
 
   let formattedOriginOptions = formatOptions(originPredictions);
-  let formattedDestinationOptions = formatOptions(destinationPredictions);
+  //let formattedDestinationOptions = formatOptions(destinationPredictions);
   function setOriginAndSuggestions(value: string) {
     setOrigin(value);
     if (value.length > 0) {
@@ -173,13 +151,8 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
     else
       setOriginSuggestionIsOpen(false)
   }
-  function setDestinationAndSuggestions(value: string) {
+  function setDestinationAndSuggestions(value: Destination) {
     setDestination(value);
-    if (value.length > 0) {
-      setDestinationSuggestionIsOpen(true)
-    }
-    else
-      setDestinationSuggestionIsOpen(false)
   }
   function onOriginSuggestionClick(value: any) {
     setOrigin(value);
@@ -232,47 +205,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
           <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col items-center px-1 justify-center  w-full">
 
             {destinationIsOpen ? (
-              <div
-                className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
-                <div className="w-full">
-                  <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
-
-                  <div className="mt-2 relative">
-                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                      <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                      </svg>
-                    </div>
-                    <input
-                      value={destination}
-                      onChange={e => setDestinationAndSuggestions(e.target.value)}
-                      placeholder="Search Destinations"
-                      className="bg-transparent p-4 placeholder:text-gray-400 text-gray-900 ring-0  rounded-lg ps-10 border focus:ring-black focus:border-black bg-gray-100 border-gray-400 outline-none w-full "
-                    />
-                  </div>
-                  {!destinationIsValid &&
-                    <div className="text-red-500 text-left  text-xs">
-                      Destination cannot be blank
-                    </div>
-                  }
-                  {destinationSuggestionIsOpen &&
-                    <div
-                      ref={destinationRef}
-                      className={formattedDestinationOptions.length > 0 ? "w-5/6 sm:w-3/5 md:w-3/6 lg:w-3/7 xl:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2" : ""}
-                    >
-                      {formattedDestinationOptions?.map((formatOption, index) => (
-                        <button
-                          onClick={() => onDestinationSuggestionClick(formatOption.value)}
-                          className="text-md hover:bg-gray-100 flex items-center text-left w-full p-1"
-                          key={index}>
-                          <div className="bg-gray-100 flex rounded-xl justify-center items-center p-2 mr-3"> <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" /></svg></div>
-                          {formatOption.value}
-                        </button>
-                      ))}
-                    </div>
-                  }
-                </div>
-              </div>
+              <></>
             ) : <div
               onClick={() => {
                 setDateIsOpen(false);

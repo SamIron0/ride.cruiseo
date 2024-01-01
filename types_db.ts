@@ -1,4 +1,4 @@
-import { Trip } from "./types"
+import { Destination, Trip } from "./types"
 
 export type Json =
   | string
@@ -213,7 +213,7 @@ export interface Database {
       trips: {
         Row: {
           origin: string
-          destination: string
+          destination: Destination
           id: string
           date: string
           user_id: string
@@ -222,7 +222,7 @@ export interface Database {
         }
         Insert: {
           origin?: string | null
-          destination?: string | null
+          destination?: Destination | null
           user_id?: string
           id: string | null
           date?: string | null
@@ -232,7 +232,7 @@ export interface Database {
         }
         Update: {
           origin?: string | null
-          destination?: string | null
+          destination?: Destination | null
           user_id?: string
           id?: string | null
           date?: string | null

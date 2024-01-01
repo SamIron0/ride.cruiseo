@@ -31,7 +31,7 @@ export async function POST(req: Request,) {
 
             const tripID = await createTrip({
              trip: trip,
-               id: session.user.id,
+               userId: session.user.id,
             });
             if (tripID != undefined) {
                 const response = "Trip saved";

@@ -6,7 +6,7 @@ import {
   getUserDetails
 } from '@/app/supabase-server';
 import { Trip, UserDetails } from '@/types';
-import { retrieveTrips,retrieveDestinations } from '@/utils/supabase-admin';
+import { retrieveUsersTrips,retrieveDestinations } from '@/utils/supabase-admin';
 //import { useRouter } from 'next/navigation';
 
 export default async function PricingPage() {
@@ -21,7 +21,7 @@ export default async function PricingPage() {
   if (!session) {
     //router.push('/signin');
   } else {
-    trips = await retrieveTrips(session?.user?.id);
+    trips = await retrieveUsersTrips(session?.user?.id);
   }
   const destinations= await retrieveDestinations();
   return (

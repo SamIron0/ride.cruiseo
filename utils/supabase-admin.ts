@@ -88,12 +88,13 @@ export const deleteTrip = async (tripId: string, userId: string) => {
 }
 export const createTrip = async ({
   trip,
-  id
+  userId,
 }: {
   trip: Trip;
-  id: string;
+  userId: string;
 }) => {
-  const { data, error: supabaseError } = await supabaseAdmin
+  // Step 1: Insert the trip into the "trips" table
+  const { data: tripData, error: tripError } = await supabaseAdmin
     .from("trips")
     .insert([
       {
@@ -101,25 +102,48 @@ export const createTrip = async ({
         destination: trip.destination,
         id: trip.id,
         date: trip.date,
-        user_id: id,
+        user_id: userId,
         price: trip.price,
-        status: "Pending"
+        status: "Pending",
       },
     ]);
-  let trips = await retrieveTrips(id);
 
+  if (tripError) {
+    console.error("Error inserting trip:", tripError);
+    throw tripError;
+  }
+
+  // Step 2: Retrieve the corresponding destination from the "destinations" table
+  const { data: destinationData, error: destinationError } = await supabaseAdmin
+    .from("destinations")
+    .select("*")
+    .eq("id", trip.destination.id)
+    .single();
+
+  if (destinationError) {
+    console.error("Error retrieving destination:", destinationError);
+    throw destinationError;
+  }
+
+  const destination = destinationData as Destination;
+
+  // Step 3: Update the "trip_ids" array in the retrieved destination
+  destination.trip_ids.push(trip.id);
+
+  // Step 4: Update the user's trips with the new trip
+  let trips = await retrieveUsersTrips(userId);
   trips.push(trip);
 
-  await supabaseAdmin
-    .from('users')
-    .update({ trips })
-    .eq('id', id);
+  await supabaseAdmin.from("users").update({ trips }).eq("id", userId);
 
-  if (supabaseError) throw supabaseError;
-  console.log(`New trip inserted for user.`);
-  return trip.destination;
+  console.log("New trip inserted for user.");
+
+  // Step 5: Return the new trip ID
+  return trip.id;
 };
-export const retrieveTrips = async (userId: string) => {
+
+
+export const retrieveUsersTrips = async (userId: string) => {
   const { data: users } = await supabaseAdmin
     .from('users')
     .select('trips')

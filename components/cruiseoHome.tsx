@@ -127,9 +127,9 @@ export default function CruiseoHome({
 
   const tripDropdownRef = useRef<HTMLDivElement>(null);
 
-  const [selectedDestination, setSelectedDestination] = useState<string>('');
+  const [selectedDestination, setSelectedDestination] = useState<Destination>();
 
-  const handleDestinationSelect = (destination: string) => {
+  const handleDestinationSelect = (destination: Destination) => {
     setSelectedDestination(destination);
     setIsOpen(true); // Open the CarpoolForm when a destination is selected
   };

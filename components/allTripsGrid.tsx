@@ -7,7 +7,7 @@ import { Tabs, } from '@geist-ui/core'
 import { useState, useEffect } from 'react'
 
 interface AllTripsGridProps {
-    onSelectDestination: (destination: string) => void;
+    onSelectDestination: (destination: Destination) => void;
     destinations: Destination[];
     airportDestinations: Destination[];
     schoolDestinations: Destination[];
@@ -67,7 +67,7 @@ export function AllTripsGrid({ onSelectDestination, destinations, airportDestina
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {destinations?.map((destination) => (
-                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(destination.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(destination)}>
                                 <DestinationCard destination={destination} />
                             </div>
                         ))}</div>
@@ -80,7 +80,7 @@ export function AllTripsGrid({ onSelectDestination, destinations, airportDestina
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {shopDestinations?.map((shop) => (
-                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(shop.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(shop)}>
                                 <DestinationCard destination={shop} />
                             </div>
                         ))}
@@ -97,7 +97,7 @@ export function AllTripsGrid({ onSelectDestination, destinations, airportDestina
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {airportDestinations?.map((airport) => (
-                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(airport.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(airport)}>
                                 <DestinationCard destination={airport} />
                             </div>))}</div>
                 </div>
@@ -107,7 +107,7 @@ export function AllTripsGrid({ onSelectDestination, destinations, airportDestina
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {schoolDestinations?.map((school) => (
-                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(school.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(school)}>
                                 <DestinationCard destination={school} />
                             </div>))}</div>
                 </div>
@@ -120,7 +120,7 @@ export function AllTripsGrid({ onSelectDestination, destinations, airportDestina
                 <div className="sm:px-24 ">
                     <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
                         {cinemaDestinations?.map((cinema) => (
-                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(cinema.address)}>
+                            <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(cinema)}>
                                 <DestinationCard destination={cinema} />
                             </div>))}</div>
                 </div>
