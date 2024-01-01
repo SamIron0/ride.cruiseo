@@ -99,7 +99,7 @@ export const createTrip = async ({
     .insert([
       {
         origin: trip.origin,
-        destination_id: trip.destination?.id,
+        destination_id: trip.destination_id,
         id: trip.id,
         date: trip.date,
         user_id: userId,
@@ -126,7 +126,7 @@ export const createTrip = async ({
   }
 
   const destination = destinationData as Destination;
-
+  console.log(destination.address)
   // Step 3: Update the "trip_ids" array in the retrieved destination
   destination.trip_ids.push(trip.id);
 
@@ -134,8 +134,8 @@ export const createTrip = async ({
   const { error: updateDestinationError } = await supabaseAdmin
     .from("destinations")
     .update({
+      id: trip.id,
       trip_ids: destination.trip_ids,
-      id: destination.id
     })
     .eq("id", trip.destination?.id);
 
@@ -148,9 +148,8 @@ export const createTrip = async ({
   let trips = await retrieveUsersTrips(userId);
   trips.push(trip);
 
-  await supabaseAdmin.from("users").update({ trips }).eq("id", userId);
+  await supabaseAdmin.from("users").update({ trips: trips }).eq("id", userId);
 
-  console.log("New trip inserted for user.");
 
   // Step 6: Return the new trip ID
   return trip.id;
