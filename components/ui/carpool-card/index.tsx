@@ -66,7 +66,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
         <Fieldset.Subtitle>
           <div className="flex-1">
             <p className="font-semibold ">Origin: <span className="font-normal">{trip.origin}</span></p>
-            <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination.address}</span></p>
+            <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination?.address}</span></p>
             <p className="font-semibold ">Date: <span className="font-normal">{formattedDate}</span></p>
           </div>
         </Fieldset.Subtitle>
