@@ -21,10 +21,13 @@ function toRadians(degrees: number): number {
 }
 export function filterDestinations(region: any, destinations: any[] | null) {
     /*  console.log("filtering: " + region);
-      console.log("destination: " + destinations);
       console.log("longitude: " + region.longitude);
       */
-    const point2: GeoCoordinate = {
+    //      console.log("destination: " + destination.address);
+    destinations?.map((destination) => {
+        console.log(destination.address);
+    })
+    const userGeoCode: GeoCoordinate = {
         latitude: region.latitude,
         longitude: region.latitude
     };
