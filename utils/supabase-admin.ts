@@ -133,7 +133,12 @@ export const createTrip = async ({
   // Step 4: Update the destination in the "destinations" table
   const { error: updateDestinationError } = await supabaseAdmin
     .from("destinations")
-    .upsert([destination])
+    .update({
+      id: destination.id,
+      trip_ids: destination.trip_ids, // Set the trip_ids to a new array containing trip.id
+    })
+    .eq("id", destination.id);
+
 
   if (updateDestinationError) {
     console.error("Error updating destination:", updateDestinationError);
