@@ -117,7 +117,7 @@ export const createTrip = async ({
   const { data: destinationData, error: destinationError } = await supabaseAdmin
     .from("destinations")
     .select("*")
-    .eq("id", trip.destination?.id)
+    .eq("id", trip.destination_id)
     .single();
 
   if (destinationError) {
@@ -155,8 +155,6 @@ export const createTrip = async ({
   // Step 6: Return the new trip ID
   return trip.id;
 };
-
-
 
 export const retrieveUsersTrips = async (userId: string) => {
   const { data: users } = await supabaseAdmin
