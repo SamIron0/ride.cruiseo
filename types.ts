@@ -2,7 +2,8 @@ import { Json } from "./types_db"
 
 export interface Trip {
     origin: string
-    destination: Destination
+    destination?: Destination
+    destination_id?: String
     id: string
     date: string
     user_id: string

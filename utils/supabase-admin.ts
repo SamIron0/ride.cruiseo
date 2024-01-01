@@ -99,7 +99,7 @@ export const createTrip = async ({
     .insert([
       {
         origin: trip.origin,
-        destination: trip.destination,
+        destination_id: trip.destination_id,
         id: trip.id,
         date: trip.date,
         user_id: userId,
@@ -117,7 +117,7 @@ export const createTrip = async ({
   const { data: destinationData, error: destinationError } = await supabaseAdmin
     .from("destinations")
     .select("*")
-    .eq("id", trip.destination.id)
+    .eq("id", trip.destination_id)
     .single();
 
   if (destinationError) {
