@@ -119,7 +119,7 @@ export const createTrip = async ({
     .select("*")
     .eq("id", trip.destination_id)
     .single();
-    console.log("destinationData add. : " + destinationData?.address)
+  console.log("destinationData add. : " + destinationData?.address)
 
   if (destinationError) {
     console.error("Error retrieving destination:", destinationError);
@@ -131,15 +131,17 @@ export const createTrip = async ({
   console.log("trip ids: " + trip.id)
 
   // Step 3: Update the "trip_ids" array in the retrieved destination
-  destination.trip_ids.push(trip.id);
-  console.log("destinations: " + destination.trip_ids)
+  const tripIds: string[] = []
+  tripIds.push(trip.id);
+  console.log("tripIds: " + tripIds)
+  //console.log("destinations: " + destination.trip_ids)
 
   // Step 4: Update the destination in the "destinations" table
   const { error: updateDestinationError } = await supabaseAdmin
     .from("destinations")
     .update({
       id: destinationData.id,
-      trip_ids: [trip.id], 
+      trip_ids: [trip.id],
     })
     .eq("id", destination.id);
 
