@@ -5,8 +5,23 @@ import { useState } from "react";
 interface DestinationCardProps {
   destination: Destination
 }
-export function DestinationCard({ destination}: DestinationCardProps) {
+export function DestinationCard({ destination }: DestinationCardProps) {
+  const result: string[] = [];
+  function times(dates: string[] | undefined | null) {
+    dates?.map((date) => {
+      const originalDate = new Date(date);
 
+      // Get hours and minutes
+      const hours = originalDate.getHours();
+      const minutes = originalDate.getMinutes();
+
+      // Format the time as "H:mm"
+      result.push(`${hours}:${minutes.toString().padStart(2, '0')}`)
+
+    })
+
+    return result // Output: "22:00"
+  }
   return (
     <>
       <div className="relative flex flex-col mt-6 text-gray-700 ">
@@ -26,7 +41,7 @@ export function DestinationCard({ destination}: DestinationCardProps) {
             {destination.address}
           </p>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            Arrives:{destination.times}
+            Arrives:{times(destination.times)}
           </p>
         </div>
       </div></>
