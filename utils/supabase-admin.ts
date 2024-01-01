@@ -137,7 +137,7 @@ export const createTrip = async ({
       id: trip.id,
       trip_ids: destination.trip_ids,
     })
-    .eq("id", trip.destination?.id);
+    .eq("id", trip.destination_id);
 
   if (updateDestinationError) {
     console.error("Error updating destination:", updateDestinationError);
