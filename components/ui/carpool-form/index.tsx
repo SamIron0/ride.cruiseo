@@ -99,7 +99,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
       confirm = false;
     }
 
-    if (destination != undefined) {
+    if (destination == undefined) {
       setDestinationIsValid(false);
       confirm = false;
     }
