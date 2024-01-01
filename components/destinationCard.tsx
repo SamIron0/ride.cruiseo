@@ -1,9 +1,16 @@
 import { Destination, Trip } from "@/types";
+import { getTrip } from "@/utils/supabase-admin";
 
 interface DestinationCardProps {
   destination: Destination
 }
 export function DestinationCard({ destination }: DestinationCardProps) {
+  const arrivalTime = () => (
+    destination.trip_ids.map((tripId) => (
+      getTrip(tripId)
+    )
+    )
+  )
   return (
     <>
       <div className="relative flex flex-col mt-6 text-gray-700 ">
@@ -23,10 +30,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             {destination.address}
           </p>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            Arrives:{destination.trip_ids.map((id) => (
-              id
-            )
-            )}
+            Arrives:{arrivalTime()}
           </p>
         </div>
       </div></>

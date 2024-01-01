@@ -87,6 +87,14 @@ export const retrieveTrips = async (userId: string) => {
   return userTrips;
 }
 
+export const getTrip = async (tripId: string) => {
+  const { data: trip } = await supabaseAdmin
+    .from('trips')
+    .select('*')
+    .eq('id', tripId);
+
+  return trip;
+}
 
 const upsertProductRecord = async (product: Stripe.Product) => {
   const productData: Product = {
