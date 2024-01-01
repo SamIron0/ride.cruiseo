@@ -119,6 +119,7 @@ export const createTrip = async ({
     .select("*")
     .eq("id", trip.destination_id)
     .single();
+    console.log("destinations add. : " + destinationData?.address)
 
   if (destinationError) {
     console.error("Error retrieving destination:", destinationError);
