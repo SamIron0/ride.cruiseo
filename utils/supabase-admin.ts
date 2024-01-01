@@ -127,11 +127,11 @@ export const createTrip = async ({
   }
 
   const destination = destinationData as Destination;
-  console.log("destination add. : " + destination?.address)
-  console.log("trip ids: " + trip.id)
+  //console.log("destination add. : " + destination?.address)
+  // console.log("trip ids: " + trip.id)
 
   // Step 3: Update the "trip_ids" array in the retrieved destination
-  const tripIds: string[] = []
+  const tripIds: string[] = destination.trip_ids
   tripIds.push(trip.id);
   console.log("tripIds: " + tripIds)
   //console.log("destinations: " + destination.trip_ids)
@@ -141,7 +141,7 @@ export const createTrip = async ({
     .from("destinations")
     .update({
       id: destinationData.id,
-      trip_ids: [trip.id],
+      trip_ids: tripIds,
     })
     .eq("id", destination.id);
 
