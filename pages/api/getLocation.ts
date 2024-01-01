@@ -15,7 +15,7 @@ export default async function handler(
     try {
         const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // get IP address of client
         const response = await axios.get(
-            `http://api.ipapi.com/${ip}?access_key=f70b036b5bb5ccb7718a0f8cb9104335`, // replace YOUR_ACCESS_KEY with your access key from ipapi.
+            `http://api.ipapi.com/${ip}?access_key=${process.env.IPAPI_API_KEY}`,
         );
         res.status(200).json({ location: response.data });
     } catch (error) {
