@@ -128,11 +128,11 @@ export const createTrip = async ({
 
   const destination = destinationData as Destination;
   console.log("destination add. : " + destination?.address)
+  console.log("trip ids: " + trip.id)
 
   // Step 3: Update the "trip_ids" array in the retrieved destination
   destination.trip_ids.push(trip.id);
   console.log("destinations: " + destination.trip_ids)
-  console.log("trip ids: " + trip.id)
 
   // Step 4: Update the destination in the "destinations" table
   const { error: updateDestinationError } = await supabaseAdmin
