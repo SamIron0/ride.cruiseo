@@ -132,8 +132,10 @@ export const createTrip = async ({
 
   // Step 3: Update the "trip_ids" array in the retrieved destination
   const tripIds: string[] = destination.trip_ids
-  tripIds.push(trip.id);
   console.log("tripIds: " + tripIds)
+
+  tripIds.push(trip.id);
+  console.log("tripIdsFater: " + tripIds)
   //console.log("destinations: " + destination.trip_ids)
 
   // Step 4: Update the destination in the "destinations" table
