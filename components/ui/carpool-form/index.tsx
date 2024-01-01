@@ -14,7 +14,7 @@ import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
 import React, { ChangeEvent, FormEvent } from 'react';
 
-//import useAddressPredictions from "./useAddressPredictions";
+import { MiniDestinationCard } from "@/components/miniDestinationCard"
 import { Loader } from "@googlemaps/js-api-loader"
 import { debounce } from "lodash";
 import getAddressPredictions from "./getAddressPredictions"
@@ -224,7 +224,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
                 <div className="w-full">
                   <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
 
-                  { }
+                  <MiniDestinationCard destination={selectedDestination}/>
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left  text-xs">
                       Destination cannot be blank
