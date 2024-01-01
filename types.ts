@@ -14,7 +14,6 @@ export interface GeoCoordinate {
     latitude: number;
     longitude: number;
 }
-
 export interface Destination {
     id: string
     address: string
@@ -22,6 +21,7 @@ export interface Destination {
     photo: string
     trip_ids: string[]
     name: string
+    times?: string[] | null
 }
 export interface UserDetails {
     trips: Trip[] | null

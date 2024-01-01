@@ -257,6 +257,7 @@ export interface Database {
           photo: string
           trip_ids: string[]
           name: string
+          times?: string[] | null
         }
         Insert: {
           id: string | null
@@ -265,6 +266,7 @@ export interface Database {
           photo?: string | null
           trip_ids?: string[] | null
           name?: string | null
+          times?: string[] | null
         }
         Update: {
           id: string | null
@@ -273,7 +275,8 @@ export interface Database {
           photo?: string | null
           trip_ids?: string[] | null
           name?: string | null
-       
+          times?: string[] | null
+
         }
         Relationships: [
           {

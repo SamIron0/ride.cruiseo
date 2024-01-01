@@ -1,4 +1,4 @@
-import { Trip } from '@/types';
+import { Destination, Trip } from '@/types';
 import { toDateTime } from './helpers';
 import { stripe } from './stripe';
 import { createClient } from '@supabase/supabase-js';
@@ -15,11 +15,54 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
-export const retrieveDestinations = async (location: string) => {
-  const { data: destinations } = await supabaseAdmin
+export const retrieveDestinations = async (): Promise<Destination[] | null> => {
+  try {
+    const { data: destinations } = await supabaseAdmin
+      .from('destinations')
+      .select('*');
+
+    if (!destinations || destinations.length === 0) {
+      return null;
+    }
+
+    const enhancedDestinations = await Promise.all(
+      destinations.map(async (destination) => {
+        if (destination.trip_ids && destination.trip_ids.length > 0) {
+          const tripDates = await Promise.all(
+            destination.trip_ids.map(async (tripId) => {
+              const { data: trip } = await supabaseAdmin
+                .from('trips')
+                .select('date')
+                .eq('id', tripId)
+                .single();
+
+              return trip ? trip.date : null;
+            })
+          );
+
+          // Filter out null values and add times array to the destination
+          destination.times = tripDates.filter((date) => date !== null) as string[];
+        } else {
+          // If trip_ids array is empty or undefined, set times to an empty array
+          destination.times = [];
+        }
+
+        return destination;
+      })
+    );
+
+    return enhancedDestinations;
+  } catch (error) {
+    console.error('Error retrieving destinations:');
+    return null;
+  }
+};
+
+export const retrieveTimes = async (destinations: Destination[]) => {
+  const { data: times } = await supabaseAdmin
     .from('destinations')
-    .select('*')
-  return destinations;
+    .select('')
+  return times;
 }
 export const deleteTrip = async (tripId: string, userId: string) => {
   // delete from trips array

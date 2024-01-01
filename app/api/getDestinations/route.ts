@@ -1,8 +1,8 @@
 import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Trip, GeoCoordinate } from "@/types";
+import { Trip, GeoCoordinate, Destination } from "@/types";
 import { Database } from "@/types_db";
 import { cookies } from "next/headers";
-import { createTrip, deleteTrip } from "@/utils/supabase-admin";
+import { createTrip, deleteTrip, retrieveTimes } from "@/utils/supabase-admin";
 import { retrieveDestinations } from "@/utils/supabase-admin";
 import { filterDestinations } from "./controller"
 
@@ -11,11 +11,12 @@ export async function POST(req: Request) {
         try {
             const region = await req.json();
             console.log(region)
-            const destinations = await retrieveDestinations(region ? region : "");
+            const destinations: Destination[] | null = await retrieveDestinations();
             let response;
             // filter destinations to only give contain destinations based on users location
-            response = await filterDestinations(region, destinations)
-            if (response != undefined) {
+            if (destinations != null) {
+                response = await filterDestinations(region, destinations)
+                //const times = await retrieveTimes(destinations);
                 //response = destinations;
                 return new Response(JSON.stringify(response), {
                     status: 200

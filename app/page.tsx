@@ -6,7 +6,7 @@ import {
   getUserDetails
 } from '@/app/supabase-server';
 import { Trip, UserDetails } from '@/types';
-import { retrieveTrips } from '@/utils/supabase-admin';
+import { retrieveTrips,retrieveDestinations } from '@/utils/supabase-admin';
 //import { useRouter } from 'next/navigation';
 
 export default async function PricingPage() {
@@ -23,11 +23,12 @@ export default async function PricingPage() {
   } else {
     trips = await retrieveTrips(session?.user?.id);
   }
+  const destinations= await retrieveDestinations();
   return (
     <CruiseoHome
       trips={trips}
       user={session?.user}
-      userDetails={userDetails}
+      userDetails={userDetails}   
     />
   );
 }
