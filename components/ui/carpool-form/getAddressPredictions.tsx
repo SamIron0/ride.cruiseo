@@ -12,7 +12,7 @@ function getAddressPredictions(input: string) {
     const loadData = async () => {
       try {
         const loader = new Loader({
-          apiKey: process.env.GOOGLE_MAPS_API_KEY || "",
+          apiKey: "AIzaSyBrJKwpf7vX885NfARu7oCex9q0s3r0SuM",
           libraries: ['places'],
         });
         await loader.load();
