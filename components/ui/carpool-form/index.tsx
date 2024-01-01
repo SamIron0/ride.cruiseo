@@ -223,8 +223,11 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
                 className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
                   <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
-
-                  <MiniDestinationCard destination={selectedDestination}/>
+                  <div className="relative overflow-hidden w-full h-40">
+                    <div className="flex transition-transform duration-300 ease-in-out transform translate-x-0">
+                      <MiniDestinationCard destination={selectedDestination} />
+                      <div className="absolute inset-y-0 right-0 z-10 bg-black w-1/12"></div>
+                    </div></div>
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left  text-xs">
                       Destination cannot be blank
