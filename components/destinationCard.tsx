@@ -10,13 +10,10 @@ export function DestinationCard({ destination }: DestinationCardProps) {
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
       const originalDate = new Date(date);
-
-      // Get hours and minutes
-      const hours = originalDate.getHours();
-      const minutes = originalDate.getMinutes();
-
-      // Format the time as "H:mm"
-      result.push(`${hours}:${minutes.toString().padStart(2, '0')}`)
+      // Format the time in 12-hour format with lowercase am/pm
+      const formattedTime = originalDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        .toLowerCase();
+      result.push(formattedTime + ',')
 
     })
 

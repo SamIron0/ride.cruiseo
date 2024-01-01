@@ -224,9 +224,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
                 <div className="w-full">
                   <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
 
-                  <div className="mt-2 relative">
-
-                  </div>
+                  { }
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left  text-xs">
                       Destination cannot be blank
