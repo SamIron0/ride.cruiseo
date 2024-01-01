@@ -7,6 +7,18 @@ interface DestinationCardProps {
 }
 export function DestinationCard({ destination }: DestinationCardProps) {
   const result: string[] = [];
+  function address(address: string) {
+    // Define a regular expression pattern to capture everything before the street name
+    const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d/;
+
+    // Use the pattern to find the match in the input string
+    const match: RegExpExecArray | null = pattern.exec(address);
+
+    // Extract the portion before the street name
+    const result: string = match ? match[1] : address;
+
+    return (result);
+  }
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
       const originalDate = new Date(date);
@@ -35,7 +47,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           </h5>
 
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            {destination.address}
+            {address(destination.address)}
           </p>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             Arrives:{times(destination.times)}
