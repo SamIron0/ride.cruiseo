@@ -93,11 +93,22 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
   const handleConfirm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
 
-
-    if (destination != undefined && origin != "" && date != "") {
-      setDestinationIsValid(false);
+    // create a trip with entered info and send it to api
+    if (origin === "") {
       setOriginIsValid(false);
+      confirm = false;
+    }
+
+    if (destination != undefined) {
+      setDestinationIsValid(false);
+      confirm = false;
+    }
+    if (date === "") {
       setDateIsValid(false);
+      confirm = false;
+    }
+
+    if (confirm && destination != undefined) {
       setTrip({
         id: uuidv4(),
         origin: origin,
@@ -107,6 +118,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
         price: "N/A",
         status: "Pending"
       })
+      //sendEmail();
     }
   }
   useEffect(() => {
@@ -205,7 +217,20 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
           <form onSubmit={handleTripDetailsSubmit} className=" h-fit flex flex-col items-center px-1 justify-center  w-full">
 
             {destinationIsOpen ? (
-              <></>
+              <div
+                className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+                <div className="w-full">
+                  <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
+
+
+                  {!destinationIsValid &&
+                    <div className="text-red-500 text-left  text-xs">
+                      Destination cannot be blank
+                    </div>
+                  }
+                  
+                </div>
+              </div>
             ) : <div
               onClick={() => {
                 setDateIsOpen(false);
