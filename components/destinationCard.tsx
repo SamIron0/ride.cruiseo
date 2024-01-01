@@ -5,9 +5,12 @@ interface DestinationCardProps {
   destination: Destination
 }
 export function DestinationCard({ destination }: DestinationCardProps) {
-  const arrivalTime = () => (
-    destination.trip_ids.map((tripId) => (
-      getTrip(tripId)
+  const times: string[] = [];
+  let tripTime: any
+  const arrivalTimes = () => (
+    destination.trip_ids.map(async (tripId) => (
+      tripTime = await getTrip(tripId),
+      times.push(tripTime)
     )
     )
   )
@@ -30,7 +33,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             {destination.address}
           </p>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            Arrives:{arrivalTime()}
+            Arrives:{arrivalTimes()}
           </p>
         </div>
       </div></>
