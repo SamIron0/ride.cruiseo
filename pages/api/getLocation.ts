@@ -11,6 +11,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
+    
     try {
         const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // get IP address of client
         const response = await axios.get(

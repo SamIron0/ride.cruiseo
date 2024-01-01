@@ -1,5 +1,4 @@
-import { GeoCoordinate } from "@/types";
-
+import { GeoCoordinate, Destination } from "@/types";
 function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate): number {
 
     const earthRadius = 6371; // Earth's radius in kilometers
@@ -20,16 +19,15 @@ function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate
 function toRadians(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
-export function filterDestinations(region: any, destinations: any) {
-    
-    console.log("filtering: " + region);
-    console.log("destination: " + destinations);
-    console.log("longitude: " + region.longitude);
+export function filterDestinations(region: any, destinations: Destination[]) {
+    /*  console.log("filtering: " + region);
+      console.log("destination: " + destinations);
+      console.log("longitude: " + region.longitude);
+      */
     const point2: GeoCoordinate = {
-        latitude: 34.0522,
-        longitude: -118.2437
+        latitude: region.latitude,
+        longitude: region.latitude
     };
-    
-    // const distance = calculateHaversineDistance(point1, point2);
+    //const distance = calculateHaversineDistance(point1, point2);
 
 }
