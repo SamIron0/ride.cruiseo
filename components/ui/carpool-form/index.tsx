@@ -227,7 +227,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination, allDestination
                   <div className="relative overflow-hidden w-full h-40">
                     {
                       allDestinations.map((destination) => (
-                        <MiniDestinationCard destination={selectedDestination} />
+                        <MiniDestinationCard destination={destination} />
                       ))
 
                     }
