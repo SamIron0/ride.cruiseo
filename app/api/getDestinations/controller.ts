@@ -19,13 +19,27 @@ function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate
 function toRadians(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
+const addressToGeocodingAPI = (address: string) => {
+    // Replace spaces with '+'
+    const formattedAddress = address.replace(/\s+/g, '+');
+
+    // Encode the address
+    const encodedAddress = encodeURIComponent(formattedAddress);
+
+    // Construct the Geocoding API URL
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
+
+    return apiUrl;
+};
+
+
 export function filterDestinations(region: any, destinations: any[] | null) {
-    /*  console.log("filtering: " + region);
-      console.log("longitude: " + region.longitude);
-      */
-    //      console.log("destination: " + destination.address);
     destinations?.map((destination) => {
-        console.log(destination.address);
+
+        const geocodingApiUrl = addressToGeocodingAPI(destination);
+
+        console.log(geocodingApiUrl);
+
     })
     const userGeoCode: GeoCoordinate = {
         latitude: region.latitude,
