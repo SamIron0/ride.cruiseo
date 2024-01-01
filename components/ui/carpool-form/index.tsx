@@ -113,7 +113,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
       setTrip({
         id: uuidv4(),
         origin: origin,
-        destination: destination,
+        destination_id: destination.id,
         user_id: user?.id || uuidv4(),
         date: date,
         price: "N/A",
