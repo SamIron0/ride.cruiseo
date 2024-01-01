@@ -160,7 +160,7 @@ export default function CruiseoHome({
             </>
           }
         </div>)
-        : <CarpoolForm user={user} selectedDestination={selectedDestination} onClose={() => setIsOpen(!isOpen)} />
+        : <CarpoolForm user={user} selectedDestination={selectedDestination} onClose={() => setIsOpen(!isOpen)} allDestinations={destinations}/>
       }
     </>);
 }

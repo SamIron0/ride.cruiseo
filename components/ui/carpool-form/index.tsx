@@ -23,9 +23,10 @@ interface CarpoolFormProps {
   user: User | null | undefined
   onClose: () => void;
   selectedDestination: Destination | undefined;
+  allDestinations: Destination[]
 }
 
-export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormProps) => {
+export const CarpoolForm = ({ user, onClose, selectedDestination, allDestinations }: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false);
@@ -224,10 +225,14 @@ export const CarpoolForm = ({ user, onClose, selectedDestination }: CarpoolFormP
                 <div className="w-full">
                   <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
                   <div className="relative overflow-hidden w-full h-40">
-                    <div className="flex transition-transform duration-300 ease-in-out transform translate-x-0">
-                      <MiniDestinationCard destination={selectedDestination} />
-                      <div className="absolute inset-y-0 right-0 z-10 bg-black w-1/12"></div>
-                    </div></div>
+                    {
+                      allDestinations.map((destination) => (
+                        <MiniDestinationCard destination={selectedDestination} />
+                      ))
+
+                    }
+                    <div className="absolute inset-y-0 right-0 z-10 bg-black w-1/12"></div>
+                  </div>
                   {!destinationIsValid &&
                     <div className="text-red-500 text-left  text-xs">
                       Destination cannot be blank
