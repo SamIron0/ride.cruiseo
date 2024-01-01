@@ -10,14 +10,13 @@ export async function POST(req: Request) {
     if (req.method === 'POST') {
         try {
             const region = await req.json();
-           // console.log("region: " + region)
-
+            console.log(region)
             const destinations = await retrieveDestinations(region ? region : "");
             let response;
             // filter destinations to only give contain destinations based on users location
-            filterDestinations(region, destinations)
-            if (destinations != undefined) {
-                response = destinations;
+            response = await filterDestinations(region, destinations)
+            if (response != undefined) {
+                //response = destinations;
                 return new Response(JSON.stringify(response), {
                     status: 200
                 });
