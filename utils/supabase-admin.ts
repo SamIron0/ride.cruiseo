@@ -99,7 +99,7 @@ export const createTrip = async ({
     .insert([
       {
         origin: trip.origin,
-        destination: trip.destination,
+        destination_id: trip.destination?.id,
         id: trip.id,
         date: trip.date,
         user_id: userId,
