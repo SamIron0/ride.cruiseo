@@ -213,7 +213,8 @@ export interface Database {
       trips: {
         Row: {
           origin: string
-          destination: Destination
+          destination?: Destination
+          destination_id?: String
           id: string
           date: string
           user_id: string
@@ -223,6 +224,7 @@ export interface Database {
         Insert: {
           origin?: string | null
           destination?: Destination | null
+          destination_id?: String | null
           user_id?: string
           id: string | null
           date?: string | null
@@ -233,6 +235,7 @@ export interface Database {
         Update: {
           origin?: string | null
           destination?: Destination | null
+          destination_id?: String | null
           user_id?: string
           id?: string | null
           date?: string | null
