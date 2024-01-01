@@ -3,7 +3,7 @@ import { Json } from "./types_db"
 export interface Trip {
     origin: string
     destination?: Destination
-    destination_id?: String
+    destination_id?: string
     id: string
     date: string
     user_id: string

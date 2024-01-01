@@ -214,7 +214,7 @@ export interface Database {
         Row: {
           origin: string
           destination?: Destination
-          destination_id?: String
+          destination_id?: string
           id: string
           date: string
           user_id: string
@@ -224,7 +224,7 @@ export interface Database {
         Insert: {
           origin?: string | null
           destination?: Destination | null
-          destination_id?: String | null
+          destination_id?: string | null
           user_id?: string
           id: string | null
           date?: string | null
@@ -235,7 +235,7 @@ export interface Database {
         Update: {
           origin?: string | null
           destination?: Destination | null
-          destination_id?: String | null
+          destination_id?: string | null
           user_id?: string
           id?: string | null
           date?: string | null
