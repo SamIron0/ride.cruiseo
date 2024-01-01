@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     if (req.method === 'POST') {
         try {
             const region = await req.json();
-            console.log("region: " + region)
+           // console.log("region: " + region)
 
             const destinations = await retrieveDestinations(region ? region : "");
             let response;

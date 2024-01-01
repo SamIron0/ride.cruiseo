@@ -21,17 +21,15 @@ function toRadians(degrees: number): number {
 }
 const addressToGeocodingAPI = (address: string) => {
     // Replace spaces with '+'
-    const formattedAddress = address.replace(/\s+/g, '+');
 
     // Encode the address
-    const encodedAddress = encodeURIComponent(formattedAddress);
+    const encodedAddress = encodeURIComponent(address);
 
     // Construct the Geocoding API URL
     const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
 
     return apiUrl;
 };
-
 
 export function filterDestinations(region: any, destinations: any[] | null) {
     destinations?.map((destination) => {
