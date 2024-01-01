@@ -140,7 +140,7 @@ export const createTrip = async ({
   const { error: updateDestinationError } = await supabaseAdmin
     .from("destinations")
     .update({
-      id: destinationData.id,
+      id: destination.id,
       trip_ids: tripIds,
     })
     .eq("id", destination.id);
