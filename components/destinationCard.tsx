@@ -23,7 +23,10 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             {destination.address}
           </p>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            Arrives:
+            Arrives:{destination.trip_ids.map((id) => (
+              id
+            )
+            )}
           </p>
         </div>
       </div></>

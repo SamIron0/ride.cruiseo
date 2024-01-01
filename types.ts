@@ -20,7 +20,7 @@ export interface Destination {
     address: string
     category: string
     photo: string
-    trip_ids: string
+    trip_ids: string[]
     name: string
 }
 export interface UserDetails {

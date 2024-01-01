@@ -255,7 +255,7 @@ export interface Database {
           address: string
           category: string
           photo: string
-          trip_ids: string
+          trip_ids: string[]
           name: string
         }
         Insert: {
@@ -263,7 +263,7 @@ export interface Database {
           address?: string | null
           category?: string
           photo?: string | null
-          trip_ids?: string | null
+          trip_ids?: string[] | null
           name?: string | null
         }
         Update: {
@@ -271,7 +271,7 @@ export interface Database {
           address?: string | null
           category?: string
           photo?: string | null
-          trip_ids?: string | null
+          trip_ids?: string[] | null
           name?: string | null
        
         }
