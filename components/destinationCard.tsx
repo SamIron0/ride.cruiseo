@@ -1,6 +1,6 @@
 import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface DestinationCardProps {
   destination: Destination
@@ -33,6 +33,26 @@ export function DestinationCard({ destination }: DestinationCardProps) {
 
     return result // Output: "22:00"
   }
+
+  const [price, setPrice] = useState();
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const res = await fetch('/api/getPrice');
+        if (res.status === 200) { // valid response
+          const data = await res.json();
+          setPrice(data.price);
+          console.log(price);
+        } else {
+          console.error("An error occurred while fetching the location");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching the location:", error);
+      }
+    };
+    fetchPrice();
+  })
+
   return (
     <>
       <div className="relative flex flex-col mt-6 text-gray-700 ">
