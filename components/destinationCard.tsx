@@ -51,7 +51,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
       }
     };
     fetchPrice();
-  })
+  }, [])
 
   return (
     <>
