@@ -41,8 +41,8 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         const res = await fetch('/api/getPrice');
         if (res.status === 200) { // valid response
           const data = await res.json();
-          await setPrice(data.price.journery.fares[0].price_in_CAD);
-          console.log(data.price.journery.fares[0].price_in_CAD);
+           setPrice(data.price.journey.fares[0].price_in_CAD);
+          console.log(data.price.journey.fares[0].price_in_CAD);
         } else {
           console.error("An error occurred while fetching the location");
         }
