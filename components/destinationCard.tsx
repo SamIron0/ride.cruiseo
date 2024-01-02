@@ -74,6 +74,9 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             Arrives:{times(destination.times)}
           </p>
+          <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
+            {price}
+          </p>
         </div>
       </div></>
   )
