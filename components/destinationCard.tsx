@@ -42,7 +42,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         if (res.status === 200) { // valid response
           const data = await res.json();
           await setPrice(data.price);
-          console.log(price);
+          console.log(data.price);
         } else {
           console.error("An error occurred while fetching the location");
         }
