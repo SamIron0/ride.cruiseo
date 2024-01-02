@@ -42,7 +42,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         if (res.status === 200) { // valid response
           const data = await res.json();
            setPrice(data.price.journey.fares[0].price_in_CAD);
-          console.log(data.price.journey.fares[0].price_in_CAD);
+         // console.log(data.price.journey.fares[0].price_in_CAD);
         } else {
           console.error("An error occurred while fetching the location");
         }
@@ -50,7 +50,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         console.error("An error occurred while fetching the location:", error);
       }
     };
-    fetchPrice();
+    //fetchPrice();
   }, [])
 
   return (
