@@ -217,7 +217,7 @@ const updateTrips = async (userId: string, trip: any) => {
     throw tripsError;
   }
 };
-export const getTrip = async (tripId: UUID) => {
+export const getTrip = async (tripId: string) => {
   const { data: trip, error } = await supabaseAdmin
     .from('trips')
     .select('*')
