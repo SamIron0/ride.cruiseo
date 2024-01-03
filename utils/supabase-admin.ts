@@ -53,7 +53,7 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
               }
             })
           );
-
+          
           destination.activeTrips = activeTrips.filter((trip) => trip !== null) as Trip[];
           destination.times = destination.activeTrips.map((trip) => trip?.date || '');
         } else {

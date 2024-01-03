@@ -39,7 +39,8 @@ export function DestinationCard({ destination }: DestinationCardProps) {
       const numberOfTrips = trips.length;
 
       if (numberOfTrips === 1) {
-        console.log(trips[0].user_ids)
+        console.log(trips[0])
+        console.log("trips: " + trips)
         const numberOfRiders = trips[0]?.user_ids?.length;
         const riderText = numberOfRiders === 1 ? 'rider' : 'riders';
 
@@ -49,8 +50,8 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           </div>
         );
       } else if (numberOfTrips > 1) {
-        const minRiders = Math.min(...trips.map((trip) => trip.user_ids.length));
-        const maxRiders = Math.max(...trips.map((trip) => trip.user_ids.length));
+        const minRiders = Math.min(...trips.map((trip) => trip?.user_ids?.length));
+        const maxRiders = Math.max(...trips.map((trip) => trip?.user_ids?.length));
 
         if (minRiders === maxRiders) {
           const riderText = minRiders === 1 ? 'rider' : 'riders';
