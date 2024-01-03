@@ -134,7 +134,6 @@ export const createTrip = async ({
     .select("*")
     .eq("id", trip.destination_id)
     .single();
-  console.log("destinationData add. : " + destinationData?.address)
 
   if (destinationError) {
     console.error("Error retrieving destination:", destinationError);
@@ -171,7 +170,7 @@ export const createTrip = async ({
   // Step 5: Update the users' trips with the new trip
   userIds.map((userId) => async () => {
     console.log("trips EBFORE: " )
-
+  })/*
     let trips: Trip[] = await retrieveUsersTrips(userId);
     console.log("trips: " + trips)
     if (trips == null) {
@@ -185,7 +184,7 @@ export const createTrip = async ({
     }
 
   })
-
+*/
   // Step 6: Return the new trip ID
   return trip.id;
 };
