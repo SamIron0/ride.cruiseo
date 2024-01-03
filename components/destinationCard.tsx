@@ -39,7 +39,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
       const numberOfTrips = trips.length;
 
       if (numberOfTrips === 1) {
-        const numberOfRiders = trips[0].user_ids.length;
+        const numberOfRiders = trips[0]?.user_ids?.length;
         const riderText = numberOfRiders === 1 ? 'rider' : 'riders';
 
         return (
