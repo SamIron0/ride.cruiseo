@@ -35,10 +35,11 @@ export function DestinationCard({ destination }: DestinationCardProps) {
   }
 
   function renderRiders(trips: Trip[] | null | undefined) {
-    if (trips) {
+    if (trips && trips != undefined) {
       const numberOfTrips = trips.length;
 
       if (numberOfTrips === 1) {
+        console.log(trips[0].user_ids)
         const numberOfRiders = trips[0]?.user_ids?.length;
         const riderText = numberOfRiders === 1 ? 'rider' : 'riders';
 
