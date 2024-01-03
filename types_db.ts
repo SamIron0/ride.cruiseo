@@ -217,7 +217,7 @@ export interface Database {
           destination_id?: string
           id: string
           date: string
-          user_id: string
+          user_ids: string[]
           price: string
           status: string
         }
@@ -225,7 +225,7 @@ export interface Database {
           origin?: string | null
           destination?: Destination | null
           destination_id?: string | null
-          user_id?: string
+          user_ids?: string[]
           id: string | null
           date?: string | null
           price?: string | null
@@ -236,7 +236,7 @@ export interface Database {
           origin?: string | null
           destination?: Destination | null
           destination_id?: string | null
-          user_id?: string
+          user_ids?: string[]
           id?: string | null
           date?: string | null
           price?: string | null

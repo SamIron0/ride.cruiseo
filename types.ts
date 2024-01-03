@@ -6,7 +6,7 @@ export interface Trip {
     destination_id?: string
     id: string
     date: string
-    user_id: string
+    user_ids: string[]
     price: string
     status: string
 }

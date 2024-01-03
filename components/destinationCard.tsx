@@ -34,6 +34,42 @@ export function DestinationCard({ destination }: DestinationCardProps) {
     return result // Output: "22:00"
   }
 
+  function renderRiders(trips: Trip[]) {
+    const numberOfTrips = trips.length;
+  
+    if (numberOfTrips === 1) {
+      const numberOfRiders = trips[0].user_ids.length;
+      const riderText = numberOfRiders === 1 ? 'rider' : 'riders';
+  
+      return (
+        <div>
+          {`${numberOfRiders} ${riderText}`}
+        </div>
+      );
+    } else if (numberOfTrips > 1) {
+      const minRiders = Math.min(...trips.map((trip) => trip.user_ids.length));
+      const maxRiders = Math.max(...trips.map((trip) => trip.user_ids.length));
+  
+      if (minRiders === maxRiders) {
+        const riderText = minRiders === 1 ? 'rider' : 'riders';
+  
+        return (
+          <div>
+            {`${minRiders} ${riderText}`}
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            {`${minRiders}-${maxRiders} riders`}
+          </div>
+        );
+      }
+    }
+  
+    return <></>; // Handle the case when the trips array is empty
+  }
+  
   const [price, setPrice] = useState();
   useEffect(() => {
     const fetchPrice = async () => {
@@ -72,7 +108,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             <div className="flex items-center space-x-2">
               <Users className="w-4 h-4" />
               <div>
-                2
+                {renderRiders(destination.trips)}
               </div>
 
             </div>
