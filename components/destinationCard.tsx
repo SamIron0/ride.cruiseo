@@ -53,9 +53,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
     //fetchPrice();
   }, [])
 
-  const renderRiders = ()=> {
-    destination.
-  }
+
   return (
     <>
       <div className="relative flex flex-col mt-6 text-gray-700 ">
@@ -74,7 +72,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             <div className="flex items-center space-x-2">
               <Users className="w-4 h-4" />
               <div>
-                {renderRider(destination.trips)}
+                2
               </div>
 
             </div>
