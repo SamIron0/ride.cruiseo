@@ -184,7 +184,7 @@ export const retrieveUsersTrips = async (userId: string) => {
 
   return userTrips;
 }
-const updateTrips = async (userId: string, trip: Trip) => {
+const updateTrips = async (userId: string, trip: any) => {
   console.log("trips before: ");
 
   let trips = await retrieveUsersTrips(userId);
