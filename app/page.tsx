@@ -7,7 +7,6 @@ import {
 } from '@/app/supabase-server';
 import { Trip, UserDetails } from '@/types';
 import { retrieveUsersTrips, retrieveDestinations, getTrip } from '@/utils/supabase-admin';
-//import { useRouter } from 'next/navigation';
 
 export default async function PricingPage() {
   const userDetails: UserDetails | null = await getUserDetails();
@@ -15,24 +14,27 @@ export default async function PricingPage() {
     getSession(),
     getSubscription()
   ]);
-  let trip_ids: string[] | null | undefined
-  let trips: Trip[] | null | undefined
 
-  //const router = useRouter()
+  let trip_ids: string[] | null | undefined;
+  let trips;
+
   if (!session) {
-    //router.push('/signin');
+    // Handle the case when there is no session, e.g., redirect to sign-in page
+    // router.push('/signin');
   } else {
     trip_ids = await retrieveUsersTrips(session?.user?.id);
-  }
-  const promises = trip_ids?.map((trip) => getTrip(trip));
-  // Use Promise.all to wait for all promises to resolve
-  if (promises) {
-    await Promise.all(promises);
 
+    if (trip_ids) {
+      const promises = trip_ids.map(async (trip) => await getTrip(trip));
+      // Use Promise.all to wait for all promises to resolve
+      if (promises) {
+        let trips = await Promise.all(promises);
+      }
+    }
   }
-
 
   const destinations = await retrieveDestinations();
+
   return (
     <CruiseoHome
       trips={trips}
