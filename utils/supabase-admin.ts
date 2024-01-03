@@ -169,8 +169,8 @@ export const createTrip = async ({
 
   // Step 5: Update the users' trips with the new trip
   userIds.map(async (userId) => {
-    //    console.log("trips EBFORE: " )
-    let trips: Trip[] = await retrieveUsersTrips(userId);
+        console.log("trips EBFORE: " )
+    let trips: any[] | null = await retrieveUsersTrips(userId);
     console.log("trips: " + trips)
     /* if (trips == null) {
        trips = []
@@ -194,9 +194,9 @@ export const retrieveUsersTrips = async (userId: string) => {
     .select('trips')
     .eq('id', userId);
 
-  let userTrips = trips?.[0]?.trips || [];
+  //let userTrips = trips?.[0]?.trips || [];
 
-  return userTrips;
+  return trips;
 }
 
 export const getTrip = async (tripId: string) => {
