@@ -170,6 +170,11 @@ export const createTrip = async ({
   // Step 5: Update the users' trips with the new trip
   userIds.map((userId) => async () => {
     console.log("trips EBFORE: " )
+  })
+  const x=[1,2]
+  x.map((num) => async () => {
+    console.log("num " )
+  })/*
   })/*
     let trips: Trip[] = await retrieveUsersTrips(userId);
     console.log("trips: " + trips)
