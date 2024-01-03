@@ -18,6 +18,7 @@ export function CarpoolGrid({ user, trips }: CarpoolGridProps) {
       user_ids: ids,
       origin: j?.origin,
       destination: j.destination,
+      destination_id: j.destination_id,
       date: j.date,
       price: j.price,
       status: j.status
