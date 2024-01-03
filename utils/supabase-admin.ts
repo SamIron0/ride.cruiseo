@@ -5,6 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 import type { Database } from 'types_db';
 import { v4 as uuidv4 } from 'uuid';
+import { use } from 'react';
 
 type Product = Database['public']['Tables']['products']['Row'];
 type Price = Database['public']['Tables']['prices']['Row'];
@@ -168,17 +169,17 @@ export const createTrip = async ({
   // Step 5: Update the users' trips with the new trip
   userIds.map((userId) => async () => {
     let trips: Trip[] = await retrieveUsersTrips(userId);
-console.log("trips: " + trips)
+    console.log("trips: " + trips)
     if (trips == null) {
       trips = []
     }
     trips.push(trip);
-    const { error: tripsError } = await supabaseAdmin.from("users").update({ trips: trips  }).eq("id", userId);
+    const { error: tripsError } = await supabaseAdmin.from("users").update({ id: userId, trips: trips }).eq("id", userId);
     if (tripsError) {
       console.error("Error retrieving destination:", tripsError);
       throw tripsError;
     }
-  
+
   })
 
   // Step 6: Return the new trip ID
