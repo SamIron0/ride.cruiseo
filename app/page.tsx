@@ -16,7 +16,7 @@ export default async function PricingPage() {
   ]);
 
   let trip_ids: string[] | null | undefined;
-  let trips;
+  let trips:any=[];
 
   if (!session) {
     // Handle the case when there is no session, e.g., redirect to sign-in page
@@ -37,7 +37,7 @@ export default async function PricingPage() {
 
   return (
     <CruiseoHome
-      trips={trips}
+      trips={trips[0]}
       user={session?.user}
       userDetails={userDetails}
     />
