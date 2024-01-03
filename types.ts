@@ -23,6 +23,7 @@ export interface Destination {
     trip_ids: string[]
     name: string
     times?: string[] | null
+    activeTrips?: Trip[] | null
 }
 export interface UserDetails {
     trips: Trip[] | null

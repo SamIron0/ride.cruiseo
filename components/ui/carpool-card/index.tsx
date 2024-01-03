@@ -10,8 +10,8 @@ interface CarpoolCardProps {
 }
 export function CarpoolCard({ trip }: CarpoolCardProps) {
   const router = useRouter()
-  let innerBg = trip.status == "Pending" ? "bg-yellow-500" : trip.status == "Confirmed" ? "bg-green-500" : "bg-blue-500"
-  let outerBg = trip.status == "Pending" ? "bg-yellow-100 text-yellow-800" : trip.status == "Confirmed" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"
+  let innerBg = trip.status == "Active" ? "bg-yellow-500" : trip.status == "Confirmed" ? "bg-green-500" : "bg-blue-500"
+  let outerBg = trip.status == "Active" ? "bg-yellow-100 text-yellow-800" : trip.status == "Confirmed" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"
   const parsedDate = new Date(trip.date);
   // Extract the relevant components
   const month = parsedDate.toLocaleString('en-US', { month: 'short' });

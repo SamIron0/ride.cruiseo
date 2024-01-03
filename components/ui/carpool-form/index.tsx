@@ -38,7 +38,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination, allDestination
   const [name, setName] = useState('');
   const [nameIsValid, setNameIsValid] = useState(true);
   const [email, setEmail] = useState(user?.email);
-  const [status, setStatus] = useState("Pending");
+  const [status, setStatus] = useState("Active");
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [number, setNumber] = useState('');
   const [numberIsValid, setNumberIsValid] = useState(true);
@@ -118,7 +118,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination, allDestination
         user_id: user?.id || uuidv4(),
         date: date,
         price: "N/A",
-        status: "Pending"
+        status: "Active"
       })
       //sendEmail();
     }

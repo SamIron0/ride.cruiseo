@@ -15,6 +15,10 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+export const retrieveActiveTrips = async (destination: Destination): Trip[] =>{ 
+
+}
+
 export const retrieveDestinations = async (): Promise<Destination[] | null> => {
   try {
     const { data: destinations } = await supabaseAdmin
@@ -104,7 +108,7 @@ export const createTrip = async ({
         date: trip.date,
         user_id: userId,
         price: trip.price,
-        status: "Pending",
+        status: "Active",
       },
     ]);
 

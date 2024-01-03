@@ -53,6 +53,9 @@ export function DestinationCard({ destination }: DestinationCardProps) {
     //fetchPrice();
   }, [])
 
+  const renderRiders = ()=> {
+    destination.
+  }
   return (
     <>
       <div className="relative flex flex-col mt-6 text-gray-700 ">
@@ -68,7 +71,12 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             <h5 className="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
               {destination.name}
             </h5>
-            <div> <Users className="w-4 h-4" />
+            <div className="flex items-center space-x-2">
+              <Users className="w-4 h-4" />
+              <div>
+                {renderRider(destination.trips)}
+              </div>
+
             </div>
           </div>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">

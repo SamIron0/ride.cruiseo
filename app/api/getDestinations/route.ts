@@ -16,8 +16,6 @@ export async function POST(req: Request) {
             // filter destinations to only give contain destinations based on users location
             if (destinations != null) {
                 response = await filterDestinations(region, destinations)
-                //const times = await retrieveTimes(destinations);
-                //response = destinations;
                 return new Response(JSON.stringify(response), {
                     status: 200
                 });
