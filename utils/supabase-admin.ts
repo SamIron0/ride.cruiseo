@@ -165,10 +165,12 @@ export const createTrip = async ({
     throw updateDestinationError;
   }
 
-  console.log("trips: " + retrieveUsersTrips(userIds[0]))
+  console.log("trips: " + await retrieveUsersTrips(userIds[0]))
 
   // Step 5: Update the users' trips with the new trip
   userIds.map((userId) => async () => {
+    console.log("trips EBFORE: " )
+
     let trips: Trip[] = await retrieveUsersTrips(userId);
     console.log("trips: " + trips)
     if (trips == null) {
