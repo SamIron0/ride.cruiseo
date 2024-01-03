@@ -90,13 +90,24 @@ export const deleteTrip = async (tripId: string, userId: string) => {
     .eq('id', userId)
     .single();
 
+  async function get_id(trip: any) {
+    let result = ""
+    const tripData = await getTrip(trip);
+    tripData ? result = tripData[0].id : result = "";
+    return result
+  }
+
   if (user.data && user.data.trips) {
-    user.data.trips = user.data.trips.filter(trip => trip.id !== tripId);
+    user.data.trips = user.data.trips.filter(
+      async (trip) => await get_id(trip) !== tripId
+    );
+
     const { data, error } = await supabaseAdmin
       .from('users')
-      .update({ trips: user.data.trips })
+      .update({ id: userId, trips: user.data.trips })
       .eq('id', userId);
   }
+
 }
 export const createTrip = async ({
   trip,
@@ -185,17 +196,14 @@ export const retrieveUsersTrips = async (userId: string) => {
   return userTrips;
 }
 const updateTrips = async (userId: string, trip: any) => {
-  console.log("trips before: ");
 
   let trips = await retrieveUsersTrips(userId);
-  console.log("trips: " + trips);
-
   if (trips == null) {
     trips = [];
-    console.log("null trips: " + trips);
+    // console.log("null trips: " + trips);
   }
 
-  trips.push(trip);
+  trips.push(trip.id);
 
   const { error: tripsError } = await supabaseAdmin
     .from("users")

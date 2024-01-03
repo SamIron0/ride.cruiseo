@@ -6,7 +6,7 @@ import {
   getUserDetails
 } from '@/app/supabase-server';
 import { Trip, UserDetails } from '@/types';
-import { retrieveUsersTrips,retrieveDestinations } from '@/utils/supabase-admin';
+import { retrieveUsersTrips, retrieveDestinations, getTrip } from '@/utils/supabase-admin';
 //import { useRouter } from 'next/navigation';
 
 export default async function PricingPage() {
@@ -15,20 +15,29 @@ export default async function PricingPage() {
     getSession(),
     getSubscription()
   ]);
+  let trip_ids: string[] | null | undefined
   let trips: Trip[] | null | undefined
 
   //const router = useRouter()
   if (!session) {
     //router.push('/signin');
   } else {
-    trips = await retrieveUsersTrips(session?.user?.id);
+    trip_ids = await retrieveUsersTrips(session?.user?.id);
   }
-  const destinations= await retrieveDestinations();
+  const promises = trip_ids?.map((trip) => getTrip(trip));
+  // Use Promise.all to wait for all promises to resolve
+  if (promises) {
+    await Promise.all(promises);
+
+  }
+
+
+  const destinations = await retrieveDestinations();
   return (
     <CruiseoHome
       trips={trips}
       user={session?.user}
-      userDetails={userDetails}   
+      userDetails={userDetails}
     />
   );
 }

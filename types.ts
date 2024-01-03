@@ -26,7 +26,7 @@ export interface Destination {
     activeTrips?: Trip[] | null
 }
 export interface UserDetails {
-    trips: Trip[] | null
+    trips: string[] | null
     avatar_url: string | null
     billing_address: Json | null
     full_name: string | null
