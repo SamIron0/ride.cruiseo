@@ -93,7 +93,7 @@ export const deleteTrip = async (tripId: string, userId: string) => {
   async function get_id(trip: any) {
     let result = ""
     const tripData = await getTrip(trip);
-    tripData ? result = tripData[0].id : result = "";
+    tripData ? result = tripData.id : result = "";
     return result
   }
 
@@ -220,8 +220,8 @@ export const getTrip = async (tripId: string) => {
     .from('trips')
     .select('*')
     .eq('id', tripId);
-
-  return trip;
+  //let result= trip?.[0]
+  return trip?.[0];
 }
 
 const upsertProductRecord = async (product: Stripe.Product) => {

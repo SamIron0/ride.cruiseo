@@ -34,10 +34,10 @@ export default async function PricingPage() {
   }
 
   const destinations = await retrieveDestinations();
-  console.log("trips: " + trips)
+  console.log("trips: " + trips[0].id)
   return (
     <CruiseoHome
-      trips={trips[0]}
+      trips={trips}
       user={session?.user}
       userDetails={userDetails}
     />
