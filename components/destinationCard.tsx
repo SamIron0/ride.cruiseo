@@ -1,7 +1,7 @@
 import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
 import { useEffect, useState } from "react";
-
+import { Users } from 'lucide-react';
 interface DestinationCardProps {
   destination: Destination
 }
@@ -41,8 +41,8 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         const res = await fetch('/api/getPrice');
         if (res.status === 200) { // valid response
           const data = await res.json();
-           setPrice(data.price.journey.fares[0].price_in_CAD);
-         // console.log(data.price.journey.fares[0].price_in_CAD);
+          setPrice(data.price.journey.fares[0].price_in_CAD);
+          // console.log(data.price.journey.fares[0].price_in_CAD);
         } else {
           console.error("An error occurred while fetching the location");
         }
@@ -64,10 +64,13 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             className="" />
         </div>
         <div className="pt-3">
-          <h5 className="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            {destination.name}
-          </h5>
-
+          <div classNamd="flex items-center justify-between">
+            <h5 className="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+              {destination.name}
+            </h5>
+            <div> <Users />
+            </div>
+          </div>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             {address(destination.address)}
           </p>
