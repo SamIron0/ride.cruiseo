@@ -220,8 +220,9 @@ export const getTrip = async (tripId: string) => {
     .from('trips')
     .select('*')
     .eq('id', tripId);
-  //let result= trip?.[0]
-  return trip?.[0];
+  let result;
+  result = trip ? trip[0] : null
+  return result
 }
 
 const upsertProductRecord = async (product: Stripe.Product) => {
