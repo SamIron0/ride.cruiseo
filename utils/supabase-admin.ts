@@ -70,9 +70,6 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
     return null;
   }
 };
-
-
-
 export const retrieveTimes = async (destinations: Destination[]) => {
   const { data: times } = await supabaseAdmin
     .from('destinations')
@@ -168,10 +165,16 @@ export const createTrip = async ({
   //console.log("usrrtrips: " + trips)
 
   // Step 5: Update the users' trips with the new trip
+  //trips?.[0]?.trips || [];
+
   userIds.map(async (userId) => {
-        console.log("trips EBFORE: " )
-    let trips: any[] | null = await retrieveUsersTrips(userId);
-    console.log("trips: " + trips)
+    const { data: trips } = await supabaseAdmin
+      .from('users')
+      .select('trips')
+      .eq('id', userId);
+
+    //let trips: any[] | null = await retrieveUsersTrips(userId);
+    console.log("trips: " + trips?.[0]?.trips)
     /* if (trips == null) {
        trips = []
      }
@@ -194,9 +197,9 @@ export const retrieveUsersTrips = async (userId: string) => {
     .select('trips')
     .eq('id', userId);
 
-  //let userTrips = trips?.[0]?.trips || [];
+  let userTrips = trips?.[0]?.trips || [];
 
-  return trips;
+  return userTrips;
 }
 
 export const getTrip = async (tripId: string) => {
