@@ -32,8 +32,7 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
             destination.trip_ids.map(async (tripId) => {
               const { data: trip } = await supabaseAdmin
                 .from('trips')
-                .select('date', 'status')
-                .eq('id', tripId)
+                .select({ columns: ['date', 'status'] }).eq('id', tripId)
                 .single();
 
               if (trip && trip.status === 'Active') {
