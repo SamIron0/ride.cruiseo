@@ -104,10 +104,10 @@ export const deleteTrip = async (tripId: string, userId: string) => {
 }
 export const createTrip = async ({
   trip,
-  userId,
+  userIds,
 }: {
   trip: Trip;
-  userId: string;
+  userIds: string[];
 }) => {
   // Step 1: Insert the trip into the "trips" table
   const { data: tripData, error: tripError } = await supabaseAdmin
@@ -118,7 +118,7 @@ export const createTrip = async ({
         destination_id: trip.destination_id,
         id: trip.id,
         date: trip.date,
-        user_id: userId,
+        user_ids: userIds,
         price: trip.price,
         status: "Active",
       },

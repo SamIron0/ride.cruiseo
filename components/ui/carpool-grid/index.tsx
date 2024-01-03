@@ -10,11 +10,12 @@ interface CarpoolGridProps {
 
 export function CarpoolGrid({ user, trips }: CarpoolGridProps) {
   let usersTrips: Trip[] = [];
-
+  const ids: any[] = [];
+  ids.push(user.id)
   trips?.map(j => (
     usersTrips.push({
       id: j.id,
-      user_id: user.id,
+      user_ids: ids,
       origin: j?.origin,
       destination: j.destination,
       date: j.date,

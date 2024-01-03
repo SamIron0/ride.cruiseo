@@ -111,11 +111,13 @@ export const CarpoolForm = ({ user, onClose, selectedDestination, allDestination
 
     if (confirm && destination != undefined) {
       console.log("setting trip")
+      const userIds: any[]= []
+      userIds.push(user?.id)
       setTrip({
         id: uuidv4(),
         origin: origin,
         destination_id: destination.id,
-        user_id: user?.id || uuidv4(),
+        user_ids: userIds,
         date: date,
         price: "N/A",
         status: "Active"
