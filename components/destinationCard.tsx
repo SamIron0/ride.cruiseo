@@ -68,14 +68,14 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             <h5 className="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
               {destination.name}
             </h5>
-            <div> <Users />
+            <div> <Users className="w-4 h-4" />
             </div>
           </div>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             {address(destination.address)}
           </p>
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            Arrives:{times(destination.times)}
+            Arrives: {times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
             {price}
