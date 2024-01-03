@@ -1,8 +1,5 @@
 import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Trip, GeoCoordinate, Destination } from "@/types";
-import { Database } from "@/types_db";
-import { cookies } from "next/headers";
-import { createTrip, deleteTrip, retrieveTimes } from "@/utils/supabase-admin";
 import { retrieveDestinations } from "@/utils/supabase-admin";
 import { filterDestinations } from "./controller"
 

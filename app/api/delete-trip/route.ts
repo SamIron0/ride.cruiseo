@@ -2,7 +2,7 @@ import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/
 import { Trip } from "@/types";
 import { Database } from "@/types_db";
 import { cookies } from "next/headers";
-import { createTrip, deleteTrip } from "@/utils/supabase-admin";
+import { deleteTrip } from "@/utils/supabase-admin";
 
 export async function POST(req: Request,) {
     if (req.method === 'POST') {

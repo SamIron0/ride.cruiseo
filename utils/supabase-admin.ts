@@ -166,15 +166,18 @@ export const createTrip = async ({
     throw updateDestinationError;
   }
 
-  // Step 5: Update the user's trips with the new trip
-  let trips: Trip[] = await retrieveUsersTrips(userId);
 
-  if (trips == null) {
-    trips = []
-  }
-  trips.push(trip);
-  await supabaseAdmin.from("users").update({ trips: trips }).eq("id", userId);
+  // Step 5: Update the users' trips with the new trip
+  userIds.map((userId) => async () => {
+    let trips: Trip[] = await retrieveUsersTrips(userId);
 
+    if (trips == null) {
+      trips = []
+    }
+    trips.push(trip);
+    await supabaseAdmin.from("users").update({ trips: trips }).eq("id", userId);
+
+  })
 
   // Step 6: Return the new trip ID
   return trip.id;
