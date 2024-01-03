@@ -30,30 +30,28 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
         if (destination.trip_ids && destination.trip_ids.length > 0) {
           const activeTrips = await Promise.all(
             destination.trip_ids.map(async (tripId) => {
-              const { data: tripDate } = await supabaseAdmin
+              const { data: trip } = await supabaseAdmin
                 .from('trips')
-                .select('date')
+                .select('*')
                 .eq('id', tripId)
                 .single();
 
-              const { data: tripStatus } = await supabaseAdmin
-                .from('trips')
-                .select('status')
-                .eq('id', tripId)
-                .single();
-
-              if (tripDate && tripStatus && tripStatus.status === 'Active') {
+              if (trip && trip.status === 'Active') {
                 return {
-                  id: tripId,
-                  date: tripDate.date,
-                  status: tripStatus.status,
+                  id: trip.id,
+                  date: trip.date,
+                  status: trip.status,
+                  origin: trip.origin,
+                  destination_id: trip.destination_id,
+                  user_ids: trip.user_ids,
+                  price: trip.price
                 } as Trip;
               } else {
                 return null;
               }
             })
           );
-          
+
           destination.activeTrips = activeTrips.filter((trip) => trip !== null) as Trip[];
           destination.times = destination.activeTrips.map((trip) => trip?.date || '');
         } else {
