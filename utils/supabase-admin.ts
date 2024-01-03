@@ -6,6 +6,7 @@ import Stripe from 'stripe';
 import type { Database } from 'types_db';
 import { v4 as uuidv4 } from 'uuid';
 import { use } from 'react';
+import { UUID } from 'crypto';
 
 type Product = Database['public']['Tables']['products']['Row'];
 type Price = Database['public']['Tables']['prices']['Row'];
@@ -80,8 +81,8 @@ export const deleteTrip = async (tripId: string, userId: string) => {
   // delete from trips array
   await supabaseAdmin
     .from("trips")
-    .delete()
-    .eq("id", tripId)
+    .update({ status: "Cancelled" })
+    .eq("id", tripId);
 
   // delete from users array
   const user = await supabaseAdmin
@@ -90,7 +91,7 @@ export const deleteTrip = async (tripId: string, userId: string) => {
     .eq('id', userId)
     .single();
 
-    //helper to gete trip id
+  //helper to get trip id
   async function get_id(trip: any) {
     let result = ""
     const tripData = await getTrip(trip);
@@ -216,7 +217,7 @@ const updateTrips = async (userId: string, trip: any) => {
     throw tripsError;
   }
 };
-export const getTrip = async (tripId: string) => {
+export const getTrip = async (tripId: UUID) => {
   const { data: trip, error } = await supabaseAdmin
     .from('trips')
     .select('*')

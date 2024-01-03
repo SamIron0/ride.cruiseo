@@ -1,5 +1,4 @@
 import { Destination, Trip } from "@/types";
-import { getTrip } from "@/utils/supabase-admin";
 import { useEffect, useState } from "react";
 import { Users } from 'lucide-react';
 interface DestinationCardProps {
