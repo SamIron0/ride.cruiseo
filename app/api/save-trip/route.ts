@@ -28,11 +28,9 @@ export async function POST(req: Request,) {
                 }), { status: 500 });
             }
 
-            const ids: any[] = []
-            ids.push(session.user.id)
             const tripID = await createTrip({
                 trip: trip,
-                userIds: ids,
+                userIds: [session.user.id],
             });
             if (tripID != undefined) {
                 const response = "Trip saved";
