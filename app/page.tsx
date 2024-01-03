@@ -16,7 +16,7 @@ export default async function PricingPage() {
   ]);
 
   let trip_ids: string[] | null | undefined;
-  let trips:any=[];
+  let trips: any = [];
 
   if (!session) {
     // Handle the case when there is no session, e.g., redirect to sign-in page
@@ -28,13 +28,13 @@ export default async function PricingPage() {
       const promises = trip_ids.map(async (trip) => await getTrip(trip));
       // Use Promise.all to wait for all promises to resolve
       if (promises) {
-        let trips = await Promise.all(promises);
+        trips = await Promise.all(promises);
       }
     }
   }
 
   const destinations = await retrieveDestinations();
-
+  console.log("trips: " + trips)
   return (
     <CruiseoHome
       trips={trips[0]}
