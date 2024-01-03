@@ -108,7 +108,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             <div className="flex items-center space-x-2">
               <Users className="w-4 h-4" />
               <div>
-                {renderRiders(destination.trips)}
+                {renderRiders(destination.activeTrips)}
               </div>
 
             </div>
