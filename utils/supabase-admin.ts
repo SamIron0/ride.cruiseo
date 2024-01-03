@@ -161,31 +161,14 @@ export const createTrip = async ({
     throw updateDestinationError;
   }
 
-  //let trips: Trip[] = await retrieveUsersTrips(userIds[0]);
-  //console.log("usrrtrips: " + trips)
 
-  // Step 5: Update the users' trips with the new trip
-  //trips?.[0]?.trips || [];
 
-  userIds.map(async (userId) => {
-    const { data: trips } = await supabaseAdmin
-      .from('users')
-      .select('trips')
-      .eq('id', userId);
+  // Assuming userIds is an array of user IDs
+  const promises = userIds.map((userId) => updateTrips(userId, trip));
+  // Use Promise.all to wait for all promises to resolve
+  await Promise.all(promises);
+  console.log("Trip created successfully" + promises);
 
-    //let trips: any[] | null = await retrieveUsersTrips(userId);
-    console.log("trips: " + trips?.[0]?.trips)
-    /* if (trips == null) {
-       trips = []
-     }
-     trips.push(trip);
-     const { error: tripsError } = await supabaseAdmin.from("users").update({ id: userId, trips: trips }).eq("id", userId);
-     if (tripsError) {
-       console.error("Error retrieving destination:", tripsError);
-       throw tripsError;
-     }
- */
-  })
 
   // Step 6: Return the new trip ID
   return trip.id;
@@ -201,7 +184,29 @@ export const retrieveUsersTrips = async (userId: string) => {
 
   return userTrips;
 }
+const updateTrips = async (userId: string, trip: Trip) => {
+  console.log("trips before: ");
 
+  let trips = await retrieveUsersTrips(userId);
+  console.log("trips: " + trips);
+
+  if (trips == null) {
+    trips = [];
+    console.log("null trips: " + trips);
+  }
+
+  trips.push(trip);
+
+  const { error: tripsError } = await supabaseAdmin
+    .from("users")
+    .update({ id: userId, trips: trips })
+    .eq("id", userId);
+
+  if (tripsError) {
+    console.error("Error retrieving destination:", tripsError);
+    throw tripsError;
+  }
+};
 export const getTrip = async (tripId: string) => {
   const { data: trip } = await supabaseAdmin
     .from('trips')
