@@ -28,22 +28,30 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
     const enhancedDestinations = await Promise.all(
       destinations.map(async (destination) => {
         if (destination.trip_ids && destination.trip_ids.length > 0) {
-          const tripDates = await Promise.all(
+          const activeTrips = await Promise.all(
             destination.trip_ids.map(async (tripId) => {
               const { data: trip } = await supabaseAdmin
                 .from('trips')
-                .select('date')
+                .select('date', 'status')
                 .eq('id', tripId)
                 .single();
 
-              return trip ? trip.date : null;
+              if (trip && trip.status === 'Active') {
+                return {
+                  id: tripId,
+                  date: trip.date,
+                  status: trip.status,
+                } as Trip;
+              } else {
+                return null;
+              }
             })
           );
 
-          // Filter out null values and add times array to the destination
-          destination.times = tripDates.filter((date) => date !== null) as string[];
+          destination.activeTrips = activeTrips.filter((trip) => trip !== null) as Trip[];
+          destination.times = destination.activeTrips.map((trip) => trip.date);
         } else {
-          // If trip_ids array is empty or undefined, set times to an empty array
+          destination.activeTrips = [];
           destination.times = [];
         }
 
@@ -53,10 +61,11 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
 
     return enhancedDestinations;
   } catch (error) {
-    console.error('Error retrieving destinations:');
+    console.error('Error retrieving destinations:', error);
     return null;
   }
 };
+
 
 export const retrieveTimes = async (destinations: Destination[]) => {
   const { data: times } = await supabaseAdmin
