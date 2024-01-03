@@ -35,39 +35,43 @@ export function DestinationCard({ destination }: DestinationCardProps) {
   }
 
   function renderRiders(trips: Trip[] | null | undefined) {
-    const numberOfTrips = trips?.length;
+    if (trips) {
+      const numberOfTrips = trips?.length;
 
-    if (numberOfTrips === 1) {
-      const numberOfRiders = trips[0].user_ids.length;
-      const riderText = numberOfRiders === 1 ? 'rider' : 'riders';
-
-      return (
-        <div>
-          {`${numberOfRiders} ${riderText}`}
-        </div>
-      );
-    } else if (numberOfTrips > 1) {
-      const minRiders = Math.min(...trips.map((trip) => trip.user_ids.length));
-      const maxRiders = Math.max(...trips.map((trip) => trip.user_ids.length));
-
-      if (minRiders === maxRiders) {
-        const riderText = minRiders === 1 ? 'rider' : 'riders';
+      if (numberOfTrips === 1) {
+        const numberOfRiders = trips[0].user_ids.length;
+        const riderText = numberOfRiders === 1 ? 'rider' : 'riders';
 
         return (
           <div>
-            {`${minRiders} ${riderText}`}
+            {`${numberOfRiders} ${riderText}`}
           </div>
         );
-      } else {
-        return (
-          <div>
-            {`${minRiders}-${maxRiders} riders`}
-          </div>
-        );
+      } else if (numberOfTrips > 1) {
+        const minRiders = Math.min(...trips.map((trip) => trip.user_ids.length));
+        const maxRiders = Math.max(...trips.map((trip) => trip.user_ids.length));
+
+        if (minRiders === maxRiders) {
+          const riderText = minRiders === 1 ? 'rider' : 'riders';
+
+          return (
+            <div>
+              {`${minRiders} ${riderText}`}
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              {`${minRiders}-${maxRiders} riders`}
+            </div>
+          );
+        }
       }
-    }
 
-    return <>0</>; // Handle the case when the trips array is empty
+      return <>0</>; // Handle the case when the trips array is empty
+
+    }
+    return
   }
 
   const [price, setPrice] = useState();
