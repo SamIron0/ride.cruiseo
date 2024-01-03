@@ -64,7 +64,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
             className="" />
         </div>
         <div className="pt-3">
-          <div classNamd="flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <h5 className="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
               {destination.name}
             </h5>
