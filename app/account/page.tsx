@@ -124,6 +124,7 @@ export default async function Account() {
                 placeholder="Your name"
                 maxLength={64}
               />
+              
             </form>
           </div>
         </Card>

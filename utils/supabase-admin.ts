@@ -90,6 +90,7 @@ export const deleteTrip = async (tripId: string, userId: string) => {
     .eq('id', userId)
     .single();
 
+    //helper to gete trip id
   async function get_id(trip: any) {
     let result = ""
     const tripData = await getTrip(trip);
@@ -216,14 +217,20 @@ const updateTrips = async (userId: string, trip: any) => {
   }
 };
 export const getTrip = async (tripId: string) => {
-  const { data: trip } = await supabaseAdmin
+  const { data: trip, error } = await supabaseAdmin
     .from('trips')
     .select('*')
-    .eq('id', tripId);
-  let result;
-  result = trip ? trip[0] : null
-  return result
+    .eq('id', tripId)
+    .single();
+
+  if (error) {
+    console.error("Error fetching trip:", error);
+    throw error;
+  }
+
+  return trip;
 }
+
 
 const upsertProductRecord = async (product: Stripe.Product) => {
   const productData: Product = {
