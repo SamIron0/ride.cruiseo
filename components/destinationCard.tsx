@@ -8,14 +8,17 @@ export function DestinationCard({ destination }: DestinationCardProps) {
   const result: string[] = [];
 
   function address(address: string) {
-    // Define a regular expression pattern to capture everything before the street name
-    const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d\s*,?/;
+    //  const addressString = "66 Chancellors Cir, Winnipeg";
+    const pattern: RegExp = /^(.+?)\s*,?.*$/;
 
-    // Use the pattern to find the match in the input string
-    const match: RegExpExecArray | null = pattern.exec(address);
-
-    // Extract the portion before the street name and remove trailing comma if present
-    const result: string = match ? match[1].replace(/,\s*$/, '') : address;
+    const match = address.match(pattern);
+    let result;
+    if (match) {
+      result = match[1].trim();
+      console.log(address);
+    } else {
+      console.log("No match found");
+    }
 
     return result;
   }
