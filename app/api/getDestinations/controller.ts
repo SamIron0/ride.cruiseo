@@ -34,7 +34,7 @@ const addressToGeocodingAPI = (destination: string) => {
 // ... (your existing code)
 
 export async function filterDestinations(region: any, destinations: any[] | null) {
-    const toCheck = ["Real Canadian Superstore", "Walmart"];
+    const toCheck = ["Superstore", "Walmart"];
 
     // Variable to store closest Real Canadian Superstore
     let closestRCS = {
@@ -65,7 +65,7 @@ export async function filterDestinations(region: any, destinations: any[] | null
                 };
                 const distance = calculateHaversineDistance(userGeoCode, destinationGeoCode);
 
-                if (destination.name === toCheck[0]) {
+                if (destination.name == toCheck[0]) {
                     console.log("in test");
                     if (distance < closestRCS.distance || closestRCS.distance === 0) {
                         closestRCS = {
@@ -74,7 +74,7 @@ export async function filterDestinations(region: any, destinations: any[] | null
                         };
                     }
                 } else {
-                    console.log("in test 2");
+                console.log("in test 2");
 
                     if (distance < closestWalmart.distance || closestWalmart.distance === 0) {
                         closestWalmart = {
