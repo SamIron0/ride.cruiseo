@@ -7,21 +7,18 @@ interface DestinationCardProps {
 export function DestinationCard({ destination }: DestinationCardProps) {
   const result: string[] = [];
 
-  function address(address: string) {
-    const addressString = "66 Chancellors Cir, Winnipeg";
-    const pattern: RegExp = /^(.+?)\s*,?\s*(?:\w{2}\s+\w{1}\d\w{1}\s*\d\w{1}\d)?$/;
-    
-    const match = addressString.match(pattern);
-    let result="";
+  function address(originalAddress: string) {
+    const match = originalAddress.match(/^(\d+) (.+), (.+), (.+) (\S+)$/);
+
     if (match) {
-      result= match[1].trim();
-      //console.log(address);
+      const [, streetNumber, streetName] = match;
+      return `${streetNumber} ${streetName}`;
     } else {
-      console.log("No match found");
+      console.error("Invalid address format");
+      return null;
     }
-    
-    return result;
   }
+
 
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
