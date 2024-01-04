@@ -1,6 +1,5 @@
 import { Trip } from "@/types";
 import { X } from 'lucide-react';
-import router from "next/router";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
@@ -46,6 +45,21 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const closeHandler = () => {
     setState(false)
   }
+  const handleDelete = () => {
+    const handleDelete = async () => {
+      try {
+        // Assuming deleteTrip is an asynchronous function that deletes the trip
+        await deleteTrip();
+        setState(false);
+        // Assuming reload is a function that triggers a reload
+        router.refresh()
+
+      } catch (error) {
+        // Handle errors if necessary
+        console.error("Error deleting trip:", error);
+      }
+    };
+  }
   return (
     <div >
       <Modal visible={state} onClose={() => closeHandler}>
@@ -53,7 +67,7 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
         <Modal.Content>
           <p>Are you sure you want to cancel the trip?</p>
         </Modal.Content>
-        <Modal.Action onClick={() => deleteTrip().then(() => setState(false))}>Yes, Im sure</Modal.Action>
+        <Modal.Action onClick={handleDelete}>Yes, Im sure</Modal.Action>
         <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
       </Modal>
       <Fieldset>
