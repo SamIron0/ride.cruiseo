@@ -45,49 +45,48 @@ export function CarpoolCard({ trip }: CarpoolCardProps) {
   const closeHandler = () => {
     setState(false)
   }
-  const handleDelete = () => {
-    const handleDelete = async () => {
-      try {
-        // Assuming deleteTrip is an asynchronous function that deletes the trip
-        await deleteTrip();
-        setState(false);
-        // Assuming reload is a function that triggers a reload
-        router.refresh()
+  const handleDelete = async () => {
+    try {
+      // Assuming deleteTrip is an asynchronous function that deletes the trip
+      await deleteTrip();
+      setState(false);
+      // Assuming reload is a function that triggers a reload
+      router.refresh()
 
-      } catch (error) {
-        // Handle errors if necessary
-        console.error("Error deleting trip:", error);
-      }
-    };
-  }
-  return (
-    <div >
-      <Modal visible={state} onClose={() => closeHandler}>
-        <Modal.Title>Cancel Trip</Modal.Title>
-        <Modal.Content>
-          <p>Are you sure you want to cancel the trip?</p>
-        </Modal.Content>
-        <Modal.Action onClick={handleDelete}>Yes, Im sure</Modal.Action>
-        <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
-      </Modal>
-      <Fieldset>
-        <Fieldset.Title >
-          <span className={`${outerBg} inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
-            <span className={`${innerBg} w-2 h-2 me-1 rounded-full`}></span>
-            {trip.status}
-          </span>
-        </Fieldset.Title>
-        <Fieldset.Subtitle>
-          <div className="flex-1">
-            <p className="font-semibold ">Origin: <span className="font-normal">{trip.origin}</span></p>
-            <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination?.address}</span></p>
-            <p className="font-semibold ">Date: <span className="font-normal">{formattedDate}</span></p>
-          </div>
-        </Fieldset.Subtitle>
-        <Fieldset.Footer>
-          <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
-          <Button auto type="secondary" scale={1 / 3} onClick={handler} font="12px">Cancel</Button>        </Fieldset.Footer>
-      </Fieldset>
-    </div>
-  )
+    } catch (error) {
+      // Handle errors if necessary
+      console.error("Error deleting trip:", error);
+    }
+  };
+
+return (
+  <div >
+    <Modal visible={state} onClose={() => closeHandler}>
+      <Modal.Title>Cancel Trip</Modal.Title>
+      <Modal.Content>
+        <p>Are you sure you want to cancel the trip?</p>
+      </Modal.Content>
+      <Modal.Action onClick={handleDelete}>Yes, Im sure</Modal.Action>
+      <Modal.Action passive onClick={() => setState(false)}>No, cancel</Modal.Action>
+    </Modal>
+    <Fieldset>
+      <Fieldset.Title >
+        <span className={`${outerBg} inline-flex self-end items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
+          <span className={`${innerBg} w-2 h-2 me-1 rounded-full`}></span>
+          {trip.status}
+        </span>
+      </Fieldset.Title>
+      <Fieldset.Subtitle>
+        <div className="flex-1">
+          <p className="font-semibold ">Origin: <span className="font-normal">{trip.origin}</span></p>
+          <p className="font-semibold ">Destination: <span className="font-normal">{trip.destination?.address}</span></p>
+          <p className="font-semibold ">Date: <span className="font-normal">{formattedDate}</span></p>
+        </div>
+      </Fieldset.Subtitle>
+      <Fieldset.Footer>
+        <p className="font-semibold ">Price: <span className="font-normal">{trip.price}</span></p>
+        <Button auto type="secondary" scale={1 / 3} onClick={handler} font="12px">Cancel</Button>        </Fieldset.Footer>
+    </Fieldset>
+  </div>
+)
 }
