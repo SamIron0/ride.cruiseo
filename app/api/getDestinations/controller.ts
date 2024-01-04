@@ -66,6 +66,7 @@ export async function filterDestinations(region: any, destinations: any[] | null
                 const distance = calculateHaversineDistance(userGeoCode, destinationGeoCode);
 
                 if (destination.name === toCheck[0]) {
+                    console.log("in test");
                     if (distance < closestRCS.distance || closestRCS.distance === 0) {
                         closestRCS = {
                             distance: distance,
@@ -73,6 +74,8 @@ export async function filterDestinations(region: any, destinations: any[] | null
                         };
                     }
                 } else {
+                    console.log("in test 2");
+
                     if (distance < closestWalmart.distance || closestWalmart.distance === 0) {
                         closestWalmart = {
                             distance: distance,
@@ -92,11 +95,12 @@ export async function filterDestinations(region: any, destinations: any[] | null
 
     if (closestRCS.destination) {
         result.push(closestRCS.destination);
-        console.log("closestRCS: " + closestRCS.distance);
+       //
     }
 
     if (closestWalmart.destination) {
         result.push(closestWalmart.destination);
+        console.log("closestWalmrt: " + closestRCS.distance);
     }
 
     return result;

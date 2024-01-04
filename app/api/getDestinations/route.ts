@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     if (req.method === 'POST') {
         try {
             const region = await req.json();
-            console.log(region)
+      //      console.log(region)
             const destinations: Destination[] | null = await retrieveDestinations();
             let response;
             // filter destinations to only give contain destinations based on users location
