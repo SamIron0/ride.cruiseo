@@ -64,8 +64,8 @@ export function AllTripsGrid({ onSelectDestination, destinations, airportDestina
             }
 
                 value="1">
-                <div className="sm:px-20 ">
-                    <div className="grid px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
+                <div className="md:px-15 ">
+                    <div className="grid px-6 grid-cols-1  md:grid-cols-2 lg:grid-cols-4  gap-4 ">
                         {destinations?.map((destination) => (
                             <div className="mt-2 cursor-pointer" onClick={() => onSelectDestination(destination)}>
                                 <DestinationCard destination={destination} />
