@@ -8,18 +8,18 @@ export function DestinationCard({ destination }: DestinationCardProps) {
   const result: string[] = [];
 
   function address(address: string) {
-    //  const addressString = "66 Chancellors Cir, Winnipeg";
-    const pattern: RegExp = /^(.+?)\s*,?.*$/;
-
-    const match = address.match(pattern);
-    let result;
+    const addressString = "66 Chancellors Cir, Winnipeg";
+    const pattern: RegExp = /^(.+?)\s*,?\s*(?:\w{2}\s+\w{1}\d\w{1}\s*\d\w{1}\d)?$/;
+    
+    const match = addressString.match(pattern);
+    let result="";
     if (match) {
-      result = match[1].trim();
-      console.log(address);
+      result= match[1].trim();
+      //console.log(address);
     } else {
       console.log("No match found");
     }
-
+    
     return result;
   }
 
