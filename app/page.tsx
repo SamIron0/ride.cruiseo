@@ -34,7 +34,7 @@ export default async function PricingPage() {
   }
 
   //const destinations = await retrieveDestinations();
- console.log("trips: " + trips.id)
+// console.log("trips: " + trips.id)
   return (
     <CruiseoHome
       trips={trips}

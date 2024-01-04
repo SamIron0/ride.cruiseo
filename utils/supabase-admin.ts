@@ -199,7 +199,6 @@ const updateTrips = async (userId: string, trip: any) => {
   let trips = await retrieveUsersTrips(userId);
   if (trips == null) {
     trips = [];
-    // console.log("null trips: " + trips);
   }
 
   trips.push(trip.id);

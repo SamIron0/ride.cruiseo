@@ -38,8 +38,6 @@ export function DestinationCard({ destination }: DestinationCardProps) {
       const numberOfTrips = trips.length;
 
       if (numberOfTrips === 1) {
-        console.log(trips[0])
-        console.log("trips: " + trips)
         const numberOfRiders = trips[0]?.user_ids?.length;
 
         return (
@@ -81,7 +79,6 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         if (res.status === 200) { // valid response
           const data = await res.json();
           setPrice(data.price.journey.fares[0].price_in_CAD);
-          // console.log(data.price.journey.fares[0].price_in_CAD);
         } else {
           console.error("An error occurred while fetching the location");
         }

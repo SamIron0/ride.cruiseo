@@ -17,7 +17,6 @@ interface AllTripsGridProps {
 
 export function AllTripsGrid({ onSelectDestination, destinations, airportDestinations, schoolDestinations, shopDestinations, cinemaDestinations }: AllTripsGridProps) {
     const [activeTab, setActiveTab] = useState('1');
-console.log(destinations.length)
     function handleTabChange(value: any) {
         setActiveTab(value);
     };
