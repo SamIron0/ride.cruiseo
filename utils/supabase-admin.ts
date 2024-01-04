@@ -80,17 +80,16 @@ export const deleteTrip = async (tripId: string, userId: string) => {
   // delete from trips array
   await supabaseAdmin
     .from("trips")
-    .delete()
-    .eq("id", tripId)
+    .update({ status: "Cancelled" })
+    .eq("id", tripId);
 
-  // delete from users array
   const user = await supabaseAdmin
     .from('users')
     .select('trips')
     .eq('id', userId)
     .single();
 
-    //helper to gete trip id
+  //helper to gete trip id
   async function get_id(trip: any) {
     let result = ""
     const tripData = await getTrip(trip);
