@@ -83,31 +83,30 @@ export const deleteTrip = async (tripId: string, userId: string) => {
     .update({ status: "Cancelled" })
     .eq("id", tripId);
 
-  const user = await supabaseAdmin
-    .from('users')
-    .select('trips')
-    .eq('id', userId)
-    .single();
-
-  //helper to gete trip id
-  async function get_id(trip: any) {
-    let result = ""
-    const tripData = await getTrip(trip);
-    tripData ? result = tripData.id : result = "";
-    return result
-  }
-
-  if (user.data && user.data.trips) {
-    user.data.trips = user.data.trips.filter(
-      async (trip) => await get_id(trip) !== tripId
-    );
-
-    const { data, error } = await supabaseAdmin
+  /*  const user = await supabaseAdmin
       .from('users')
-      .update({ id: userId, trips: user.data.trips })
-      .eq('id', userId);
-  }
-
+      .select('trips')
+      .eq('id', userId)
+      .single();
+  
+    //helper to gete trip id
+    async function get_id(trip: any) {
+      let result = ""
+      const tripData = await getTrip(trip);
+      tripData ? result = tripData.id : result = "";
+      return result
+    }
+  
+    if (user.data && user.data.trips) {
+      user.data.trips = user.data.trips.filter(
+        async (trip) => await get_id(trip) !== tripId
+      );
+  
+      const { data, error } = await supabaseAdmin
+        .from('users')
+        .update({ id: userId, trips: user.data.trips })
+        .eq('id', userId);
+    }*/
 }
 export const createTrip = async ({
   trip,
