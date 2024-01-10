@@ -65,7 +65,7 @@ async function reverseGeocode(
   longitude: number
 ): Promise<[string, string] | null> {
   try {
-    const response = await axios.get<GeocodeResult>(
+    const response = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_MAPS_API_KEY}`
     );
     
