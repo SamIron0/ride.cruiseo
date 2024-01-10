@@ -127,3 +127,7 @@ export function DestinationCard({ destination,price }: DestinationCardProps) {
       </div></>
   )
 }
+
+function setPrice(price_in_CAD: any) {
+  throw new Error("Function not implemented.");
+}
