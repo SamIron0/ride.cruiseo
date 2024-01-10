@@ -1,6 +1,6 @@
-import { Destination, Trip } from '@/types';
-import { useEffect, useState } from 'react';
-import { Users } from 'lucide-react';
+import { Destination, Trip } from "@/types";
+import { useEffect, useState } from "react";
+import { Users } from "lucide-react";
 
 interface DestinationCardProps {
   destination: Destination;
@@ -8,7 +8,7 @@ interface DestinationCardProps {
 }
 export function DestinationCard({ destination, price }: DestinationCardProps) {
   const result: string[] = [];
-console.log("price:",price);
+  console.log("price:", price);
   function address(originalAddress: string) {
     const match = originalAddress.match(/^(\d+) (.+), (.+), (.+) (\S+)$/);
 
@@ -16,7 +16,7 @@ console.log("price:",price);
       const [, streetNumber, streetName] = match;
       return `${streetNumber} ${streetName}`;
     } else {
-      console.error('Invalid address format');
+      console.error("Invalid address format");
       return null;
     }
   }
@@ -26,13 +26,13 @@ console.log("price:",price);
       const originalDate = new Date(date);
       // Format the time in 12-hour format with lowercase am/pm
       const formattedTime = originalDate
-        .toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          minute: 'numeric',
-          hour12: true
+        .toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
         })
         .toLowerCase();
-      result.push(formattedTime + ',');
+      result.push(formattedTime + ",");
     });
 
     return result; // Output: "22:00"

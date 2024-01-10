@@ -67,7 +67,7 @@ export function AllTripsGrid({
 
       if (response.ok) {
         const data = await response.json();
-        //console.log("Price:", data);
+        console.log("Price:", data);
         return data;
       } else {
         // Handle non-OK response
@@ -108,7 +108,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={destination}
-                  price={'await getPrice(destination)'}
+                  price='await getPrice(destination)'
                 />
               </div>
             ))}
@@ -141,7 +141,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={shop}
-                  price={"await getPrice(shop)"}
+                  price="await getPrice(shop)"
                 />
               </div>
             ))}
@@ -174,7 +174,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={airport}
-                  price={"await getPrice(airport)"}
+                  price="await getPrice(airport)"
                 />
               </div>
             ))}
@@ -207,7 +207,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={school}
-                  price={"await getPrice(school)"}
+                  price="await getPrice(school)"
                 />
               </div>
             ))}
@@ -240,7 +240,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={cinema}
-                  price={"await getPrice(cinema)"}
+                  price="await getPrice(cinema)"
                 />
               </div>
             ))}
