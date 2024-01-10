@@ -7,6 +7,7 @@ import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
 
 interface AllTripsGridProps {
+  userLocation: any,
   onSelectDestination: (destination: Destination) => void;
   destinations: Destination[];
   airportDestinations: Destination[];
@@ -16,6 +17,7 @@ interface AllTripsGridProps {
 }
 
 export function AllTripsGrid({
+  userLocation,
   onSelectDestination,
   destinations,
   airportDestinations,
@@ -28,7 +30,6 @@ export function AllTripsGrid({
   function handleTabChange(value: any) {
     setActiveTab(value);
   }
-  const userLocation = {test:"test"};
   const getPrice = async (destination: Destination) => {
     try {
       const url = "/api/get-price";
