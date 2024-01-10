@@ -42,7 +42,11 @@ export function DestinationCard({
         console.error("An error occurred while fetching price:", error);
       }
     };
-    getPrice();
+    if(
+      destination.category == 'Shop'
+    ){
+      getPrice();
+    }
   }, []);
 
   function address(address: string) {
