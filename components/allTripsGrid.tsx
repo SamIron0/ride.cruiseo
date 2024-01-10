@@ -67,6 +67,7 @@ export function AllTripsGrid({
           workerId: workerID,
         }),
       };
+      console.log("donoe getting price");
 
       const response = await fetch(url, options);
 

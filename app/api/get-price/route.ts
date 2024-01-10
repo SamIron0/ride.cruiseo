@@ -10,6 +10,8 @@ export async function POST(req: Request) {
         originraw,
         destinationraw,
       );
+      console.log("calleing grok");
+
       //let destinationJson = await getAddressJson(destination);
       // Make a POST request to the Ngrok link
       const ngrokLink = `https://500e-66-244-231-114.ngrok-free.app/execute-script-${worker}`;
@@ -24,7 +26,7 @@ export async function POST(req: Request) {
       const jsonResponse: any = await response.json();
 
       console.log(
-        "Ngrok  response for " + destinationraw + "=" + jsonResponse.result
+        "Ngrok response for " + destinationraw + "=" + jsonResponse.result
       );
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
