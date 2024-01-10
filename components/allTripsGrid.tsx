@@ -139,7 +139,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationCard destination={shop} price={getPrice(shop)} />
+                <DestinationCard destination={shop} price={"getPrice(shop)"} />
               </div>
             ))}
           </div>
@@ -171,7 +171,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={airport}
-                  price={getPrice(airport)}
+                  price={"getPrice(airport)"}
                 />
               </div>
             ))}
@@ -204,7 +204,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={school}
-                  price={getPrice(school)}
+                  price={"getPrice(school)"}
                 />
               </div>
             ))}
@@ -237,7 +237,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={cinema}
-                  price={getPrice(cinema)}
+                  price={"getPrice(cinema)"}
                 />
               </div>
             ))}
