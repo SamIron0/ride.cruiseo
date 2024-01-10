@@ -51,32 +51,27 @@ export function AllTripsGrid({
   }, []);
   const getPrice = async (destination: Destination) => {
     try {
-      if (userLocation != undefined) {
-        
-        const url = "/api/get-price";
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            origin:userLocation,
-            destination: destination.address,
-          }),
-        };
+      const url = "/api/get-price";
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          origin: userLocation,
+          destination: destination.address,
+        }),
+      };
 
-        const response = await fetch(url, options);
+      const response = await fetch(url, options);
 
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Price:", data);
-          return data;
-        } else {
-          // Handle non-OK response
-          console.error("Error:", response.status, response.statusText);
-        }
+      if (response.ok) {
+        const data = await response.json();
+        //console.log("Price:", data);
+        return data;
       } else {
-        console.log("User location is undefined");
+        // Handle non-OK response
+        console.error("Error:", response.status, response.statusText);
       }
     } catch (error) {
       console.error("An error occurred while fetching price:", error);
