@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       const jsonResponse: any = await response.json();
 
       console.log(
-        "Ngrok  response for " + destinationraw.name + "=" + jsonResponse.result
+        "Ngrok  response for " + destinationraw + "=" + jsonResponse.result
       );
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
