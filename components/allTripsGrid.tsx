@@ -28,7 +28,7 @@ export function AllTripsGrid({
   function handleTabChange(value: any) {
     setActiveTab(value);
   }
-
+  const userLocation = {test:"test"};
   const getPrice = async (destination: Destination) => {
     try {
       const url = "/api/get-price";
