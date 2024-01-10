@@ -26,12 +26,14 @@ export async function getAddressJson(origin: any, destination: string) {
   //console.log('Building origin and destination json');
   let originJson = {};
   let destinationJson = {};
+  let originAddress1: string | null = null;
+  let originAddress2: string | null = null;
 
-  // Call the function
-  let [originAddress1, originAddress2] = await reverseGeocode(
-    origin.latitude,
-    origin.longitude
-  );
+  const result = await reverseGeocode(origin.latitude, origin.longitude);
+
+  if (result !== null) {
+    [originAddress1, originAddress2] = result;
+  }
 
   // Now you can use originAddress1 and originAddress2 in your code
 
