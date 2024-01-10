@@ -50,9 +50,10 @@ export function AllTripsGrid({
     };
   }, []);
   const getPrice = async (destination: Destination) => {
-    console.log("calling price api");
     try {
-      if (userLocation) {
+      if (userLocation != undefined) {
+        console.log("uder locatiion:", userLocation);
+
         const url = "/api/get-price";
         const options = {
           method: "POST",
