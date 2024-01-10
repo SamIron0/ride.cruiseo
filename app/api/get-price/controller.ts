@@ -1,5 +1,5 @@
-import { GeoCoordinate, Destination } from "@/types";
-import axios from "axios";
+import { GeoCoordinate, Destination } from '@/types';
+import axios from 'axios';
 
 interface AddressComponents {
   long_name: string;
@@ -14,7 +14,7 @@ interface GeocodeResult {
 
 const addressToGeocodingAPI = (address: string) => {
   // Encode the address
-  const encodedAddress = encodeURIComponent(destination);
+  const encodedAddress = encodeURIComponent(address);
 
   // Construct the Geocoding API URL
   const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
@@ -23,47 +23,43 @@ const addressToGeocodingAPI = (address: string) => {
 };
 
 export async function getAddressJson(origin: any, destination: string) {
-  console.log("Building origin and destination json");
-  originJson = {};
-  destinationJson = {};
+  console.log('Building origin and destination json');
+  let originJson = {};
+  let destinationJson = {};
 
   // Call the function
 
-  let originaddress2;
-  const [originaddress1, originaddress2] = reverseGeocode(
-    origin.latitude,
-    origin.longitude
-  );
-  console.log("Origin address Line 1:", originaddress1);
-  console.log("Address Line 2:", originaddress2);
-
+  let originaddress1: any,
+    originaddress2: any = await reverseGeocode(
+      origin.latitude,
+      origin.longitude
+    );
+  console.log('Origin address Line 1:', originaddress1);
+  console.log('Address Line 2:', originaddress2);
+  let destinationGeocode;
   const geocodingApiUrl = addressToGeocodingAPI(destination);
   try {
-    const destinationGeocode = await axios.get(geocodingApiUrl);
+    destinationGeocode = await axios.get(geocodingApiUrl);
   } catch (error) {}
 
   originJson = {
-    origin: {
-      addressLine1: originaddress1,
-      addressLine2: originaddress2,
-      source: "SEARCH",
-      latitude: origin.latitude,
-      longitude: origin.longitude,
-      provider: "uber_places",
-    },
+    addressLine1: originaddress1,
+    addressLine2: originaddress2,
+    source: 'SEARCH',
+    latitude: origin.latitude,
+    longitude: origin.longitude,
+    provider: 'uber_places'
   };
-  console.log("Origin json:", originJson);
-  
-  destination = {
-    origin: {
-      addressLine1: destination,
-      source: "SEARCH",
-      latitude: destinationGeocode.data.results[0].geometry.location.lat,
-      longitude: destinationGeocode.data.results[0].geometry.location.lng,
-      provider: "uber_places",
-    },
+  console.log('Origin json:', originJson);
+
+  destinationJson = {
+    addressLine1: destination,
+    source: 'SEARCH',
+    latitude: destinationGeocode?.data.results[0].geometry.location.lat,
+    longitude: destinationGeocode?.data.results[0].geometry.location.lng,
+    provider: 'uber_places'
   };
-  console.log("Destination json:", destinationJson);
+  console.log('Destination json:', destinationJson);
 
   return [originJson, destinationJson];
 }
@@ -74,7 +70,7 @@ async function reverseGeocode(
 ): Promise<[string, string] | null> {
   try {
     const response = await axios.get<GeocodeResult[]>(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_MAPS_API_KEY}`
     );
 
     const result = response.data[0];
@@ -83,9 +79,9 @@ async function reverseGeocode(
       const addressLine1 = result.formatted_address;
 
       // Extract address line 2 based on the types of components
-      let addressLine2 = "";
+      let addressLine2 = '';
       result.address_components.forEach((component) => {
-        if (component.types.includes("route")) {
+        if (component.types.includes('route')) {
           addressLine2 = component.long_name;
         }
       });
@@ -95,7 +91,7 @@ async function reverseGeocode(
 
     return null;
   } catch (error) {
-    console.error("Error during reverse geocoding:", error);
+    console.error('Error during reverse geocoding:', error);
     return null;
   }
 }
