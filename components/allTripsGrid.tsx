@@ -51,7 +51,8 @@ export function AllTripsGrid({
   }, []);
 
   const [price, setPrice] = useState("0");
-  const getPrice = async (workerID: string,userDestination: Destination) => {
+
+  const getPrice = async (workerID: string, userDestination: Destination) => {
     try {
       const url = "/api/get-price";
       const options = {
@@ -70,16 +71,40 @@ export function AllTripsGrid({
 
       if (response.ok) {
         const data = await response.json();
-        //console.log("Price:", data);
-        setPrice(data); // Update state with data;
+        setPrice(data); // Update state with data
       } else {
-        // Handle non-OK response
         console.error("Error:", response.status, response.statusText);
       }
     } catch (error) {
       console.error("An error occurred while fetching price:", error);
     }
   };
+
+  const runWorker = async (workerID: string, destination: Destination) => {
+    await getPrice(workerID, destination);
+  };
+
+  const runWorkers = async () => {
+    const allDestinations: any[] = destinations;
+    const workers: string[] = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    const workerPromises = workers.map(async (workerID) => {
+      while (allDestinations.length > 0) {
+        const destination = allDestinations.pop();
+
+        if (destination) {
+          await runWorker(workerID, destination);
+        }
+      }
+    });
+
+    // Use Promise.all to run all workers simultaneously
+    await Promise.all(workerPromises);
+  };
+
+  useEffect(() => {
+    runWorkers();
+  }, []); // Empty dependency array to run the effect only once on mount
 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
