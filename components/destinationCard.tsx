@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { Users } from 'lucide-react';
 interface DestinationCardProps {
   destination: Destination
+  price: string
 }
-export function DestinationCard({ destination }: DestinationCardProps) {
+export function DestinationCard({ destination,price }: DestinationCardProps) {
   const result: string[] = [];
 
   function address(originalAddress: string) {
@@ -71,7 +72,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
     return
   }
 
-  const [price, setPrice] = useState();
+  //const [price, setPrice] = useState();
   useEffect(() => {
     const fetchPrice = async () => {
       try {
@@ -119,7 +120,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             Arrives: {times(destination.times)}
           </p>
-          <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
+          <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
             {price}
           </p>
         </div>
