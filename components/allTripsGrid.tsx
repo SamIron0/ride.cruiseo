@@ -64,18 +64,19 @@ export function AllTripsGrid({
             destinationAddress: destination.address,
           }),
         };
+
+        const response = await fetch(url, options);
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Price:", data);
+          return data;
+        } else {
+          // Handle non-OK response
+          console.error("Error:", response.status, response.statusText);
+        }
       } else {
         console.log("User location is undefined");
-      }
-      const response = await fetch(url, options);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Price:", data);
-        return data;
-      } else {
-        // Handle non-OK response
-        console.error("Error:", response.status, response.statusText);
       }
     } catch (error) {
       console.error("An error occurred while fetching price:", error);
