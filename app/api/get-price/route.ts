@@ -2,7 +2,7 @@ import { getAddressJson } from './controller';
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'node-fetch';
 
-export default async function POST(req: Request) {
+export async function POST(req: Request) {
   if (req.method === 'POST') {
     try {
       const { origin, destination } = await req.json();
