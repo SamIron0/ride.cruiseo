@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
+  price: any;
 }
 export function DestinationCard({
+  price,
   destination,
   userLocation,
 }: DestinationCardProps) {
@@ -14,40 +16,8 @@ export function DestinationCard({
 
   const [price, setPrice] = useState("0"); // Initialize state for price
   useEffect(() => {
-    const getPrice = async () => {
-      try {
-        const url = "/api/get-price";
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            originraw: userLocation,
-            destinationraw: destination.address,
-          }),
-        };
-
-        const response = await fetch(url, options);
-
-        if (response.ok) {
-          const data = await response.json();
-          //console.log("Price:", data);
-          setPrice(data); // Update state with data;
-        } else {
-          // Handle non-OK response
-          console.error("Error:", response.status, response.statusText);
-        }
-      } catch (error) {
-        console.error("An error occurred while fetching price:", error);
-      }
-    };
-    if(
-      destination.category == 'Shop'
-    ){
-      getPrice();
-    }
-  }, []);
+    
+  }, [price]);
 
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
@@ -97,7 +67,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-            {destination.category == "Shop" ? price : <></>}
+            {price}
           </p>
         </div>
       </div>
