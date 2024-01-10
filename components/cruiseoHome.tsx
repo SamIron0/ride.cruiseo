@@ -148,7 +148,6 @@ export default function CruiseoHome({
 
           </div>
           <div className='max-w-full'>
-            <AllTripsGrid onSelectDestination={handleDestinationSelect} userLocation={region} destinations={destinations} airportDestinations={airportDestinations} schoolDestinations={schoolDestinations} shopDestinations={shopDestinations} cinemaDestinations={cinemaDestinations} />
           </div>
           {!user ?
             <>

@@ -4,8 +4,9 @@ import { Users } from "lucide-react";
 
 interface DestinationCardProps {
   destination: Destination;
+  price: string;
 }
-export function DestinationCard({ destination }: DestinationCardProps) {
+export function DestinationCard({ destination, price }: DestinationCardProps) {
   const result: string[] = [];
  // console.log("price:", price);
   function address(originalAddress: string) {
