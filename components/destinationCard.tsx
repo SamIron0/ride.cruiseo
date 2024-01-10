@@ -68,30 +68,7 @@ export function DestinationCard({ destination, price }: DestinationCardProps) {
 
   return (
     <>
-      <div className="relative flex flex-col mt-6 text-gray-700 ">
-        <div className="relative -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl shadow-blue-gray-500/40">
-          <img src={destination.photo} alt="card-image" className="" />
-        </div>
-        <div className="pt-3">
-          <div className="flex  items-center justify-between">
-            <h5 className="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-              {destination.name}
-            </h5>
-            <div className="flex p-1 items-center space-x-2">
-              <Users className="w-4 h-4" />
-              <div>{renderRiders(destination.activeTrips)}</div>
-            </div>
-          </div>
-          <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            {address(destination.address)}
-          </p>
-          <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-            Arrive: {times(destination.times)}
-          </p>
-          <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
-          </p>
-        </div>
-      </div>
+     
     </>
   );
 }
