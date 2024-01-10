@@ -166,10 +166,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
-                <DestinationCard
-                  destination={airport}
-                  price={"await getPrice(airport)"}
-                />
+                
               </div>
             ))}
           </div>
