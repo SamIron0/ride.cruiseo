@@ -49,34 +49,7 @@ export function AllTripsGrid({
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-  const getPrice = async (destination: Destination) => {
-    try {
-      const url = "/api/get-price";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          originraw: userLocation,
-          destinationraw: destination.address,
-        }),
-      };
-
-      const response = await fetch(url, options);
-
-      if (response.ok) {
-        const data = await response.json();
-        //console.log("Price:", data);
-        return data;
-      } else {
-        // Handle non-OK response
-        console.error("Error:", response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching price:", error);
-    }
-  };
+ 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
 
