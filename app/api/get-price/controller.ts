@@ -22,41 +22,41 @@ const addressToGeocodingAPI = (address: string) => {
   return apiUrl;
 };
 
-export async function getAddressJson(origin: any, destination: string) {
+export async function getAddressJson(originAddr: any, destinationAddr: string) {
   //console.log('Building origin and destination json');
-  let originJson = {};
-  let destinationJson = {};
+  let origin = {};
+  let destination = {};
   let originAddress1: string | null = null;
   let originAddress2: string | null = null;
 
-  const result = await reverseGeocode(origin.latitude, origin.longitude);
+  const result = await reverseGeocode(originAddr.latitude, destinationAddr.longitude);
 
 
   // Now you can use originAddress1 and originAddress2 in your code
 
   let destinationGeocode;
-  const geocodingApiUrl = addressToGeocodingAPI(destination);
+  const geocodingApiUrl = addressToGeocodingAPI(destinationAddr);
   try {
     destinationGeocode = await axios.get(geocodingApiUrl);
   } catch (error) {}
 
-  originJson = {
+  origin = {
     addressLine1: result,
     source: "SEARCH",
-    latitude: origin.latitude,
-    longitude: origin.longitude,
+    latitude: originAddr.latitude,
+    longitude: originAddr.longitude,
     provider: "uber_places",
   };
 
-  destinationJson = {
-    addressLine1: destination,
+  destination = {
+    addressLine1: destinationAddr,
     source: "SEARCH",
     latitude: destinationGeocode?.data.results[0].geometry.location.lat,
     longitude: destinationGeocode?.data.results[0].geometry.location.lng,
     provider: "uber_places",
   };
 
-  return [originJson, destinationJson];
+  return [origin, destination];
 }
 
 async function reverseGeocode(
