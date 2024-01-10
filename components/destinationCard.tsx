@@ -89,7 +89,7 @@ console.log("price:",price);
             Arrives: {times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
-            {price}
+            Price: {price}
           </p>
         </div>
       </div>
