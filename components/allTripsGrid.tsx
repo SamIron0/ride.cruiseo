@@ -1,10 +1,11 @@
-"use client";
-import { User } from "@supabase/supabase-js";
-import { CarpoolCard } from "./ui/carpool-card";
-import { Destination } from "@/types";
-import { DestinationCard } from "./destinationCard";
-import { Tabs } from "@geist-ui/core";
-import { useState, useEffect } from "react";
+'use client';
+
+import { DestinationCard } from './destinationCard';
+import { CarpoolCard } from './ui/carpool-card';
+import { Destination } from '@/types';
+import { Tabs } from '@geist-ui/core';
+import { User } from '@supabase/supabase-js';
+import { useState, useEffect } from 'react';
 
 interface AllTripsGridProps {
   userLocation: any;
@@ -23,9 +24,9 @@ export function AllTripsGrid({
   airportDestinations,
   schoolDestinations,
   shopDestinations,
-  cinemaDestinations,
+  cinemaDestinations
 }: AllTripsGridProps) {
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState('1');
   function handleTabChange(value: any) {
     setActiveTab(value);
   }
@@ -38,46 +39,54 @@ export function AllTripsGrid({
       setIsLargeScreen(window.innerWidth > 640); // Adjust the threshold as needed
     };
     // Attach the event listener for resizing
-    window.addEventListener("resize", checkScreenSize);
+    window.addEventListener('resize', checkScreenSize);
 
     // Initial check
     checkScreenSize();
 
     // Cleanup the event listener on component unmount
     return () => {
-      window.removeEventListener("resize", checkScreenSize);
+      window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
-  const fetchLocation = async (destination: Destination) => {
-    console.log("calling price api");
+  const getPrice = async (destination: Destination) => {
+    console.log('calling price api');
     try {
-      const url = "/api/get-price";
+      const url = '/api/get-price';
       const options = {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userLocation, destination.address),
+        body: JSON.stringify({
+          userLocation,
+          destinationAddress: destination.address
+        })
       };
+
       const response = await fetch(url, options);
-      const data = await response.json();
-      if (data) {
-        console.log("Price:", data);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Price:', data);
         return data;
+      } else {
+        // Handle non-OK response
+        console.error('Error:', response.status, response.statusText);
       }
     } catch (error) {
-      console.error("An error occurred while fetching price:", error);
+      console.error('An error occurred while fetching price:', error);
     }
   };
-  const align = isLargeScreen ? "center" : "";
-  const leftSpace = isLargeScreen ? 0 : "";
+  const align = isLargeScreen ? 'center' : '';
+  const leftSpace = isLargeScreen ? 0 : '';
 
   return (
     <Tabs initialValue="1" align={align} className="tabs" leftSpace={leftSpace}>
       <Tabs.Item
         label={
           <>
-            {" "}
+            {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -93,14 +102,14 @@ export function AllTripsGrid({
       >
         <div className="md:px-14 ">
           <div className="grid px-6 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 ">
-            {destinations?.map((destination) => (
+            {destinations?.map(async (destination) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
                 <DestinationCard
                   destination={destination}
-                  price={getPrice(destination)}
+                  price={await getPrice(destination)}
                 />
               </div>
             ))}
@@ -110,7 +119,7 @@ export function AllTripsGrid({
       <Tabs.Item
         label={
           <>
-            {" "}
+            {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="38"
@@ -118,20 +127,23 @@ export function AllTripsGrid({
               width="24"
             >
               <path d="M640-80q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170T640-80Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm-480 0q-33 0-56.5-23.5T80-240v-304q0-8 1.5-16t4.5-16l80-184h-6q-17 0-28.5-11.5T120-800v-40q0-17 11.5-28.5T160-880h280q17 0 28.5 11.5T480-840v40q0 17-11.5 28.5T440-760h-6l66 152q-19 10-36 21t-32 25l-84-198h-96l-92 216v304h170q5 21 13.5 41.5T364-160H160Zm480-440q-42 0-71-29t-29-71q0-42 29-71t71-29v200q0-42 29-71t71-29q42 0 71 29t29 71H640Z" />
-            </svg>{" "}
-            Shop{" "}
+            </svg>{' '}
+            Shop{' '}
           </>
         }
         value="2"
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {shopDestinations?.map((shop) => (
+            {shopDestinations?.map(async (shop) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationCard destination={shop} price={getPrice(shop)} />
+                <DestinationCard
+                  destination={shop}
+                  price={await getPrice(shop)}
+                />
               </div>
             ))}
           </div>
@@ -140,7 +152,7 @@ export function AllTripsGrid({
       <Tabs.Item
         label={
           <>
-            {" "}
+            {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="38"
@@ -156,14 +168,14 @@ export function AllTripsGrid({
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {airportDestinations?.map((airport) => (
+            {airportDestinations?.map(async (airport) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
                 <DestinationCard
                   destination={airport}
-                  price={getPrice(airport)}
+                  price={await getPrice(airport)}
                 />
               </div>
             ))}
@@ -173,7 +185,7 @@ export function AllTripsGrid({
       <Tabs.Item
         label={
           <>
-            {" "}
+            {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -181,22 +193,22 @@ export function AllTripsGrid({
               width="24"
             >
               <path d="M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 44v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z" />
-            </svg>{" "}
-            School{" "}
+            </svg>{' '}
+            School{' '}
           </>
         }
         value="4"
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {schoolDestinations?.map((school) => (
+            {schoolDestinations?.map(async (school) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
                 <DestinationCard
                   destination={school}
-                  price={getPrice(school)}
+                  price={await getPrice(school)}
                 />
               </div>
             ))}
@@ -206,7 +218,7 @@ export function AllTripsGrid({
       <Tabs.Item
         label={
           <>
-            {" "}
+            {' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -222,12 +234,15 @@ export function AllTripsGrid({
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {cinemaDestinations?.map((cinema) => (
+            {cinemaDestinations?.map(async (cinema) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationCard destination={cinema} />
+                <DestinationCard
+                  destination={cinema}
+                  price={await getPrice(cinema)}
+                />
               </div>
             ))}
           </div>
