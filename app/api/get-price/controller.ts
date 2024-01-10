@@ -44,8 +44,8 @@ export async function getAddressJson(origin: any, destination: string) {
   } catch (error) {}
 
   originJson = {
-    addressLine1: originaddress1,
-    addressLine2: originaddress2,
+    addressLine1: originAddress1,
+    addressLine2: originAddress2,
     source: "SEARCH",
     latitude: origin.latitude,
     longitude: origin.longitude,
