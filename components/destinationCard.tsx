@@ -39,7 +39,6 @@ export function DestinationCard({ destination, price }: DestinationCardProps) {
     return result; // Output: "22:00"
   }
 
-  const [price, setPrice] = useState();
   useEffect(() => {
     const fetchPrice = async () => {
       try {
