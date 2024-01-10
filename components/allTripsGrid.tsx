@@ -81,6 +81,6 @@ export function AllTripsGrid({
   const leftSpace = isLargeScreen ? 0 : "";
 
   return (
-   
+   <></>
   );
 }
