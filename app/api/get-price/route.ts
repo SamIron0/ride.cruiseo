@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       // Make a POST request to the Ngrok link
       const ngrokLink =
         "https://500e-66-244-231-114.ngrok-free.app/execute-script";
-      console.log("destinationjson:", destination);
+     // console.log("destinationjson:", destination);
       const response = await fetch(ngrokLink, {
         method: "POST",
         headers: {
