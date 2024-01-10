@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 interface DestinationCardProps {
   destination: Destination;
-  price: price;
+  price: string;
 }
 export function DestinationCard({ destination, price }: DestinationCardProps) {
   const result: string[] = [];
