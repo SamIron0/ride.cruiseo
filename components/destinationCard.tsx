@@ -12,6 +12,8 @@ export function DestinationCard({
 }: DestinationCardProps) {
   const result: string[] = [];
 
+  const [price, setPrice] = useState("0"); // Initialize state for price
+
   const getPrice = async (destination: Destination) => {
     try {
       const url = "/api/get-price";
@@ -31,7 +33,7 @@ export function DestinationCard({
       if (response.ok) {
         const data = await response.json();
         //console.log("Price:", data);
-        return data;
+        setPrice(data); // Update state with data;
       } else {
         // Handle non-OK response
         console.error("Error:", response.status, response.statusText);
@@ -89,7 +91,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-            {destination.category == "Shop" ? getPrice(destination) : <></>}
+            {destination.category == "Airport" ? price : <></>}
           </p>
         </div>
       </div>
