@@ -80,7 +80,7 @@ export function AllTripsGrid({
     }
   };
 
-  const runWorker = async (workerID: string, destination: Destination) => {
+  const runWorker = async (workerID: number, destination: Destination) => {
     await getPrice(workerID, destination);
   };
 
