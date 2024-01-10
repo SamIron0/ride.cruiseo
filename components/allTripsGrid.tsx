@@ -53,7 +53,6 @@ export function AllTripsGrid({
   const [price, setPrice] = useState("0");
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
-    console.log("getting price");
     try {
       const url = "/api/get-price";
       const options = {
@@ -64,10 +63,9 @@ export function AllTripsGrid({
         body: JSON.stringify({
           originraw: userLocation,
           destinationraw: userDestination.address,
-          workerId: workerID,
+          worker: workerID,
         }),
       };
-      console.log("donoe getting price");
 
       const response = await fetch(url, options);
 
