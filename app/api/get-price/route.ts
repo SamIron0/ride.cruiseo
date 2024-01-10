@@ -5,8 +5,8 @@ import fetch from "node-fetch";
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      const { origin, destination } = await req.json();
-      const [originJson, destinationJson] = await getAddressJson(
+      const { originraw, destinationraw } = await req.json();
+      const [origin, destination] = await getAddressJson(
         origin,
         destination
       );
@@ -14,13 +14,13 @@ export async function POST(req: Request) {
       // Make a POST request to the Ngrok link
       const ngrokLink =
         "https://500e-66-244-231-114.ngrok-free.app/execute-script";
-      //console.log("originJson:", originJson);
+      console.log("destinationjson:", destinationJson);
       const response = await fetch(ngrokLink, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ originJson, destinationJson }),
+        body: JSON.stringify({ origin, destination }),
       });
       console.log("Ngrok response:", response);
       // Check if the request was successful (status code 2xx)

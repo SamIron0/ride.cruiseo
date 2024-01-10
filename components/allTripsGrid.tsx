@@ -58,8 +58,8 @@ export function AllTripsGrid({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          origin: userLocation,
-          destination: destination.address,
+          originraw: userLocation,
+          destinationraw: destination.address,
         }),
       };
 
