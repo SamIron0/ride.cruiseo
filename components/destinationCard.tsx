@@ -89,7 +89,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-            {getPrice(destination)}
+            {destination.category == "Shop" ? getPrice(destination) : <></>}
           </p>
         </div>
       </div>
