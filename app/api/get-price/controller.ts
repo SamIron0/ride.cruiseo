@@ -47,7 +47,6 @@ export async function getAddressJson(origin: any, destination: string) {
     longitude: origin.longitude,
     provider: "uber_places",
   };
-  console.log("Origin json:", originJson);
 
   destinationJson = {
     addressLine1: destination,
@@ -78,7 +77,7 @@ async function reverseGeocode(
       const formattedAddress = firstResult.formatted_address;
     
       // Now you can use the formattedAddress variable as needed
-      console.log(formattedAddress);
+      //console.log(formattedAddress);
       return formattedAddress;
     } else {
       console.error('Geocoding request failed ');
