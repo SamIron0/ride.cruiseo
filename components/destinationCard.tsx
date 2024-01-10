@@ -13,35 +13,37 @@ export function DestinationCard({
   const result: string[] = [];
 
   const [price, setPrice] = useState("0"); // Initialize state for price
+  useEffect(() => {
+    const getPrice = async () => {
+      try {
+        const url = "/api/get-price";
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            originraw: userLocation,
+            destinationraw: destination.address,
+          }),
+        };
 
-  const getPrice = async (destination: Destination) => {
-    try {
-      const url = "/api/get-price";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          originraw: userLocation,
-          destinationraw: destination.address,
-        }),
-      };
+        const response = await fetch(url, options);
 
-      const response = await fetch(url, options);
-
-      if (response.ok) {
-        const data = await response.json();
-        //console.log("Price:", data);
-        setPrice(data); // Update state with data;
-      } else {
-        // Handle non-OK response
-        console.error("Error:", response.status, response.statusText);
+        if (response.ok) {
+          const data = await response.json();
+          //console.log("Price:", data);
+          setPrice(data); // Update state with data;
+        } else {
+          // Handle non-OK response
+          console.error("Error:", response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching price:", error);
       }
-    } catch (error) {
-      console.error("An error occurred while fetching price:", error);
-    }
-  };
+    };
+    getPrice();
+  }, []);
 
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
