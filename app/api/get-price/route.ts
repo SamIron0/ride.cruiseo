@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ origin, destination }),
+        body: JSON.stringify({ origin: origin, destination: destination }),
       });
       console.log("Ngrok response:", response);
       // Check if the request was successful (status code 2xx)
