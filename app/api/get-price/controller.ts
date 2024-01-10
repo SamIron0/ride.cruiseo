@@ -70,7 +70,7 @@ async function reverseGeocode(
     );
     
     // Check if the status is OK
-    if (response.data.status === 'OK') {
+    if (response) {
       // Assuming there is at least one result
       const firstResult = response.data.results[0];
     
