@@ -93,7 +93,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-            {destination.category == "Airport" ? price : <></>}
+            {destination.category == "Shop" ? price : <></>}
           </p>
         </div>
       </div>
