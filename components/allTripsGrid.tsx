@@ -106,10 +106,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationCard
-                  destination={destination}
-                  price={"await getPrice(destination)"}
-                />
+               
               </div>
             ))}
           </div>
@@ -139,10 +136,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationCard
-                  destination={shop}
-                  price={"await getPrice(shop)"}
-                />
+                
               </div>
             ))}
           </div>
@@ -205,10 +199,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationCard
-                  destination={school}
-                  price={"await getPrice(school)"}
-                />
+               
               </div>
             ))}
           </div>
@@ -238,10 +229,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationCard
-                  destination={cinema}
-                  price={"await getPrice(cinema)"}
-                />
+                
               </div>
             ))}
           </div>
