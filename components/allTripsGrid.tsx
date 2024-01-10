@@ -1,14 +1,12 @@
 "use client";
-
-import { DestinationCard } from "./destinationCard";
+import { User } from "@supabase/supabase-js";
 import { CarpoolCard } from "./ui/carpool-card";
 import { Destination } from "@/types";
+import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
-import { User } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 
 interface AllTripsGridProps {
-  userLocation: any;
   onSelectDestination: (destination: Destination) => void;
   destinations: Destination[];
   airportDestinations: Destination[];
@@ -18,7 +16,6 @@ interface AllTripsGridProps {
 }
 
 export function AllTripsGrid({
-  userLocation,
   onSelectDestination,
   destinations,
   airportDestinations,
@@ -27,6 +24,7 @@ export function AllTripsGrid({
   cinemaDestinations,
 }: AllTripsGridProps) {
   const [activeTab, setActiveTab] = useState("1");
+
   function handleTabChange(value: any) {
     setActiveTab(value);
   }
@@ -49,34 +47,7 @@ export function AllTripsGrid({
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-  const getPrice = async (destination: Destination) => {
-    try {
-      const url = "/api/get-price";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          originraw: userLocation,
-          destinationraw: destination.address,
-        }),
-      };
 
-      const response = await fetch(url, options);
-
-      if (response.ok) {
-        const data = await response.json();
-        //console.log("Price:", data);
-        return data;
-      } else {
-        // Handle non-OK response
-        console.error("Error:", response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching price:", error);
-    }
-  };
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
 
@@ -99,14 +70,14 @@ export function AllTripsGrid({
         }
         value="1"
       >
-        <div className="md:px-14 ">
-          <div className="grid px-6 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 ">
-            {destinations?.map(async (destination) => (
+        <div className="sm:px-24 ">
+          <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
+            {destinations?.map((destination) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
-               
+                <DestinationCard destination={destination} />
               </div>
             ))}
           </div>
@@ -131,12 +102,12 @@ export function AllTripsGrid({
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {shopDestinations?.map(async (shop) => (
+            {shopDestinations?.map((shop) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                
+                <DestinationCard destination={shop} />
               </div>
             ))}
           </div>
@@ -161,12 +132,12 @@ export function AllTripsGrid({
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {airportDestinations?.map(async (airport) => (
+            {airportDestinations?.map((airport) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
-                
+                <DestinationCard destination={airport} />
               </div>
             ))}
           </div>
@@ -191,12 +162,12 @@ export function AllTripsGrid({
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {schoolDestinations?.map(async (school) => (
+            {schoolDestinations?.map((school) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
-               
+                <DestinationCard destination={school} />
               </div>
             ))}
           </div>
@@ -221,12 +192,12 @@ export function AllTripsGrid({
       >
         <div className="sm:px-24 ">
           <div className="grid px-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-4 ">
-            {cinemaDestinations?.map(async (cinema) => (
+            {cinemaDestinations?.map((cinema) => (
               <div
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                
+                <DestinationCard destination={cinema} />
               </div>
             ))}
           </div>
