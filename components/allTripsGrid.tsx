@@ -52,8 +52,7 @@ export function AllTripsGrid({
   const getPrice = async (destination: Destination) => {
     try {
       if (userLocation != undefined) {
-        console.log("uder locatiion:", userLocation);
-
+        
         const url = "/api/get-price";
         const options = {
           method: "POST",
@@ -61,8 +60,8 @@ export function AllTripsGrid({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userLocation,
-            destinationAddress: destination.address,
+            origin:userLocation,
+            destination: destination.address,
           }),
         };
 
