@@ -83,13 +83,11 @@ export function AllTripsGrid({
   };
 
   const runWorker = async (workerID: number, destination: Destination) => {
-    console.log("running worker", workerID)
 
     await getPrice(workerID, destination);
   };
 
   const runWorkers = async () => {
-    console.log("run woorkers");
 
     const allDestinations: any[] = destinations;
     const workers: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
