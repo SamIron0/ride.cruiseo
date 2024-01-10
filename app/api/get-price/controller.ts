@@ -81,7 +81,7 @@ async function reverseGeocode(
       console.log(formattedAddress);
       return formattedAddress;
     } else {
-      console.error('Geocoding request failed with status:', response.data.status);
+      console.error('Geocoding request failed ');
     }
     
     return null;
