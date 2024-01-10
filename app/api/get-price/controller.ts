@@ -1,5 +1,5 @@
-import { GeoCoordinate, Destination } from '@/types';
-import axios from 'axios';
+import { GeoCoordinate, Destination } from "@/types";
+import axios from "axios";
 
 interface AddressComponents {
   long_name: string;
@@ -23,19 +23,18 @@ const addressToGeocodingAPI = (address: string) => {
 };
 
 export async function getAddressJson(origin: any, destination: string) {
-  console.log('Building origin and destination json');
+  //console.log('Building origin and destination json');
   let originJson = {};
   let destinationJson = {};
 
   // Call the function
+  let [originAddress1, originAddress2] = await reverseGeocode(
+    origin.latitude,
+    origin.longitude
+  );
 
-  let originaddress1: any,
-    originaddress2: any = await reverseGeocode(
-      origin.latitude,
-      origin.longitude
-    );
-  console.log('Origin address Line 1:', originaddress1);
-  console.log('Address Line 2:', originaddress2);
+  // Now you can use originAddress1 and originAddress2 in your code
+
   let destinationGeocode;
   const geocodingApiUrl = addressToGeocodingAPI(destination);
   try {
@@ -45,21 +44,21 @@ export async function getAddressJson(origin: any, destination: string) {
   originJson = {
     addressLine1: originaddress1,
     addressLine2: originaddress2,
-    source: 'SEARCH',
+    source: "SEARCH",
     latitude: origin.latitude,
     longitude: origin.longitude,
-    provider: 'uber_places'
+    provider: "uber_places",
   };
-  console.log('Origin json:', originJson);
+  console.log("Origin json:", originJson);
 
   destinationJson = {
     addressLine1: destination,
-    source: 'SEARCH',
+    source: "SEARCH",
     latitude: destinationGeocode?.data.results[0].geometry.location.lat,
     longitude: destinationGeocode?.data.results[0].geometry.location.lng,
-    provider: 'uber_places'
+    provider: "uber_places",
   };
-  console.log('Destination json:', destinationJson);
+  console.log("Destination json:", destinationJson);
 
   return [originJson, destinationJson];
 }
@@ -79,9 +78,9 @@ async function reverseGeocode(
       const addressLine1 = result.formatted_address;
 
       // Extract address line 2 based on the types of components
-      let addressLine2 = '';
+      let addressLine2 = "";
       result.address_components.forEach((component) => {
-        if (component.types.includes('route')) {
+        if (component.types.includes("route")) {
           addressLine2 = component.long_name;
         }
       });
@@ -91,7 +90,7 @@ async function reverseGeocode(
 
     return null;
   } catch (error) {
-    console.error('Error during reverse geocoding:', error);
+    console.error("Error during reverse geocoding:", error);
     return null;
   }
 }
