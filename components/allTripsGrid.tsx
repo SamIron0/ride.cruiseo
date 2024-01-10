@@ -30,34 +30,7 @@ export function AllTripsGrid({
   function handleTabChange(value: any) {
     setActiveTab(value);
   }
-  const getPrice = async (destination: Destination) => {
-    try {
-      const url = "/api/get-price";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          originraw: userLocation,
-          destinationraw: destination.address,
-        }),
-      };
 
-      const response = await fetch(url, options);
-
-      if (response.ok) {
-        const data = await response.json();
-        //console.log("Price:", data);
-        return data;
-      } else {
-        // Handle non-OK response
-        console.error("Error:", response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching price:", error);
-    }
-  };
   const [isLargeScreen, setIsLargeScreen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -108,7 +81,8 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={destination}
-                  price={getPrice(destination)}
+                  price={"getPrice(destination)"}
+                  userLocation={userLocation}
                 />
               </div>
             ))}
@@ -139,7 +113,11 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationCard destination={shop} price={"getPrice(shop)"} />
+                <DestinationCard
+                  destination={shop}
+                  price={"getPrice(shop)"}
+                  userLocation={userLocation}
+                />
               </div>
             ))}
           </div>
@@ -172,6 +150,7 @@ export function AllTripsGrid({
                 <DestinationCard
                   destination={airport}
                   price={"getPrice(airport)"}
+                  userLocation={userLocation}
                 />
               </div>
             ))}
@@ -205,6 +184,7 @@ export function AllTripsGrid({
                 <DestinationCard
                   destination={school}
                   price={"getPrice(school)"}
+                  userLocation={userLocation}
                 />
               </div>
             ))}
@@ -238,6 +218,7 @@ export function AllTripsGrid({
                 <DestinationCard
                   destination={cinema}
                   price={"getPrice(cinema)"}
+                  userLocation={userLocation}
                 />
               </div>
             ))}
