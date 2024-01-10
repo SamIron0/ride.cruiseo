@@ -53,6 +53,7 @@ export function AllTripsGrid({
   const [price, setPrice] = useState("0");
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
+    console.log("getting price");
     try {
       const url = "/api/get-price";
       const options = {
@@ -81,10 +82,14 @@ export function AllTripsGrid({
   };
 
   const runWorker = async (workerID: number, destination: Destination) => {
+    console.log("running worker", workerID)
+
     await getPrice(workerID, destination);
   };
 
   const runWorkers = async () => {
+    console.log("run woorkers");
+
     const allDestinations: any[] = destinations;
     const workers: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
