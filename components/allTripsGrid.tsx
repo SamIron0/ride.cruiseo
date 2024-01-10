@@ -81,7 +81,6 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={destination}
-                  price={"getPrice(destination)"}
                   userLocation={userLocation}
                 />
               </div>
@@ -115,7 +114,6 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={shop}
-                  price={"getPrice(shop)"}
                   userLocation={userLocation}
                 />
               </div>
@@ -149,7 +147,6 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={airport}
-                  price={"getPrice(airport)"}
                   userLocation={userLocation}
                 />
               </div>
@@ -183,7 +180,6 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={school}
-                  price={"getPrice(school)"}
                   userLocation={userLocation}
                 />
               </div>
@@ -217,7 +213,6 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={cinema}
-                  price={"getPrice(cinema)"}
                   userLocation={userLocation}
                 />
               </div>
