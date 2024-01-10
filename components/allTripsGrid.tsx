@@ -52,7 +52,7 @@ export function AllTripsGrid({
 
   const [price, setPrice] = useState("0");
 
-  const getPrice = async (workerID: string, userDestination: Destination) => {
+  const getPrice = async (workerID: number, userDestination: Destination) => {
     try {
       const url = "/api/get-price";
       const options = {
