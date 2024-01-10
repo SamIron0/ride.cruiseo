@@ -7,8 +7,8 @@ export async function POST(req: Request) {
     try {
       const { originraw, destinationraw } = await req.json();
       const [origin, destination] = await getAddressJson(
-        origin,
-        destination
+        originraw,
+        destinationraw
       );
       //let destinationJson = await getAddressJson(destination);
       // Make a POST request to the Ngrok link
