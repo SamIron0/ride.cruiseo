@@ -5,13 +5,11 @@ import fetch from 'node-fetch';
 export async function POST(req: Request) {
   if (req.method === 'POST') {
     try {
-      const { origin, destination } = await req.json();
+      const { userLocation, destination } = await req.json();
       const [originJson, destinationJson] = await getAddressJson(
         origin,
         destination
       );
-      console.log('Received origin in api:', origin);
-      console.log('Received destination in api:', destination);
       //let destinationJson = await getAddressJson(destination);
       // Make a POST request to the Ngrok link
       const ngrokLink =
