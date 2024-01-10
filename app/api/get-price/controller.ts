@@ -31,9 +31,6 @@ export async function getAddressJson(origin: any, destination: string) {
 
   const result = await reverseGeocode(origin.latitude, origin.longitude);
 
-  if (result !== null) {
-    [originAddress1, originAddress2] = result;
-  }
 
   // Now you can use originAddress1 and originAddress2 in your code
 
@@ -44,8 +41,7 @@ export async function getAddressJson(origin: any, destination: string) {
   } catch (error) {}
 
   originJson = {
-    addressLine1: originAddress1,
-    addressLine2: originAddress2,
+    addressLine1: result,
     source: "SEARCH",
     latitude: origin.latitude,
     longitude: origin.longitude,
@@ -69,26 +65,25 @@ async function reverseGeocode(
   longitude: number
 ): Promise<[string, string] | null> {
   try {
-    const response = await axios.get<GeocodeResult[]>(
+    const response = await axios.get<GeocodeResult>(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_MAPS_API_KEY}`
     );
-
-    const result = response.data[0];
-
-    if (result) {
-      const addressLine1 = result.formatted_address;
-
-      // Extract address line 2 based on the types of components
-      let addressLine2 = "";
-      result.address_components.forEach((component) => {
-        if (component.types.includes("route")) {
-          addressLine2 = component.long_name;
-        }
-      });
-
-      return [addressLine1, addressLine2];
+    
+    // Check if the status is OK
+    if (response.data.status === 'OK') {
+      // Assuming there is at least one result
+      const firstResult = response.data.results[0];
+    
+      // Extract the formatted address
+      const formattedAddress = firstResult.formatted_address;
+    
+      // Now you can use the formattedAddress variable as needed
+      console.log(formattedAddress);
+      return formattedAddress;
+    } else {
+      console.error('Geocoding request failed with status:', response.data.status);
     }
-
+    
     return null;
   } catch (error) {
     console.error("Error during reverse geocoding:", error);
