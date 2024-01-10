@@ -89,7 +89,6 @@ export function DestinationCard({ destination, price }: DestinationCardProps) {
             Arrive: {times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
-            Price: {price}
           </p>
         </div>
       </div>
