@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       // Make a POST request to the Ngrok link
       const ngrokLink =
         "https://500e-66-244-231-114.ngrok-free.app/execute-script";
-     // console.log("destinationjson:", destination);
+      // console.log("destinationjson:", destination);
       const response = await fetch(ngrokLink, {
         method: "POST",
         headers: {
@@ -22,12 +22,15 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({ origin: origin, destination: destination }),
       });
-      console.log("Ngrok response:", response);
+      const jsonResponse = await response.json();
+
+      console.log("Ngrok response:", jsonResponse.result);
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
-        const result = await response.json();
-        return new Response(JSON.stringify(response), {
+        return new Response(JSON.stringify(jsonResponse.result), {
           status: 200,
+
+          
         });
       } else {
         return new Response(JSON.stringify({ error: { statusCode: 500 } }));
