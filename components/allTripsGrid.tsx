@@ -109,7 +109,7 @@ export function AllTripsGrid({
 
   useEffect(() => {
     runWorkers();
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, [destinations]); // Empty dependency array to run the effect only once on mount
 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
