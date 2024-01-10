@@ -67,7 +67,7 @@ export function AllTripsGrid({
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Price:", data);
+        //console.log("Price:", data);
         return data;
       } else {
         // Handle non-OK response

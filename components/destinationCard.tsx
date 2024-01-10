@@ -8,7 +8,7 @@ interface DestinationCardProps {
 }
 export function DestinationCard({ destination, price }: DestinationCardProps) {
   const result: string[] = [];
-  console.log("price:", price);
+ // console.log("price:", price);
   function address(originalAddress: string) {
     const match = originalAddress.match(/^(\d+) (.+), (.+), (.+) (\S+)$/);
 
