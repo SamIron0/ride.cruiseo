@@ -98,7 +98,6 @@ export async function filterDestinations(region: any, destinations: any[] | null
 
     if (closestWalmart.destination) {
         result.push(closestWalmart.destination);
-        console.log("closestWalmrt: " + closestRCS.distance);
     }
 
     return result;
