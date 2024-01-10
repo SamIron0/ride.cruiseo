@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      const { userLocation, destination } = await req.json();
+      const { origin, destination } = await req.json();
       const [originJson, destinationJson] = await getAddressJson(
         origin,
         destination

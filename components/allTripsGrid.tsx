@@ -174,7 +174,7 @@ export function AllTripsGrid({
               >
                 <DestinationCard
                   destination={airport}
-                  price={'await getPrice(airport)'}
+                  price={await getPrice(airport)}
                 />
               </div>
             ))}
