@@ -22,15 +22,15 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({ origin: origin, destination: destination }),
       });
-      const jsonResponse:any = await response.json();
+      const jsonResponse: any = await response.json();
 
-      console.log("Ngrok response:", jsonResponse.result);
+      console.log(
+        "Ngrok  response for " + destination.name + "=" + jsonResponse.result
+      );
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
         return new Response(JSON.stringify(jsonResponse.result), {
           status: 200,
-
-
         });
       } else {
         return new Response(JSON.stringify({ error: { statusCode: 500 } }));
