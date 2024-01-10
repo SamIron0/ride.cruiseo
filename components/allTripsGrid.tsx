@@ -7,7 +7,7 @@ import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
 
 interface AllTripsGridProps {
-  userLocation: any,
+  userLocation: any;
   onSelectDestination: (destination: Destination) => void;
   destinations: Destination[];
   airportDestinations: Destination[];
@@ -106,7 +106,10 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationCard destination={destination} price={""}/>
+                <DestinationCard
+                  destination={destination}
+                  price={getPrice(destination)}
+                />
               </div>
             ))}
           </div>
@@ -136,7 +139,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationCard destination={shop} price={""}/>
+                <DestinationCard destination={shop} price={getPrice(shop)} />
               </div>
             ))}
           </div>
@@ -166,7 +169,10 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
-                <DestinationCard destination={airport} price={getPrice(airport)}/>
+                <DestinationCard
+                  destination={airport}
+                  price={getPrice(airport)}
+                />
               </div>
             ))}
           </div>
@@ -196,7 +202,10 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationCard destination={school} price={""}/>
+                <DestinationCard
+                  destination={school}
+                  price={getPrice(school)}
+                />
               </div>
             ))}
           </div>
@@ -226,7 +235,10 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationCard destination={cinema} price={""}/>
+                <DestinationCard
+                  destination={cinema}
+                  price={getPrice(cinema)}
+                />
               </div>
             ))}
           </div>
