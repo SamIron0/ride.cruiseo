@@ -60,7 +60,6 @@ export async function getAddressJson(origin: any, destination: string) {
     longitude: destinationGeocode?.data.results[0].geometry.location.lng,
     provider: "uber_places",
   };
-  console.log("Destination json:", destinationJson);
 
   return [originJson, destinationJson];
 }
