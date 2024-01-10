@@ -48,8 +48,8 @@ export function AllTripsGrid({
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-  function getPrice(destination: Destination) {
-    console.log("calling price api")
+  const fetchLocation = async (destination: Destination) => {
+    console.log("calling price api");
     try {
       const url = "/api/get-price";
       const options = {
@@ -68,7 +68,7 @@ export function AllTripsGrid({
     } catch (error) {
       console.error("An error occurred while fetching price:", error);
     }
-  }
+  };
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
 
