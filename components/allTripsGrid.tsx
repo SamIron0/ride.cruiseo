@@ -57,25 +57,30 @@ export function AllTripsGrid({
     console.log("user destination: ", userDestination);
     console.log("workerID: ", workerID);
     try {
-      const response = await fetch("https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final", {
-        method: "POST", // or 'GET' based on your Lambda function setup
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          originraw: userLocation,
-          destinationraw: userDestination,
-          worker: workerID,
-          // Add any other parameters your Lambda function expects
-        }),
-      });
+      if (userDestination.category == "Airport") {
+        const response = await fetch(
+          "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              originraw: userLocation,
+              destinationraw: userDestination,
+              worker: workerID,
+              // Add any other parameters your Lambda function expects
+            }),
+          }
+        );
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Lambda function response:", result);
-        // Process the result as needed
-      } else {
-        console.error("Error invoking Lambda function:", response.statusText);
+        if (response.ok) {
+          const result = await response.json();
+          console.log("Lambda function response:", result);
+          // Process the result as needed
+        } else {
+          console.error("Error invoking Lambda function:", response.statusText);
+        }
       }
     } catch (error) {
       console.error("An error occurred while invoking Lambda function:", error);
