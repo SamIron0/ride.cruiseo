@@ -54,26 +54,29 @@ export function AllTripsGrid({
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     try {
-      const url = "/api/get-price";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          originraw: userLocation,
-          destinationraw: userDestination.address,
-          worker: workerID,
-        }),
-      };
+      if (userDestination.category == "Shop") {
+        const url = "/api/get-price";
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            originraw: userLocation,
+            destinationraw: userDestination.address,
+            worker: workerID,
+          }),
+        };
 
-      const response = await fetch(url, options);
+        const response = await fetch(url, options);
 
-      if (response.ok) {
-        const data = await response.json();
-        setPrice(data); // Update state with data
+        if (response.ok) {
+          const data = await response.json();
+          setPrice(data); // Update state with data
+        } else {
+          console.error("Error:", response.status, response.statusText);
+        }
       } else {
-        console.error("Error:", response.status, response.statusText);
       }
     } catch (error) {
       console.error("An error occurred while fetching price:", error);
@@ -81,12 +84,10 @@ export function AllTripsGrid({
   };
 
   const runWorker = async (workerID: number, destination: Destination) => {
-
     await getPrice(workerID, destination);
   };
 
   const runWorkers = async () => {
-
     const allDestinations: any[] = destinations;
     const workers: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
