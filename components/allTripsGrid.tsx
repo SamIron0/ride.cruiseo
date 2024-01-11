@@ -75,6 +75,9 @@ export function AllTripsGrid({
           if (typeof data === "string" && data.startsWith("$")) {
             setPrice(data); // Update state with data
           }
+          else{
+            console.log("Error:", data);
+          }
         } else {
           console.error("Error:", response.status, response.statusText);
         }
