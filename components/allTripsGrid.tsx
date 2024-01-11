@@ -72,7 +72,9 @@ export function AllTripsGrid({
 
         if (response.ok) {
           const data = await response.json();
-          setPrice(data); // Update state with data
+          if (typeof data === "string" && data.startsWith("$")) {
+            setPrice(data); // Update state with data
+          }
         } else {
           console.error("Error:", response.status, response.statusText);
         }
