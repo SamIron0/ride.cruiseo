@@ -1,3 +1,5 @@
+/************** moovedd to lambda
+ * 
 import { getAddressJson } from "./controller";
 import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
@@ -49,3 +51,4 @@ export async function POST(req: Request) {
     );
   }
 }
+*************/

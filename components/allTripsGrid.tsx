@@ -54,37 +54,28 @@ export function AllTripsGrid({
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     try {
-      if (userDestination.category == "Shop") {
-        const url = "/api/get-price";
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            originraw: userLocation,
-            destinationraw: userDestination.address,
-            worker: workerID,
-          }),
-        };
+      const response = await fetch("https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final", {
+        method: "POST", // or 'GET' based on your Lambda function setup
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          originraw: userLocation,
+          destinationraw: userDestination,
+          worker: workerID,
+          // Add any other parameters your Lambda function expects
+        }),
+      });
 
-        const response = await fetch(url, options);
-
-        if (response.ok) {
-          const data = await response.json();
-          if (typeof data === "string" && data.startsWith("C")) {
-            setPrice(data); // Update state with data
-          }
-          else{
-            console.log("Error:", data);
-          }
-        } else {
-          console.error("Error:", response.status, response.statusText);
-        }
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Lambda function response:", result);
+        // Process the result as needed
       } else {
+        console.error("Error invoking Lambda function:", response.statusText);
       }
     } catch (error) {
-      console.error("An error occurred while fetching price:", error);
+      console.error("An error occurred while invoking Lambda function:", error);
     }
   };
 

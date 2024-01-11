@@ -1,4 +1,6 @@
-import { GeoCoordinate, Destination } from "@/types";
+/************** moovedd to lambda
+ * 
+ * import { GeoCoordinate, Destination } from "@/types";
 import axios from "axios";
 
 interface AddressComponents {
@@ -89,3 +91,4 @@ async function reverseGeocode(
     return null;
   }
 }
+********/
