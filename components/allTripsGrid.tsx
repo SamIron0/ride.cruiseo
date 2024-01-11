@@ -66,7 +66,7 @@ export function AllTripsGrid({
           },
           body: JSON.stringify({
             originraw: userLocation,
-            destinationraw: userDestination,
+            destinationraw: userDestination.address,
             worker: workerID,
             // Add any other parameters your Lambda function expects
           }),
