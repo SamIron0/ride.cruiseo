@@ -54,7 +54,7 @@ export function AllTripsGrid({
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     console.log("user location: ", userLocation);
-    console.log("user destination: ", userDestination);
+    console.log("user destination: ", userDestination.address);
     console.log("workerID: ", workerID);
     try {
       const response = await fetch(
