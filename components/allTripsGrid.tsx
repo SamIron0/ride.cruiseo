@@ -53,6 +53,9 @@ export function AllTripsGrid({
   const [price, setPrice] = useState("0");
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
+    console.log("user location: ", userLocation);
+    console.log("user destination: ", userDestination);
+    console.log("workerID: ", workerID);
     try {
       const response = await fetch("https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final", {
         method: "POST", // or 'GET' based on your Lambda function setup
