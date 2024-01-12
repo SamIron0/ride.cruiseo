@@ -10,7 +10,6 @@ export function DestinationCard({
   destination,
   userLocation,
   DestinationContext,
-
 }: DestinationCardProps) {
   const result: string[] = [];
   const destinationPrices: { [key: string]: string } =
