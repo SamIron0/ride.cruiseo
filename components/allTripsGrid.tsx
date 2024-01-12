@@ -72,7 +72,7 @@ export function AllTripsGrid({
       if (response.ok) {
         const result = await response.json();
 
-        if (result.body.startsWith("C")) {
+        if (result.body.startsWith('"C')) {
           console.log("result:", result.body);
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
