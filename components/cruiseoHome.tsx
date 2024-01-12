@@ -159,16 +159,15 @@ export default function CruiseoHome({ trips, user, userDetails }: Props) {
             </button>
           </div>
           <div className="max-w-full">
-              <AllTripsGrid
-                userLocation={region}
-                onSelectDestination={handleDestinationSelect}
-                destinations={destinations}
-                airportDestinations={airportDestinations}
-                schoolDestinations={schoolDestinations}
-                shopDestinations={shopDestinations}
-                cinemaDestinations={cinemaDestinations}
-              />
-            ƒ
+            <AllTripsGrid
+              userLocation={region}
+              onSelectDestination={handleDestinationSelect}
+              destinations={destinations}
+              airportDestinations={airportDestinations}
+              schoolDestinations={schoolDestinations}
+              shopDestinations={shopDestinations}
+              cinemaDestinations={cinemaDestinations}
+            />
           </div>
           {!user ? (
             <>

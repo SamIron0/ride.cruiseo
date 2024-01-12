@@ -119,7 +119,7 @@ export function AllTripsGrid({
 
   useEffect(() => {
     runWorkers();
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, [shopDestinations]); 
 
   return (
     <Tabs initialValue="1" align={align} className="tabs" leftSpace={leftSpace}>
