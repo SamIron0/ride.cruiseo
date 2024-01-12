@@ -75,7 +75,7 @@ export function AllTripsGrid({
 
       if (response.ok) {
         const result = await response.json();
-        console.log("Lambda function response for ",userDestination.address, ": ", result);
+        console.log("Lambda function response for ",userDestination.address, ": ", result.body);
         // Process the result as needed
       } else {
         console.error("Error invoking Lambda function:", response.statusText);
@@ -107,7 +107,7 @@ export function AllTripsGrid({
 
     // Use Promise.all to run all workers simultaneously
     await Promise.all(workerPromises);
-  };
+  });
 
   useEffect(() => {
     runWorkers();
