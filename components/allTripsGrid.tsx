@@ -147,7 +147,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationContext.Provider value={{ price }}>
+                <DestinationContext.Provider value={{ price: price || '' }}>
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
