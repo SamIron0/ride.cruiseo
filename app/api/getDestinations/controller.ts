@@ -56,12 +56,12 @@ export async function filterDestinations(region: any, destinations: any[] | null
             try {
                 const response = await axios.get(geocodingApiUrl);
                 const destinationGeoCode: GeoCoordinate = {
-                    latitude: response.data.results[0].geometry.location.lat,
-                    longitude: response.data.results[0].geometry.location.lng
+                    lat: response.data.results[0].geometry.location.lat,
+                    lon: response.data.results[0].geometry.location.lng
                 };
                 const userGeoCode: GeoCoordinate = {
-                    latitude: region.lat,
-                    longitude: region.lon
+                    lat: region.lat,
+                    lon: region.lon
                 };
                 const distance = calculateHaversineDistance(userGeoCode, destinationGeoCode);
 
