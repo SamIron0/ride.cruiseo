@@ -73,11 +73,12 @@ export function DestinationCard({
     await getPrice(workerID, destination);
   };
 
-  /* const runWorkers = async () => {
-    const allDestinations: any[] = destinations;
-    const workers: number[] = [1, 2];
+  const runWorkers = async () => {
+    await runWorker(workerID, destination);
 
-    const workerPromises = workers.map(async (workerID) => {
+    /*  const allDestinations: any[] = destinations;
+    const workers: number[] = [1, 2];
+   const workerPromises = workers.map(async (workerID) => {
       while (allDestinations.length > 0) {
         const destination = allDestinations.pop();
 
@@ -91,11 +92,10 @@ export function DestinationCard({
     await Promise.all(workerPromises);
   };
 */
+  };
 
   useEffect(() => {
-    await runWorker(workerID, destination);
-
-    //runWorkers();
+    runWorkers();
   }); // Empty dependency array to run the effect only once on mount
 
   function times(dates: string[] | undefined | null) {
