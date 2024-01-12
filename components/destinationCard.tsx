@@ -10,7 +10,7 @@ export function DestinationCard({
   destination,
   userLocation,
   DestinationContext,
-  
+
 }: DestinationCardProps) {
   const result: string[] = [];
   const destinationPrices: { [key: string]: string } =
@@ -21,7 +21,6 @@ export function DestinationCard({
   console.log(destinationPrices);
   console.log(destination.id);
   console.log(price);
-  console.log(destinationPrices?.(destination.id));
   
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
