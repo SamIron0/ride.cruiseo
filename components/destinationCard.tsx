@@ -8,6 +8,7 @@ interface DestinationCardProps {
 export function DestinationCard({
   destination,
   userLocation,
+  DestinationContext,
 }: DestinationCardProps) {
   const result: string[] = [];
 
@@ -40,6 +41,7 @@ export function DestinationCard({
 
     return result; // Output: "22:00"
   }
+  let { price } = useContext(DestinationContext);
 
   return (
     <>
@@ -59,6 +61,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
+          {price}
           </p>
         </div>
       </div>

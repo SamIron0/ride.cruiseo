@@ -152,6 +152,7 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
+                    DestinationContext={DestinationContext}
                   />
                 </DestinationContext.Provider>
               </div>
