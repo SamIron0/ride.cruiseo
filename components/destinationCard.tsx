@@ -29,12 +29,11 @@ export function DestinationCard({
     //console.log("user location: ", userLocation);
     //console.log("user destination: ", userDestination.address);
     destinationCoordinates = {
-      lat: userDestination.coordinates.lat,
-      lng: userDestination.coordinates.lng,
+      "lat": userDestination.coordinates.lat,
+      "lng": userDestination.coordinates.lng,
     };
     while (userDestination.price == undefined) {
       try {
-        console.log("destinationlongitude: ", userDestination.coordinates);
         const response = await fetch(
           "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
           {
@@ -46,7 +45,7 @@ export function DestinationCard({
               originraw: userLocation,
               destinationraw: userDestination.address,
               worker: workerID,
-              destinationcoord: destinationCoordinates,
+              destinationcoords: destinationCoordinates,
               // Add any other parameters your Lambda function expects
             }),
           }
