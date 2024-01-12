@@ -13,6 +13,10 @@ export function DestinationCard({
   
 }: DestinationCardProps) {
   const result: string[] = [];
+  const priceContext = useContext(DestinationContext);
+
+  // Get the price associated with the destination ID
+  const price = priceContext[destination.id] || '';
 
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
@@ -43,7 +47,7 @@ export function DestinationCard({
 
     return result; // Output: "22:00"
   }
-  let price  = useContext(DestinationContext);
+  //let price  = useContext(DestinationContext);
 
   return (
     <>
