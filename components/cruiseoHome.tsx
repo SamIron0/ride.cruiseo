@@ -88,7 +88,7 @@ export default function CruiseoHome({ trips, user, userDetails }: Props) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              originraw: userLocation,
+              originraw: region,
               destinationraw: userDestination.address,
               worker: workerID,
               // Add any other parameters your Lambda function expects
