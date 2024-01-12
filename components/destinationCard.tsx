@@ -19,6 +19,7 @@ export function DestinationCard({
   const price = destinationPrices ? destinationPrices[destination.id] : "";
   console.log(destinationPrices);
   console.log(destination.id);
+  console.log(price);
   console.log(destinationPrices?.destination.id);
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
