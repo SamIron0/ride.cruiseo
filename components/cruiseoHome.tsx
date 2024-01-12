@@ -138,7 +138,7 @@ export default function CruiseoHome({
 
   useEffect(() => {
     runWorkers();
-  }, [destinations]); // Empty dependency array to run the effect only once on mount
+  }, [shopDestinations]); // Empty dependency array to run the effect only once on mount
 
   const fetchDestinations = async () => {
     try {
@@ -158,8 +158,6 @@ export default function CruiseoHome({
         setAirportDestinations(filterDestinations(data, 'Airport'));
         setSchoolDestinations(filterDestinations(data, 'School'));
         setShopDestinations(filterDestinations(data, 'Shop'));
-
-        getPrices();
       }
     } catch (error) {
       console.error("An error occurred while fetching destinations:", error);
