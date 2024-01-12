@@ -28,6 +28,10 @@ export function DestinationCard({
   const getPrice = async (workerID: number, userDestination: Destination) => {
     //console.log("user location: ", userLocation);
     //console.log("user destination: ", userDestination.address);
+    destinationCoordinates = {
+      lat: userDestination.coordinates.lat,
+      lng: userDestination.coordinates.lng,
+    };
     while (userDestination.price == undefined) {
       try {
         console.log("destinationlongitude: ", userDestination.coordinates);
@@ -39,9 +43,10 @@ export function DestinationCard({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              originraw: region,
+              originraw: userLocation,
               destinationraw: userDestination.address,
               worker: workerID,
+              destinationcoord: destinationCoordinates,
               // Add any other parameters your Lambda function expects
             }),
           }
