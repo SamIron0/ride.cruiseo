@@ -29,8 +29,8 @@ export function DestinationCard({
     //console.log("user location: ", userLocation);
     //console.log("user destination: ", userDestination.address);
     const destinationCoordinates = {
-      "lat": userDestination.coordinates.lat,
-      "lng": userDestination.coordinates.lng,
+      "lat": userDestination?.coordinates?.lat,
+      "lng": userDestination?.coordinates?.lng,
     };
     while (userDestination.price == undefined) {
       try {
