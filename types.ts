@@ -24,6 +24,7 @@ export interface Destination {
     name: string
     times?: string[] | null
     activeTrips?: Trip[] | null
+    price?: string | null
 }
 export interface UserDetails {
     trips: string[] | null

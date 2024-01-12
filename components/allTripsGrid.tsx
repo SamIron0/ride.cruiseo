@@ -76,7 +76,8 @@ export function AllTripsGrid({
       if (response.ok) {
         const result = await response.json();
         setPrice(result);
-        //console.log("Lambda function response:", result);
+       // userDestination.price = result;
+        console.log("result:", result.result? result.result : result);
         // Process the result as needed
       } else {
         console.error("Error invoking Lambda function:", response.statusText);
