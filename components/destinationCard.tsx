@@ -28,7 +28,7 @@ export function DestinationCard({
   const getPrice = async (workerID: number, userDestination: Destination) => {
     //console.log("user location: ", userLocation);
     //console.log("user destination: ", userDestination.address);
-    destinationCoordinates = {
+    const destinationCoordinates = {
       "lat": userDestination.coordinates.lat,
       "lng": userDestination.coordinates.lng,
     };
