@@ -82,7 +82,7 @@ export function AllTripsGrid({
           //setPrice(result.body);
           userDestination.price = result.body;
           // Assuming result.body is a string
-          const newPrice = result.body.startsWith("C") ? result.body : "";
+          const newPrice = result.body.startsWith("\"C") ? result.body : "";
 
           setPrice(newPrice);
           // Process the result as needed
