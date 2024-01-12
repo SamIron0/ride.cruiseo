@@ -18,6 +18,8 @@ export function DestinationCard({
   // Get the price associated with the destination ID
   const price = destinationPrices ? destinationPrices[destination.id] : "";
   console.log(destinationPrices);
+  console.log(destination.id);
+  console.log(destinationPrices.destination.id);
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
     const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d\s*,?/;
