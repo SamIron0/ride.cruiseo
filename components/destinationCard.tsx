@@ -96,7 +96,7 @@ export function DestinationCard({
     await runWorker(workerID, destination);
 
     //runWorkers();
-  }, [destination]); // Empty dependency array to run the effect only once on mount
+  }); // Empty dependency array to run the effect only once on mount
 
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
