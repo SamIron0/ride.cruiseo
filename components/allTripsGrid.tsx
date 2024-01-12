@@ -71,7 +71,7 @@ export function AllTripsGrid({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              originraw: region,
+              originraw: userLocation,
               destinationraw: userDestination.address,
               worker: workerID,
               // Add any other parameters your Lambda function expects
@@ -84,6 +84,7 @@ export function AllTripsGrid({
           //setPrice(result.body);
          // userDestination.price = result.body;
           console.log("result:", result.body);
+          updatePrice(result.body);
           // Process the result as needed
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
