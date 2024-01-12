@@ -48,7 +48,9 @@ export function AllTripsGrid({
   const DestinationContext = createContext<{ [key: string]: string }>({});
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
-  const [destinationPrices, setDestinationPrices] = useState<{ [key: string]: string }>({});
+  const [destinationPrices, setDestinationPrices] = useState<{
+    [key: string]: string;
+  }>({});
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     try {
@@ -103,7 +105,9 @@ export function AllTripsGrid({
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
     runWorkers();
+    return () => abortController.abort(); // Cleanup on unmount
   }, [shopDestinations]);
 
   return (

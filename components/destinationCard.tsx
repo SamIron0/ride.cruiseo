@@ -15,7 +15,9 @@ export function DestinationCard({
   const destinationPrices = useContext(DestinationContext);
 
   // Get the price associated with the destination ID
-  const price = destinationPrices ? destinationPrices[destination.id] : "";
+  const price = destinationPrices
+    ? destinationPrices[destination.id as string]
+    : "";
 
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
