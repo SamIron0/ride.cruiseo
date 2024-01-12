@@ -82,7 +82,7 @@ export function AllTripsGrid({
         if (response.ok) {
           const result = await response.json();
           //setPrice(result.body);
-          userDestination.price = result.body;
+         // userDestination.price = result.body;
           console.log("result:", result.body);
           // Process the result as needed
         } else {
