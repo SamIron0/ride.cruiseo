@@ -4,7 +4,7 @@ import { CarpoolCard } from "./ui/carpool-card";
 import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
-import { createContext, useEffect,useContext, useState } from "react";
+import { createContext, useEffect, useContext, useState } from "react";
 
 interface AllTripsGridProps {
   userLocation: any;
@@ -49,7 +49,7 @@ export function AllTripsGrid({
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-  const DestinationContext = createContext('0');
+  const DestinationContext = createContext("0");
 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
@@ -151,7 +151,7 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
-                    useContext={DestinationContext}
+                    DestinationContext={DestinationContext}
                   />
                 </DestinationContext.Provider>
               </div>
@@ -183,14 +183,13 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationContext value={price}>
+                <DestinationContext.Provider value={price}>
                   <DestinationCard
                     destination={shop}
                     userLocation={userLocation}
                     useContext={DestinationContext}
-
                   />
-                </DestinationContext>
+                </DestinationContext.Provider>
               </div>
             ))}
           </div>
@@ -220,14 +219,13 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
-                <DestinationContext value={price}>
+                <DestinationContext.Provider value={price}>
                   <DestinationCard
                     destination={airport}
                     userLocation={userLocation}
                     useContext={DestinationContext}
-
                   />
-                </DestinationContext>
+                </DestinationContext.Provider>
               </div>
             ))}
           </div>
@@ -257,14 +255,13 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationContext value={price}>
+                <DestinationContext.Provider value={price}>
                   <DestinationCard
                     destination={school}
                     userLocation={userLocation}
                     useContext={DestinationContext}
-
                   />
-                </DestinationContext>
+                </DestinationContext.Provider>
               </div>
             ))}
           </div>
@@ -294,14 +291,13 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationContext value={price}>
+                <DestinationContext.Provider value={price}>
                   <DestinationCard
                     destination={cinema}
                     userLocation={userLocation}
-                    useContext={DestinationContext}
-
+                    DestinationContext={DestinationContext}
                   />
-                </DestinationContext>
+                </DestinationContext.Provider>
               </div>
             ))}
           </div>
