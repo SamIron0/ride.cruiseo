@@ -11,7 +11,7 @@ export function DestinationCard({
   userLocation,
 }: DestinationCardProps) {
   const result: string[] = [];
-  const [price, setPrice] = useState();
+
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
     const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d\s*,?/;
@@ -24,82 +24,13 @@ export function DestinationCard({
 
     return result;
   }
-
-  const getPrice = async (workerID: number, userDestination: Destination) => {
-    //console.log("user location: ", userLocation);
-    //console.log("user destination: ", userDestination.address);
-    const destinationCoordinates = {
-      lat: userDestination?.coordinates?.lat,
-      lon: userDestination?.coordinates?.lon,
-    };
-    while (userDestination.price == undefined) {
-      try {
-        const response = await fetch(
-          "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              originraw: userLocation,
-              destinationraw: userDestination.address,
-              worker: workerID,
-              destinationcoords: destinationCoordinates,
-              // Add any other parameters your Lambda function expects
-            }),
-          }
-        );
-
-        if (response.ok) {
-          const result = await response.json();
-          //setPrice(result.body);
-          userDestination.price = result.body;
-          setPrice(result.body);
-
-          console.log("result:", result.body);
-          // Process the result as needed
-        } else {
-          console.error("Error invoking Lambda function:", response.statusText);
-        }
-      } catch (error) {
-        console.error(
-          "An error occurred while invoking Lambda function:",
-          error
-        );
-      }
-    }
-  };
-  const runWorker = async (workerID: number, destination: Destination) => {
-    await getPrice(workerID, destination);
-  };
-
-  const runWorkers = async () => {
-    await runWorker(1, destination);
-    // await runWorker(workerID, destination);
-
-    /*  const allDestinations: any[] = destinations;
-    const workers: number[] = [1, 2];
-   const workerPromises = workers.map(async (workerID) => {
-      while (allDestinations.length > 0) {
-        const destination = allDestinations.pop();
-
-        if (destination) {
-          await runWorker(workerID, destination);
-        }
-      }
-    });
-
-    // Use Promise.all to run all workers simultaneously
-    await Promise.all(workerPromises);
-  };
-*/
-  };
-
+  const [price, setPrice] = useState("");
   useEffect(() => {
-    runWorkers();
-  }); // Empty dependency array to run the effect only once on mount
-
+    const set_price = async () => {
+      setPrice(destination.price);
+    };
+    set_price();
+  }, [destination.price]);
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
       const originalDate = new Date(date);
@@ -134,7 +65,7 @@ export function DestinationCard({
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             Arrives:{times(destination.times)}
           </p>
-          <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
+          <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
             {price}
           </p>
         </div>
