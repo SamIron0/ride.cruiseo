@@ -4,7 +4,7 @@ import { useEffect, useContext,useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
-  DestinationContext: any;
+  DestinationContext: React.Context<string>;
 }
 export function DestinationCard({
   destination,
@@ -43,7 +43,7 @@ export function DestinationCard({
 
     return result; // Output: "22:00"
   }
-  let { price } = useContext(DestinationContext);
+  let price  = useContext(DestinationContext);
 
   return (
     <>

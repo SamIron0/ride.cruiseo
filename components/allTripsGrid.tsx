@@ -4,7 +4,7 @@ import { CarpoolCard } from "./ui/carpool-card";
 import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
-import { createContext, useEffect, useContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 interface AllTripsGridProps {
   userLocation: any;
