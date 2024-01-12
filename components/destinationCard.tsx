@@ -56,7 +56,8 @@ export function DestinationCard({
           //setPrice(result.body);
           userDestination.price = result.body;
           setPrice(result.body);
-          //console.log("result:", result.body);
+
+          console.log("result:", result.body);
           // Process the result as needed
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
