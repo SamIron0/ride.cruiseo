@@ -12,6 +12,9 @@ export function DestinationCard({
 }: DestinationCardProps) {
   const result: string[] = [];
   const [destinationPrice, setDestinationPrice] = useState(destination.price);
+  useEffect(() => {
+    console.log("destination.price changed to ", destination.price);
+  }, [destination.price]);
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
     const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d\s*,?/;
