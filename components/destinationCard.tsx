@@ -60,7 +60,7 @@ export function DestinationCard({
           <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
             Arrives:{times(destination.times)}
           </p>
-          <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
+          <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
             {destination.price ? destination.price : 0}
           </p>
         </div>
