@@ -2,6 +2,8 @@ import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
 import { useEffect, useState } from "react";
 import { usePrice } from './priceProvider';
+const { price, updatePrice } = usePrice() as { price: string, updatePrice: (newPrice: string) => void };
+
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
@@ -24,7 +26,6 @@ export function DestinationCard({
 
     return result;
   }
-  const { price, updatePrice } = usePrice();
   
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
