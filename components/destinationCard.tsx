@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
+  DestinationContext: any;
 }
 export function DestinationCard({
   destination,
   userLocation,
   DestinationContext,
+  
 }: DestinationCardProps) {
   const result: string[] = [];
 
