@@ -71,7 +71,7 @@ export function AllTripsGrid({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              originraw: userLocation,
+              originraw: region,
               destinationraw: userDestination.address,
               worker: workerID,
               // Add any other parameters your Lambda function expects
@@ -97,37 +97,30 @@ export function AllTripsGrid({
     }
   };
   const runWorker = async (workerID: number, destination: Destination) => {
-    try {
-      const response = await fetch(
-        "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            originraw: region,
-            destinationraw: destination.address,
-            worker: workerID,
-          }),
-        }
-      );
+    await getPrice(workerID, destination);
+  };
 
-      if (response.ok) {
-        const result = await response.json();
-        updatePrice(result.body); // Update the price using the context
-        console.log("result:", result.body);
-      } else {
-        console.error("Error invoking Lambda function:", response.statusText);
+  const runWorkers = async () => {
+    const allDestinations: any[] = destinations;
+    const workers: number[] = [1, 2];
+
+    const workerPromises = workers.map(async (workerID) => {
+      while (allDestinations.length > 0) {
+        const destination = allDestinations.pop();
+
+        if (destination) {
+          await runWorker(workerID, destination);
+        }
       }
-    } catch (error) {
-      console.error("An error occurred while invoking Lambda function:", error);
-    }
+    });
+
+    // Use Promise.all to run all workers simultaneously
+    await Promise.all(workerPromises);
   };
 
   useEffect(() => {
     runWorkers();
-  }, [shopDestinations]); // Empty dependency array to run the effect only once on mount
+  }, []); // Empty dependency array to run the effect only once on mount
 
   return (
     <Tabs initialValue="1" align={align} className="tabs" leftSpace={leftSpace}>
