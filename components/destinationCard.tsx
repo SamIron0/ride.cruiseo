@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
-  price: any;
 }
 export function DestinationCard({
   destination,
