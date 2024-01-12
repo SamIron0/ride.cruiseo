@@ -57,7 +57,7 @@ export async function filterDestinations(region: any, destinations: any[] | null
                 const response = await axios.get(geocodingApiUrl);
                 const destinationGeoCode: GeoCoordinate = {
                     lat: response.data.results[0].geometry.location.lat,
-                    lon: response.data.results[0].geometry.location.lng
+                    lon: response.data.results[0].geometry.location.lon
                 };
                 const userGeoCode: GeoCoordinate = {
                     lat: region.lat,

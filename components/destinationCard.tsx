@@ -30,7 +30,7 @@ export function DestinationCard({
     //console.log("user destination: ", userDestination.address);
     const destinationCoordinates = {
       "lat": userDestination?.coordinates?.lat,
-      "lng": userDestination?.coordinates?.lon,
+      "lon": userDestination?.coordinates?.lon,
     };
     while (userDestination.price == undefined) {
       try {
