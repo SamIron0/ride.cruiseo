@@ -48,8 +48,8 @@ export function AllTripsGrid({
   const DestinationContext = createContext<{ [key: string]: string }>({});
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
-  const [newUserDestinations, setNewUserDestinations] = useState<any[]>([]);
-  const [price, setPrice] = useState<{ [key: string]: string }>({});
+  const [, setUpdated] = useState<any[]>([]);
+  const [destinationPrices, setDestinationPrices] = useState<{ key: string }[]>({});
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     try {
@@ -133,7 +133,7 @@ export function AllTripsGrid({
                 key={destination.id}
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationContext.Provider value={updatedUserDestinations}>
+                <DestinationContext.Provider value={destinationPrices}>
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
@@ -170,7 +170,7 @@ export function AllTripsGrid({
                 key={shop.id}
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationContext.Provider value={updatedUserDestinations}>
+                <DestinationContext.Provider value={destinationPrices}>
                   <DestinationCard
                     destination={shop}
                     userLocation={userLocation}
@@ -208,7 +208,7 @@ export function AllTripsGrid({
                 key={school.id}
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationContext.Provider value={updatedUserDestinations}>
+                <DestinationContext.Provider value={destinationPrices}>
                   <DestinationCard
                     destination={school}
                     userLocation={userLocation}
@@ -245,7 +245,7 @@ export function AllTripsGrid({
                 key={cinema.id}
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationContext.Provider value={updatedUserDestinations}>
+                <DestinationContext.Provider value={destinationPrices}>
                   <DestinationCard
                     destination={cinema}
                     userLocation={userLocation}
