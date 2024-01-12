@@ -10,13 +10,12 @@ export function DestinationCard({
   destination,
   userLocation,
   DestinationContext,
-  
 }: DestinationCardProps) {
   const result: string[] = [];
-  const priceContext = useContext(DestinationContext);
+  const destinationPrices = useContext(DestinationContext);
 
   // Get the price associated with the destination ID
-  const price = priceContext[destination.id] || '';
+  const price = destinationPrices[destination.id] || '';
 
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
