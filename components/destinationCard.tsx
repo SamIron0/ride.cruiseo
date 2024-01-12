@@ -1,10 +1,10 @@
 import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
-import { useEffect, useContext,useState } from "react";
+import { useEffect, useContext, useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
-  DestinationContext: React.Context<string>;
+  DestinationContext: Context<{ [key: string]: string }>;
 }
 export function DestinationCard({
   destination,
@@ -15,7 +15,7 @@ export function DestinationCard({
   const destinationPrices = useContext(DestinationContext);
 
   // Get the price associated with the destination ID
-  const price = destinationPrices[destination.id] || '';
+  const price = destinationPrices[destination.id] || "";
 
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
@@ -46,8 +46,6 @@ export function DestinationCard({
 
     return result; // Output: "22:00"
   }
-  //let price  = useContext(DestinationContext);
-
   return (
     <>
       <div className="relative flex flex-col mt-6 text-gray-700 ">
