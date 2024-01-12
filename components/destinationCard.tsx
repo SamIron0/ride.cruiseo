@@ -8,13 +8,11 @@ interface DestinationCardProps {
   price: any;
 }
 export function DestinationCard({
-  price,
   destination,
   userLocation,
 }: DestinationCardProps) {
   const result: string[] = [];
 
-  
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
     const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d\s*,?/;
@@ -63,7 +61,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-            {price}
+            {destination.price ? destination.price : 0}
           </p>
         </div>
       </div>
