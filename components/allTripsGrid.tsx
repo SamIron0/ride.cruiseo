@@ -187,7 +187,7 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={shop}
                     userLocation={userLocation}
-                    useContext={DestinationContext}
+                    DestinationContext={DestinationContext}
                   />
                 </DestinationContext.Provider>
               </div>
@@ -223,7 +223,7 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={airport}
                     userLocation={userLocation}
-                    useContext={DestinationContext}
+                    DestinationContext={DestinationContext}
                   />
                 </DestinationContext.Provider>
               </div>
@@ -259,7 +259,7 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={school}
                     userLocation={userLocation}
-                    useContext={DestinationContext}
+                    DestinationContext={DestinationContext}
                   />
                 </DestinationContext.Provider>
               </div>
