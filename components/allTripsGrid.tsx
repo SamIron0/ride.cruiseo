@@ -6,7 +6,9 @@ import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
 import { PriceProvider, usePrice } from "./priceProvider";
-const { updatePrice } = usePrice() as { updatePrice: (newPrice: string) => void };
+const { updatePrice } = usePrice() as {
+  updatePrice: (newPrice: string) => void;
+};
 
 interface AllTripsGridProps {
   userLocation: any;
@@ -69,7 +71,7 @@ export function AllTripsGrid({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              originraw: region,
+              originraw: userLocation,
               destinationraw: userDestination.address,
               worker: workerID,
               // Add any other parameters your Lambda function expects
