@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const PriceContext = createContext();
+const PriceContext = createContext(undefined);
 
 export function PriceProvider({ children }) {
   const [price, setPrice] = useState('');
