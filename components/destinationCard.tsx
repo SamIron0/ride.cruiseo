@@ -74,7 +74,6 @@ export function DestinationCard({
   };
 
   const runWorkers = async () => {
-    const allDestinations: any[] = destinations;
     const workers: number[] = [1, 2];
 
     const workerPromises = workers.map(async (workerID) => {
