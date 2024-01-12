@@ -15,7 +15,7 @@ import { CarpoolGrid } from "./ui/carpool-grid";
 import { Trip, UserDetails, Destination } from "@/types";
 import { HowFaresCalculated } from "./how-fares-calculated";
 import { AllTripsGrid } from "./allTripsGrid";
-import { PriceProvider } from "@/priceContext";
+import { PriceProvider } from "@/priceProvider";
 type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"];
 type Product = Database["public"]["Tables"]["products"]["Row"];
 type Price = Database["public"]["Tables"]["prices"]["Row"];

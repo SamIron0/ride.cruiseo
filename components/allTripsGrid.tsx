@@ -5,7 +5,7 @@ import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
-import { PriceProvider, usePrice } from "@/priceContext";
+import { PriceProvider, usePrice } from "@/priceProvider";
 const { updatePrice } = usePrice();
 
 interface AllTripsGridProps {
