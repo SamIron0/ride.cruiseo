@@ -1,6 +1,6 @@
 import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
-import { useEffect, useState } from "react";
+import { useEffect, useContext,useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
