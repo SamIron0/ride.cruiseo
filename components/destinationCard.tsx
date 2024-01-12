@@ -4,7 +4,7 @@ import { useEffect, useContext, useState } from "react";
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
-  DestinationContext: Context<{ [key: string]: string }>;
+  DestinationContext: { [key: string]: string };
 }
 export function DestinationCard({
   destination,
