@@ -27,7 +27,7 @@ export function DestinationCard({
   const [price, setPrice] = useState("");
   useEffect(() => {
     const set_price = async () => {
-      setPrice(destination.price);
+      setPrice(destination.price?destination.price : 0);
     };
     set_price();
   }, [destination.price]);
