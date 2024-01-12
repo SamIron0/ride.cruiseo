@@ -6,9 +6,7 @@ import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
 import { PriceProvider, usePrice } from "./priceProvider";
-const { updatePrice } = usePrice() as {
-  updatePrice: (newPrice: string) => void;
-};
+const { updatePrice } = usePrice()
 
 interface AllTripsGridProps {
   userLocation: any;
