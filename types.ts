@@ -26,7 +26,7 @@ export interface Destination {
     times?: string[] | null
     activeTrips?: Trip[] | null
     price?: string | null
-    coordinates?: GeoCoordinate | null
+    coordinates?: Json | null
 }
 
 export interface UserDetails {
