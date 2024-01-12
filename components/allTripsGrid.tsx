@@ -50,68 +50,6 @@ export function AllTripsGrid({
     };
   }, []);
 
-  const [price, setPrice] = useState("");
-
-  const getPrice = async (workerID: number, userDestination: Destination) => {
-    //console.log("user location: ", userLocation);
-    //console.log("user destination: ", userDestination.address);
-    console.log("workerID: ", workerID);
-    try {
-      const response = await fetch(
-        "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            originraw: userLocation,
-            destinationraw: userDestination.address,
-            worker: workerID,
-            // Add any other parameters your Lambda function expects
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const result = await response.json();
-        setPrice(result.body);
-        userDestination.price = result.body;
-        console.log("result:", result.body);
-        // Process the result as needed
-      } else {
-        console.error("Error invoking Lambda function:", response.statusText);
-      }
-    } catch (error) {
-      console.error("An error occurred while invoking Lambda function:", error);
-    }
-  };
-
-  const runWorker = async (workerID: number, destination: Destination) => {
-    await getPrice(workerID, destination);
-  };
-
-  const runWorkers = async () => {
-    const allDestinations: any[] = destinations;
-    const workers: number[] = [1, 2];
-
-    const workerPromises = workers.map(async (workerID) => {
-      while (allDestinations.length > 0) {
-        const destination = allDestinations.pop();
-
-        if (destination) {
-          await runWorker(workerID, destination);
-        }
-      }
-    });
-
-    // Use Promise.all to run all workers simultaneously
-    await Promise.all(workerPromises);
-  };
-
-  useEffect(() => {
-    runWorkers();
-  }, [destinations]); // Empty dependency array to run the effect only once on mount
 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
