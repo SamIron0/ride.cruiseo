@@ -1,8 +1,6 @@
 import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
 import { useEffect, useState } from "react";
-import { usePrice } from './priceProvider';
-const { price, updatePrice } = usePrice()
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
@@ -61,7 +59,6 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-            {price}
           </p>
         </div>
       </div>

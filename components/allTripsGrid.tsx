@@ -5,8 +5,7 @@ import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
-import { PriceProvider, usePrice } from "./priceProvider";
-const { updatePrice } = usePrice()
+import { createContext, useContext, useState } from "react";
 
 interface AllTripsGridProps {
   userLocation: any;
@@ -51,9 +50,11 @@ export function AllTripsGrid({
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
+  const DestinationContext = createContext();
 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
+  const [price, setPrice] = useState("");
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     //console.log("user location: ", userLocation);
@@ -80,9 +81,9 @@ export function AllTripsGrid({
         if (response.ok) {
           const result = await response.json();
           //setPrice(result.body);
-         // userDestination.price = result.body;
+          // userDestination.price = result.body;
           console.log("result:", result.body);
-          updatePrice(result.body);
+          setPrice(result.body);
           // Process the result as needed
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
@@ -147,10 +148,12 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationCard
-                  destination={destination}
-                  userLocation={userLocation}
-                />
+                <DestinationContext.Provider value={{ price }}>
+                  <DestinationCard
+                    destination={destination}
+                    userLocation={userLocation}
+                  />
+                </DestinationContext.Provider>
               </div>
             ))}
           </div>
@@ -180,10 +183,12 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationCard
-                  destination={shop}
-                  userLocation={userLocation}
-                />
+                <DestinationContext value={{ price }}>
+                  <DestinationCard
+                    destination={shop}
+                    userLocation={userLocation}
+                  />
+                </DestinationContext>
               </div>
             ))}
           </div>
@@ -213,10 +218,12 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
-                <DestinationCard
-                  destination={airport}
-                  userLocation={userLocation}
-                />
+                <DestinationContext value={{ price }}>
+                  <DestinationCard
+                    destination={airport}
+                    userLocation={userLocation}
+                  />
+                </DestinationContext>
               </div>
             ))}
           </div>
@@ -246,10 +253,12 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationCard
-                  destination={school}
-                  userLocation={userLocation}
-                />
+                <DestinationContext value={{ price }}>
+                  <DestinationCard
+                    destination={school}
+                    userLocation={userLocation}
+                  />
+                </DestinationContext>
               </div>
             ))}
           </div>
@@ -279,10 +288,12 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationCard
-                  destination={cinema}
-                  userLocation={userLocation}
-                />
+                <DestinationContext value={{ price }}>
+                  <DestinationCard
+                    destination={cinema}
+                    userLocation={userLocation}
+                  />
+                </DestinationContext>
               </div>
             ))}
           </div>

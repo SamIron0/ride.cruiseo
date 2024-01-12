@@ -15,7 +15,6 @@ import { CarpoolGrid } from "./ui/carpool-grid";
 import { Trip, UserDetails, Destination } from "@/types";
 import { HowFaresCalculated } from "./how-fares-calculated";
 import { AllTripsGrid } from "./allTripsGrid";
-import { PriceProvider } from "./priceProvider";
 type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"];
 type Product = Database["public"]["Tables"]["products"]["Row"];
 type Price = Database["public"]["Tables"]["prices"]["Row"];
@@ -160,7 +159,6 @@ export default function CruiseoHome({ trips, user, userDetails }: Props) {
             </button>
           </div>
           <div className="max-w-full">
-            <PriceProvider>
               <AllTripsGrid
                 userLocation={region}
                 onSelectDestination={handleDestinationSelect}
@@ -170,7 +168,6 @@ export default function CruiseoHome({ trips, user, userDetails }: Props) {
                 shopDestinations={shopDestinations}
                 cinemaDestinations={cinemaDestinations}
               />
-            </PriceProvider>
             ƒ
           </div>
           {!user ? (
