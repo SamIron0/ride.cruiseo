@@ -4,12 +4,12 @@ function calculateHaversineDistance(coord1: GeoCoordinate, coord2: GeoCoordinate
 
     const earthRadius = 6371; // Earth's radius in kilometers
 
-    const dLat = toRadians(coord2.latitude - coord1.latitude);
-    const dLon = toRadians(coord2.longitude - coord1.longitude);
+    const dLat = toRadians(coord2.lat - coord1.lat);
+    const dLon = toRadians(coord2.lon - coord1.lon);
 
     const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(toRadians(coord1.latitude)) * Math.cos(toRadians(coord2.latitude)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        Math.cos(toRadians(coord1.lat)) * Math.cos(toRadians(coord2.lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
@@ -60,8 +60,8 @@ export async function filterDestinations(region: any, destinations: any[] | null
                     longitude: response.data.results[0].geometry.location.lng
                 };
                 const userGeoCode: GeoCoordinate = {
-                    latitude: region.latitude,
-                    longitude: region.longitude
+                    latitude: region.lat,
+                    longitude: region.lon
                 };
                 const distance = calculateHaversineDistance(userGeoCode, destinationGeoCode);
 

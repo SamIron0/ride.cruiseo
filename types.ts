@@ -12,8 +12,8 @@ export interface Trip {
 }
 
 export interface GeoCoordinate {
-    latitude: number;
-    longitude: number;
+    lat: number;
+    lon: number;
 }
 
 export interface Destination {
@@ -26,7 +26,7 @@ export interface Destination {
     times?: string[] | null
     activeTrips?: Trip[] | null
     price?: string | null
-    coordinates?: Json | null
+    coordinates?: GeoCoordinate | null
 }
 
 export interface UserDetails {
