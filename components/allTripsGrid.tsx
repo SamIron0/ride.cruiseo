@@ -48,8 +48,7 @@ export function AllTripsGrid({
   const DestinationContext = createContext<{ [key: string]: string }>({});
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
-  const [, setUpdated] = useState<any[]>([]);
-  const [destinationPrices, setDestinationPrices] = useState<{ key: string }[]>({});
+  const [destinationPrices, setDestinationPrices] = useState<{ [key: string]: string }>({});
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     try {
