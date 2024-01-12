@@ -1,16 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const PriceContext = createContext(undefined);
+const PriceContext = createContext();
 
 export function PriceProvider({ children }) {
   const [price, setPrice] = useState('');
 
-  // Import statements...
-
-const { updatePrice } = usePrice() as { updatePrice: (newPrice: string) => void };
-
-// Rest of your code...
-
+  const updatePrice = (newPrice) => {
+    setPrice(newPrice);
+  };
 
   return (
     <PriceContext.Provider value={{ price, updatePrice }}>
