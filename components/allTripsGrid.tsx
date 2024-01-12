@@ -82,7 +82,10 @@ export function AllTripsGrid({
           //setPrice(result.body);
           // userDestination.price = result.body;
           console.log("result:", result.body);
-          setPrice(result.body);
+          // Assuming result.body is a string
+          const newPrice = result.body.startsWith("CA") ? result.body : "";
+
+          setPrice(newPrice);
           // Process the result as needed
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
@@ -119,7 +122,7 @@ export function AllTripsGrid({
 
   useEffect(() => {
     runWorkers();
-  }, [shopDestinations]); 
+  }, [shopDestinations]);
 
   return (
     <Tabs initialValue="1" align={align} className="tabs" leftSpace={leftSpace}>
