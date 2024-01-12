@@ -29,8 +29,8 @@ export function DestinationCard({
     //console.log("user location: ", userLocation);
     //console.log("user destination: ", userDestination.address);
     const destinationCoordinates = {
-      "lat": userDestination?.coordinates?.lat,
-      "lon": userDestination?.coordinates?.lon,
+      lat: userDestination?.coordinates?.lat,
+      lon: userDestination?.coordinates?.lon,
     };
     while (userDestination.price == undefined) {
       try {
@@ -73,7 +73,8 @@ export function DestinationCard({
     await getPrice(workerID, destination);
   };
 
-  const runWorkers = async () => {
+  /* const runWorkers = async () => {
+    const allDestinations: any[] = destinations;
     const workers: number[] = [1, 2];
 
     const workerPromises = workers.map(async (workerID) => {
@@ -89,9 +90,12 @@ export function DestinationCard({
     // Use Promise.all to run all workers simultaneously
     await Promise.all(workerPromises);
   };
+*/
 
   useEffect(() => {
-    runWorkers();
+    await runWorker(workerID, destination);
+
+    //runWorkers();
   }, [destination]); // Empty dependency array to run the effect only once on mount
 
   function times(dates: string[] | undefined | null) {
