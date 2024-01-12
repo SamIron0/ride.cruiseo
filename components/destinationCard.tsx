@@ -11,7 +11,7 @@ export function DestinationCard({
   userLocation,
 }: DestinationCardProps) {
   const result: string[] = [];
-
+  const [destinationPrice, setDestinationPrice] = useState(destination.price);
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
     const pattern: RegExp = /(.+?)\s+\b\w{2}\b\s+\w{1}\d\w{1}\s*\d\w{1}\d\s*,?/;
@@ -60,7 +60,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
-            {destination.price ? destination.price : 0}
+            {destination_price}
           </p>
         </div>
       </div>
