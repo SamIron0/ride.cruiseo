@@ -24,7 +24,7 @@ export function DestinationCard({
 
     return result;
   }
-  
+
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
       const originalDate = new Date(date);
@@ -61,7 +61,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semi-bold leading-relaxed text-inherit">
-          {price}
+            {price}
           </p>
         </div>
       </div>

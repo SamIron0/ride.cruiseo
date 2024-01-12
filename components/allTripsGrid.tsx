@@ -4,7 +4,8 @@ import { CarpoolCard } from "./ui/carpool-card";
 import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 interface AllTripsGridProps {
   userLocation: any;
@@ -49,7 +50,7 @@ export function AllTripsGrid({
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-  const DestinationContext = createContext();
+  const DestinationContext = createContext('0');
 
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
@@ -151,7 +152,7 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
-                    DestinationContext={DestinationContext}
+                    useContext={DestinationContext}
                   />
                 </DestinationContext.Provider>
               </div>
@@ -187,6 +188,8 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={shop}
                     userLocation={userLocation}
+                    useContext={DestinationContext}
+
                   />
                 </DestinationContext>
               </div>
@@ -222,6 +225,8 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={airport}
                     userLocation={userLocation}
+                    useContext={DestinationContext}
+
                   />
                 </DestinationContext>
               </div>
@@ -257,6 +262,8 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={school}
                     userLocation={userLocation}
+                    useContext={DestinationContext}
+
                   />
                 </DestinationContext>
               </div>
@@ -292,6 +299,8 @@ export function AllTripsGrid({
                   <DestinationCard
                     destination={cinema}
                     userLocation={userLocation}
+                    useContext={DestinationContext}
+
                   />
                 </DestinationContext>
               </div>
