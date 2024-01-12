@@ -98,7 +98,7 @@ export default function CruiseoHome({ trips, user, userDetails }: Props) {
 
         if (response.ok) {
           const result = await response.json();
-          setPrice(result.body);
+          //setPrice(result.body);
           userDestination.price = result.body;
           console.log("result:", result.body);
           // Process the result as needed
