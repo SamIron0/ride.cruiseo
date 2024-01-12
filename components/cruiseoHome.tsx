@@ -79,7 +79,7 @@ export default function CruiseoHome({
     //console.log("user location: ", userLocation);
     //console.log("user destination: ", userDestination.address);
     console.log("workerID: ", workerID);
-    while (price == "") {
+    while (userDestination.price == undefined) {
       try {
         const response = await fetch(
           "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
