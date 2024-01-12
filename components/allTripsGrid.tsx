@@ -50,7 +50,7 @@ export function AllTripsGrid({
     };
   }, []);
 
-  const [price, setPrice] = useState("0");
+  const [price, setPrice] = useState("");
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
     //console.log("user location: ", userLocation);
@@ -75,7 +75,8 @@ export function AllTripsGrid({
 
       if (response.ok) {
         const result = await response.json();
-        console.log("Lambda function response for ",userDestination.address, ": ", result.body);
+        setPrice(result);
+        //console.log("Lambda function response:", result);
         // Process the result as needed
       } else {
         console.error("Error invoking Lambda function:", response.statusText);
@@ -102,10 +103,6 @@ export function AllTripsGrid({
         }
       }
     });
-    const worker1 = workers.map(async (workerID) => {
-    }
-    )
-
 
     // Use Promise.all to run all workers simultaneously
     await Promise.all(workerPromises);
