@@ -262,6 +262,8 @@ export interface Database {
           name: string
           times?: string[] | null
           activeTrips?: Trip[] | null
+          lon: number
+          lat: number
         }
         Insert: {
           id: string | null
@@ -272,6 +274,8 @@ export interface Database {
           name?: string | null
           times?: string[] | null
           activeTrips?: Trip[] | null
+          lon?: number | null
+          lat?: number | null
         }
         Update: {
           id: string | null
@@ -282,6 +286,8 @@ export interface Database {
           name?: string | null
           times?: string[] | null
           activeTrips?: Trip[] | null
+          lon?: number | null
+          lat?: number | null
 
         }
         Relationships: [
