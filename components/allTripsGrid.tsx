@@ -147,7 +147,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationContext.Provider value={{ price: price || '' }}>
+                <DestinationContext.Provider value={price}>
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
@@ -183,7 +183,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationContext value={{ price }}>
+                <DestinationContext value={price}>
                   <DestinationCard
                     destination={shop}
                     userLocation={userLocation}
@@ -220,7 +220,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(airport)}
               >
-                <DestinationContext value={{ price }}>
+                <DestinationContext value={price}>
                   <DestinationCard
                     destination={airport}
                     userLocation={userLocation}
@@ -257,7 +257,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationContext value={{ price }}>
+                <DestinationContext value={price}>
                   <DestinationCard
                     destination={school}
                     userLocation={userLocation}
@@ -294,7 +294,7 @@ export function AllTripsGrid({
                 className="mt-2 cursor-pointer"
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationContext value={{ price }}>
+                <DestinationContext value={price}>
                   <DestinationCard
                     destination={cinema}
                     userLocation={userLocation}
