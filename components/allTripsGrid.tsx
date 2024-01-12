@@ -73,6 +73,13 @@ export function AllTripsGrid({
         const result = await response.json();
 
         if (result.body.startsWith('"C')) {
+          // Assuming result.body contains the price data
+          const price = result.body.slice(1, -1);
+          // Check your condition here, for example:
+          setDestinationPrices((prevPrices) => ({
+            ...prevPrices,
+            [userDestination.id]: price,
+          }));
           console.log("result:", result.body);
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
