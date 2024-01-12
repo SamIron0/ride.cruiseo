@@ -80,13 +80,14 @@ export function AllTripsGrid({
         if (response.ok) {
           const result = await response.json();
           //setPrice(result.body);
-          // userDestination.price = result.body;
-          console.log("result:", result.body);
+          userDestination.price = result.body;
           // Assuming result.body is a string
           const newPrice = result.body.startsWith("CA") ? result.body : "";
 
           setPrice(newPrice);
           // Process the result as needed
+          console.log("result:", newPrice);
+
         } else {
           console.error("Error invoking Lambda function:", response.statusText);
         }
