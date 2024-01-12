@@ -48,9 +48,7 @@ export function AllTripsGrid({
   const DestinationContext = createContext<{ [key: string]: string }>({});
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
-  const [newUserDestinations, setNewUserDestinations] = useState<Destination[]>(
-    []
-  );
+  const [newUserDestinations, setNewUserDestinations] = useState<any[]>([]);
   const [price, setPrice] = useState<{ [key: string]: string }>({});
 
   const getPrice = async (workerID: number, userDestination: Destination) => {
@@ -74,34 +72,10 @@ export function AllTripsGrid({
         const result = await response.json();
 
         if (result.body.startsWith("C")) {
-          const updatedUserDestination = {
-            ...userDestination,
-            price: result.body,
-          };
-
-          setNewUserDestinations((prevDestinations) => {
-            const index = prevDestinations.findIndex(
-              (dest) => dest.id === userDestination.id
-            );
-
-            if (index !== -1) {
-              prevDestinations[index] = updatedUserDestination;
-            } else {
-              prevDestinations.push(updatedUserDestination);
-            }
-
-            return [...prevDestinations];
-          });
-
-          setPrice((prevPrice) => ({
-            ...prevPrice,
-            [userDestination.id]: result.body,
-          }));
+          console.log("result:", result.body);
+        } else {
+          console.error("Error invoking Lambda function:", response.statusText);
         }
-
-        console.log("result:", result.body);
-      } else {
-        console.error("Error invoking Lambda function:", response.statusText);
       }
     } catch (error) {
       console.error("An error occurred while invoking Lambda function:", error);
@@ -159,7 +133,7 @@ export function AllTripsGrid({
                 key={destination.id}
                 onClick={() => onSelectDestination(destination)}
               >
-                <DestinationContext.Provider value={price}>
+                <DestinationContext.Provider value={updatedUserDestinations}>
                   <DestinationCard
                     destination={destination}
                     userLocation={userLocation}
@@ -196,7 +170,7 @@ export function AllTripsGrid({
                 key={shop.id}
                 onClick={() => onSelectDestination(shop)}
               >
-                <DestinationContext.Provider value={price}>
+                <DestinationContext.Provider value={updatedUserDestinations}>
                   <DestinationCard
                     destination={shop}
                     userLocation={userLocation}
@@ -234,7 +208,7 @@ export function AllTripsGrid({
                 key={school.id}
                 onClick={() => onSelectDestination(school)}
               >
-                <DestinationContext.Provider value={price}>
+                <DestinationContext.Provider value={updatedUserDestinations}>
                   <DestinationCard
                     destination={school}
                     userLocation={userLocation}
@@ -271,7 +245,7 @@ export function AllTripsGrid({
                 key={cinema.id}
                 onClick={() => onSelectDestination(cinema)}
               >
-                <DestinationContext.Provider value={price}>
+                <DestinationContext.Provider value={updatedUserDestinations}>
                   <DestinationCard
                     destination={cinema}
                     userLocation={userLocation}
