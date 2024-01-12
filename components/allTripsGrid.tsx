@@ -103,11 +103,13 @@ export function AllTripsGrid({
       }
     });
     const worker1 = workers.map(async (workerID) => {
+    }
+    )
 
 
     // Use Promise.all to run all workers simultaneously
     await Promise.all(workerPromises);
-  });
+  };
 
   useEffect(() => {
     runWorkers();
