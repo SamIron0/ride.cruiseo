@@ -14,6 +14,7 @@ export function DestinationCard({
   const [destinationPrice, setDestinationPrice] = useState(destination.price);
   useEffect(() => {
     console.log("destination.price changed to ", destination.price);
+    setDestinationPrice(destination.price);
   }, [destination.price]);
   function address(address: string) {
     // Define a regular expression pattern to capture everything before the street name
@@ -63,7 +64,7 @@ export function DestinationCard({
             Arrives:{times(destination.times)}
           </p>
           <p className="block text-md font-sans antialiased font-semibold leading-relaxed text-inherit">
-            {destination_price}
+            {destination.price}
           </p>
         </div>
       </div>
