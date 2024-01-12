@@ -5,6 +5,9 @@ import { Destination } from "@/types";
 import { DestinationCard } from "./destinationCard";
 import { Tabs } from "@geist-ui/core";
 import { useState, useEffect } from "react";
+import { PriceProvider } from "./PriceContext";
+import { usePrice } from './PriceContext';
+const { updatePrice } = usePrice();
 
 interface AllTripsGridProps {
   userLocation: any;
@@ -50,9 +53,80 @@ export function AllTripsGrid({
     };
   }, []);
 
-
   const align = isLargeScreen ? "center" : "";
   const leftSpace = isLargeScreen ? 0 : "";
+
+  const getPrice = async (workerID: number, userDestination: Destination) => {
+    //console.log("user location: ", userLocation);
+    //console.log("user destination: ", userDestination.address);
+    while (userDestination.price == undefined) {
+      try {
+        console.log("destinationlongitude: ", userDestination.coordinates?.lon);
+        const response = await fetch(
+          "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              originraw: region,
+              destinationraw: userDestination.address,
+              worker: workerID,
+              // Add any other parameters your Lambda function expects
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const result = await response.json();
+          //setPrice(result.body);
+          userDestination.price = result.body;
+          console.log("result:", result.body);
+          // Process the result as needed
+        } else {
+          console.error("Error invoking Lambda function:", response.statusText);
+        }
+      } catch (error) {
+        console.error(
+          "An error occurred while invoking Lambda function:",
+          error
+        );
+      }
+    }
+  };
+  const runWorker = async (workerID: number, destination: Destination) => {
+    try {
+      const response = await fetch(
+        "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            originraw: region,
+            destinationraw: destination.address,
+            worker: workerID,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const result = await response.json();
+        updatePrice(result.body); // Update the price using the context
+        console.log("result:", result.body);
+      } else {
+        console.error("Error invoking Lambda function:", response.statusText);
+      }
+    } catch (error) {
+      console.error("An error occurred while invoking Lambda function:", error);
+    }
+  };
+
+  useEffect(() => {
+    runWorkers();
+  }, [shopDestinations]); // Empty dependency array to run the effect only once on mount
 
   return (
     <Tabs initialValue="1" align={align} className="tabs" leftSpace={leftSpace}>

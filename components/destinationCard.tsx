@@ -1,7 +1,7 @@
 import { Destination, Trip } from "@/types";
 import { getTrip } from "@/utils/supabase-admin";
 import { useEffect, useState } from "react";
-
+import { usePrice } from './PriceContext';
 interface DestinationCardProps {
   destination: Destination;
   userLocation: any;
@@ -24,13 +24,8 @@ export function DestinationCard({
 
     return result;
   }
-  const [price, setPrice] = useState("");
-  useEffect(() => {
-    const set_price = async () => {
-      setPrice(destination.price?destination.price : "0");
-    };
-    set_price();
-  }, [destination.price]);
+  const { price, updatePrice } = usePrice();
+  
   function times(dates: string[] | undefined | null) {
     dates?.map((date) => {
       const originalDate = new Date(date);
