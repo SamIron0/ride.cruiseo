@@ -82,7 +82,7 @@ export function AllTripsGrid({
           }));
           console.log("result:", result.body);
         } else {
-          console.error("Error invoking Lambda function:", response.statusText);
+          console.error("Error invoking Lambda function:", response.body);
         }
       }
     } catch (error) {
