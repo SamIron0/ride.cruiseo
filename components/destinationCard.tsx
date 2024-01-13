@@ -6,6 +6,7 @@ interface DestinationCardProps {
   userLocation: any;
   DestinationContext: any;
 }
+
 export function DestinationCard({
   destination,
   userLocation,
