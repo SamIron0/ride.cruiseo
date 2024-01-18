@@ -75,7 +75,6 @@ const Categories = (onCategoryClick: any) => {
           flex 
           flex-row 
           items-center 
-          overflow-x-auto
           space-x-4
           sm:space-x-9
           md:space-x-12
