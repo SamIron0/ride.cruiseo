@@ -1,13 +1,13 @@
 import { getSession } from '@/app/supabase-server';
-import AuthUI from './SignInAuthUI';
+import AuthUI from './SignUpAuthUI';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import SignInAuthUI from './SignInAuthUI';
+import SignUpAuthUI from './SignUpAuthUI';
 
 export default async function SignIn() {
   const session = await getSession();
   if (session) {
     return redirect('/');
   }
-  return <SignInAuthUI />;
+  return <SignUpAuthUI />;
 }

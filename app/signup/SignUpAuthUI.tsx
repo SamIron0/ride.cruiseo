@@ -1,25 +1,20 @@
 'use client';
 
-import { useSupabase } from '../supabase-provider';
-import Button from '@/components/Button';
-import Heading from '@/components/Heading';
-import Input from '@/components/Input';
-import Modal from '@/components/modals/Modal';
-import { getURL } from '@/utils/helpers';
-import { truncate, truncateSync } from 'fs';
-import { Router } from 'lucide-react';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
+import axios from 'axios';
 import { AiFillGithub } from 'react-icons/ai';
+import { signIn } from 'next-auth/react';
 import { FcGoogle } from 'react-icons/fc';
+import { useCallback, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-export default function LoginModal() {
-  const { supabase } = useSupabase();
-
-  const router = useRouter();
+import Modal from '@/components/modals/Modal';
+import Input from '@/components/Input';
+import Heading from '@/components/Heading';
+import Button from '@/components/Button';
+import { Router } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -28,39 +23,46 @@ export default function LoginModal() {
     formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
+      name: '',
       email: '',
       password: ''
     }
   });
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const router = useRouter();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password
-      });
-      if (error) {
-        toast.error(error.message);
-      } else {
-        toast.success('Logged in');
-        router.push(`${getURL()}/auth/callback`);
-      }
-    } catch (error) {
-      toast.error('An error occurred during login.');
-    } finally {
-      setIsLoading(false);
+      const result = axios.post('/api/register', data);
+
+      toast.success('Registered!');
+      router.push('/signin');
+    } catch (error: any) {
+      console.log(error);
+      const errorMessage = error.response
+        ? error.response.data.message
+        : 'An error occurred';
+      toast.error(errorMessage);
     }
   };
+
   const onToggle = useCallback(() => {
-    router.push('/auth/signup');
+    router.push('/signin');
   }, []);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Login to your account!" />
+      <Heading title="Welcome to Cruiseo" subtitle="Create an account!" />
       <Input
         id="email"
         label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="name"
+        label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -90,10 +92,14 @@ export default function LoginModal() {
 
       <div
         className="
-      text-neutral-500 text-center mt-4 font-light"
+          text-neutral-500 
+          text-center 
+          mt-4 
+          font-light
+        "
       >
         <p>
-          First time using Cruiseo?
+          Already have an account?
           <span
             onClick={onToggle}
             className="
@@ -103,7 +109,7 @@ export default function LoginModal() {
             "
           >
             {' '}
-            Create an account
+            Log in
           </span>
         </p>
       </div>
@@ -113,13 +119,13 @@ export default function LoginModal() {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={true}
-      title="Login"
+      title="Register"
       actionLabel="Continue"
-      onClose={() => {}}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />
   );
-}
+};
+
+export default RegisterModal;

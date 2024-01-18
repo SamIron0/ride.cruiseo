@@ -19,7 +19,7 @@ import { MdOutlineVilla } from "react-icons/md";
 
 import CategoryBox from "../CategoryBox";
 import Container from "../Container";
-import { useActiveCategory } from "@/app/providers/GridProvider";
+import { useListings } from "@/app/providers/ListingProvider";
 
 export const categories = [
   {
@@ -58,7 +58,7 @@ export const categories = [
 const Categories = (onCategoryClick: any) => {
   
   const params = useSearchParams();
-  const {activeCategory} = useActiveCategory();
+  const {activeCategory} = useListings();
   const pathname = usePathname();
   const isMainPage = pathname === "/";
 

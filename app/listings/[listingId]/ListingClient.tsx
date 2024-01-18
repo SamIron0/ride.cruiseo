@@ -12,7 +12,7 @@ import { Destination, UserDetails } from "@/types";
 import Container from "@/components/Container";
 import ListingHead from "@/components/listings/ListingHead";
 import ListingInfo from "@/components/listings/ListingInfo";
-import { useActiveCategory } from "@/app/providers/GridProvider";
+import { useListings } from "@/app/providers/ListingProvider";
 import { User } from "@supabase/supabase-js";
 
 const initialDateRange = {
@@ -22,7 +22,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-  listing: any;
+  listing: Destination;
   currentUser?: User | null;
 }
 
@@ -31,7 +31,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   currentUser,
 }) => {
   const [destination, setDestination] = useState<Destination | undefined>();
-  const { allListings } = useActiveCategory();
+  const { allListings } = useListings();
 
   // Assuming you want to set destination based on a condition
   useEffect(() => {
@@ -80,7 +80,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
 
       if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
+        setTotalPrice("dayCount * listing.price");
       } else {
         setTotalPrice(listing.price);
       }

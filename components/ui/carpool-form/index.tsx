@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useCallback, useRef, useState } from "react"
 import { SubmitButton } from "./submit-button"
 import DateTime from "@/components/ui/dateTime"
-import { CarpoolGrid } from "../carpool-grid"
 import toast, { Toaster } from 'react-hot-toast';
 import { Destination, Trip } from "@/types";
 import { User } from "@supabase/supabase-js"

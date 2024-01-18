@@ -17,7 +17,6 @@ export default function UserMenu({ user }: UserMenuProps) {
   const { supabase } = useSupabase();
   const router = useRouter();
   // get session from api
-  console.log('getting session');
   const signOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -28,7 +27,7 @@ export default function UserMenu({ user }: UserMenuProps) {
         router.refresh()
       }
     } catch (error) {
-      toast.error('An error occurred during login.');
+      toast.error('An error occurred during signout.');
     }
   };
   useEffect(() => {
@@ -43,9 +42,9 @@ export default function UserMenu({ user }: UserMenuProps) {
         };
         const response = await fetch(url, options);
         const sess = await response.json();
-        console.log('session is: ', sess);
+       //console.log('session is: ', sess);
       } catch (error) {
-        console.error('An error occurred during login.');
+        console.error('An error occurred while fetching session.');
       }
     }
     getSession();
@@ -142,7 +141,7 @@ export default function UserMenu({ user }: UserMenuProps) {
               </>
             ) : (
               <>
-                <MenuItem label="Login" onClick={() => router.push('/login')} />
+                <MenuItem label="Login" onClick={() => router.push('/signin')} />
                 <MenuItem
                   label="Sign up"
                   onClick={() => router.push('/signup')}

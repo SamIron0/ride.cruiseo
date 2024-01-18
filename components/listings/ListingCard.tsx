@@ -8,7 +8,7 @@ import { Destination } from '@/types';
 import HeartButton from '../HeartButton';
 import Button from '../Button';
 import ClientOnly from '../ClientOnly';
-import { useActiveCategory } from '@/app/providers/GridProvider';
+import { useListings } from '@/app/providers/ListingProvider';
 interface ListingCardProps {
   data: Destination;
   onAction?: (id: string) => void;
@@ -52,7 +52,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
     return result;
   }
-  const { prices, setPrices } = useActiveCategory();
+  const { prices, setPrices } = useListings();
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}

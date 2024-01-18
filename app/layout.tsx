@@ -4,12 +4,12 @@ import Navbar from '@/components/navbar/NavBar';
 import { cn } from '@/utils/helpers';
 import { PropsWithChildren } from 'react';
 import 'styles/main.css';
-import { ActiveCategoryProvider } from './providers/GridProvider';
+import { ListingsProvider } from './providers/ListingProvider';
 import ToasterProvider from './providers/ToasterProvider';
 import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Inter } from 'next/font/google';
+import { Inter, Nunito } from 'next/font/google';
 import SearchModal from '@/components/modals/SearchModal';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -43,6 +43,10 @@ export const metadata = {
     description: meta.description
   }
 };
+
+const font = Nunito({
+  subsets: ['latin']
+});
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -90,9 +94,9 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={cn(inter.className, 'antialiased bg-gray-100')}>
+      <body className={font.className}>
         <SupabaseProvider>
-          <ActiveCategoryProvider>
+          <ListingsProvider>
             {/* @ts-expect-error */}
             <Navbar />
             <ClientOnly>
@@ -103,9 +107,8 @@ export default function RootLayout({
             {children}
             <SpeedInsights />
             <Analytics />
-
             <Footer />
-          </ActiveCategoryProvider>
+          </ListingsProvider>
         </SupabaseProvider>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>

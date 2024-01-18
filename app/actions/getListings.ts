@@ -1,4 +1,3 @@
-
 export interface IListingsParams {
   userId?: string;
   guestCount?: number;
@@ -14,36 +13,21 @@ export default async function getListings(
   params: IListingsParams,
   userLocation?: string
 ) {
-  try {
-    const {
-      userId,
-      roomCount,
-      guestCount,
-      bathroomCount,
-      locationValue,
-      startDate,
-      endDate,
-      category,
-    } = params;
+  let listings = [];
 
-    let listings = [];
-        
-    try {
-      const url = "/api/getDestinations";
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userLocation),
-      };
-      const response = await fetch(url, options);
-      listings = await response.json();
-   } catch (error) {
-      console.error("An error occurred while fetching destinations:", error);
-    }
-    return listings;
-  } catch (error: any) {
-    throw new Error(error);
+  try {
+    const url = '/api/getDestinations';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userLocation)
+    };
+    const response = await fetch(url, options);
+    listings = await response.json();
+  } catch (error) {
+    console.error('An error occurred while fetching destinations:', error);
   }
+  return listings;
 }

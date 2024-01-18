@@ -1,3 +1,4 @@
+'use client'
 import getListingById from '@/app/actions/getListingById';
 
 import ClientOnly from '@/components/ClientOnly';
@@ -13,12 +14,7 @@ interface IParams {
 const ListingPage = async ({ params }: { params: IParams }) => {
   const listing = await getListingById(params);
   // const reservations = await getReservations(params);
-  const supabase = createServerSupabaseClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-  const currentUser = user;
-  if (!listing) {
+   if (!listing) {
     return (
       <ClientOnly>
         <EmptyState />
@@ -28,7 +24,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 
   return (
     <ClientOnly>
-      <ListingClient listing={listing} currentUser={currentUser} />
+      <ListingClient listing={listing}/>
     </ClientOnly>
   );
 };

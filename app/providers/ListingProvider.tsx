@@ -1,12 +1,11 @@
 "use client";
-// ActiveCategoryContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { Destination } from "@/types";
-interface ActiveCategoryContextProps {
+interface ListingsContextProps {
   children: ReactNode;
 }
 
-interface ActiveCategoryContextValue {
+interface ListingsContextValue {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
   prices: any;
@@ -15,11 +14,19 @@ interface ActiveCategoryContextValue {
   setAllListings: any
 }
 
-const ActiveCategoryContext = createContext<
-  ActiveCategoryContextValue | undefined
+const ListingsContext = createContext<
+  ListingsContextValue | undefined
 >(undefined);
 
-export const ActiveCategoryProvider: React.FC<ActiveCategoryContextProps> = ({
+/**
+ * Initializes the ListingsProvider component with the provided props.
+ *
+ * @param {ListingsContextProps} {
+ *   children, // The children components
+ * }
+ * @return {ReactElement} The rendered ListingsProvider component
+ */
+export const ListingsProvider: React.FC<ListingsContextProps> = ({
   children,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
@@ -27,7 +34,7 @@ export const ActiveCategoryProvider: React.FC<ActiveCategoryContextProps> = ({
   const [allListings, setAllListings] = useState<Destination[]>();
 
   return (
-    <ActiveCategoryContext.Provider
+    <ListingsContext.Provider
       value={{
         activeCategory,
         setActiveCategory,
@@ -38,16 +45,16 @@ export const ActiveCategoryProvider: React.FC<ActiveCategoryContextProps> = ({
       }}
     >
       {children}
-    </ActiveCategoryContext.Provider>
+    </ListingsContext.Provider>
   );
 };
 
-export const useActiveCategory = (): ActiveCategoryContextValue => {
-  const context = useContext(ActiveCategoryContext);
+export const useListings = (): ListingsContextValue => {
+  const context = useContext(ListingsContext);
 
   if (!context) {
     throw new Error(
-      "useActiveCategory must be used within an ActiveCategoryProvider"
+      "useListings must be used within an ActiveCategoryProvider"
     );
   }
 

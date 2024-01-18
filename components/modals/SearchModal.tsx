@@ -81,7 +81,7 @@ const SearchModal = () => {
 
     setStep(STEPS.LOCATION);
     searchModal.onClose();
-    router.push(url);
+    router.push('/');
   }, [
     step,
     searchModal,
@@ -166,7 +166,10 @@ const SearchModal = () => {
       </div>
     );
   }
-
+  const closeModal = () => {
+    searchModal.onClose;
+    router.push('/');
+  };
   return (
     <Modal
       isOpen={searchModal.isOpen}
@@ -175,7 +178,7 @@ const SearchModal = () => {
       onSubmit={onSubmit}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.LOCATION ? undefined : onBack}
-      onClose={searchModal.onClose}
+      onClose={() => closeModal()}
       body={bodyContent}
     />
   );

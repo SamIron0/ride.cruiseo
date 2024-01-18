@@ -8,15 +8,15 @@ import ClientOnly from "./ClientOnly";
 import { Destination } from "@/types";
 import { useEffect, useState } from "react";
 import { all } from "axios";
-import { useActiveCategory } from "@/app/providers/GridProvider";
+import { useListings } from "@/app/providers/ListingProvider";
 interface GridProps {
   searchParams: IListingsParams;
 }
 
 export function Grid({ searchParams }: GridProps) {
-  const { activeCategory } = useActiveCategory();
-  const { allListings, setAllListings } = useActiveCategory();
-  const { prices, setPrices } = useActiveCategory();
+  const { activeCategory } = useListings();
+  const { allListings, setAllListings } = useListings();
+  const { prices, setPrices } = useListings();
 
   const [region, setRegion] = useState("");
   // fetch the user's location

@@ -1,38 +1,18 @@
-
+'use client'
+import { useListings } from '../providers/ListingProvider';
 interface IParams {
   listingId?: string;
 }
 
 export default async function getListingById(params: IParams) {
+  const { allListings } = useListings();
+
   try {
-   const { listingId } = params;
-   const listing ={'listing': listingId}
-/* 
-    const listing = await prisma.listing.findUnique({
-      where: {
-        id: listingId,
-      },
-      include: {
-        user: true,
-      },
-    });
+    const destinationWithId = allListings?.find(
+      (destination) => destination.id == params.listingId
+    );
 
-    if (!listing) {
-      return null;
-    }
-
-    return {
-      ...listing,
-      createdAt: listing.createdAt.toString(),
-      user: {
-        ...listing.user,
-        createdAt: listing.user.createdAt.toString(),
-        updatedAt: listing.user.updatedAt.toString(),
-        emailVerified: listing.user.emailVerified?.toString() || null,
-      },
-    };*/
-    return {
-    listing}
+    return destinationWithId;
   } catch (error: any) {
     throw new Error(error);
   }
