@@ -1,23 +1,43 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
-import { IconType } from "react-icons";
-import Avatar from "../Avatar";
-import { UserDetails } from "@/types";
+import dynamic from 'next/dynamic';
+import { IconType } from 'react-icons';
+import Avatar from '../Avatar';
+import { Destination, UserDetails } from '@/types';
 
-const Map = dynamic(() => import("../Map"), {
-  ssr: false,
+const Map = dynamic(() => import('../Map'), {
+  ssr: false
 });
 
 interface ListingInfoProps {
   user?: UserDetails | null;
   description: string;
+  listing?: Destination;
 }
 
-const ListingInfo: React.FC<ListingInfoProps> = ({ user, description }) => {
+export default function ListingInfo({
+  user,
+  description,
+  listing
+}: ListingInfoProps) {
+  const result: string[] = [];
 
-  //const coordinates = getByValue(locationValue)?.latlng
-
+  function times(dates: string[] | undefined | null) {
+    dates?.map((date) => {
+      const originalDate = new Date(date);
+      // Format the time in 12-hour format with lowercase am/pm
+      const formattedTime = originalDate
+        .toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true
+        })
+        .toLowerCase();
+      result.push(formattedTime + ',');
+    });
+    //const coordinates = getByValue(locationValue)?.latlng
+    return result;
+  }
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
@@ -31,7 +51,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ user, description }) => {
             gap-2
           "
         >
-          <div>Hosted by {user?.full_name}</div>
+          <div>Booked by</div>
           <Avatar src={user?.avatar_url} />
         </div>
         <div
@@ -43,7 +63,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ user, description }) => {
             font-light
             text-neutral-500
           "
-        ></div>
+        >
+          {times(listing?.times)}
+        </div>
       </div>
       <hr />
 
@@ -58,6 +80,4 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ user, description }) => {
       {/*<Map center={coordinates} />*/}
     </div>
   );
-};
-
-export default ListingInfo;
+}

@@ -167,7 +167,7 @@ const SearchModal = () => {
     );
   }
   const closeModal = () => {
-    searchModal.onClose;
+//    searchModal.onClose();
     router.push('/');
   };
   return (

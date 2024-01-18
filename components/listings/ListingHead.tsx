@@ -12,6 +12,7 @@ interface ListingHeadProps {
   id: string | undefined;
   locationValue: string | undefined;
   currentUser?: User | null;
+  
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({
@@ -34,7 +35,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         "
       >
         <Image
-          src={imageSrc as string}
+          src={imageSrc || ''}
           fill
           className="object-cover w-full"
           alt="Image"

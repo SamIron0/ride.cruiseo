@@ -15,7 +15,7 @@ export default async function ContactUs() {
                     <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
                         <div className="flex items-start">
                             <div className=" shrink-0">
-                                <div className="inline-block p-5 rounded-md bg-fuchsia-300  text-primary">
+                                <div className="inline-block p-5 rounded-md bg-[#4169E1]  text-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                         stroke="currentColor" className="h-10 w-10">
                                         <path stroke-linecap="round" stroke-linejoin="round"
