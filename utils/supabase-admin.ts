@@ -53,8 +53,12 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
             })
           );
 
-          destination.activeTrips = activeTrips.filter((trip) => trip !== null) as Trip[];
-          destination.times = destination.activeTrips.map((trip) => trip?.date || '');
+          destination.activeTrips = activeTrips.filter(
+            (trip) => trip !== null
+          ) as Trip[];
+          destination.times = destination.activeTrips.map(
+            (trip) => trip?.date || ''
+          );
         } else {
           destination.activeTrips = [];
           destination.times = [];
@@ -71,17 +75,15 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
   }
 };
 export const retrieveTimes = async (destinations: Destination[]) => {
-  const { data: times } = await supabaseAdmin
-    .from('destinations')
-    .select('')
+  const { data: times } = await supabaseAdmin.from('destinations').select('');
   return times;
-}
+};
 export const deleteTrip = async (tripId: string, userId: string) => {
   // delete from trips array
   await supabaseAdmin
-    .from("trips")
-    .update({ status: "Cancelled" })
-    .eq("id", tripId);
+    .from('trips')
+    .update({ status: 'Cancelled' })
+    .eq('id', tripId);
 
   /*  const user = await supabaseAdmin
       .from('users')
@@ -107,17 +109,17 @@ export const deleteTrip = async (tripId: string, userId: string) => {
         .update({ id: userId, trips: user.data.trips })
         .eq('id', userId);
     }*/
-}
+};
 export const createTrip = async ({
   trip,
-  userIds,
+  userIds
 }: {
   trip: Trip;
   userIds: string[];
 }) => {
   // Step 1: Insert the trip into the "trips" table
   const { data: tripData, error: tripError } = await supabaseAdmin
-    .from("trips")
+    .from('trips')
     .insert([
       {
         origin: trip.origin,
@@ -126,59 +128,55 @@ export const createTrip = async ({
         date: trip.date,
         user_ids: userIds,
         price: trip.price,
-        status: "Active",
-      },
+        status: 'Active'
+      }
     ]);
 
   if (tripError) {
-    console.error("Error inserting trip:", tripError);
+    console.error('Error inserting trip:', tripError);
     throw tripError;
   }
 
   // Step 2: Retrieve the corresponding destination from the "destinations" table
   const { data: destinationData, error: destinationError } = await supabaseAdmin
-    .from("destinations")
-    .select("*")
-    .eq("id", trip.destination_id)
+    .from('destinations')
+    .select('*')
+    .eq('id', trip.destination_id)
     .single();
 
   if (destinationError) {
-    console.error("Error retrieving destination:", destinationError);
+    console.error('Error retrieving destination:', destinationError);
     throw destinationError;
   }
 
   const destination = destinationData as Destination;
   // Step 3: Update the "trip_ids" array in the retrieved destination
-  let tripIds: string[] = []
+  let tripIds: string[] = [];
 
   if (destination.trip_ids != null) {
-    tripIds = destination.trip_ids
+    tripIds = destination.trip_ids;
   }
   tripIds.push(trip.id);
 
   // Step 4: Update the destination in the "destinations" table
   const { error: updateDestinationError } = await supabaseAdmin
-    .from("destinations")
+    .from('destinations')
     .update({
       id: destination.id,
-      trip_ids: tripIds,
+      trip_ids: tripIds
     })
-    .eq("id", destination.id);
-
+    .eq('id', destination.id);
 
   if (updateDestinationError) {
-    console.error("Error updating destination:", updateDestinationError);
+    console.error('Error updating destination:', updateDestinationError);
     throw updateDestinationError;
   }
-
-
 
   // Assuming userIds is an array of user IDs
   const promises = userIds.map((userId) => updateTrips(userId, trip));
   // Use Promise.all to wait for all promises to resolve
   await Promise.all(promises);
-  console.log("Trip created successfully" + promises);
-
+  console.log('Trip created successfully' + promises);
 
   // Step 6: Return the new trip ID
   return trip.id;
@@ -193,9 +191,8 @@ export const retrieveUsersTrips = async (userId: string) => {
   let userTrips = trips?.[0]?.trips || [];
 
   return userTrips;
-}
+};
 const updateTrips = async (userId: string, trip: any) => {
-
   let trips = await retrieveUsersTrips(userId);
   if (trips == null) {
     trips = [];
@@ -204,12 +201,12 @@ const updateTrips = async (userId: string, trip: any) => {
   trips.push(trip.id);
 
   const { error: tripsError } = await supabaseAdmin
-    .from("users")
+    .from('users')
     .update({ id: userId, trips: trips })
-    .eq("id", userId);
+    .eq('id', userId);
 
   if (tripsError) {
-    console.error("Error retrieving destination:", tripsError);
+    console.error('Error retrieving destination:', tripsError);
     throw tripsError;
   }
 };
@@ -221,13 +218,12 @@ export const getTrip = async (tripId: string) => {
     .single();
 
   if (error) {
-    console.error("Error fetching trip:", error);
+    console.error('Error fetching trip:', error);
     throw error;
   }
 
   return trip;
-}
-
+};
 
 const upsertProductRecord = async (product: Stripe.Product) => {
   const productData: Product = {
@@ -279,11 +275,11 @@ const createOrRetrieveCustomer = async ({
   if (error || !data?.stripe_customer_id) {
     // No customer record found, let's create one.
     const customerData: { metadata: { supabaseUUID: string }; email?: string } =
-    {
-      metadata: {
-        supabaseUUID: uuid
-      }
-    };
+      {
+        metadata: {
+          supabaseUUID: uuid
+        }
+      };
     if (email) customerData.email = email;
     const customer = await stripe.customers.create(customerData);
     // Now insert the customer ID into our Supabase mapping table.
@@ -340,39 +336,39 @@ const manageSubscriptionStatusChange = async (
   });
   // Upsert the latest status of the subscription object.
   const subscriptionData: Database['public']['Tables']['subscriptions']['Insert'] =
-  {
-    id: subscription.id,
-    user_id: uuid,
-    metadata: subscription.metadata,
-    status: subscription.status,
-    price_id: subscription.items.data[0].price.id,
-    //TODO check quantity on subscription
-    // @ts-ignore
-    quantity: subscription.quantity,
-    cancel_at_period_end: subscription.cancel_at_period_end,
-    cancel_at: subscription.cancel_at
-      ? toDateTime(subscription.cancel_at).toISOString()
-      : null,
-    canceled_at: subscription.canceled_at
-      ? toDateTime(subscription.canceled_at).toISOString()
-      : null,
-    current_period_start: toDateTime(
-      subscription.current_period_start
-    ).toISOString(),
-    current_period_end: toDateTime(
-      subscription.current_period_end
-    ).toISOString(),
-    created: toDateTime(subscription.created).toISOString(),
-    ended_at: subscription.ended_at
-      ? toDateTime(subscription.ended_at).toISOString()
-      : null,
-    trial_start: subscription.trial_start
-      ? toDateTime(subscription.trial_start).toISOString()
-      : null,
-    trial_end: subscription.trial_end
-      ? toDateTime(subscription.trial_end).toISOString()
-      : null
-  };
+    {
+      id: subscription.id,
+      user_id: uuid,
+      metadata: subscription.metadata,
+      status: subscription.status,
+      price_id: subscription.items.data[0].price.id,
+      //TODO check quantity on subscription
+      // @ts-ignore
+      quantity: subscription.quantity,
+      cancel_at_period_end: subscription.cancel_at_period_end,
+      cancel_at: subscription.cancel_at
+        ? toDateTime(subscription.cancel_at).toISOString()
+        : null,
+      canceled_at: subscription.canceled_at
+        ? toDateTime(subscription.canceled_at).toISOString()
+        : null,
+      current_period_start: toDateTime(
+        subscription.current_period_start
+      ).toISOString(),
+      current_period_end: toDateTime(
+        subscription.current_period_end
+      ).toISOString(),
+      created: toDateTime(subscription.created).toISOString(),
+      ended_at: subscription.ended_at
+        ? toDateTime(subscription.ended_at).toISOString()
+        : null,
+      trial_start: subscription.trial_start
+        ? toDateTime(subscription.trial_start).toISOString()
+        : null,
+      trial_end: subscription.trial_end
+        ? toDateTime(subscription.trial_end).toISOString()
+        : null
+    };
 
   const { error } = await supabaseAdmin
     .from('subscriptions')

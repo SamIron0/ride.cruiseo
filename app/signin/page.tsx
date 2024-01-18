@@ -3,7 +3,7 @@ import AuthUI from "./AuthUI";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-export default async function SignIn() {
+export default async function n() {
   const session = await getSession();
   if (session) {
     return redirect("/");
