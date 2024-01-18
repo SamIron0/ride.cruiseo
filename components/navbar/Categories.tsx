@@ -78,6 +78,7 @@ const Categories = (onCategoryClick: any) => {
           overflow-x-auto
           space-x-4
           sm:space-x-9
+          md:space-x-12
           justify-center
         "
       >
