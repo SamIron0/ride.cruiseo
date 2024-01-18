@@ -71,12 +71,13 @@ const Categories = (onCategoryClick: any) => {
       <div
         className="
           pt-4
-          px-16
+          sm:px-16
           flex 
           flex-row 
           items-center 
           overflow-x-auto
-          space-x-12
+          space-x-4
+          sm:space-x-9
           justify-center
         "
       >

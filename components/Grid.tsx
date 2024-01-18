@@ -137,7 +137,7 @@ export function Grid({ searchParams }: GridProps) {
         {allListings && (
           <div
             className="
-              pt-[185px]
+              pt-[192px]
               grid 
               grid-cols-1 
               sm:grid-cols-2 

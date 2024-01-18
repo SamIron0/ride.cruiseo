@@ -86,17 +86,17 @@ const Modal: React.FC<ModalProps> = ({
       >
         <div
           className="
-          relative 
-          w-full
-          md:w-4/6
-          lg:w-3/6
-          xl:w-2/5
-          my-6
-          mx-auto 
-          h-full 
-          lg:h-auto
-          md:h-auto
-          "
+    relative 
+    w-full
+    md:max-w-md   // Adjust the maximum width for medium screens
+    lg:max-w-lg   // Adjust the maximum width for large screens
+    xl:max-w-xl   // Adjust the maximum width for extra-large screens
+    my-6
+    mx-auto 
+    h-full 
+    lg:h-auto
+    md:h-auto
+  "
         >
           {/*content*/}
           <div
