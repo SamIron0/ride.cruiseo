@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
+import { usePathname, useSearchParams } from "next/navigation";
+import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
 import {
   GiBarn,
   GiBoatFishing,
@@ -10,55 +10,57 @@ import {
   GiCaveEntrance,
   GiForestCamp,
   GiIsland,
-  GiWindmill
-} from 'react-icons/gi';
-import { FaSkiing } from 'react-icons/fa';
-import { BsSnow } from 'react-icons/bs';
-import { IoDiamond } from 'react-icons/io5';
-import { MdOutlineVilla } from 'react-icons/md';
+  GiWindmill,
+} from "react-icons/gi";
+import { FaSkiing } from "react-icons/fa";
+import { BsSnow } from "react-icons/bs";
+import { IoDiamond } from "react-icons/io5";
+import { MdOutlineVilla } from "react-icons/md";
 
-import CategoryBox from '../CategoryBox';
-import Container from '../Container';
-import { useListings } from '@/app/providers/ListingProvider';
+import CategoryBox from "../CategoryBox";
+import Container from "../Container";
+import { useListings } from "@/app/providers/ListingProvider";
 
 export const categories = [
   {
-    label: 'All',
+    label: "All",
     icon: TbBeach,
-    description: 'View All Available Destinations!'
+    description: "View All Available Destinations!",
   },
   {
-    label: 'Shop',
+    label: "Shop",
     icon: GiWindmill,
-    description: 'This property is has windmills!'
+    description: "This property is has windmills!",
   },
   {
-    label: 'Airport',
+    label: "Airport",
     icon: MdOutlineVilla,
-    description: 'This property is modern!'
+    description: "This property is modern!",
   },
   {
-    label: 'School',
+    label: "School",
     icon: TbMountain,
-    description: 'This property is in the countryside!'
+    description: "This property is in the countryside!",
   },
   {
-    label: 'Cinema',
+    label: "Cinema",
     icon: TbPool,
-    description: 'Wanna see a movie?!'
+    description: "Wanna see a movie?!",
   },
   {
-    label: 'Islands',
+    label: "Islands",
     icon: GiIsland,
-    description: 'This property is on an island!'
-  }
+    description: "This property is on an island!",
+  },
+
 ];
 
 const Categories = (onCategoryClick: any) => {
+  
   const params = useSearchParams();
-  const { activeCategory } = useListings();
+  const {activeCategory} = useListings();
   const pathname = usePathname();
-  const isMainPage = pathname === '/';
+  const isMainPage = pathname === "/";
 
   if (!isMainPage) {
     return null;
@@ -66,17 +68,21 @@ const Categories = (onCategoryClick: any) => {
 
   return (
     <Container>
-      <div
+      <div  
         className="
-        flex 
-        flex-row 
-        items-center 
-        overflow-x-auto
-        space-x-4
-        sm:space-x-9
-        md:space-x-12
-        justify-center
-      "
+          pt-4
+          px-16
+          flex 
+          mx-auto
+          flex-row 
+          items-center 
+          overflow-x-auto
+          space-x-4
+          sm:space-x-9
+          md:space-x-12
+          justify-center
+          w-full
+        "
       >
         {categories.map((item, index) => (
           <CategoryBox
@@ -91,6 +97,7 @@ const Categories = (onCategoryClick: any) => {
       </div>
     </Container>
   );
+  
 };
 
 export default Categories;
