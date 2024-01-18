@@ -68,10 +68,10 @@ const Categories = (onCategoryClick: any) => {
 
   return (
     <Container>
-      <div
+      <div  
         className="
           pt-4
-          sm:px-16
+          px-16
           flex 
           flex-row 
           items-center 
