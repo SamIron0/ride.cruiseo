@@ -7,7 +7,7 @@ interface ContatinerProps {
 const Container: React.FC<ContatinerProps> = ({ children }) => {
   return (
     <div
-      className="max-w-[2520px]
+      className="max-w-screen
                         mx-auto
                         xl:px-20
                         md:px-10
