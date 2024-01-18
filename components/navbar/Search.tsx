@@ -104,7 +104,7 @@ const Search = () => {
           <div
             className="
               p-2 
-              bg-rose-500 
+              bg-[#4169E1] 
               rounded-full 
               text-white
             "

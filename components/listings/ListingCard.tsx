@@ -104,7 +104,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         ) : (
           <div className="max-w-sm animate-pulse">
-            <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-400 w-11"></div>
+            <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-600 w-11"></div>
           </div>
         )}
         {onAction && actionLabel && (
