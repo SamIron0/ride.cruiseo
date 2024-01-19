@@ -16,7 +16,7 @@ const Search = () => {
   const endDate = params?.get('endDate');
   const guestCount = params?.get('guestCount');
 
-  const locationLabel = 'Lagos, Nigeria';
+  const locationLabel = 'Your Location';
 
   const durationLabel = useMemo(() => {
     if (startDate && endDate) {
@@ -31,16 +31,9 @@ const Search = () => {
       return `${diff} Days`;
     }
 
-    return 'Any Week';
+    return 'Any Day';
   }, [startDate, endDate]);
 
-  const guestLabel = useMemo(() => {
-    if (guestCount) {
-      return `${guestCount} Guests`;
-    }
-
-    return 'Add Guests';
-  }, [guestCount]);
 
   return (
     <div
@@ -74,20 +67,7 @@ const Search = () => {
         >
           {locationLabel}
         </div>
-        <div
-          className="
-            hidden 
-            sm:block 
-            text-sm 
-            font-semibold 
-            px-6 
-            border-x-[1px] 
-            flex-1 
-            text-center
-          "
-        >
-          {durationLabel}
-        </div>
+      
         <div
           className="
             text-sm 
@@ -100,7 +80,7 @@ const Search = () => {
             gap-3
           "
         >
-          <div className="hidden sm:block">{guestLabel}</div>
+          <div className="hidden sm:block">{durationLabel}</div>
           <div
             className="
               p-2 

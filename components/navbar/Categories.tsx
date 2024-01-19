@@ -68,7 +68,7 @@ const Categories = (onCategoryClick: any) => {
     <Container>
       <div
         className="
-        pt-4 flex flex-row items-center justify-between overflow-x-auto"
+        pt-4 flex sm:px-24 md:px-44 lg:px-60 flex-row items-center justify-between overflow-x-auto"
       >
         {categories.map((item, index) => (
           <CategoryBox
