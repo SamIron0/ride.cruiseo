@@ -1,8 +1,11 @@
+"use client";
+import { useState } from "react";
 export default async function Account() {
+  const [sideBar, setSideBar] = useState(false);
   return (
-    <div
-    className="pt-20">
+    <div className="pt-24">
       <button
+        onClick={setSideBar(!sideBar)}
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
         aria-controls="separator-sidebar"
