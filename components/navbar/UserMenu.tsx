@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import MenuItem from './MenuItem';
-import { useSupabase } from '@/app/supabase-provider';
-import { UserDetails } from '@/types';
-import { User } from '@supabase/supabase-js';
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { CiUser } from 'react-icons/ci';
-import { TbUserFilled } from 'react-icons/tb';
+import MenuItem from "./MenuItem";
+import { useSupabase } from "@/app/supabase-provider";
+import { UserDetails } from "@/types";
+import { User } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { AiOutlineMenu } from "react-icons/ai";
+import { CiUser } from "react-icons/ci";
+import { TbUserFilled } from "react-icons/tb";
 
 interface UserMenuProps {
   user?: User | null;
@@ -25,28 +25,28 @@ export default function UserMenu({ user }: UserMenuProps) {
       if (error) {
         toast.error(error.message);
       } else {
-        toast.success('Signed Out');
+        toast.success("Signed Out");
         router.refresh();
       }
     } catch (error) {
-      toast.error('An error occurred during signout.');
+      toast.error("An error occurred during signout.");
     }
   };
   useEffect(() => {
     async function getSession() {
       try {
-        const url = '/api/session';
+        const url = "/api/session";
         const options = {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         };
         const response = await fetch(url, options);
         const sess = await response.json();
         //console.log('session is: ', sess);
       } catch (error) {
-        console.error('An error occurred while fetching session.');
+        console.error("An error occurred while fetching session.");
       }
     }
     getSession();
@@ -121,37 +121,32 @@ export default function UserMenu({ user }: UserMenuProps) {
             {user ? (
               <>
                 <MenuItem
-                  label="My trips"
-                  onClick={() => router.push('/trips')}
+                  label="Account"
+                  onClick={() => router.push("/account")}
                 />
                 <MenuItem
-                  label="My favorites"
-                  onClick={() => router.push('/favorites')}
+                  label="Activity"
+                  onClick={() => router.push("/activity")}
                 />
                 <MenuItem
-                  label="My reservations"
-                  onClick={() => router.push('/reservations')}
-                />
-                <MenuItem
-                  label="My properties"
-                  onClick={() => router.push('/properties')}
-                />
-                <MenuItem
-                  label="How it works"
-                  onClick={() => router.push('/')}
+                  label="Help"
+                  onClick={() => router.push("/contactus")}
                 />
                 <hr />
-                <MenuItem label="Logout" onClick={() => signOut()} />
+                <MenuItem
+                  label="Logout"
+                  onClick={() => signOut().then({ toggleOpen })}
+                />
               </>
             ) : (
               <>
                 <MenuItem
                   label="Login"
-                  onClick={() => router.push('/signin')}
+                  onClick={() => router.push("/signin")}
                 />
                 <MenuItem
                   label="Sign up"
-                  onClick={() => router.push('/signup')}
+                  onClick={() => router.push("/signup")}
                 />
               </>
             )}
