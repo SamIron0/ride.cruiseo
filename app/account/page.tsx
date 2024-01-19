@@ -1,6 +1,7 @@
 export default async function Account() {
   return (
-    <div>
+    <div
+    className="pt-12">
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
