@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { CiUser } from 'react-icons/ci';
+import { TbUserFilled } from 'react-icons/tb';
 
 interface UserMenuProps {
   user?: User | null;
@@ -97,7 +98,7 @@ export default function UserMenu({ user }: UserMenuProps) {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <CiUser />
+            <TbUserFilled />
           </div>
         </div>
       </div>
