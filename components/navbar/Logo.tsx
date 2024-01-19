@@ -10,9 +10,10 @@ const Logo = () => {
   return (
     <div
       onClick={() => router.push('/')}
-      className="hidden md:block cursor-pointer"
+      className="sƒm:hidden md:block flex flex-row items-center gap-1 cursor-pointer"
     >
-      <span className="w-[100px]"> cruiseo</span> 
+      <span> cruiseo</span>
+      <Image src="/logo.png" alt="logo" width={35} height={35} />
     </div>
   );
 };
