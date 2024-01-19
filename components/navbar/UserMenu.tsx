@@ -125,8 +125,8 @@ export default function UserMenu({ user }: UserMenuProps) {
                   onClick={() => router.push("/account")}
                 />
                 <MenuItem
-                  label="Activity"
-                  onClick={() => router.push("/activity")}
+                  label="My Trips"
+                  onClick={() => router.push("/trips")}
                 />
                 <MenuItem
                   label="Help"
