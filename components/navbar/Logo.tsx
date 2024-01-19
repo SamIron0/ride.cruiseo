@@ -10,7 +10,7 @@ const Logo = () => {
   return (
     <div
       onClick={() => router.push('/')}
-      className="sƒm:hidden md:block flex flex-row items-center gap-1 cursor-pointer"
+      className="flex flex-row items-center gap-0.5 pr-5 cursor-pointer"
     >
       <span> cruiseo</span>
       <Image src="/logo.png" alt="logo" width={35} height={35} />
