@@ -135,18 +135,27 @@ export default function UserMenu({ user }: UserMenuProps) {
                 <hr />
                 <MenuItem
                   label="Logout"
-                  onClick={() => signOut().then({ toggleOpen })}
+                  onClick={() => {
+                    signOut();
+                    toggleOpen();
+                  }}
                 />
               </>
             ) : (
               <>
                 <MenuItem
                   label="Login"
-                  onClick={() => router.push("/signin")}
+                  onClick={() => {
+                    router.push("/signin");
+                    toggleOpen();
+                  }}
                 />
                 <MenuItem
                   label="Sign up"
-                  onClick={() => router.push("/signup")}
+                  onClick={() => {
+                    router.push("/signup");
+                    toggleOpen();
+                  }}
                 />
               </>
             )}
