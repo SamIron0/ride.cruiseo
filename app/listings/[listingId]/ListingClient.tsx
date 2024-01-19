@@ -14,7 +14,7 @@ import ListingHead from '@/components/listings/ListingHead';
 import ListingInfo from '@/components/listings/ListingInfo';
 import { useListings } from '@/app/providers/ListingProvider';
 import { User } from '@supabase/supabase-js';
-
+import ListingReservation from '@/components/listings/ListingReservation';
 const initialDateRange = {
   startDate: new Date(),
   endDate: new Date(),
@@ -31,12 +31,14 @@ const ListingClient: React.FC<ListingClientProps> = ({
   currentUser
 }) => {
   const [destination, setDestination] = useState<Destination | undefined>();
-  const { allListings } = useListings();
+  const { allListings, prices } = useListings();
 
   // Assuming you want to set destination based on a condition
   useEffect(() => {
     if (allListings) {
-      const data = allListings.filter((destination) => destination.id === listing.id);
+      const data = allListings.filter(
+        (destination) => destination.id === listing.id
+      );
       setDestination(data[0]); // Assuming there is only one matching destination
     }
   }, [allListings]);
@@ -116,7 +118,16 @@ const ListingClient: React.FC<ListingClientProps> = ({
               md:gap-10 
               mt-6
             "
-          ></div>
+          >
+            <ListingReservation
+              price={prices.get(destination?.id)}
+              onChangeDate={(value) => setDateRange(value)}
+              dateRange={dateRange}
+              onSubmit={onCreateReservation}
+              disabled={isLoading}
+              disabledDates={disabledDates}
+            />
+          </div>
         </div>
       </div>
     </Container>
