@@ -43,7 +43,7 @@ export default function AuthUI() {
         toast.error(error.message);
       } else {
         toast.success('Logged in');
-        router.push(`${getURL()}/auth/callback`);
+        router.refresh();
       }
     } catch (error) {
       toast.error('An error occurred during login.');
