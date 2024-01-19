@@ -75,6 +75,7 @@ const Search = () => {
             pr-2 
             text-gray-600 
             flex 
+            border-l-[1px]
             flex-row 
             items-center 
             gap-3

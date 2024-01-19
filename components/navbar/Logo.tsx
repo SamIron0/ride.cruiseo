@@ -12,7 +12,7 @@ const Logo = () => {
       onClick={() => router.push('/')}
       className="hidden md:block cursor-pointer"
     >
-      <span className="w-[100px]"> cruiseo</span> <CiUser />
+      <span className="w-[100px]"> cruiseo</span> 
     </div>
   );
 };

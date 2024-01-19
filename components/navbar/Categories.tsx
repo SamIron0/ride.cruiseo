@@ -1,7 +1,11 @@
 'use client';
 
+import CategoryBox from '../CategoryBox';
+import Container from '../Container';
+import { useListings } from '@/app/providers/ListingProvider';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
+import { BsSnow } from 'react-icons/bs';
+import { FaSkiing } from 'react-icons/fa';
 import {
   GiBarn,
   GiBoatFishing,
@@ -12,45 +16,43 @@ import {
   GiIsland,
   GiWindmill
 } from 'react-icons/gi';
-import { FaSkiing } from 'react-icons/fa';
-import { BsSnow } from 'react-icons/bs';
 import { IoDiamond } from 'react-icons/io5';
-import { MdOutlineVilla } from 'react-icons/md';
-
-import CategoryBox from '../CategoryBox';
-import Container from '../Container';
-import { useListings } from '@/app/providers/ListingProvider';
+import { MdFlight, MdOutlineVilla } from 'react-icons/md';
+import {
+  TbBeach,
+  TbCar,
+  TbMountain,
+  TbMovie,
+  TbPool,
+  TbSchool,
+  TbShoppingCart
+} from 'react-icons/tb';
 
 export const categories = [
   {
     label: 'All',
-    icon: TbBeach,
+    icon: TbCar,
     description: 'View All Available Destinations!'
   },
   {
     label: 'Shop',
-    icon: GiWindmill,
+    icon: TbShoppingCart,
     description: 'This property is has windmills!'
   },
   {
     label: 'Airport',
-    icon: MdOutlineVilla,
+    icon: MdFlight,
     description: 'This property is modern!'
   },
   {
     label: 'School',
-    icon: TbMountain,
+    icon: TbSchool,
     description: 'This property is in the countryside!'
   },
   {
     label: 'Cinema',
-    icon: TbPool,
+    icon: TbMovie,
     description: 'Wanna see a movie?!'
-  },
-  {
-    label: 'Islands',
-    icon: GiIsland,
-    description: 'This property is on an island!'
   }
 ];
 

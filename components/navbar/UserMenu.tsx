@@ -1,14 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
-
-import { useRouter } from 'next/navigation';
 import MenuItem from './MenuItem';
+import { useSupabase } from '@/app/supabase-provider';
 import { UserDetails } from '@/types';
 import { User } from '@supabase/supabase-js';
-import { useSupabase } from '@/app/supabase-provider';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { CiUser } from 'react-icons/ci';
+
 interface UserMenuProps {
   user?: User | null;
 }
@@ -24,7 +25,7 @@ export default function UserMenu({ user }: UserMenuProps) {
         toast.error(error.message);
       } else {
         toast.success('Signed Out');
-        router.refresh()
+        router.refresh();
       }
     } catch (error) {
       toast.error('An error occurred during signout.');
@@ -42,7 +43,7 @@ export default function UserMenu({ user }: UserMenuProps) {
         };
         const response = await fetch(url, options);
         const sess = await response.json();
-       //console.log('session is: ', sess);
+        //console.log('session is: ', sess);
       } catch (error) {
         console.error('An error occurred while fetching session.');
       }
@@ -74,7 +75,7 @@ export default function UserMenu({ user }: UserMenuProps) {
             cursor-pointer
           "
         >
-          Airbnb your home
+          How it works
         </div>
         <div
           onClick={toggleOpen}
@@ -95,7 +96,9 @@ export default function UserMenu({ user }: UserMenuProps) {
           "
         >
           <AiOutlineMenu />
-          <div className="hidden md:block"></div>
+          <div className="hidden md:block">
+            <CiUser />
+          </div>
         </div>
       </div>
       {isOpen && (
@@ -133,7 +136,7 @@ export default function UserMenu({ user }: UserMenuProps) {
                   onClick={() => router.push('/properties')}
                 />
                 <MenuItem
-                  label="Airbnb your home"
+                  label="How it works"
                   onClick={() => router.push('/')}
                 />
                 <hr />
@@ -141,7 +144,10 @@ export default function UserMenu({ user }: UserMenuProps) {
               </>
             ) : (
               <>
-                <MenuItem label="Login" onClick={() => router.push('/signin')} />
+                <MenuItem
+                  label="Login"
+                  onClick={() => router.push('/signin')}
+                />
                 <MenuItem
                   label="Sign up"
                   onClick={() => router.push('/signup')}
