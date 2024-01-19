@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import CategoryBox from '../CategoryBox';
-import Container from '../Container';
-import { useListings } from '@/app/providers/ListingProvider';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { BsSnow } from 'react-icons/bs';
-import { FaSkiing } from 'react-icons/fa';
+import CategoryBox from "../CategoryBox";
+import Container from "../Container";
+import { useListings } from "@/app/providers/ListingProvider";
+import { usePathname, useSearchParams } from "next/navigation";
+import { BsSnow } from "react-icons/bs";
+import { FaSkiing } from "react-icons/fa";
 import {
   GiBarn,
   GiBoatFishing,
@@ -14,10 +14,10 @@ import {
   GiCaveEntrance,
   GiForestCamp,
   GiIsland,
-  GiWindmill
-} from 'react-icons/gi';
-import { IoDiamond } from 'react-icons/io5';
-import { MdFlight, MdOutlineVilla } from 'react-icons/md';
+  GiWindmill,
+} from "react-icons/gi";
+import { IoDiamond } from "react-icons/io5";
+import { MdFlight, MdOutlineVilla } from "react-icons/md";
 import {
   TbBeach,
   TbCar,
@@ -25,42 +25,42 @@ import {
   TbMovie,
   TbPool,
   TbSchool,
-  TbShoppingCart
-} from 'react-icons/tb';
+  TbShoppingCart,
+} from "react-icons/tb";
 
 export const categories = [
   {
-    label: 'All',
+    label: "All",
     icon: TbCar,
-    description: 'View All Available Destinations!'
+    description: "View All Available Destinations!",
   },
   {
-    label: 'Shop',
+    label: "Shop",
     icon: TbShoppingCart,
-    description: 'This property is has windmills!'
+    description: "This property is has windmills!",
   },
   {
-    label: 'Airport',
+    label: "Airport",
     icon: MdFlight,
-    description: 'This property is modern!'
+    description: "This property is modern!",
   },
   {
-    label: 'School',
+    label: "School",
     icon: TbSchool,
-    description: 'This property is in the countryside!'
+    description: "This property is in the countryside!",
   },
   {
-    label: 'Cinema',
+    label: "Cinema",
     icon: TbMovie,
-    description: 'Wanna see a movie?!'
-  }
+    description: "Wanna see a movie?!",
+  },
 ];
 
 const Categories = (onCategoryClick: any) => {
   const params = useSearchParams();
   const { activeCategory } = useListings();
   const pathname = usePathname();
-  const isMainPage = pathname === '/';
+  const isMainPage = pathname === "/";
 
   if (!isMainPage) {
     return null;
@@ -70,7 +70,7 @@ const Categories = (onCategoryClick: any) => {
     <Container>
       <div
         className="
-        pt-4 flex sm:px-24 md:px-44 lg:px-60 flex-row items-center justify-between overflow-x-auto"
+        pt-4 flex px-10 sm:px-24 md:px-44 lg:px-60 flex-row items-center justify-between overflow-x-auto"
       >
         {categories.map((item, index) => (
           <CategoryBox
