@@ -1,12 +1,14 @@
 "use client";
 import { useState } from "react";
+import { usesupabase } from "../SupabaseProvider";
 export default async function Account() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const { supabase } = useSupabase();
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
-
+  getUs;
   return (
     <div className="pt-24">
       <button
