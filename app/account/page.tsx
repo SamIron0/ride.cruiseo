@@ -4,7 +4,7 @@ import { useSupabase } from "../supabase-provider";
 
 export default function Account() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const sidebarRef = useRef(null);
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
