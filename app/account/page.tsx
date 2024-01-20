@@ -10,7 +10,7 @@ export default function Account() {
     setSidebarOpen(!isSidebarOpen);
   };
 
-  const closeSidebar = (event) => {
+  const closeSidebar = (event: any) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       setSidebarOpen(false);
     }
