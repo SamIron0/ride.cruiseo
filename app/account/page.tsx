@@ -5,12 +5,12 @@ import { useSupabase } from "../supabase-provider";
 export default function Account() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
-  
+
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-  const closeSidebar = (event) => {
+  const closeSidebar = (event: any) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       setSidebarOpen(false);
     }
@@ -18,7 +18,7 @@ export default function Account() {
 
   useEffect(() => {
     document.addEventListener("click", closeSidebar);
-    
+
     return () => {
       document.removeEventListener("click", closeSidebar);
     };
@@ -26,7 +26,6 @@ export default function Account() {
 
   const { supabase } = useSupabase();
 
-  
   return (
     <div className="pt-24">
       <button
