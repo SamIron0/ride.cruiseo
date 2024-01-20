@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { usesupabase } from "../supabase-provider";
+import { useSupabase } from "../supabase-provider";
 export default async function Account() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
