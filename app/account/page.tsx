@@ -4,13 +4,13 @@ import { useSupabase } from "../supabase-provider";
 
 export default function Account() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const sidebarRef = useRef<HTMLDivElement | null>(null);
-
+  const sidebarRef = useRef(null);
+  
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-  const closeSidebar = (event: any) => {
+  const closeSidebar = (event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       setSidebarOpen(false);
     }
@@ -18,7 +18,7 @@ export default function Account() {
 
   useEffect(() => {
     document.addEventListener("click", closeSidebar);
-
+    
     return () => {
       document.removeEventListener("click", closeSidebar);
     };
@@ -26,6 +26,7 @@ export default function Account() {
 
   const { supabase } = useSupabase();
 
+  
   return (
     <div className="pt-24">
       <button
@@ -34,7 +35,7 @@ export default function Account() {
         data-drawer-toggle="separator-sidebar"
         aria-controls="separator-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -57,7 +58,7 @@ export default function Account() {
         id="separator-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-full transition-transform ${
           isSidebarOpen ? "" : "-translate-x-full"
-        }`}
+        } sm:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
