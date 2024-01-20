@@ -8,7 +8,7 @@ export default async function Account() {
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
-  getUs;
+  const { supabase } = useSupabase();
   return (
     <div className="pt-24">
       <button
