@@ -45,7 +45,7 @@ export default function AuthUI() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     return (
-      <section className="bg-black">
+      <section className="bg-white">
         <div className="max-w-6xl text-white mx-auto px-4 sm:px-6">
           <div className="pt-32 pb-12 md:pb-20">
             {/* Page header */}

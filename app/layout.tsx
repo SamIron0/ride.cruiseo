@@ -11,6 +11,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter, Nunito } from 'next/font/google';
 import SearchModal from '@/components/modals/SearchModal';
+import Sidebar from '@/components/Sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 const meta = {
@@ -97,14 +98,21 @@ export default function RootLayout({
       <body className={font.className}>
         <SupabaseProvider>
           <ListingsProvider>
-            {/* @ts-expect-error */}
-            <Navbar />
             <ClientOnly>
               <ToasterProvider />
               <SearchModal />
             </ClientOnly>
-
-            {children}
+            {false ? (
+              <div className="flex">
+                <Sidebar /> {children}
+              </div>
+            ) : (
+              <div>
+                {/* @ts-expect-error */}
+                <Navbar />
+                {children}
+              </div>
+            )}{' '}
             <SpeedInsights />
             <Analytics />
             <Footer />

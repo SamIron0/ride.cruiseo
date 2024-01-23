@@ -76,6 +76,28 @@ const ListingClient: React.FC<ListingClientProps> = ({
         setIsLoading(false);
       });
   }, [totalPrice, dateRange, listing?.id, router, currentUser]);
+  const options: any = [];
+  // get  price specific to this user for each active trip to the given destination
+
+  function getPrice() {
+    // get all trips prices from  listing
+    listing?.activeTrips?.forEach((trip) => {
+      options.push([trip.price, trip.id]); // push price andid
+    });
+
+    // now add all prices to the users price and get the final price by applying discount
+    const discount = 0.3;
+    const data: any = [];
+    options?.forEach((option: any) => {
+      const price = option[0];
+      const id = option[1];
+      const userPrice = (price + totalPrice) * (1 - discount);
+      data.push([userPrice, id]);
+    });
+
+    //return aray containing all available trips and their prices
+    return data;
+  }
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
