@@ -1,9 +1,8 @@
-'use client'
+'use client';
 import getListingById from '@/app/actions/getListingById';
 
 import ClientOnly from '@/components/ClientOnly';
 import EmptyState from '@/components/EmptyState';
-
 import ListingClient from './ListingClient';
 import { createServerSupabaseClient } from '@/app/supabase-server';
 
@@ -14,7 +13,7 @@ interface IParams {
 const ListingPage = async ({ params }: { params: IParams }) => {
   const listing = await getListingById(params);
   // const reservations = await getReservations(params);
-   if (!listing) {
+  if (!listing) {
     return (
       <ClientOnly>
         <EmptyState />
@@ -24,7 +23,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 
   return (
     <ClientOnly>
-      <ListingClient listing={listing}/>
+      <ListingClient  listing={listing} />
     </ClientOnly>
   );
 };

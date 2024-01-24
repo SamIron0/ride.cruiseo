@@ -1,38 +1,41 @@
-"use client";
-import Container from "./Container";
-import ListingCard from "./listings/ListingCard";
-import EmptyState from "./EmptyState";
+'use client';
+import Container from './Container';
+import ListingCard from './listings/ListingCard';
+import EmptyState from './EmptyState';
 
-import getListings, {IListingsParams} from "@/app/actions/getListings";
-import ClientOnly from "./ClientOnly";
-import { Destination } from "@/types";
-import { useEffect, useState } from "react";
-import { all } from "axios";
-import { useListings } from "@/app/providers/ListingProvider";
+import getListings, { IListingsParams } from '@/app/actions/getListings';
+import ClientOnly from './ClientOnly';
+import { Destination } from '@/types';
+import { useEffect, useState } from 'react';
+import { all } from 'axios';
+import { useListings } from '@/app/providers/ListingProvider';
 interface GridProps {
   searchParams: IListingsParams;
+  userDetails: any;
 }
 
-export function Grid({ searchParams }: GridProps) {
+export function Grid({ searchParams, userDetails }: GridProps) {
   const { activeCategory } = useListings();
   const { allListings, setAllListings } = useListings();
   const { prices, setPrices } = useListings();
-
-  const [region, setRegion] = useState("");
+  const { setUserDetails } = useListings();
+  setUserDetails(userDetails);
+  console.log(userDetails);
+  const [region, setRegion] = useState('');
   // fetch the user's location
   // useEffect(() => {
   const fetchLocation = async () => {
     try {
-      const res = await fetch("api/getLocation");
+      const res = await fetch('api/getLocation');
       if (res.status === 200) {
         // valid response
         const data = await res.json();
         setRegion(data.location); // set the region to the
       } else {
-        console.error("An error occurred while fetching the location");
+        console.error('An error occurred while fetching the location');
       }
     } catch (error) {
-      console.error("An error occurred while fetching the location:", error);
+      console.error('An error occurred while fetching the location:', error);
     }
   };
   // get al destinations from supabase and then prices
@@ -50,22 +53,22 @@ export function Grid({ searchParams }: GridProps) {
     const destinationraw = {
       address: userDestination.address,
       latitude: userDestination?.coordinates?.lat,
-      longitude: userDestination?.coordinates?.lon,
+      longitude: userDestination?.coordinates?.lon
     };
     try {
       const response = await fetch(
-        "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
+        'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             originraw: region,
             destinationraw: destinationraw,
             worker: workerID,
-            userID: "1",
-          }),
+            userID: '1'
+          })
         }
       );
       const result = await response.json();
@@ -73,17 +76,17 @@ export function Grid({ searchParams }: GridProps) {
       if (response.ok) {
         const responseBody = JSON.parse(result.body);
 
-        if (responseBody.result && responseBody.result.startsWith("C")) {
+        if (responseBody.result && responseBody.result.startsWith('C')) {
           setPrices(
             (prices: Map<string, number>) =>
               new Map(prices.set(userDestination.id, responseBody.result))
           );
         } else {
-          console.error("Error invoking Lambda function");
+          console.error('Error invoking Lambda function');
         }
       }
     } catch (error) {
-      console.error("An error occurred while invoking Lambda function:", error);
+      console.error('An error occurred while invoking Lambda function:', error);
     }
   };
 
@@ -148,7 +151,7 @@ export function Grid({ searchParams }: GridProps) {
               gap-7
             "
           >
-            {category === "All"
+            {category === 'All'
               ? allListings.map((listing: any) => (
                   <ListingCard
                     currentUser={currentUser}

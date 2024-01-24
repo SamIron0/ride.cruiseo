@@ -1,6 +1,6 @@
-"use client";
-import React, { createContext, useState, useContext, ReactNode } from "react";
-import { Destination } from "@/types";
+'use client';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { Destination, UserDetails } from '@/types';
 interface ListingsContextProps {
   children: ReactNode;
 }
@@ -11,12 +11,14 @@ interface ListingsContextValue {
   prices: any;
   setPrices: any;
   allListings: Destination[] | undefined;
-  setAllListings: any
+  setAllListings: any;
+  userDetails: UserDetails | undefined;
+  setUserDetails: any;
 }
 
-const ListingsContext = createContext<
-  ListingsContextValue | undefined
->(undefined);
+const ListingsContext = createContext<ListingsContextValue | undefined>(
+  undefined
+);
 
 /**
  * Initializes the ListingsProvider component with the provided props.
@@ -27,12 +29,12 @@ const ListingsContext = createContext<
  * @return {ReactElement} The rendered ListingsProvider component
  */
 export const ListingsProvider: React.FC<ListingsContextProps> = ({
-  children,
+  children
 }) => {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeCategory, setActiveCategory] = useState<string>('All');
   const [prices, setPrices] = useState(new Map<string, number>()); // Initialize with your default value
   const [allListings, setAllListings] = useState<Destination[]>();
-
+  const [userDetails, setUserDetails] = useState<UserDetails>();
   return (
     <ListingsContext.Provider
       value={{
@@ -42,6 +44,8 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
         setPrices,
         allListings,
         setAllListings,
+        userDetails,
+        setUserDetails
       }}
     >
       {children}
@@ -54,7 +58,7 @@ export const useListings = (): ListingsContextValue => {
 
   if (!context) {
     throw new Error(
-      "useListings must be used within an ActiveCategoryProvider"
+      'useListings must be used within an ActiveCategoryProvider'
     );
   }
 

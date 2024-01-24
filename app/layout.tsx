@@ -9,11 +9,9 @@ import ToasterProvider from './providers/ToasterProvider';
 import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Inter, Nunito } from 'next/font/google';
 import SearchModal from '@/components/modals/SearchModal';
 import Sidebar from '@/components/Sidebar';
 
-const inter = Inter({ subsets: ['latin'] });
 const meta = {
   title: 'Cruiseo Ride Share',
   description: 'Brought to you by Samuel.',
@@ -44,11 +42,6 @@ export const metadata = {
     description: meta.description
   }
 };
-
-const font = Nunito({
-  subsets: ['latin']
-});
-
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages
@@ -95,7 +88,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={font.className}>
+      <body >
         <SupabaseProvider>
           <ListingsProvider>
             <ClientOnly>

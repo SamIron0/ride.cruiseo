@@ -32,25 +32,7 @@ export default function UserMenu({ user }: UserMenuProps) {
       toast.error("An error occurred during signout.");
     }
   };
-  useEffect(() => {
-    async function getSession() {
-      try {
-        const url = "/api/session";
-        const options = {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        const response = await fetch(url, options);
-        const sess = await response.json();
-        //console.log('session is: ', sess);
-      } catch (error) {
-        console.error("An error occurred while fetching session.");
-      }
-    }
-    getSession();
-  });
+
 
   const [isOpen, setIsOpen] = useState(false);
 

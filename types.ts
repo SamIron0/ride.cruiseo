@@ -6,7 +6,7 @@ export interface Trip {
   destination_id: string;
   id: string;
   date: string;
-  user_ids: string[];
+  user_ids?: string[] | undefined;
   price: string;
   status: string;
 }
@@ -34,4 +34,5 @@ export interface UserDetails {
   full_name: string | null;
   id: string;
   payment_method: Json | null;
+  geolocation?: GeoCoordinate | null;
 }
