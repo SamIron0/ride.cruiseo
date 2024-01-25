@@ -56,6 +56,9 @@ export function Grid({ searchParams, userDetails }: GridProps) {
       longitude: userDestination?.coordinates?.lon
     };
     while (!prices.get(userDestination.id)) {
+      console.log('retrying get for destnation: ',userDestination.id);
+      console.log('it has price: ', prices.get(userDestination.id));
+      
       try {
         const response = await fetch(
           'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
@@ -97,7 +100,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
 
   // call get price
   const runWorker = async (workerID: number, destination: Destination) => {
-    if (prices.get(destination.id)) {
+    if (prices.get(destination.id) ) {
       return;
     }
     await getPrice(workerID, destination);
