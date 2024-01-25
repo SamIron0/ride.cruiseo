@@ -114,10 +114,11 @@ export function Grid({ searchParams, userDetails }: GridProps) {
 
   // call run workers
   useEffect(() => {
+    
     const abortController = new AbortController();
     runWorkers();
     return () => abortController.abort(); // Cleanup on unmount
-  }, [allListings]);
+  }, [prices]);
 
   const destination = null;
   const currentUser = null;
