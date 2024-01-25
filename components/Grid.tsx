@@ -120,7 +120,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
     const abortController = new AbortController();
     runWorkers();
     return () => abortController.abort(); // Cleanup on unmount
-  }, []);
+  }, [allListings]);
 
   const destination = null;
   const currentUser = null;
