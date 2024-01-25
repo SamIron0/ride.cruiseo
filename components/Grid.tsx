@@ -92,6 +92,9 @@ export function Grid({ searchParams, userDetails }: GridProps) {
 
   // call get price
   const runWorker = async (workerID: number, destination: Destination) => {
+    if(prices.get(destination.id)){
+      return;
+    }
     await getPrice(workerID, destination);
   };
 
@@ -114,11 +117,10 @@ export function Grid({ searchParams, userDetails }: GridProps) {
 
   // call run workers
   useEffect(() => {
-    
     const abortController = new AbortController();
     runWorkers();
     return () => abortController.abort(); // Cleanup on unmount
-  }, [prices]);
+  }, []);
 
   const destination = null;
   const currentUser = null;
