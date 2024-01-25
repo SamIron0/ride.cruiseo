@@ -25,6 +25,16 @@ export function Grid({ searchParams, userDetails }: GridProps) {
   // fetch the user's location
   // useEffect(() => {
   const fetchLocation = async () => {
+    // for now use madeup address
+    const location = `{
+      lat: 37.7749,
+      lon: -122.4194
+    }`;
+    setRegion(location);
+
+    // this should retrun users address.
+    return userDetails.address;
+
     try {
       const res = await fetch('api/getLocation');
       if (res.status === 200) {
@@ -55,6 +65,9 @@ export function Grid({ searchParams, userDetails }: GridProps) {
       latitude: userDestination?.coordinates?.lat,
       longitude: userDestination?.coordinates?.lon
     };
+    if(prices.get(userDestination.id)) {
+      return;
+    }
     try {
       const response = await fetch(
         'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
