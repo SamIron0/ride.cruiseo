@@ -20,6 +20,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
   const { prices, setPrices } = useListings();
   const { setUserDetails } = useListings();
   setUserDetails(userDetails);
+  console.log(userDetails);
   const [region, setRegion] = useState('');
   // fetch the user's location
   // useEffect(() => {
@@ -54,57 +55,43 @@ export function Grid({ searchParams, userDetails }: GridProps) {
       latitude: userDestination?.coordinates?.lat,
       longitude: userDestination?.coordinates?.lon
     };
-    while (!prices.get(userDestination.id)) {
-            console.log('retrying get for destnation: ',userDestination.name);
-      console.log('it has price: ', prices.get(userDestination.id));
-      
-      try {
-        const response = await fetch(
-          'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              originraw: region,
-              destinationraw: destinationraw,
-              worker: workerID,
-              userID: '1'
-            })
-          }
-        );
-        const result = await response.json();
-
-        if (response.ok) {
-          const responseBody = JSON.parse(result.body);
-
-          if (responseBody.result && responseBody.result.startsWith('C')) {
-        
-            setPrices(
-              (prices: Map<string, number>) => 
-                new Map(prices).set(userDestination.id, responseBody.result)
-            );
-          } else {
-            console.error('Error invoking Lambda function');
-          }
+    try {
+      const response = await fetch(
+        'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            originraw: region,
+            destinationraw: destinationraw,
+            worker: workerID,
+            userID: '1'
+          })
         }
-      } catch (error) {
-        console.error(
-          'An error occurred while invoking Lambda function:',
-          error
-        );
+      );
+      const result = await response.json();
+
+      if (response.ok) {
+        const responseBody = JSON.parse(result.body);
+
+        if (responseBody.result && responseBody.result.startsWith('C')) {
+          setPrices(
+            (prices: Map<string, number>) =>
+              new Map(prices.set(userDestination.id, responseBody.result))
+          );
+        } else {
+          console.error('Error invoking Lambda function');
+        }
       }
-      // sleep for 2 seconds
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+    } catch (error) {
+      console.error('An error occurred while invoking Lambda function:', error);
     }
   };
 
   // call get price
   const runWorker = async (workerID: number, destination: Destination) => {
-    if (prices.get(destination.id) ) {
-      return;
-    }
     await getPrice(workerID, destination);
   };
 
@@ -114,6 +101,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
     const totalListings = allListings ? allListings.length : 0;
     const workers: number[] = [1, 2];
     let nextListingIndex = 0;
+
     const workerPromises = workers.map(async (workerID) => {
       while (nextListingIndex < totalListings && allListings) {
         const listing = allListings[nextListingIndex++];
