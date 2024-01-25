@@ -20,7 +20,6 @@ export function Grid({ searchParams, userDetails }: GridProps) {
   const { prices, setPrices } = useListings();
   const { setUserDetails } = useListings();
   setUserDetails(userDetails);
-  console.log(userDetails);
   const [region, setRegion] = useState('');
   // fetch the user's location
   // useEffect(() => {
@@ -56,7 +55,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
       longitude: userDestination?.coordinates?.lon
     };
     while (!prices.get(userDestination.id)) {
-      console.log('retrying get for destnation: ',userDestination.id);
+      console.log('retrying get for destnation: ',userDestination.name);
       console.log('it has price: ', prices.get(userDestination.id));
       
       try {
@@ -81,9 +80,10 @@ export function Grid({ searchParams, userDetails }: GridProps) {
           const responseBody = JSON.parse(result.body);
 
           if (responseBody.result && responseBody.result.startsWith('C')) {
+        
             setPrices(
-              (prices: Map<string, number>) =>
-                new Map(prices.set(userDestination.id, responseBody.result))
+              (prices: Map<string, number>) => 
+                new Map(prices).set(userDestination.id, responseBody.result)
             );
           } else {
             console.error('Error invoking Lambda function');
