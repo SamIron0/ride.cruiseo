@@ -55,7 +55,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
       longitude: userDestination?.coordinates?.lon
     };
     while (!prices.get(userDestination.id)) {
-      console.log('retrying get for destnation: ',userDestination.name);
+            console.log('retrying get for destnation: ',userDestination.name);
       console.log('it has price: ', prices.get(userDestination.id));
       
       try {
@@ -95,6 +95,8 @@ export function Grid({ searchParams, userDetails }: GridProps) {
           error
         );
       }
+      // sleep for 2 seconds
+      await new Promise((resolve) => setTimeout(resolve, 2000));
     }
   };
 
