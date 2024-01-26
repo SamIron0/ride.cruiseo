@@ -218,7 +218,7 @@ export interface Database {
           id: string
           date: string
           user_ids: string[]
-          price: string
+          price: number
           status: string
         }
         Insert: {
@@ -228,7 +228,7 @@ export interface Database {
           user_ids?: string[]
           id: string | null
           date?: string | null
-          price?: string | null
+          price?: number | null
           status?: string | null
 
         }
@@ -239,7 +239,7 @@ export interface Database {
           user_ids?: string[]
           id?: string | null
           date?: string | null
-          price?: string | null
+          price?: number | null
           status?: string | null
 
         }

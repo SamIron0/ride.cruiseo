@@ -52,7 +52,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
     return result;
   }
-  const { prices, setPrices } = useListings();
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -98,15 +97,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
           {address(data.address)}
         </p>
-        {prices.get(data.id) ? (
-          <div className="flex flex-row items-center gap-1">
-            <div className="font-semibold">{prices.get(data.id)}</div>
-          </div>
-        ) : (
-          <div className="max-w-sm animate-pulse">
-            <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
-          </div>
-        )}
+        
         {onAction && actionLabel && (
           <Button
             disabled={disabled}

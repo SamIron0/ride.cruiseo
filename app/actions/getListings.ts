@@ -1,3 +1,5 @@
+import { GeoCoordinate } from "@/types";
+
 export interface IListingsParams {
   userId?: string;
   guestCount?: number;
@@ -11,7 +13,7 @@ export interface IListingsParams {
 
 export default async function getListings(
   params: IListingsParams,
-  userLocation?: string
+  userLocation?: GeoCoordinate
 ) {
   let listings = [];
 

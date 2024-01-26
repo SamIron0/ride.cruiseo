@@ -7,7 +7,7 @@ export interface Trip {
   id: string;
   date: string;
   user_ids?: string[] | undefined;
-  price: string;
+  price: number;
   status: string;
 }
 
@@ -24,7 +24,6 @@ export interface Destination {
   name: string;
   times?: string[] | null;
   activeTrips?: Trip[] | null;
-  price?: string | null;
   coordinates?: GeoCoordinate | null;
 }
 export interface UserDetails {
@@ -33,6 +32,7 @@ export interface UserDetails {
   billing_address: Json | null;
   full_name: string | null;
   id: string;
+  address: string | null;
   payment_method: Json | null;
   geolocation?: GeoCoordinate | null;
 }

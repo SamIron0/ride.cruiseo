@@ -15,30 +15,31 @@ interface GridProps {
 }
 
 export function Grid({ searchParams, userDetails }: GridProps) {
-  const { activeCategory } = useListings();
-  const { allListings, setAllListings } = useListings();
-  const { prices, setPrices } = useListings();
-  const { setUserDetails } = useListings();
+  const { allListings, setAllListings, activeCategory, setUserDetails } =
+    useListings();
+  const location = {
+    lat: 37.7749,
+    lon: -122.4194
+  };
+  userDetails.geolocation = location;
   setUserDetails(userDetails);
-  //console.log(userDetails);
-  const [region, setRegion] = useState('');
   const fetchLocation = async () => {
     // for now use madeup address
-    const location = `{
+    const location = {
       lat: 37.7749,
       lon: -122.4194
-    }`;
-    setRegion(location);
+    };
+    //setRegion(location);
 
     // this should retrun users address.
-    return userDetails.address;
+    return location;
 
+    //use this to get general user location
     try {
       const res = await fetch('api/getLocation');
       if (res.status === 200) {
         // valid response
         const data = await res.json();
-        setRegion(data.location); // set the region to the
       } else {
         console.error('An error occurred while fetching the location');
       }
@@ -49,86 +50,14 @@ export function Grid({ searchParams, userDetails }: GridProps) {
   // get al destinations from supabase and then prices
   useEffect(() => {
     const getListing = async () => {
-      await fetchLocation();
-      const data = await getListings(searchParams, region);
+      const userGeo = await fetchLocation();
+      const data = await getListings(searchParams, userGeo);
       setAllListings(data);
     };
     getListing();
   }, []);
 
   // get the price of all destinatiions and store it in the state
-  const getPrice = async (workerID: number, userDestination: Destination) => {
-    const destinationraw = {
-      address: userDestination.address,
-      latitude: userDestination?.coordinates?.lat,
-      longitude: userDestination?.coordinates?.lon
-    };
-    if(prices.get(userDestination.id)) {
-      return;
-    }
-    try {
-      const response = await fetch(
-        'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            originraw: region,
-            destinationraw: destinationraw,
-            worker: workerID,
-            userID: '1'
-          })
-        }
-      );
-      const result = await response.json();
-
-      if (response.ok) {
-        const responseBody = JSON.parse(result.body);
-
-        if (responseBody.result && responseBody.result.startsWith('C')) {
-          setPrices(
-            (prices: Map<string, number>) =>
-              new Map(prices.set(userDestination.id, responseBody.result))
-          );
-        } else {
-          console.error('Error invoking Lambda function');
-        }
-      }
-    } catch (error) {
-      console.error('An error occurred while invoking Lambda function:', error);
-    }
-  };
-
-  // call get price
-  const runWorker = async (workerID: number, destination: Destination) => {
-    await getPrice(workerID, destination);
-  };
-
-  // create x workers to call them asynchronously to get the price
-  const runWorkers = async () => {
-    // Assuming allListings is a context variable array of objects
-    const totalListings = allListings ? allListings.length : 0;
-    const workers: number[] = [1, 2];
-    let nextListingIndex = 0;
-
-    const workerPromises = workers.map(async (workerID) => {
-      while (nextListingIndex < totalListings && allListings) {
-        const listing = allListings[nextListingIndex++];
-        await runWorker(workerID, listing);
-      }
-    });
-
-    await Promise.all(workerPromises);
-  };
-
-  // call run workers
-  useEffect(() => {
-    const abortController = new AbortController();
-    runWorkers();
-    return () => abortController.abort(); // Cleanup on unmount
-  }, [allListings]);
 
   const destination = null;
   const currentUser = null;

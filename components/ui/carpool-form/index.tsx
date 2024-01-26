@@ -117,7 +117,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination, allDestination
         destination_id: destination.id,
         user_ids: userIds,
         date: date,
-        price: "N/A",
+        price: 0,
         status: "Active"
       })
       //sendEmail();

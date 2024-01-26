@@ -8,8 +8,6 @@ interface ListingsContextProps {
 interface ListingsContextValue {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
-  prices: any;
-  setPrices: any;
   allListings: Destination[] | undefined;
   setAllListings: any;
   userDetails: UserDetails | undefined;
@@ -32,7 +30,6 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
   children
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [prices, setPrices] = useState(new Map<string, number>()); // Initialize with your default value
   const [allListings, setAllListings] = useState<Destination[]>();
   const [userDetails, setUserDetails] = useState<UserDetails>();
   return (
@@ -40,8 +37,6 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
       value={{
         activeCategory,
         setActiveCategory,
-        prices,
-        setPrices,
         allListings,
         setAllListings,
         userDetails,

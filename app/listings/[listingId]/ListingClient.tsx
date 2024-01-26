@@ -10,49 +10,82 @@ import { Destination, Trip, UserDetails } from '@/types';
 import Container from '@/components/Container';
 import ListingHead from '@/components/listings/ListingHead';
 import { useListings } from '@/app/providers/ListingProvider';
-const initialDateRange = {
-  startDate: new Date(),
-  endDate: new Date(),
-  key: 'selection'
-};
 
 interface ListingClientProps {
   listing: Destination;
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
-  const [destination, setDestination] = useState<Destination | undefined>();
-  const { allListings, prices, userDetails } = useListings();
+  const { userDetails } = useListings();
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>());
+  const getPrice = async (trip: Trip) => {
+    const workerID = 1;
+    const destinationraw = {
+      address: listing.address,
+      latitude: listing?.coordinates?.lat,
+      longitude: listing?.coordinates?.lon
+    };
 
-  // all aactive pricees for this listing
-  const [allActivePrices, setAllActivePrices] = useState<any>([]);
+    try {
+      console.log('trip', trip);
 
-  useEffect(() => {
-    if (allListings) {
-      const data = allListings.filter(
-        (destination) => destination.id === listing.id
+      const response = await fetch(
+        'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            originraw: userDetails?.geolocation,
+            destinationraw: destinationraw,
+            worker: workerID,
+            userID: userDetails?.id
+          })
+        }
       );
-      setDestination(data[0]); // Assuming there is only one matching destination
+      const result = await response.json();
+
+      if (response.ok) {
+        const responseBody = JSON.parse(result.body);
+
+        if (responseBody.result && responseBody.result.startsWith('C')) {
+          //  caluclate price usign algoriithm
+          const discount = 0.1;
+          const fullPrice = parseFloat(
+            responseBody.result.replace(/[^0-9.]/g, '')
+          );
+          const discountedPrice = fullPrice * (1 - discount);
+          loadedPrices.set(trip.id, discountedPrice);
+        } else {
+          console.error('Error invoking Lambda function');
+        }
+      }
+    } catch (error) {
+      console.error('An error occurred while invoking Lambda function:', error);
     }
-  }, [allListings]);
+  };
+  const [selectedTrip, setSelectedTrip] = useState<Trip>({
+    id: '',
+    origin: '',
+    destination_id: '',
+    user_ids: [],
+    date: 'new Date()',
+    price: 0,
+    status: ''
+  });
 
   const router = useRouter();
-
-  const category = '';
-  const options: any = [];
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(parseInt(listing.price || '0'));
-
   const onCreateReservation = async () => {
     setIsLoading(true);
     const newTrip: Trip = {
       id: uuidv4(),
-      origin: 'origin',
+      origin: userDetails?.address || '',
       destination_id: listing.id,
-      user_ids: ['1234', '12345'],
-      date: 'date',
-      price: '10',
+      user_ids: [userDetails?.id || ''],
+      date: selectedTrip.date,
+      price: loadedPrices.get(selectedTrip.id) || 0,
       status: 'Active'
     };
     try {
@@ -71,42 +104,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       console.error(error);
     }
   };
-  useEffect(() => {
-    // get all trips prices from  listing
-    listing?.activeTrips?.forEach((trip) => {
-      options.push([trip.price, trip.date, trip.id]); // push price andid
-    });
-
-    // filter out all trips that are not accessiblle for this user
-
-    //---------------------------------------------------------------------------------------------
-
-    // if trip orgin is not with 5 km of destination and trip origin is not with 5 km of users geolocation and ...
-    //
-
-    const userGeoCode = userDetails?.geolocation;
-
-    // now add all prices to the users price and get the final price by applying discount
-    const discount = 0.3;
-    const data: any = [];
-    options?.forEach((option: any) => {
-      const price = option[0];
-      const date = option[1];
-      const id = option[2];
-      const priceInt = parseInt(price, 10);
-      const destinationPrice = prices.get(listing?.id)
-      console.log('price',prices.get(listing?.id))
-
-      const userPrice =
-        (priceInt + parseInt(destinationPrice.slice(3))) * (1 - discount);
-      data.push([userPrice, date, id]);
-      // setTotalPrice(userPrice)
-    });
-
-    //return aray containing all available trips and their prices
-    setAllActivePrices(data);
-  }, []);
-
   return (
     <Container>
       <div
@@ -118,27 +115,64 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       >
         <div className="flex flex-col pb-12  gap-6">
           <ListingHead
-            title={destination?.name}
-            imageSrc={destination?.photo}
-            locationValue={destination?.address}
-            id={destination?.id}
+            title={listing?.name}
+            imageSrc={listing?.photo}
+            locationValue={listing?.address}
+            id={listing?.id}
           />
-          <a className="flex items-center justify-center bg-black text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg">
-            {allActivePrices.map((price: any) => (
-              <div className="w-full py-6 text-white rounded-lg">
-                <span>
-                  price:{' '}
-                  {prices.get(destination?.id) ? price[0] : <>loading price </>}
-                </span>
-                <span>date: {price[1]}</span>
-                <span>id: {price[2]}</span>
+          <a className="flex flex-col items-center justify-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg">
+            {listing.activeTrips?.map((trip: any) => (
+              <div className="w-full md:gap-6">
+                {/* Content */}
+                <div
+                  className="max-w-xl md:max-w-none md:w-full sm:mx-auto md:col-span-7 lg:col-span-6 md:mt-6"
+                  data-aos="fade-right"
+                >
+                  {/* Tabs buttons */}
+                  <div className="mb-8 md:mb-0 text-black">
+                    <div
+                      className={`flex w-full items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg ${
+                        selectedTrip.id !== trip.id
+                          ? ` bg-white  border-gray-200 hover:shadow-lg`
+                          : `bg-zinc-400 shadow-md border-gray-600 hover:shadow-lg`
+                      }`}
+                    >
+                      <div className="flex">
+                        <div className="font-bold leading-snug tracking-tight mb-1">
+                          Price:
+                        </div>
+                        <div className="text-gray-600">
+                          {loadedPrices?.get(trip.destination_id) ? (
+                            loadedPrices?.get(trip.destination_id)
+                          ) : (
+                            <div className="max-w-sm animate-pulse">
+                              <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
+                            </div>
+                          )}
+                        </div>{' '}
+                      </div>
+                      <button
+                        onClick={() => getPrice(trip)}
+                        className="flex text-sm justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3"
+                      >
+                        Show Price
+                      </button>
+                      <button
+                        onClick={() => setSelectedTrip(trip)}
+                        className="flex cjustify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3"
+                      >
+                        Select
+                      </button>
+                    </div>{' '}
+                  </div>
+                </div>
               </div>
             ))}
           </a>
 
           <button
-            className="max-w-2xl rounded-lg py-2 px-4 bg-blue-500 text-md"
-            onClick={onCreateReservation}
+            className=" rounded-lg py-2 px-8 bg-blue-500 text-md"
+            onClick={() => onCreateReservation()}
           >
             Reserve
           </button>
