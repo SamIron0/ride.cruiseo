@@ -120,7 +120,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             locationValue={listing?.address}
             id={listing?.id}
           />
-          <a className="flex flex-col items-center justify-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg">
+          <div className="flex flex-col items-center justify-center ">
             {listing.activeTrips?.map((trip: any) => (
               <div className="w-full md:gap-6">
                 {/* Content */}
@@ -131,44 +131,60 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   {/* Tabs buttons */}
                   <div className="mb-8 md:mb-0 text-black">
                     <div
-                      className={`flex w-full items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg ${
+                      className={`flex justify-between w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 shadow-md  hover:shadow-lg ${
                         selectedTrip.id === trip.id
-                          ? `bg-zinc-400 shadow-md border-gray-600 hover:shadow-lg`
-                          : ` bg-white  border-gray-200 hover:shadow-lg`
+                          ? `bg-zinc-300 shadow-md border-blue-500 hover:shadow-lg`
+                          : ` bg-white  border-zinc-200 hover:shadow-lg`
                       }`}
                     >
-                      <div className="flex">
-                        <div className="font-bold leading-snug tracking-tight mb-1">
-                          Price:
+                      <div className="flex flex-col">
+                        <div className="flex items-center">
+                          <div className="font-bold leading-snug tracking-tight mb-1">
+                            Price:
+                          </div>
+                          <div className="text-gray-600">
+                            {loadedPrices?.get(trip.id) ? (
+                              loadedPrices?.get(trip.id)
+                            ) : (
+                              <div className="max-w-sm animate-pulse">
+                                <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
+                              </div>
+                            )}
+                          </div>{' '}
                         </div>
-                        <div className="text-gray-600">
-                          {loadedPrices?.get(trip.id) ? (
-                            loadedPrices?.get(trip.id)
-                          ) : (
-                            <div className="max-w-sm animate-pulse">
-                              <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
-                            </div>
-                          )}
-                        </div>{' '}
+
+                        <div className="font-bold leading-snug tracking-tight mb-1">
+                          Time:
+                        </div>
+                        <div className="font-bold leading-snug tracking-tight mb-1">
+                          Riders:
+                        </div>
                       </div>
-                      <button
-                        onClick={() => getPrice(trip)}
-                        className="flex text-sm justify-center items-center px-4 py-2 bg-white rounded-full shadow flex-shrink-0 ml-3"
-                      >
-                        Show Price
-                      </button>
-                      <button
-                        onClick={() => setSelectedTrip(trip)}
-                        className="flex text-sm justify-center items-center px-4 py-2  bg-white rounded-full shadow flex-shrink-0 ml-3"
-                      >
-                        Select
-                      </button>
+                      <div>
+                        <button
+                          onClick={() => getPrice(trip)}
+                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600	text-white rounded-lg shadow flex-shrink-0 ml-3"
+                        >
+                          Show Price
+                        </button>
+
+                        <button
+                          onClick={() => setSelectedTrip(trip)}
+                          className={`flex  h-4 w-4 rounded-full shadow flex-shrink-0 ml-3 ${
+                            selectedTrip.id === trip.id
+                              ? `
+                          border-blue-500 bg-white border`
+                              : `bg-zinc-800`
+                          }
+                        `}
+                        />
+                      </div>
                     </div>{' '}
                   </div>
                 </div>
               </div>
             ))}
-          </a>
+          </div>
 
           <button
             className=" rounded-lg py-2 px-8 bg-blue-500 text-md"

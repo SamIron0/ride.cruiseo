@@ -66,6 +66,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             overflow-hidden 
             rounded-xl
             border-[1px]
+            border-[#232325]
           "
         >
           <Image

@@ -34,14 +34,13 @@ const Search = () => {
     return 'Any Day';
   }, [startDate, endDate]);
 
-
   return (
     <div
       onClick={searchModal.onOpen}
       className="
         border-[1px] 
-        boorder-zinc-400
-        w-full 
+        border-[#232325]
+                w-full 
         md:w-auto 
         py-2 
         rounded-full 
@@ -64,11 +63,12 @@ const Search = () => {
             text-sm 
             font-semibold 
             px-6
+          text-zinc-300
           "
         >
           {locationLabel}
         </div>
-      
+
         <div
           className="
             text-sm 
