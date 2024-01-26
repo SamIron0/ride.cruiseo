@@ -26,7 +26,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
 
   // all aactive pricees for this listing
   const [allActivePrices, setAllActivePrices] = useState<any>([]);
-  // Assuming you want to set destination based on a condition
+
   useEffect(() => {
     if (allListings) {
       const data = allListings.filter(
@@ -89,13 +89,16 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     // now add all prices to the users price and get the final price by applying discount
     const discount = 0.3;
     const data: any = [];
-    console.log('options', options);
     options?.forEach((option: any) => {
       const price = option[0];
       const date = option[1];
       const id = option[2];
       const priceInt = parseInt(price, 10);
-      const userPrice = (priceInt + parseInt(prices.get(destination?.id))) * (1 - discount);
+      const destinationPrice = prices.get(listing?.id)
+      console.log('price',prices.get(listing?.id))
+
+      const userPrice =
+        (priceInt + parseInt(destinationPrice.slice(3))) * (1 - discount);
       data.push([userPrice, date, id]);
       // setTotalPrice(userPrice)
     });
@@ -113,14 +116,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           pt-24
         "
       >
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col pb-12  gap-6">
           <ListingHead
             title={destination?.name}
             imageSrc={destination?.photo}
             locationValue={destination?.address}
             id={destination?.id}
           />
-          <a className="flex  bg-black items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg">
+          <a className="flex items-center justify-center bg-black text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg">
             {allActivePrices.map((price: any) => (
               <div className="w-full py-6 text-white rounded-lg">
                 <span>
@@ -134,7 +137,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           </a>
 
           <button
-            className="w-full py-2 px-4 bg-blue-500 text-md"
+            className="max-w-2xl rounded-lg py-2 px-4 bg-blue-500 text-md"
             onClick={onCreateReservation}
           >
             Reserve

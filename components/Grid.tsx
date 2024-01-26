@@ -20,10 +20,8 @@ export function Grid({ searchParams, userDetails }: GridProps) {
   const { prices, setPrices } = useListings();
   const { setUserDetails } = useListings();
   setUserDetails(userDetails);
-  console.log(userDetails);
+  //console.log(userDetails);
   const [region, setRegion] = useState('');
-  // fetch the user's location
-  // useEffect(() => {
   const fetchLocation = async () => {
     // for now use madeup address
     const location = `{
