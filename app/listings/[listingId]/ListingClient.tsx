@@ -28,8 +28,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     };
 
     try {
-      console.log('trip', trip);
-
       const response = await fetch(
         'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
         {
@@ -49,15 +47,17 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
 
       if (response.ok) {
         const responseBody = JSON.parse(result.body);
-
         if (responseBody.result && responseBody.result.startsWith('C')) {
-          //  caluclate price usign algoriithm
           const discount = 0.1;
           const fullPrice = parseFloat(
             responseBody.result.replace(/[^0-9.]/g, '')
           );
-          const discountedPrice = fullPrice * (1 - discount);
-          loadedPrices.set(trip.id, discountedPrice);
+          const discountedPrice = parseFloat(
+            (fullPrice * (1 - discount)).toFixed(2)
+          );
+          const updatedPrices = new Map(loadedPrices);
+          updatedPrices.set(trip.id, discountedPrice);
+          setLoadedPrices(updatedPrices);
         } else {
           console.error('Error invoking Lambda function');
         }
@@ -131,10 +131,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   {/* Tabs buttons */}
                   <div className="mb-8 md:mb-0 text-black">
                     <div
-                      className={`flex w-full items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg ${
-                        selectedTrip.id !== trip.id
-                          ? ` bg-white  border-gray-200 hover:shadow-lg`
-                          : `bg-zinc-400 shadow-md border-gray-600 hover:shadow-lg`
+                      className={`flex w-full items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 shadow-md border-gray-200 hover:shadow-lg ${
+                        selectedTrip.id === trip.id
+                          ? `bg-zinc-400 shadow-md border-gray-600 hover:shadow-lg`
+                          : ` bg-white  border-gray-200 hover:shadow-lg`
                       }`}
                     >
                       <div className="flex">
@@ -142,8 +142,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                           Price:
                         </div>
                         <div className="text-gray-600">
-                          {loadedPrices?.get(trip.destination_id) ? (
-                            loadedPrices?.get(trip.destination_id)
+                          {loadedPrices?.get(trip.id) ? (
+                            loadedPrices?.get(trip.id)
                           ) : (
                             <div className="max-w-sm animate-pulse">
                               <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
@@ -153,13 +153,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       </div>
                       <button
                         onClick={() => getPrice(trip)}
-                        className="flex text-sm justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3"
+                        className="flex text-sm justify-center items-center px-4 py-2 bg-white rounded-full shadow flex-shrink-0 ml-3"
                       >
                         Show Price
                       </button>
                       <button
                         onClick={() => setSelectedTrip(trip)}
-                        className="flex cjustify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3"
+                        className="flex text-sm justify-center items-center px-4 py-2  bg-white rounded-full shadow flex-shrink-0 ml-3"
                       >
                         Select
                       </button>
