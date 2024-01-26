@@ -49,11 +49,12 @@ export default function UserMenu({ user }: UserMenuProps) {
             hidden
             md:block
             text-sm 
-            font-semibold 
+            font-medium
             py-3 
             px-4 
             rounded-full 
-            hover:bg-zinc-800 
+            hover:bg-[#232325]
+
             transition 
             cursor-pointer
           "
@@ -87,7 +88,7 @@ export default function UserMenu({ user }: UserMenuProps) {
       {isOpen && (
         <div
           className="
-          bg-zinc-800
+          bg-[#232325]
           text-white
             absolute 
             rounded-xl 
@@ -115,7 +116,7 @@ export default function UserMenu({ user }: UserMenuProps) {
                   label="Help"
                   onClick={() => router.push("/contactus")}
                 />
-                <hr />
+                <hr className="text-[#232325] bg-[#232325] "/>
                 <MenuItem
                   label="Logout"
                   onClick={() => {

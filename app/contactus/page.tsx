@@ -1,7 +1,7 @@
 export default async function ContactUs() {
     return (
-        <div className=" text-black p-8 ">
-            <h1 className=" text-black font-medium text-4xl mb-12 mt-16">
+        <div className=" text-white p-8 ">
+            <h1 className=" font-medium text-4xl mb-12 mt-16">
                 Contact
             </h1>
 

@@ -131,10 +131,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   {/* Tabs buttons */}
                   <div className="mb-8 md:mb-0 text-black">
                     <div
-                      className={`flex justify-between w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 shadow-md  hover:shadow-lg ${
+                      className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 shadow-md  hover:shadow-lg ${
                         selectedTrip.id === trip.id
-                          ? `bg-zinc-300 shadow-md border-blue-500 hover:shadow-lg`
-                          : ` bg-white  border-zinc-200 hover:shadow-lg`
+                          ? `shadow-md border-blue-500 border first-letter:hover:shadow-lg`
+                          : `  border-zinc-400 hover:shadow-lg`
                       }`}
                     >
                       <div className="flex flex-col">

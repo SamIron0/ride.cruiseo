@@ -17,7 +17,6 @@ interface ListingCardProps {
   currentUser?: any | null;
 }
 
-
 const ListingCard: React.FC<ListingCardProps> = ({
   data,
   onAction,
@@ -55,16 +54,17 @@ const ListingCard: React.FC<ListingCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className="col-span-1 cursor-pointer  group"
+      className="col-span-1 cursor-pointer group"
     >
       <div className="flex flex-col gap-2 w-full">
         <div
           className="
             aspect-square 
-            w-full 
-            relative 
+                        relative 
             overflow-hidden 
             rounded-xl
+            w-full
+            h-[130px]
             border-[1px]
             border-[#232325]
           "
@@ -73,8 +73,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
             fill
             className="
               object-cover 
-              h-full 
-              w-full 
               group-hover:scale-110 
               transition
             "
@@ -98,7 +96,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
           {address(data.address)}
         </p>
-        
+
         {onAction && actionLabel && (
           <Button
             disabled={disabled}

@@ -45,7 +45,7 @@ export default function AuthUI() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     return (
-      <section className="bg-white">
+      <section className="bg-black">
         <div className="max-w-6xl text-white mx-auto px-4 sm:px-6">
           <div className="pt-32 pb-12 md:pb-20">
             {/* Page header */}
@@ -73,8 +73,8 @@ export default function AuthUI() {
                     </label>
 
                     <input
-                      placeholder="Enter your email"
-                      className="w-full text-white px-4 py-2 focus:outline-none bg-zinc-800 border-[1px] border-zinc-600 text-md rounded-md "
+                      placeholder="Enter your name"
+                      className="w-full text-white px-4 py-2 focus:outline-none bg-[#232325] border-[1px] border-zinc-600 text-md rounded-md "
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -91,9 +91,8 @@ export default function AuthUI() {
 
                     <input
                       placeholder="Enter your email"
-                      className="w-full text-white px-4 py-2 focus:outline-none bg-zinc-800 border-[1px] border-zinc-600 text-md rounded-md "
+                      className="w-full text-white px-4 py-2 focus:outline-none bg-[#232325] border-[1px] border-zinc-600 text-md rounded-md "
                       value={email}
-                      type="email"
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
@@ -111,10 +110,9 @@ export default function AuthUI() {
 
                     <input
                       placeholder="Enter your password"
-                      className="w-full text-white py-2 px-4 focus:outline-none bg-zinc-800 border-[1px] border-zinc-600 text-md rounded-md "
+                      className="w-full text-white py-2 px-4 focus:outline-none bg-[#232325] border-[1px] border-zinc-600 text-md rounded-md "
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      type="password"
                     />
                   </div>
                 </div>

@@ -74,7 +74,7 @@ const Search = () => {
             text-sm 
             pl-6 
             pr-2 
-            text-zinc-300 
+            text-zinc-400 
             flex 
             border-l-[1px]
             flex-row 

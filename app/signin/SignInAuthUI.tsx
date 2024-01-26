@@ -73,7 +73,7 @@ export default function AuthUI() {
 
                   <input
                     placeholder="Enter your email"
-                    className="w-full text-white px-4 py-2 focus:outline-none bg-zinc-800 border-[1px] border-zinc-600 text-md rounded-md "
+                    className="w-full text-white px-4 py-2 focus:outline-none bg-[#232325] border-[1px] border-zinc-600 text-md rounded-md "
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -101,7 +101,6 @@ export default function AuthUI() {
                     className="w-full text-white px-4 py-2 focus:outline-none bg-zinc-800 border-[1px] border-zinc-600 text-md rounded-md "
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    type="password"
                   />
                 </div>
               </div>
