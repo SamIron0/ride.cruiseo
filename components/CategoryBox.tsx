@@ -35,11 +35,12 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         gap-2
         p-3
         border-b-2
-        hover:text-neutral-800
+        border-zinc-400
+        hover:text-zinc-200
         transition
         cursor-pointer
-        ${selected ? "border-b-neutral-800" : "border-transparent"}
-        ${selected ? "text-neutral-800" : "text-neutral-500"}
+        ${selected ? "border-b-zinc-200" : "border-transparent"}
+        ${selected ? "text-zinc-200" : "text-zinc-500"}
       `}
     >
       <Icon size={26} />

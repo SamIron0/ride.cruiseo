@@ -53,7 +53,7 @@ export default function UserMenu({ user }: UserMenuProps) {
             py-3 
             px-4 
             rounded-full 
-            hover:bg-neutral-100 
+            hover:bg-zinc-800 
             transition 
             cursor-pointer
           "
@@ -67,7 +67,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           md:py-1
           md:px-2
           border-[1px] 
-          border-neutral-200 
+          border-[#232325]
           flex 
           flex-row 
           items-center 
@@ -87,12 +87,13 @@ export default function UserMenu({ user }: UserMenuProps) {
       {isOpen && (
         <div
           className="
+          bg-zinc-800
+          text-white
             absolute 
             rounded-xl 
             shadow-md
             w-[40vw]
             md:w-3/4 
-            bg-white 
             overflow-hidden 
             right-0 
             top-12 

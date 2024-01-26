@@ -40,6 +40,7 @@ const Search = () => {
       onClick={searchModal.onOpen}
       className="
         border-[1px] 
+        boorder-zinc-400
         w-full 
         md:w-auto 
         py-2 
@@ -73,7 +74,7 @@ const Search = () => {
             text-sm 
             pl-6 
             pr-2 
-            text-gray-600 
+            text-zinc-300 
             flex 
             border-l-[1px]
             flex-row 
