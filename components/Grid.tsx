@@ -9,12 +9,14 @@ import { Destination } from '@/types';
 import { useEffect, useState } from 'react';
 import { all } from 'axios';
 import { useListings } from '@/app/providers/ListingProvider';
+import { User } from '@supabase/supabase-js';
 interface GridProps {
   searchParams: IListingsParams;
   userDetails: any;
+  user: User;
 }
 
-export function Grid({ searchParams, userDetails }: GridProps) {
+export function Grid({ searchParams, user,userDetails }: GridProps) {
   const { allListings, setAllListings, activeCategory, setUserDetails } =
     useListings();
   const location = {
@@ -78,7 +80,7 @@ export function Grid({ searchParams, userDetails }: GridProps) {
     return (
       <>
         {/* @ts-expect-error */}
-        <Navbar />
+        <Navbar user={user}/>
         {allListings && (
           <div
             className="

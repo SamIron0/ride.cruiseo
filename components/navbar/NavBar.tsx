@@ -6,13 +6,10 @@ import Logo from './Logo';
 import Search from './Search';
 import UserMenu from './UserMenu';
 import { UserDetails } from '@/types';
+import { User } from '@supabase/supabase-js';
 
-export default async function Navbar() {
-  const supabase = createServerSupabaseClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
+export default async function Navbar(user: User) {
+ 
   return (
     <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
       <div>

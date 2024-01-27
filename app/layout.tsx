@@ -10,7 +10,6 @@ import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import SearchModal from '@/components/modals/SearchModal';
-import Sidebar from '@/components/Sidebar';
 
 const meta = {
   title: 'Cruiseo Ride Share',
