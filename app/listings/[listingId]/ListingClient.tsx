@@ -21,7 +21,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>());
   const getPrice = async (trip: Trip) => {
     setIsLoading(true);
-    toast.loading('Calculating price...');
+    const toastId = toast.loading('Calculating price...');
+
     const workerID = 1;
     const destinationraw = {
       address: listing.address,
@@ -61,7 +62,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           updatedPrices.set(trip.id, discountedPrice);
           setLoadedPrices(updatedPrices);
           setIsLoading(false);
-          toast.success('Price calculated');
+          toast.dismiss(toastId);
+          toast.success('Done');
         } else {
           console.error('Error invoking Lambda function');
         }
@@ -135,10 +137,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   {/* Tabs buttons */}
                   <div className="mb-8 md:mb-0 text-white">
                     <div
-                      className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 shadow-md  hover:shadow-lg ${
+                      className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 hover:shadow-lg ${
                         selectedTrip.id === trip.id
-                          ? `shadow-md border-blue-500 border first-letter:hover:shadow-lg`
-                          : `  border-zinc-400 hover:shadow-lg`
+                          ? `shadow-lg border-blue-500 border first-letter:hover:shadow-lg`
+                          : `  shadow-md border border-zinc-600 `
                       }`}
                     >
                       <div className="flex flex-col">
@@ -146,7 +148,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                           <div className="font-semibold pr-3 leading-snug tracking-tight mb-1">
                             Price:
                           </div>
-                          <div className="text-gray-600">
+                          <div className="text-zinc-300">
                             {loadedPrices?.get(trip.id) ? (
                               loadedPrices?.get(trip.id)
                             ) : (
@@ -168,23 +170,17 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                         <button
                           onClick={() => getPrice(trip)}
                           disabled={isLoading}
-                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
+                          className="flex text-sm pb-2 justify-center items-center px-4 py-2 bg-white text-black rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
                         >
                           Show Price
                         </button>
 
                         <button
                           onClick={() => setSelectedTrip(trip)}
-                          className={`flex  h-4 w-4 rounded-full shadow flex-shrink-0 ml-3 ${
-                            selectedTrip.id === trip.id
-                              ? `
-                          border-blue-500 bg-white border`
-                              : `bg-zinc-800`
-                          }
-                        `}
+                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
                         >
                           Select
-                          </button>
+                        </button>
                       </div>
                     </div>{' '}
                   </div>
