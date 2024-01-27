@@ -9,8 +9,9 @@ import { Destination, Trip, UserDetails } from '@/types';
 import Container from '@/components/Container';
 import ListingHead from '@/components/listings/ListingHead';
 import { useListings } from '@/app/providers/ListingProvider';
-import Calendar from '@/components/inputs/Calendar';
-import { DateCalendar } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 interface ListingClientProps {
   listing: Destination;
@@ -242,8 +243,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               <div className="h-[450px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-10"></div>
             )}{' '}
             <div className="w-full sm:pl-6 flex items-center justify-center">
-              <DateCalendar
-                  />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateCalendar
+                  sx={{
+                    color: 'white'
+                  }}
+                />{' '}
+              </LocalizationProvider>
             </div>
           </div>
 
