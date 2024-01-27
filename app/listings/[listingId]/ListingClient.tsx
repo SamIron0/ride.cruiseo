@@ -18,9 +18,11 @@ interface ListingClientProps {
 const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const { userDetails } = useListings();
   const [isLoading, setIsLoading] = useState(false);
+  const [priceIsLoading, setPriceIsLoading] = useState(false);
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>());
   const getPrice = async (trip: Trip) => {
     setIsLoading(true);
+    setPriceIsLoading(true);
     const toastId = toast.loading('Calculating price...');
 
     const workerID = 1;
@@ -62,6 +64,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           updatedPrices.set(trip.id, discountedPrice);
           setLoadedPrices(updatedPrices);
           setIsLoading(false);
+          setPriceIsLoading(false);
           toast.dismiss(toastId);
           toast.success('Done');
         } else {
@@ -72,7 +75,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       toast.dismiss(toastId);
       setIsLoading(false);
       toast.error('An error occurred while calculating price');
-
     }
   };
   const [selectedTrip, setSelectedTrip] = useState<Trip>({
@@ -92,10 +94,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       toast.error('Please select a trip');
       return;
     }
-   // if (!userDetails) {
-     // router.push('/login');
+    // if (!userDetails) {
+    // router.push('/login');
     //}
-    if(!loadedPrices.get(selectedTrip.id)) {
+    if (!loadedPrices.get(selectedTrip.id)) {
       await getPrice(selectedTrip);
     }
     if (!loadedPrices.get(selectedTrip.id)) {
@@ -122,7 +124,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       const response = await fetch(url, options);
       const data = await response.json();
       console.log('data', data);
-      if(data.error) {
+      if (data.error) {
         toast.error('An error occurred while creating the trip');
       } else {
         toast.success('Trip created successfully');
@@ -167,26 +169,27 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       }`}
                     >
                       <div className="flex flex-col">
-                        <div className="flex items-center">
-                          <div className="font-semibold pr-3 leading-snug tracking-tight mb-1">
-                            Price:
-                          </div>
-                          <div className="text-zinc-300">
-                            {loadedPrices?.get(trip.id) ? (
-                              loadedPrices?.get(trip.id)
-                            ) : (
-                              <div className="max-w-sm animate-pulse">
-                                <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
-                              </div>
-                            )}
-                          </div>{' '}
+                        <div className="font-semibold pr-3 leading-snug tracking-tight mb-1">
+                          Price:{' '}
+                          <span>
+                            {' '}
+                            <div className="text-zinc-300">
+                              {loadedPrices?.get(trip.id)
+                                ? loadedPrices?.get(trip.id)
+                                : priceIsLoading && (
+                                    <div className="max-w-sm animate-pulse">
+                                      <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
+                                    </div>
+                                  )}
+                            </div>
+                          </span>
                         </div>
 
                         <div className="font-bold leading-snug tracking-tight mb-1">
-                          Time:
+                          Time: {trip.date}
                         </div>
                         <div className="font-bold leading-snug tracking-tight mb-1">
-                          Riders:
+                          Riders: {trip.user_ids.length}
                         </div>
                       </div>
                       <div className="flex gap-2 flex-col">
