@@ -61,6 +61,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           updatedPrices.set(trip.id, discountedPrice);
           setLoadedPrices(updatedPrices);
           setIsLoading(false);
+          toast.success('Price calculated');
         } else {
           console.error('Error invoking Lambda function');
         }
@@ -167,7 +168,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                         <button
                           onClick={() => getPrice(trip)}
                           disabled={isLoading}
-                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 animate-pulse"
+                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
                         >
                           Show Price
                         </button>
@@ -181,7 +182,9 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                               : `bg-zinc-800`
                           }
                         `}
-                        />
+                        >
+                          Select
+                          </button>
                       </div>
                     </div>{' '}
                   </div>
