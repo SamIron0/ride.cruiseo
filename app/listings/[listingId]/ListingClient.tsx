@@ -169,20 +169,20 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       }`}
                     >
                       <div className="flex flex-col">
-                        <div className="font-normal text-zinc-300 leading-snug tracking-tight mb-1">
+                        <div className="font-normal text-sm text-zinc-300 leading-snug tracking-tight mb-1">
                           Price:{' '}
                           <span className="text-white font-semibold">
                             {loadedPrices?.get(trip.id)}
                           </span>
                         </div>
 
-                        <div className="font-normal text-zinc-300 leading-snug tracking-tight mb-1">
+                        <div className="font-normal text-zinc-300 text-smleading-snug tracking-tight mb-1">
                           Time:{' '}
                           <span className="text-white font-semibold">
                             {trip.date}
                           </span>
                         </div>
-                        <div className="font-normal text-zinc-300 leading-snug tracking-tight mb-1">
+                        <div className="font-normal text-sm text-zinc-300 leading-snug tracking-tight mb-1">
                           Riders:{' '}
                           <span className="text-white font-semibold">
                             {trip.user_ids.length}
