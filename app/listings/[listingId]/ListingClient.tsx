@@ -10,6 +10,7 @@ import Container from '@/components/Container';
 import ListingHead from '@/components/listings/ListingHead';
 import { useListings } from '@/app/providers/ListingProvider';
 import Calendar from '@/components/inputs/Calendar';
+import { DateCalendar } from '@mui/x-date-pickers';
 
 interface ListingClientProps {
   listing: Destination;
@@ -133,16 +134,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     }
     setIsLoading(false);
   };
-  const [selectedDate, setSelectedDate] = useState<
-    { startDate: Date; endDate: Date; key: string }[]
-  >([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection'
-    }
-  ]);
-
+  const [selectedDate, setSelectedDate] = useState();
   return (
     <Container>
       <div
@@ -247,16 +239,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               ))}
             </div>
             {window.innerWidth > 640 && (
-              <div className="h-[450px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-100"></div>
+              <div className="h-[450px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-10"></div>
             )}{' '}
             <div className="w-full sm:pl-6 flex items-center justify-center">
-              <DateRangePicker
-                minDate={new Date()}
-                rangeColors={['#232325']}
-                ranges={selectedDate}
-                onChange={(item) => setSelectedDate([item?.selection] as any)}
-                moveRangeOnFirstSelection={false}
-              />
+              <DateCalendar
+                  />
             </div>
           </div>
 
