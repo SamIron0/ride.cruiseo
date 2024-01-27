@@ -154,13 +154,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               <div className="w-full md:gap-6">
                 {/* Content */}
                 <div
-                  className="max-w-xl md:max-w-none md:w-full sm:mx-auto md:col-span-7 lg:col-span-6 md:mt-6"
+                  className="max-w-xl md:max-w-none md:w-full sm:mx-auto md:col-span-7 lg:col-span-6 "
                   data-aos="fade-right"
                 >
                   {/* Tabs buttons */}
-                  <div className="mb-8 md:mb-0 text-white">
+                  <div className="mb-6 text-white">
                     <div
-                      className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 hover:shadow-lg ${
+                      className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-3 rounded-lg  transition duration-300 ease-in-out hover:shadow-lg ${
                         selectedTrip.id === trip.id
                           ? `shadow-lg border-blue-500 border first-letter:hover:shadow-lg`
                           : `  shadow-md border border-zinc-600 `
@@ -189,11 +189,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                           Riders:
                         </div>
                       </div>
-                      <div className="flex flex-col">
+                      <div className="flex gap-2 flex-col">
                         <button
                           onClick={() => getPrice(trip)}
                           disabled={isLoading}
-                          className="flex text-sm pb-2 justify-center items-center px-4 py-2 bg-white text-black rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
+                          className="flex text-sm pb-2 justify-center items-center px-4 py-2 bg-zinc-100 text-black rounded-lg shadow flex-shrink-0 ml-3 active:bg-zinc-300 transition duration-150 transform active:scale-110"
                         >
                           Show Price
                         </button>
