@@ -13,7 +13,6 @@ import { Resend } from 'resend';
 import { EmailTemplate } from "@/components/email-template"
 import React, { ChangeEvent, FormEvent } from 'react';
 
-import { MiniDestinationCard } from "@/components/miniDestinationCard"
 import { Loader } from "@googlemaps/js-api-loader"
 import { debounce } from "lodash";
 import getAddressPredictions from "./getAddressPredictions"
@@ -225,12 +224,7 @@ export const CarpoolForm = ({ user, onClose, selectedDestination, allDestination
                 <div className="w-full">
                   <h1 className=" font-semibold  text-black text-lg ">Where to?</h1>
                   <div className="relative overflow-hidden w-full h-40">
-                    {
-                      allDestinations.map((destination) => (
-                        <MiniDestinationCard destination={destination} />
-                      ))
-
-                    }
+           
                     <div className="absolute inset-y-0 right-0 z-10 bg-black w-1/12"></div>
                   </div>
                   {!destinationIsValid &&

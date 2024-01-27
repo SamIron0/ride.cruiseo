@@ -141,7 +141,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         className="
           max-w-screen-lg 
           mx-auto
-          pt-24
+          pt-6
         "
       >
         <div className="flex flex-col pb-12  gap-6">
@@ -177,7 +177,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                             </span>
                           </div>
 
-                          <div className="font-normal text-zinc-300 text-smleading-snug tracking-tight mb-1">
+                          <div className="font-normal text-sm text-zinc-300 text-smleading-snug tracking-tight mb-1">
                             Time:{' '}
                             <span className="text-white font-semibold">
                               {trip.date}
