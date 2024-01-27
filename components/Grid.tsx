@@ -13,7 +13,7 @@ import { User } from '@supabase/supabase-js';
 interface GridProps {
   searchParams: IListingsParams;
   userDetails: any;
-  user: User;
+  user: User | undefined;
 }
 
 export function Grid({ searchParams, user,userDetails }: GridProps) {
