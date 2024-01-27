@@ -151,7 +151,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             locationValue={listing?.address}
             id={listing?.id}
           />
-          <div className="flex flex-col items-center justify-center ">
+          <div className="grid sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-4 ">
             {listing.activeTrips?.map((trip: any) => (
               <div className="w-full md:gap-6">
                 {/* Content */}
@@ -169,19 +169,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       }`}
                     >
                       <div className="flex flex-col">
-                        <div className="flex flex-row font-semibold pr-3 leading-snug tracking-tight mb-1">
+                        <div className="font-normal text-zinc-300 leading-snug tracking-tight mb-1">
                           Price:{' '}
-                          <span>
-                            {' '}
-                            <div className="text-zinc-300">
-                              {loadedPrices?.get(trip.id)
-                                ? loadedPrices?.get(trip.id)
-                                : priceIsLoading && (
-                                    <div className="max-w-sm animate-pulse">
-                                      <div className="h-5 bg-gray-100 rounded-md dark:bg-gray-700 w-11"></div>
-                                    </div>
-                                  )}
-                            </div>
+                          <span className="text-white font-semibold">
+                            {loadedPrices?.get(trip.id)}
                           </span>
                         </div>
 
@@ -191,8 +182,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                             {trip.date}
                           </span>
                         </div>
-                        <div className="font-bold leading-snug tracking-tight mb-1">
-                          Riders: {trip.user_ids.length}
+                        <div className="font-normal text-zinc-300 leading-snug tracking-tight mb-1">
+                          Riders:{' '}
+                          <span className="text-white font-semibold">
+                            {trip.user_ids.length}
+                          </span>
                         </div>
                       </div>
                       <div className="flex gap-2 flex-col">
@@ -220,6 +214,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                 </div>
               </div>
             ))}
+
+            <hr className="sm:hidden" />
+            <div className="w-full flex items-center justify-center">
+              x
+            </div>
           </div>
 
           <button

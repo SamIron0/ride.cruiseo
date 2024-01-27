@@ -77,6 +77,8 @@ export function Grid({ searchParams, userDetails }: GridProps) {
 
     return (
       <>
+        {/* @ts-expect-error */}
+        <Navbar />
         {allListings && (
           <div
             className="

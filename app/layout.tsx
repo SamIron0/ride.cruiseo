@@ -88,24 +88,14 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body >
+      <body>
         <SupabaseProvider>
           <ListingsProvider>
             <ClientOnly>
               <ToasterProvider />
               <SearchModal />
             </ClientOnly>
-            {false ? (
-              <div className="flex">
-                <Sidebar /> {children}
-              </div>
-            ) : (
-              <div>
-                {/* @ts-expect-error */}
-                <Navbar />
-                {children}
-              </div>
-            )}{' '}
+            <div>{children}</div>
             <SpeedInsights />
             <Analytics />
             <Footer />
