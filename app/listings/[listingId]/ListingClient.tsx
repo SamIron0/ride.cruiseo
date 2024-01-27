@@ -169,7 +169,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       }`}
                     >
                       <div className="flex flex-col">
-                        <div className="font-semibold pr-3 leading-snug tracking-tight mb-1">
+                        <div className="flex flex-row font-semibold pr-3 leading-snug tracking-tight mb-1">
                           Price:{' '}
                           <span>
                             {' '}
@@ -185,8 +185,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                           </span>
                         </div>
 
-                        <div className="font-bold leading-snug tracking-tight mb-1">
-                          Time: {trip.date}
+                        <div className="font-normal text-zinc-300 leading-snug tracking-tight mb-1">
+                          Time:{' '}
+                          <span className="text-white font-semibold">
+                            {trip.date}
+                          </span>
                         </div>
                         <div className="font-bold leading-snug tracking-tight mb-1">
                           Riders: {trip.user_ids.length}
@@ -195,7 +198,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       <div className="flex gap-2 flex-col">
                         <button
                           onClick={() => getPrice(trip)}
-                          disabled={isLoading}
+                          disabled={
+                            isLoading ||
+                            loadedPrices?.get(trip.id) !== undefined
+                          }
                           className="flex text-sm pb-2 justify-center items-center px-4 py-2 bg-zinc-100 text-black rounded-lg shadow flex-shrink-0 ml-3 active:bg-zinc-300 transition duration-150 transform active:scale-110"
                         >
                           Show Price
