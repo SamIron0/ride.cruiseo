@@ -3,13 +3,13 @@
 import axios from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Range } from 'react-date-range';
-import { useRouter } from 'next/navigation';
+import { DateRangePicker, Range } from 'react-date-range';
 import { v4 as uuidv4 } from 'uuid';
 import { Destination, Trip, UserDetails } from '@/types';
 import Container from '@/components/Container';
 import ListingHead from '@/components/listings/ListingHead';
 import { useListings } from '@/app/providers/ListingProvider';
+import Calendar from '@/components/inputs/Calendar';
 
 interface ListingClientProps {
   listing: Destination;
@@ -20,6 +20,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [priceIsLoading, setPriceIsLoading] = useState(false);
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>());
+
   const getPrice = async (trip: Trip) => {
     setIsLoading(true);
     setPriceIsLoading(true);
@@ -86,8 +87,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     price: 0,
     status: ''
   });
-
-  const router = useRouter();
   const onCreateReservation = async () => {
     setIsLoading(true);
     if (!selectedTrip.id) {
@@ -128,13 +127,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         toast.error('An error occurred while creating the trip');
       } else {
         toast.success('Trip created successfully');
-        router.push('/trips');
       }
     } catch (error) {
       console.error(error);
     }
     setIsLoading(false);
   };
+  const [selectedDate, setSelectedDate] = useState({});
+
   return (
     <Container>
       <div
@@ -145,6 +145,28 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         "
       >
         <div className="flex flex-col pb-12  gap-6">
+          <button
+            onClick={() => window.history.back()}
+            type="button"
+            className="w-32 flex items-center justify-center px-5 py-2 text-sm text-gray-700 transition-all duration-200 bg-white border rounded-lg gap-x-2 dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700 hover:scale-105 active:scale-90"
+          >
+            <svg
+              className="w-5 h-5 rtl:rotate-180"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+              />
+            </svg>
+            <span>Go back</span>
+          </button>
+
           <ListingHead
             title={listing?.name}
             imageSrc={listing?.photo}
@@ -152,9 +174,9 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             id={listing?.id}
           />
           <div className="sm:flex sm:flex-1 gap-4 ">
-            <div className=" sm:pr-6 ">
+            <div className="w-full sm:pr-6 ">
               {listing.activeTrips?.map((trip: any) => (
-                <div className="w-full md:gap-6">
+                <div className="w-full pb-3">
                   {/* Content */}
                   <div
                     className="max-w-xl md:max-w-none md:w-full sm:mx-auto md:col-span-7 lg:col-span-6 "
@@ -216,11 +238,17 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                 </div>
               ))}
             </div>
-            <div className="h-[250px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100"></div>
+            {window.innerWidth > 640 && (
+              <div className="h-[450px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-100"></div>
+            )}{' '}
             <div className="w-full sm:pl-6 flex items-center justify-center">
-              <div className="h-12 w-12 bg-zinc-800">
-
-              </div>
+              <DateRangePicker
+                minDate={new Date()}
+                rangeColors={['#232325']}
+                ranges={selectedDate}
+                onChange={(item) => setSelectedDate(item)}
+                moveRangeOnFirstSelection={false}
+              />
             </div>
           </div>
 

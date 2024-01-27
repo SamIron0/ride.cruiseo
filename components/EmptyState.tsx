@@ -18,6 +18,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
 }) => {
     const router = useRouter();
 
+    
     return (
         <div
             className="

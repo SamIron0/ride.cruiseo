@@ -12,6 +12,8 @@ interface ListingsContextValue {
   setAllListings: any;
   userDetails: UserDetails | undefined;
   setUserDetails: any;
+  selectedListing: Destination | undefined;
+  setSelectedListing: any;
 }
 
 const ListingsContext = createContext<ListingsContextValue | undefined>(
@@ -32,6 +34,7 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [allListings, setAllListings] = useState<Destination[]>();
   const [userDetails, setUserDetails] = useState<UserDetails>();
+  const [selectedListing, setSelectedListing] = useState<Destination>();
   return (
     <ListingsContext.Provider
       value={{
@@ -40,7 +43,9 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
         allListings,
         setAllListings,
         userDetails,
-        setUserDetails
+        setUserDetails,
+        selectedListing,
+        setSelectedListing
       }}
     >
       {children}

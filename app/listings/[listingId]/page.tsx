@@ -11,8 +11,7 @@ interface IParams {
 }
 
 const ListingPage = async ({ params }: { params: IParams }) => {
-  const listing = await getListingById(params);
-  // const reservations = await getReservations(params);
+  const listing = await getListingById(params.listingId);
   if (!listing) {
     return (
       <ClientOnly>
@@ -23,7 +22,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 
   return (
     <ClientOnly>
-      <ListingClient  listing={listing} />
+      <ListingClient listing={listing} />
     </ClientOnly>
   );
 };
