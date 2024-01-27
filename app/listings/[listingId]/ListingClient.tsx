@@ -69,7 +69,10 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         }
       }
     } catch (error) {
-      console.error('An error occurred while invoking Lambda function:', error);
+      toast.dismiss(toastId);
+      setIsLoading(false);
+      toast.error('An error occurred while calculating price');
+
     }
   };
   const [selectedTrip, setSelectedTrip] = useState<Trip>({
@@ -85,6 +88,19 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const router = useRouter();
   const onCreateReservation = async () => {
     setIsLoading(true);
+    if (!selectedTrip.id) {
+      toast.error('Please select a trip');
+      return;
+    }
+   // if (!userDetails) {
+     // router.push('/login');
+    //}
+    if(!loadedPrices.get(selectedTrip.id)) {
+      await getPrice(selectedTrip);
+    }
+    if (!loadedPrices.get(selectedTrip.id)) {
+      return;
+    }
     const newTrip: Trip = {
       id: uuidv4(),
       origin: userDetails?.address || '',
@@ -106,9 +122,16 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       const response = await fetch(url, options);
       const data = await response.json();
       console.log('data', data);
+      if(data.error) {
+        toast.error('An error occurred while creating the trip');
+      } else {
+        toast.success('Trip created successfully');
+        router.push('/trips');
+      }
     } catch (error) {
       console.error(error);
     }
+    setIsLoading(false);
   };
   return (
     <Container>
@@ -176,6 +199,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                         </button>
 
                         <button
+                          disabled={isLoading || trip.id == selectedTrip.id}
                           onClick={() => setSelectedTrip(trip)}
                           className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
                         >
@@ -192,6 +216,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           <button
             className=" rounded-lg py-2 px-8 bg-blue-500 text-md"
             onClick={() => onCreateReservation()}
+            disabled={isLoading}
           >
             Reserve
           </button>
