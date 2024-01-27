@@ -133,7 +133,15 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     }
     setIsLoading(false);
   };
-  const [selectedDate, setSelectedDate] = useState({});
+  const [selectedDate, setSelectedDate] = useState<
+    { startDate: Date; endDate: Date; key: string }[]
+  >([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection'
+    }
+  ]);
 
   return (
     <Container>
@@ -246,7 +254,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                 minDate={new Date()}
                 rangeColors={['#232325']}
                 ranges={selectedDate}
-                onChange={(item) => setSelectedDate(item)}
+                onChange={(item) => setSelectedDate([item?.selection] as any)}
                 moveRangeOnFirstSelection={false}
               />
             </div>
