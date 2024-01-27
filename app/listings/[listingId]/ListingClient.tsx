@@ -20,6 +20,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>());
   const getPrice = async (trip: Trip) => {
+    setIsLoading(true);
+    toast.loading('Calculating price...');
     const workerID = 1;
     const destinationraw = {
       address: listing.address,
@@ -58,6 +60,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           const updatedPrices = new Map(loadedPrices);
           updatedPrices.set(trip.id, discountedPrice);
           setLoadedPrices(updatedPrices);
+          setIsLoading(false);
         } else {
           console.error('Error invoking Lambda function');
         }
@@ -129,7 +132,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   data-aos="fade-right"
                 >
                   {/* Tabs buttons */}
-                  <div className="mb-8 md:mb-0 text-black">
+                  <div className="mb-8 md:mb-0 text-white">
                     <div
                       className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-5 rounded  transition duration-300 ease-in-out mb-3 shadow-md  hover:shadow-lg ${
                         selectedTrip.id === trip.id
@@ -139,7 +142,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                     >
                       <div className="flex flex-col">
                         <div className="flex items-center">
-                          <div className="font-bold leading-snug tracking-tight mb-1">
+                          <div className="font-semibold pr-3 leading-snug tracking-tight mb-1">
                             Price:
                           </div>
                           <div className="text-gray-600">
@@ -160,10 +163,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                           Riders:
                         </div>
                       </div>
-                      <div>
+                      <div className="flex flex-col">
                         <button
                           onClick={() => getPrice(trip)}
-                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600	text-white rounded-lg shadow flex-shrink-0 ml-3"
+                          disabled={isLoading}
+                          className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 animate-pulse"
                         >
                           Show Price
                         </button>
