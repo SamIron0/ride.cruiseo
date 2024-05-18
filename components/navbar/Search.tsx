@@ -23,7 +23,8 @@ const Search = () => {
     setInput(value);
   };
   return (
-    <div className="relative mt-3 flex min-h-[60px] w-full items-center justify-center rounded-xl border-2 border-input">
+    <div className="relative max-w-sm flex min-h-[60px] w-full items-center justify-center rounded-xl border border-[#232325]
+    ">
       <TextareaAutosize
         className="text-md flex w-full resize-none rounded-md border-none bg-transparent py-2 pl-3 pr-14 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         placeholder={`Search`}
