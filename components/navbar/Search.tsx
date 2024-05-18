@@ -21,8 +21,8 @@ const Search = () => {
   const locationLabel = 'Search';
   const [input, setInput] = useState<string>('');
 
-  const handleInputChange = (value: string) => {
-    setSearchInput(value);
+  const handleInputChange = () => {
+    setSearchInput(input);
   };
   return (
     <div
@@ -42,7 +42,7 @@ const Search = () => {
       <div className="absolute bottom-[14px] right-3 flex cursor-pointer justify-center hover:opacity-50">
         <BiSearch
           className={cn(
-            'rounded bg-[#4169E1]             p-1 text-secondary',
+            'rounded bg-[#4169E1] p-1 text-secondary',
             !input ? 'cursor-not-allowed opacity-50' : ''
           )}
           onClick={() => {}}

@@ -46,6 +46,7 @@ export function Grid({ user, userDetails }: GridProps) {
   const {
     allListings,
     searchInput,
+    setSearchInput,
     setAllListings,
     activeCategory,
     setUserDetails
@@ -54,7 +55,7 @@ export function Grid({ user, userDetails }: GridProps) {
     lat: 37.7749,
     lon: -122.4194
   };
-
+  const [input, setInput] = useState('');
   userDetails.geolocation = location;
   setUserDetails(userDetails);
   const fetchLocation = async () => {
@@ -91,9 +92,6 @@ export function Grid({ user, userDetails }: GridProps) {
     getListing();
   }, []);
 
-  useEffect(() => {
-    console.log(searchInput);
-  }, [searchInput]);
   // get the price of all destinatiions and store it in the state
 
   const currentUser = null;
