@@ -8,8 +8,10 @@ import { differenceInDays } from 'date-fns';
 import useSearchModal from '@/app/hooks/useSearchModal';
 import { TextareaAutosize } from '../ui/textarea-autosize';
 import { cn } from '@/utils/helpers';
+import { useListings } from '@/app/providers/ListingProvider';
 
 const Search = () => {
+  const { setSearchInput } = useListings();
   const searchModal = useSearchModal();
   const params = useSearchParams();
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -20,7 +22,7 @@ const Search = () => {
   const [input, setInput] = useState<string>('');
 
   const handleInputChange = (value: string) => {
-    setInput(value);
+    setSearchInput(value);
   };
   return (
     <div

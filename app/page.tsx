@@ -9,6 +9,6 @@ interface HomeProps {
 export default async function Home({ searchParams }: HomeProps) {
     const session = await getSession();
 
-  return <Grid user={session?.user} searchParams={searchParams} userDetails={getUserDetails()}></Grid>;
+  return <Grid user={session?.user} userDetails={getUserDetails()}></Grid>;
 };
 

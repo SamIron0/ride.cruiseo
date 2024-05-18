@@ -14,6 +14,8 @@ interface ListingsContextValue {
   setUserDetails: any;
   selectedListing: Destination | undefined;
   setSelectedListing: any;
+  searchInput: string;
+  setSearchInput: (input: string) => void;
 }
 
 const ListingsContext = createContext<ListingsContextValue | undefined>(
@@ -35,6 +37,7 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
   const [allListings, setAllListings] = useState<Destination[]>();
   const [userDetails, setUserDetails] = useState<UserDetails>();
   const [selectedListing, setSelectedListing] = useState<Destination>();
+  const [searchInput, setSearchInput] = useState<string>('');
   return (
     <ListingsContext.Provider
       value={{
@@ -45,7 +48,9 @@ export const ListingsProvider: React.FC<ListingsContextProps> = ({
         userDetails,
         setUserDetails,
         selectedListing,
-        setSelectedListing
+        setSelectedListing,
+        searchInput,
+        setSearchInput
       }}
     >
       {children}

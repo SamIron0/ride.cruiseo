@@ -12,7 +12,6 @@ export interface IListingsParams {
 }
 
 export default async function getListings(
-  params: IListingsParams,
   userLocation?: GeoCoordinate
 ) {
   let listings = [];
