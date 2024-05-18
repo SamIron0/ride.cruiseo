@@ -50,6 +50,7 @@
     "react-merge-refs": "^2.0.2",
     "react-places-autocomplete": "^7.3.0",
     "react-spinners": "^0.13.8",
+    "react-textarea-autosize": "^8.5.3",
     "resend": "^2.0.0",
     "stripe": "^12.6.0",
     "tailwind-merge": "^2.1.0",
