@@ -21,7 +21,8 @@ const Search = () => {
   const locationLabel = 'Search';
   const [input, setInput] = useState<string>('');
 
-  const handleInputChange = () => {
+  const handleInputChange = ( value: string) => {
+    setInput(value);
     setSearchInput(input);
   };
   return (
