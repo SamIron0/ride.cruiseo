@@ -105,17 +105,17 @@ export function Grid({ user, userDetails }: GridProps) {
     );
   }
 
-  const renderCards = () => {
-    const category: any = activeCategory;
-    // remove -----------
+  const category: any = activeCategory;
 
-    return (
-      <>
-        {/* @ts-expect-error */}
-        <Navbar user={user} />
-        {allListings && (
-          <div
-            className="
+  return (
+    <ClientOnly>
+      <Container>
+        <>
+          {/* @ts-expect-error */}
+          <Navbar user={user} />
+          {allListings && (
+            <div
+              className="
               pt-[198px]
               grid 
               grid-cols-1 
@@ -126,49 +126,45 @@ export function Grid({ user, userDetails }: GridProps) {
               2xl:grid-cols-6
               gap-7
             "
-          >
-            {category === 'All'
-              ? allListings
-                  .filter((listing: any) =>
-                    listing.name
-                      .toLowerCase()
-                      .includes(searchInput.toLowerCase())
-                  )
-                  .sort((a, b) => {
-                    const aScore = editDistance(
-                      a.name.toLowerCase(),
-                      searchInput.toLowerCase()
-                    );
-                    const bScore = editDistance(
-                      b.name.toLowerCase(),
-                      searchInput.toLowerCase()
-                    );
-                    return aScore - bScore;
-                  })
-                  .map((listing: any) => (
-                    <ListingCard
-                      currentUser={currentUser}
-                      key={listing.id}
-                      data={listing}
-                    />
-                  ))
-              : allListings
-                  .filter((listing: any) => listing.category === category)
-                  .map((listing: any) => (
-                    <ListingCard
-                      currentUser={currentUser}
-                      key={listing.id}
-                      data={listing}
-                    />
-                  ))}
-          </div>
-        )}
-      </>
-    );
-  };
-  return (
-    <ClientOnly>
-      <Container>{renderCards()}</Container>
+            >
+              {category === 'All'
+                ? allListings
+                    .filter((listing: any) =>
+                      listing.name
+                        .toLowerCase()
+                        .includes(searchInput.toLowerCase())
+                    )
+                    .sort((a, b) => {
+                      const aScore = editDistance(
+                        a.name.toLowerCase(),
+                        searchInput.toLowerCase()
+                      );
+                      const bScore = editDistance(
+                        b.name.toLowerCase(),
+                        searchInput.toLowerCase()
+                      );
+                      return aScore - bScore;
+                    })
+                    .map((listing: any) => (
+                      <ListingCard
+                        currentUser={currentUser}
+                        key={listing.id}
+                        data={listing}
+                      />
+                    ))
+                : allListings
+                    .filter((listing: any) => listing.category === category)
+                    .map((listing: any) => (
+                      <ListingCard
+                        currentUser={currentUser}
+                        key={listing.id}
+                        data={listing}
+                      />
+                    ))}
+            </div>
+          )}
+        </>
+      </Container>
     </ClientOnly>
   );
 }
