@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { differenceInDays } from 'date-fns';
 
@@ -21,16 +21,21 @@ const Search = () => {
   const locationLabel = 'Search';
   const [input, setInput] = useState<string>('');
 
-  const handleInputChange = ( value: string) => {
+  const chatInputRef= useRef<HTMLTextAreaElement | null>(null);
+
+  const handleInputChange = (value: string) => {
     setInput(value);
-    setSearchInput(input);
+    setSearchInput(value);
+    chatInputRef?.current?.focus();
   };
+
   return (
     <div
       className="relative max-w-sm flex min-h-[60px] w-full items-center justify-center rounded-xl border border-[#232325]
     "
     >
       <TextareaAutosize
+        textareaRef={chatInputRef}
         className="text-md flex w-full resize-none rounded-md border-none bg-transparent py-2 pl-3 pr-14 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50"
         placeholder={`Search`}
         onValueChange={handleInputChange}
