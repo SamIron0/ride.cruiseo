@@ -16,11 +16,11 @@ export interface GeoCoordinate {
   lon: number;
 }
 export interface Destination {
-  id: string;
+  id?: string;
   address: string;
   category: string;
   photo: string;
-  trip_ids: string[];
+  trip_ids?: string[];
   name: string;
   times?: string[] | null;
   activeTrips?: Trip[] | null;
