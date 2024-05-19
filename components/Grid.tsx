@@ -57,7 +57,6 @@ export function Grid() {
         <>
           {/* @ts-expect-error */}
           <Navbar  />
-          hey
           {allListings && (
             <div
               className="

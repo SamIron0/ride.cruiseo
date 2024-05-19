@@ -50,7 +50,7 @@ export default function ListingsLayout({ children }: ListingsLayoutProps) {
       if (!session) {
         return router.push('/login');
       } else {
-        //await fetchDestinationsData();
+        fetchDestinationsData();
       }
     })();
   }, []);
