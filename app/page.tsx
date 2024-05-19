@@ -1,8 +1,4 @@
 'use client';
-import { Grid } from '@/components/Grid';
-import Link from 'next/link';
-import { HowCruiseoWorks } from '@/components/how-cruiseo-works';
-import { HowFaresCalculated } from '@/components/how-fares-calculated';
 import { useRouter } from 'next/navigation';
 
 interface HomeProps {}
