@@ -1,4 +1,4 @@
-'use client';
+'use client' ;
 import Container from './Container';
 import ListingCard from './listings/ListingCard';
 import EmptyState from './EmptyState';
@@ -55,7 +55,6 @@ export function Grid() {
     <ClientOnly>
       <Container>
         <>
-          {/* @ts-expect-error */}
           <Navbar  />
           {allListings && (
             <div
