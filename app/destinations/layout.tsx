@@ -14,16 +14,5 @@ export default function ListingsLayout({ children }: ListingsLayoutProps) {
   const router = useRouter();
   const { supabase } = useSupabase();
 
-  useEffect(() => {
-    (async () => {
-      const session = await supabase.auth.getSession();
-
-      if (!session) {
-        return router.push('/login');
-      } else {
-        //await fetchDestinationsData();
-      }
-    })();
-  }, []);
   return <>{children}</>;
 }
