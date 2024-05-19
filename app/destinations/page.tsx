@@ -1,15 +1,10 @@
-import { IListingsParams } from '../actions/getListings';
 import { getSession, getUserDetails } from '../supabase-server';
 import { Grid } from '@/components/Grid';
 import { HowCruiseoWorks } from '@/components/how-cruiseo-works';
 import { HowFaresCalculated } from '@/components/how-fares-calculated';
 import Link from 'next/link';
 
-interface HomeProps {
-  searchParams: IListingsParams;
-}
-
-export default async function Home({ searchParams }: HomeProps) {
+export default async function Home() {
   const session = await getSession();
 
   return (
