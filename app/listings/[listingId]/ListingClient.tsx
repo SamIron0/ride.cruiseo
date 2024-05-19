@@ -107,7 +107,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     const newTrip: Trip = {
       id: uuidv4(),
       origin: userDetails?.address || '',
-      destination_id: listing.id,
+      destination_id: listing?.id || '',
       user_ids: [userDetails?.id || ''],
       date: selectedTrip.date,
       price: loadedPrices.get(selectedTrip.id) || 0,
