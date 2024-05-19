@@ -1,3 +1,4 @@
+'use client';
 import getListings from '@/db/listings';
 import { ReactNode } from 'react';
 import { useListings } from '../providers/ListingProvider';
