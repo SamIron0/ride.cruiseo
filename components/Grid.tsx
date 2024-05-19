@@ -8,7 +8,6 @@ import { Destination } from '@/types';
 import { useEffect, useState } from 'react';
 import { all } from 'axios';
 import { useListings } from '@/app/providers/ListingProvider';
-import { User } from '@supabase/supabase-js';
 
 function editDistance(a: string, b: string): number {
   const m = a.length;
@@ -57,7 +56,7 @@ export function Grid() {
       <Container>
         <>
           {/* @ts-expect-error */}
-          <Navbar user={user} />
+          <Navbar  />
           {allListings && (
             <div
               className="
