@@ -9,10 +9,9 @@ interface ListingsLayoutProps {
   children: ReactNode;
 }
 
-export default async function ListingsLayout({
+export default function ListingsLayout({
   children
 }: ListingsLayoutProps) {
-  const router = useRouter();
   const fetchLocation = async () => {
     // for now use madeup address
     const location = {
@@ -37,6 +36,7 @@ export default async function ListingsLayout({
       console.error('An error occurred while fetching the location:', error);
     }
   };
+  const router = useRouter();
   const { supabase } = useSupabase();
 
   const fetchDestinationsData = async () => {
