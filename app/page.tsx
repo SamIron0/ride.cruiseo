@@ -1,11 +1,11 @@
 'use client';
-import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/navigation';
 
 interface HomeProps {}
 
 export default async function Home() {
-  const router = useRouter();
-  router.push('/destinations');
+  //const router = useRouter();
+  //router.push('/destinations');
   return (
     <>
       {/*
