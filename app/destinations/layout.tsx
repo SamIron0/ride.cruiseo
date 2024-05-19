@@ -1,7 +1,9 @@
 'use client';
 import getListings from '@/db/listings';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useListings } from '../providers/ListingProvider';
+import { useSupabase } from '../supabase-provider';
+import { useRouter } from 'next/router';
 
 interface ListingsLayoutProps {
   children: ReactNode;
@@ -34,10 +36,25 @@ export default async function ListingsLayout({
       console.error('An error occurred while fetching the location:', error);
     }
   };
-  const { setAllListings } = useListings();
-  const userGeo = await fetchLocation();
-  const data = await getListings(userGeo);
-  setAllListings(data);
+  const router = useRouter();
+  const { supabase } = useSupabase();
 
+  const fetchDestinationsData = async () => {
+    const { setAllListings } = useListings();
+    const userGeo = await fetchLocation();
+    const data = await getListings(userGeo);
+    setAllListings(data);
+  };
+  useEffect(() => {
+    (async () => {
+      const session = await supabase.auth.getSession();
+
+      if (!session) {
+        return router.push('/login');
+      } else {
+        await fetchDestinationsData();
+      }
+    })();
+  }, []);
   return <>{children}</>;
 }
