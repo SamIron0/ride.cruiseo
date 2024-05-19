@@ -20,6 +20,25 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
   try {
     const { data: destinations } = await supabaseAdmin
       .from('destinations')
+      .select('id,name,address,photo,category');
+
+    if (!destinations || destinations.length === 0) {
+      return null;
+    }
+
+    return destinations;
+  } catch (error) {
+    console.error('Error retrieving destinations:', error);
+    return null;
+  }
+};
+
+export const retrieveDestinations2 = async (): Promise<
+  Destination[] | null
+> => {
+  try {
+    const { data: destinations } = await supabaseAdmin
+      .from('destinations')
       .select('*');
 
     if (!destinations || destinations.length === 0) {
@@ -74,7 +93,6 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
     return null;
   }
 };
-
 export const getDestinationById = async (id: string) => {
   const destination = (
     await supabaseAdmin.from('destinations').select('*').eq('id', id).single()
