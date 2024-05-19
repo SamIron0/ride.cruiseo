@@ -62,9 +62,6 @@ const Categories = (onCategoryClick: any) => {
   const pathname = usePathname();
   const isMainPage = pathname === "/";
 
-  if (!isMainPage) {
-    return null;
-  }
 
   return (
     <Container>

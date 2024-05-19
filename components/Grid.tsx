@@ -1,4 +1,4 @@
-'use client' ;
+'use client';
 import Container from './Container';
 import ListingCard from './listings/ListingCard';
 import EmptyState from './EmptyState';
@@ -36,11 +36,10 @@ function editDistance(a: string, b: string): number {
 
   return d[m][n];
 }
-interface GridProps {
-  }
+interface GridProps {}
 export function Grid() {
   const { allListings, searchInput, activeCategory } = useListings();
-   // display empty state if no destinations to displaay
+  // display empty state if no destinations to displaay
   if (allListings?.length === 0) {
     return (
       <ClientOnly>
@@ -54,11 +53,10 @@ export function Grid() {
   return (
     <ClientOnly>
       <Container>
-        <>
-          <Navbar  />
-          {allListings && (
-            <div
-              className="
+        <Navbar />
+        {allListings && (
+          <div
+            className="
               pt-[198px]
               grid 
               grid-cols-1 
@@ -69,36 +67,35 @@ export function Grid() {
               2xl:grid-cols-6
               gap-7
             "
-            >
-              {category === 'All'
-                ? allListings
-                    .filter((listing: any) =>
-                      listing.name
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase())
-                    )
-                    .sort((a, b) => {
-                      const aScore = editDistance(
-                        a.name.toLowerCase(),
-                        searchInput.toLowerCase()
-                      );
-                      const bScore = editDistance(
-                        b.name.toLowerCase(),
-                        searchInput.toLowerCase()
-                      );
-                      return aScore - bScore;
-                    })
-                    .map((listing: any) => (
-                      <ListingCard key={listing.id} data={listing} />
-                    ))
-                : allListings
-                    .filter((listing: any) => listing.category === category)
-                    .map((listing: any) => (
-                      <ListingCard key={listing.id} data={listing} />
-                    ))}
-            </div>
-          )}
-        </>
+          >
+            {category === 'All'
+              ? allListings
+                  .filter((listing: any) =>
+                    listing.name
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase())
+                  )
+                  .sort((a, b) => {
+                    const aScore = editDistance(
+                      a.name.toLowerCase(),
+                      searchInput.toLowerCase()
+                    );
+                    const bScore = editDistance(
+                      b.name.toLowerCase(),
+                      searchInput.toLowerCase()
+                    );
+                    return aScore - bScore;
+                  })
+                  .map((listing: any) => (
+                    <ListingCard key={listing.id} data={listing} />
+                  ))
+              : allListings
+                  .filter((listing: any) => listing.category === category)
+                  .map((listing: any) => (
+                    <ListingCard key={listing.id} data={listing} />
+                  ))}
+          </div>
+        )}
       </Container>
     </ClientOnly>
   );
