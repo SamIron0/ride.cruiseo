@@ -53,7 +53,7 @@ const Search = () => {
           onClick={() => {
             setSearchInput(input);
           }}
-          size={30}
+          size={25}
         />
       </div>
     </div>
