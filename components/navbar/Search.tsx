@@ -35,7 +35,7 @@ const Search = () => {
     >
       <TextareaAutosize
         textareaRef={chatInputRef}
-        className="text-md flex w-full resize-none rounded-md border-none bg-transparent py-1 pl-3 pr-14  placeholder:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50"
+        className="text-md flex w-full resize-none rounded-md border-none bg-transparent py-1 pl-3 pr-14  placeholder:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50  outline-none"
         placeholder={`Search`}
         onValueChange={handleInputChange}
         value={input}
