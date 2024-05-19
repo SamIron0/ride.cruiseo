@@ -11,8 +11,9 @@ export async function POST(req: Request) {
             let response;
             // filter destinations to only give contain destinations based on users location
             if (destinations != null) {
-                response = await filterDestinations(region, destinations)
-                return new Response(JSON.stringify(response), {
+                // change this to order by distance
+                //response = await filterDestinations(region, destinations)
+                return new Response(JSON.stringify(destinations), {
                     status: 200
                 });
             }
