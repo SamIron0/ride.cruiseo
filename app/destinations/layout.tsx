@@ -9,13 +9,11 @@ interface ListingsLayoutProps {
   children: ReactNode;
 }
 
-export default function ListingsLayout({
-  children
-}: ListingsLayoutProps) {
+export default function ListingsLayout({ children }: ListingsLayoutProps) {
   const { setAllListings } = useListings();
   const router = useRouter();
   const { supabase } = useSupabase();
-  
+
   const fetchLocation = async () => {
     // for now use madeup address
     const location = {
@@ -52,7 +50,7 @@ export default function ListingsLayout({
       if (!session) {
         return router.push('/login');
       } else {
-        await fetchDestinationsData();
+        //await fetchDestinationsData();
       }
     })();
   }, []);
