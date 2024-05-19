@@ -21,11 +21,10 @@ const Search = () => {
   const locationLabel = 'Search';
   const [input, setInput] = useState<string>('');
 
-  const chatInputRef= useRef<HTMLTextAreaElement | null>(null);
+  const chatInputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleInputChange = (value: string) => {
     setInput(value);
-    setSearchInput(value);
     chatInputRef?.current?.focus();
   };
 
@@ -51,7 +50,9 @@ const Search = () => {
             'rounded bg-[#4169E1] p-1 text-secondary',
             !input ? 'cursor-not-allowed opacity-50' : ''
           )}
-          onClick={() => {}}
+          onClick={() => {
+            setSearchInput(input);
+          }}
           size={30}
         />
       </div>
