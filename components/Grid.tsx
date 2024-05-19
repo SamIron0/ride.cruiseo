@@ -38,33 +38,10 @@ function editDistance(a: string, b: string): number {
   return d[m][n];
 }
 interface GridProps {
-  userDetails: any;
-  user: User | undefined;
-}
-export function Grid({ user, userDetails }: GridProps) {
-  const {
-    allListings,
-    searchInput,
-    setSearchInput,
-    setAllListings,
-    activeCategory,
-    setUserDetails
-  } = useListings();
-  const location = {
-    lat: 37.7749,
-    lon: -122.4194
-  };
-  const [input, setInput] = useState('');
-  userDetails.geolocation = location;
-  setUserDetails(userDetails);
- 
-  // get al destinations from supabase and then prices
-
-  // get the price of all destinatiions and store it in the state
-
-  const currentUser = null;
-
-  // display empty state if no destinations to displaay
+  }
+export function Grid() {
+  const { allListings, searchInput, activeCategory } = useListings();
+   // display empty state if no destinations to displaay
   if (allListings?.length === 0) {
     return (
       <ClientOnly>
@@ -114,20 +91,12 @@ export function Grid({ user, userDetails }: GridProps) {
                       return aScore - bScore;
                     })
                     .map((listing: any) => (
-                      <ListingCard
-                        currentUser={currentUser}
-                        key={listing.id}
-                        data={listing}
-                      />
+                      <ListingCard key={listing.id} data={listing} />
                     ))
                 : allListings
                     .filter((listing: any) => listing.category === category)
                     .map((listing: any) => (
-                      <ListingCard
-                        currentUser={currentUser}
-                        key={listing.id}
-                        data={listing}
-                      />
+                      <ListingCard key={listing.id} data={listing} />
                     ))}
             </div>
           )}
