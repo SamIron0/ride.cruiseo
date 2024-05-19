@@ -14,14 +14,6 @@ export default function ListingsLayout({ children }: ListingsLayoutProps) {
   const router = useRouter();
   const { supabase } = useSupabase();
 
-  const fetchDestinationsData = async () => {
-    const userGeo = {
-      lat: 37.7749,
-      lon: -122.4194
-    };
-    const data = await getListings(userGeo);
-    setAllListings(data);
-  };
   useEffect(() => {
     (async () => {
       const session = await supabase.auth.getSession();
@@ -29,7 +21,7 @@ export default function ListingsLayout({ children }: ListingsLayoutProps) {
       if (!session) {
         return router.push('/login');
       } else {
-        await fetchDestinationsData();
+        //await fetchDestinationsData();
       }
     })();
   }, []);
