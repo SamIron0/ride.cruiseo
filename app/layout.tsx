@@ -1,4 +1,4 @@
-import getListings from '@/app/actions/getListings';
+import getListings from '@/db/listings';
 import SupabaseProvider from './supabase-provider';
 import Footer from '@/components/ui/Footer';
 import Navbar from '@/components/navbar/NavBar';

@@ -3,7 +3,6 @@ import Container from './Container';
 import ListingCard from './listings/ListingCard';
 import EmptyState from './EmptyState';
 import Navbar from './navbar/NavBar';
-import getListings, { IListingsParams } from '@/app/actions/getListings';
 import ClientOnly from './ClientOnly';
 import { Destination } from '@/types';
 import { useEffect, useState } from 'react';
