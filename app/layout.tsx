@@ -42,40 +42,12 @@ export const metadata = {
     description: meta.description
   }
 };
-export default async function RootLayout({
+export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages
   children
 }: PropsWithChildren) {
-  const fetchLocation = async () => {
-    // for now use madeup address
-    const location = {
-      lat: 37.7749,
-      lon: -122.4194
-    };
-    //setRegion(location);
-
-    // this should retrun users address.
-    return location;
-
-    //use this to get general user location
-    try {
-      const res = await fetch('api/getLocation');
-      if (res.status === 200) {
-        // valid response
-        const data = await res.json();
-      } else {
-        console.error('An error occurred while fetching the location');
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching the location:', error);
-    }
-  };
-  const {setAllListings}= useListings();
-  const userGeo = await fetchLocation();
-  const data = await getListings(userGeo);
-  setAllListings(data);
-
+ 
   return (
     <html lang="en">
       <head>
@@ -122,7 +94,6 @@ export default async function RootLayout({
           <ListingsProvider>
             <ClientOnly>
               <ToasterProvider />
-              <SearchModal />
             </ClientOnly>
             <div>{children}</div>
             <SpeedInsights />
