@@ -12,6 +12,10 @@ interface ListingsLayoutProps {
 export default function ListingsLayout({
   children
 }: ListingsLayoutProps) {
+  const { setAllListings } = useListings();
+  const router = useRouter();
+  const { supabase } = useSupabase();
+  
   const fetchLocation = async () => {
     // for now use madeup address
     const location = {
@@ -36,11 +40,7 @@ export default function ListingsLayout({
       console.error('An error occurred while fetching the location:', error);
     }
   };
-  const router = useRouter();
-  const { supabase } = useSupabase();
-
   const fetchDestinationsData = async () => {
-    const { setAllListings } = useListings();
     const userGeo = await fetchLocation();
     const data = await getListings(userGeo);
     setAllListings(data);
