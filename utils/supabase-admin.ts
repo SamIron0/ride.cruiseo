@@ -75,12 +75,30 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
   }
 };
 
-
-
-export const getDestinationById = async(id: string) => {
-  const destination = (await supabaseAdmin.from('destinations').select('*').eq('id', id).single()).data;
-  if(destination)
-    destination.activeTrips = (await Promise.all(destination.trip_ids.map(async (tripId) => (await supabaseAdmin.from('trips').select('*').eq('id', tripId).single()).data))).filter((trip) => trip?.status === 'Active') as Trip[];
+export const getDestinationById = async (id: string) => {
+  const destination = (
+    await supabaseAdmin.from('destinations').select('*').eq('id', id).single()
+  ).data;
+  if (destination) {
+    try {
+      destination.activeTrips = (
+        await Promise.all(
+          destination.trip_ids.map(
+            async (tripId) =>
+              (
+                await supabaseAdmin
+                  .from('trips')
+                  .select('*')
+                  .eq('id', tripId)
+                  .single()
+              ).data
+          )
+        )
+      ).filter((trip) => trip?.status === 'Active') as Trip[];
+    } catch (error) {
+      console.error('Error retrieving destination:', error);
+    }
+  }
   return destination;
 };
 //getDestinationById
