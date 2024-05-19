@@ -30,7 +30,7 @@ const Search = () => {
 
   return (
     <div
-      className="relative max-w-sm flex min-h-[60px] w-full items-center justify-center rounded-xl border border-[#232325]
+      className="relative max-w-sm flex min-h-[40px] w-full items-center justify-center rounded-xl border border-[#232325]
     "
     >
       <TextareaAutosize
@@ -44,7 +44,7 @@ const Search = () => {
         onCompositionStart={() => setIsTyping(true)}
         onCompositionEnd={() => setIsTyping(false)}
       />
-      <div className="absolute bottom-[14px] right-3 flex cursor-pointer justify-center hover:opacity-50">
+      <div className="absolute right-3 flex cursor-pointer justify-center hover:opacity-50">
         <BiSearch
           className={cn(
             'rounded bg-[#4169E1] p-1 text-secondary',
