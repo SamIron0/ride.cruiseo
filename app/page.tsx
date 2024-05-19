@@ -1,6 +1,5 @@
 'use client';
 import { Grid } from '@/components/Grid';
-import { getSession, getUserDetails } from './supabase-server';
 import Link from 'next/link';
 import { HowCruiseoWorks } from '@/components/how-cruiseo-works';
 import { HowFaresCalculated } from '@/components/how-fares-calculated';
@@ -9,7 +8,6 @@ import { useRouter } from 'next/navigation';
 interface HomeProps {}
 
 export default async function Home() {
-  const session = await getSession();
   const router = useRouter();
   router.push('/destinations');
   return (
