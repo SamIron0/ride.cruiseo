@@ -3,7 +3,7 @@ import getListings from '@/db/listings';
 import { ReactNode, useEffect } from 'react';
 import { useListings } from '../providers/ListingProvider';
 import { useSupabase } from '../supabase-provider';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface ListingsLayoutProps {
   children: ReactNode;
