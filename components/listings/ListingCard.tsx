@@ -73,21 +73,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
             fill
             className="
               object-cover 
-              group-hover:scale-110 
-              transition
             "
             src={data.photo}
             alt="Listing"
           />
-          <div
-            className="
-            absolute
-            top-3
-            right-3
-          "
-          >
-            <HeartButton listingId={data.id} currentUser={currentUser} />
-          </div>
+         
         </div>
 
         <p className="block text-sm font-sans antialiased font-semibold leading-relaxed text-inherit">
