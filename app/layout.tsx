@@ -1,20 +1,17 @@
 import getListings from '@/db/listings';
 import SupabaseProvider from './supabase-provider';
 import Footer from '@/components/ui/Footer';
-import Navbar from '@/components/navbar/NavBar';
-import { cn } from '@/utils/helpers';
 import { PropsWithChildren } from 'react';
 import 'styles/main.css';
-import { ListingsProvider, useListings } from './providers/ListingProvider';
+import { ListingsProvider } from './providers/ListingProvider';
 import ToasterProvider from './providers/ToasterProvider';
 import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import SearchModal from '@/components/modals/SearchModal';
 import "./globals.css"
 const meta = {
   title: 'Cruiseo Ride Share',
-  description: 'Brought to you by Samuel.',
+  description: 'Share a ride!',
   robots: 'follow, index',
   favicon: '/favicon.ico',
   url: 'https://cruiseo.xyz',
