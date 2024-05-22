@@ -1,8 +1,11 @@
 import { Grid } from '@/components/Grid';
+import Navbar from '@/components/navbar/NavBar';
 export default async function Home() {
-
   return (
-    <Grid></Grid>
-    
+    <>
+      <Navbar />
+
+      <Grid></Grid>
+    </>
   );
 }

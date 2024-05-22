@@ -53,7 +53,6 @@ export function Grid() {
   return (
     <ClientOnly>
       <Container>
-        <Navbar />
         {allListings && (
           <div
             className="
