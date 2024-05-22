@@ -99,7 +99,18 @@ export default async function Login({
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 sm:max-w-md">
       <span className="pb-8 text-xl">Scrapify</span>
 
-      <form className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in">
+      <form
+        className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in"
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          if (e.nativeEvent.submitter.name === 'login') {
+            await signIn(formData);
+          } else if (e.nativeEvent.submitter.name === 'signup') {
+            await signUp(formData);
+          }
+        }}
+      >
         <Label className="text-md mt-4" htmlFor="email">
           Email
         </Label>
@@ -123,14 +134,16 @@ export default async function Login({
 
         <Button
           className="mb-2 rounded-md bg-blue-700 px-4 py-2 text-white"
-          onClick={() => signIn}
+          type="submit"
+          name="login"
         >
           Login
         </Button>
 
         <Button
           className="mb-2 rounded-md border border-foreground/20 px-4 py-2"
-          onClick={() => signUp}
+          type="submit"
+          name="signup"
         >
           Sign Up
         </Button>
