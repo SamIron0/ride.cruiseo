@@ -8,7 +8,6 @@ import ToasterProvider from './providers/ToasterProvider';
 import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import "./globals.css"
 const meta = {
   title: 'Cruiseo Ride Share',
   description: 'Share a ride!',
