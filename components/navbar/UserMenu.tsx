@@ -88,7 +88,7 @@ export default function UserMenu({ user }: UserMenuProps) {
       {isOpen && (
         <div
           className="
-          bg-[#232325]
+          bg-black
           text-white
             absolute 
             rounded-xl 
