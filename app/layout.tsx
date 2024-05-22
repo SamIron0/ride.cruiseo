@@ -11,7 +11,7 @@ import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import SearchModal from '@/components/modals/SearchModal';
-
+import "./globals.css"
 const meta = {
   title: 'Cruiseo Ride Share',
   description: 'Brought to you by Samuel.',
