@@ -130,14 +130,14 @@ export default function UserMenu({ user }: UserMenuProps) {
                 <MenuItem
                   label="Login"
                   onClick={() => {
-                    router.push("/signin");
+                    router.push("/login");
                     toggleOpen();
                   }}
                 />
                 <MenuItem
                   label="Sign up"
                   onClick={() => {
-                    router.push("/signup");
+                    router.push("/login");
                     toggleOpen();
                   }}
                 />

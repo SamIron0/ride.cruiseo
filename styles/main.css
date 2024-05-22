@@ -1,72 +1,76 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
+  @tailwind components;
+  @tailwind utilities;
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+  @layer base {
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 224 71.4% 4.1%;
 
-html {
-  height: 100%;
-  box-sizing: border-box;
-  touch-action: manipulation;
-  font-feature-settings: 'case' 1, 'rlig' 1, 'calt' 0;
-}
+      --card: 0 0% 100%;
+      --card-foreground: 224 71.4% 4.1%;
 
-html,
-body {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
-    'Helvetica', sans-serif;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  @apply text-white bg-black antialiased;
-}
+      --popover: 0 0% 100%;
+      --popover-foreground: 224 71.4% 4.1%;
 
-body {
-  position: relative;
-  min-height: 100%;
-  margin: 0;
-}
+      --primary: 220.9 39.3% 11%;
+      --primary-foreground: 210 20% 98%;
 
+      --secondary: 220 14.3% 95.9%;
+      --secondary-foreground: 220.9 39.3% 11%;
 
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-.blue-gradient-text {
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #006eff, #baffdc);
-}
-.pill-bg { 
-  background-image: linear-gradient(to right, black, rgb(12, 12, 12));
-}
-.blue-bg {
-  background: #2087cc;
-}
-.blue-gradient-bg {
-  background-image: linear-gradient(to right, #2087cc, #58a0cf);
-}
-.green-gradient-bg {
-  background-image: linear-gradient(to right, #23e24c, #87df9a);
-}
-.grey-gradient-text {
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #989898, #c4c3c3);
-}
-.circle-div {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-}
+      --muted: 220 14.3% 95.9%;
+      --muted-foreground: 220 8.9% 46.1%;
 
-.height-screen-helper {
-  height: calc(100vh - 80px);
-}
+      --accent: 220 14.3% 95.9%;
+      --accent-foreground: 220.9 39.3% 11%;
+
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 20% 98%;
+
+      --border: 220 13% 91%;
+      --input: 220 13% 91%;
+      --ring: 224 71.4% 4.1%;
+
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 224 71.4% 4.1%;
+      --foreground: 210 20% 98%;
+
+      --card: 224 71.4% 4.1%;
+      --card-foreground: 210 20% 98%;
+
+      --popover: 224 71.4% 4.1%;
+      --popover-foreground: 210 20% 98%;
+
+      --primary: 210 20% 98%;
+      --primary-foreground: 220.9 39.3% 11%;
+
+      --secondary: 215 27.9% 16.9%;
+      --secondary-foreground: 210 20% 98%;
+
+      --muted: 215 27.9% 16.9%;
+      --muted-foreground: 217.9 10.6% 64.9%;
+
+      --accent: 215 27.9% 16.9%;
+      --accent-foreground: 210 20% 98%;
+
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 20% 98%;
+
+      --border: 215 27.9% 16.9%;
+      --input: 215 27.9% 16.9%;
+      --ring: 216 12.2% 83.9%;
+    }
+  }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
