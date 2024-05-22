@@ -47,7 +47,6 @@ export default function RootLayout({
   // This will be populated with nested layouts or pages
   children
 }: PropsWithChildren) {
- 
   return (
     <html lang="en">
       <head>
@@ -95,7 +94,9 @@ export default function RootLayout({
             <ClientOnly>
               <ToasterProvider />
             </ClientOnly>
-            <div>{children}</div>
+            <div className="bg-black flex flex-row justify-center">
+              {children}
+            </div>
             <SpeedInsights />
             <Analytics />
             <Footer />
