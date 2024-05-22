@@ -39,9 +39,9 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
 
   return (
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 sm:max-w-md">
-      <span className="pb-8 text-xl">Scrapify</span>
+      <span className="pt-12 text-3xl font-semibold mx-auto">Cruiseo</span>
 
-      <form className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in" onSubmit={handleSubmit}>
+      <form className="flex w-full flex-1 flex-col gap-2 text-foreground animate-in" onSubmit={handleSubmit}>
         <Label className="text-md mt-4" htmlFor="email">
           Email
         </Label>
