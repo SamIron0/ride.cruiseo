@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
+import { cookies } from 'next/headers';
 
 export default async function signUp(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = req.body;
-  const supabase = createClient();
+  const supabase = createClient( cookies());
 
   const { error } = await supabase.auth.signUp({ email, password });
 
