@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Scrollbar Styles */
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
@@ -91,12 +92,18 @@
 
     --ring: 0 0% 14.9%;
   }
+
+  /* Define the custom utility classes for the colors */
+  .bg-background {
+    background-color: hsl(var(--background));
+  }
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
 }
 
 @layer base {
- 
   body {
     @apply bg-background text-foreground;
   }
 }
-
