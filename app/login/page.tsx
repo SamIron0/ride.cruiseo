@@ -94,18 +94,6 @@ export default async function Login({
 
     return redirect('/login?message=Check email to reset password');
   };
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
 
   return (
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 sm:max-w-md">
@@ -120,8 +108,6 @@ export default async function Login({
           name="email"
           placeholder="you@example.com"
           required
-          value={formData.email}
-          onChange={handleChange}
         />
 
         <Label className="text-md" htmlFor="password">
@@ -133,8 +119,6 @@ export default async function Login({
           name="password"
           placeholder="••••••••"
           required
-          value={formData.password}
-          onChange={handleChange}
         />
 
         <Button
