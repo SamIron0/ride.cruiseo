@@ -8,11 +8,12 @@ import ToasterProvider from './providers/ToasterProvider';
 import ClientOnly from '@/components/ClientOnly';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+let  favicon = '/favicon.svg';
 const meta = {
   title: 'Cruiseo Ride Share',
   description: 'Share a ride!',
   robots: 'follow, index',
-  favicon: '/favicon.ico',
+  favicon: favicon,
   url: 'https://cruiseo.xyz',
   type: 'website'
 };
@@ -70,13 +71,13 @@ export default function RootLayout({
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon-32x32.png"
+          href={favicon}
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/favicon-16x16.png"
+          href={favicon}
         />
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
