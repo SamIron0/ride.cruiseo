@@ -87,6 +87,14 @@ export default async function RootLayout({
               `
           }}
         ></script>
+        <link rel="apple-touch-icon" sizes="180x180" href={favicon} />
+        <link rel="icon" type="image/svg" sizes="32x32" href={favicon} />
+        <link rel="icon" type="image/svg" sizes="16x16" href={favicon} />
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
+          rel="stylesheet"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={inter.className}>
         <Providers attribute="class" defaultTheme="dark">
