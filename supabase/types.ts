@@ -1,4 +1,4 @@
-import { GeoCoordinate } from "@/types"
+import { Destination, GeoCoordinate, Trip } from "@/types"
 
 export type Json =
   | string
@@ -199,7 +199,92 @@ export type Database = {
           }
         ]
       }
-
+      trips: {
+        Row: {
+          origin: string;
+          destination?: Destination;
+          destination_id: string;
+          id: string;
+          date: string;
+          user_ids: string[];
+          price: number;
+          status: string;
+        };
+        Insert: {
+          origin?: string | null;
+          destination?: Destination | null;
+          destination_id?: string | null;
+          user_ids?: string[];
+          id: string | null;
+          date?: string | null;
+          price?: number | null;
+          status?: string | null;
+        };
+        Update: {
+          origin?: string | null;
+          destination?: Destination | null;
+          destination_id?: string | null;
+          user_ids?: string[];
+          id?: string | null;
+          date?: string | null;
+          price?: number | null;
+          status?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'trips_id_fkey';
+            columns: ['trip_id'];
+            referencedRelation: 'trips';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      destinations: {
+        Row: {
+          id: string
+          address: string
+          category: string
+          photo: string
+          trip_ids: string[]
+          name: string
+          times?: string[] | null
+          activeTrips?: Trip[] | null
+          lon: number
+          lat: number
+        }
+        Insert: {
+          id: string | null
+          address?: string | null
+          category?: string
+          photo?: string | null
+          trip_ids?: string[] | null
+          name?: string | null
+          times?: string[] | null
+          activeTrips?: Trip[] | null
+          lon?: number | null
+          lat?: number | null
+        }
+        Update: {
+          id: string | null
+          address?: string | null
+          category?: string
+          photo?: string | null
+          trip_ids?: string[] | null
+          name?: string | null
+          times?: string[] | null
+          activeTrips?: Trip[] | null
+          lon?: number | null
+          lat?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "destinations_id_fkey"
+            columns: ["destination_id"]
+            referencedRelation: "destinations"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           bio: string
