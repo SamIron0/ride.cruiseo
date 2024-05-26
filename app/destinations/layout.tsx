@@ -10,7 +10,7 @@ interface ListingsLayoutProps {
 }
 
 export default function ListingsLayout({ children }: ListingsLayoutProps) {
-  const { setAllListings } = useListings();
+  const { setUserDetails, setAllListings } = useListings();
   const router = useRouter();
   const { supabase } = useSupabase();
 
@@ -46,12 +46,8 @@ export default function ListingsLayout({ children }: ListingsLayoutProps) {
   useEffect(() => {
     (async () => {
       const session = await supabase.auth.getSession();
-
-      if (!session) {
-        return router.push('/login');
-      } else {
-        await fetchDestinationsData();
-      }
+      setUserDetails(session.data.session?.user);
+      await fetchDestinationsData();
     })();
   }, []);
   return <>{children}</>;

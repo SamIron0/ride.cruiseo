@@ -1,23 +1,24 @@
-"use client";
+'use client';
 
-import MenuItem from "./MenuItem";
-import { useSupabase } from "@/app/supabase-provider";
-import { UserDetails } from "@/types";
-import { User } from "@supabase/supabase-js";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { AiOutlineMenu } from "react-icons/ai";
-import { CiUser } from "react-icons/ci";
-import { TbUserFilled } from "react-icons/tb";
+import { useListings } from '@/app/providers/ListingProvider';
+import MenuItem from './MenuItem';
+import { useSupabase } from '@/app/supabase-provider';
+import { createClient } from '@/lib/supabase/client';
+import { UserDetails } from '@/types';
+import { User } from '@supabase/supabase-js';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { CiUser } from 'react-icons/ci';
+import { TbUserFilled } from 'react-icons/tb';
 
-interface UserMenuProps {
-  user?: User | null;
-}
+interface UserMenuProps {}
 
-export default function UserMenu({ user }: UserMenuProps) {
-  const { supabase } = useSupabase();
+export default function UserMenu() {
+  const supabase = createClient();
   const router = useRouter();
+  const { userDetails } = useListings();
   // get session from api
   const signOut = async () => {
     try {
@@ -25,14 +26,13 @@ export default function UserMenu({ user }: UserMenuProps) {
       if (error) {
         toast.error(error.message);
       } else {
-        toast.success("Signed Out");
+        toast.success('Signed Out');
         router.refresh();
       }
     } catch (error) {
-      toast.error("An error occurred during signout.");
+      toast.error('An error occurred during signout.');
     }
   };
-
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -102,21 +102,21 @@ export default function UserMenu({ user }: UserMenuProps) {
           "
         >
           <div className="flex flex-col cursor-pointer">
-            {user ? (
+            {userDetails ? (
               <>
                 <MenuItem
                   label="Account"
-                  onClick={() => router.push("/account")}
+                  onClick={() => router.push('/account')}
                 />
                 <MenuItem
                   label="My Trips"
-                  onClick={() => router.push("/trips")}
+                  onClick={() => router.push('/trips')}
                 />
                 <MenuItem
                   label="Help"
-                  onClick={() => router.push("/contactus")}
+                  onClick={() => router.push('/contactus')}
                 />
-                <hr className="text-[#232325] bg-[#232325] "/>
+                <hr className="text-[#232325] bg-[#232325] " />
                 <MenuItem
                   label="Logout"
                   onClick={() => {
@@ -130,14 +130,14 @@ export default function UserMenu({ user }: UserMenuProps) {
                 <MenuItem
                   label="Login"
                   onClick={() => {
-                    router.push("/login");
+                    router.push('/login');
                     toggleOpen();
                   }}
                 />
                 <MenuItem
                   label="Sign up"
                   onClick={() => {
-                    router.push("/login");
+                    router.push('/login');
                     toggleOpen();
                   }}
                 />
