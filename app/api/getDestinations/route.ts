@@ -1,7 +1,5 @@
-import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Trip, GeoCoordinate, Destination } from "@/types";
-import { retrieveDestinations } from "@/utils/supabase-admin";
-import { filterDestinations } from "./controller"
+import {  Destination } from "@/types";
+import { retrieveDestinations } from "@/db/listings";
 
 export async function POST(req: Request) {
     if (req.method === 'POST') {
