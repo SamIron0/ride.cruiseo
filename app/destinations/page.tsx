@@ -4,11 +4,10 @@ import Navbar from '@/components/navbar/NavBar';
 import { createClient } from '@/lib/supabase/server';
 export default function Home() {
   return (
-    <div>
-      {" "}
+    <>
       <Navbar />
 
       <Grid></Grid>
-    </div>
+    </>
   );
 }
