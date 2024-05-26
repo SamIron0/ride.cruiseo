@@ -65,17 +65,17 @@ export default function RootLayout({
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-touch-icon.png"
+          href={favicon}
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/svg"
           sizes="32x32"
           href={favicon}
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/svg"
           sizes="16x16"
           href={favicon}
         />
