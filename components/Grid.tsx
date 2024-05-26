@@ -56,7 +56,7 @@ export function Grid() {
         {allListings && (
           <div
             className="
-              pt-[198px]
+              py-[198px]
               grid 
               grid-cols-1 
               sm:grid-cols-2 
