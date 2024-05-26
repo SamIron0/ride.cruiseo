@@ -297,10 +297,8 @@ export type Database = {
           id: string
           image_path: string
           image_url: string
-          profile_context: string
           updated_at: string | null
           address: string | null
-          user_id: string
           username: string
         }
         Insert: {
@@ -317,7 +315,6 @@ export type Database = {
           profile_context?: string
           updated_at?: string | null
           address?: string | null
-          user_id?: string
           username?: string
         }
         Update: {
@@ -334,7 +331,6 @@ export type Database = {
           profile_context?: string
           updated_at?: string | null
           address?: string | null
-          user_id?: string
           username?: string
         }
         Relationships: [
