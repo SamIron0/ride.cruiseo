@@ -1,7 +1,7 @@
 "use client"
 import { retrieveDestinations } from "@/db/listings"
 import { Destination } from "@/types"
-import { ReactNode, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 
 interface RootLayoutProps {
   children: ReactNode
@@ -9,7 +9,11 @@ interface RootLayoutProps {
 export default async function RootLayout({ children }: RootLayoutProps) {
   const [destinations, setDestinations] = useState<Destination[] | null>([])
 
-  const x = await retrieveDestinations()
-  setDestinations(x)
+  useEffect(() => {
+    ;async () => {
+      const x = await retrieveDestinations()
+      setDestinations(x)
+    }
+  }, [])
   return <div> {children}</div>
 }
