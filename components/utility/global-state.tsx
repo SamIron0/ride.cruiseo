@@ -29,7 +29,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
   profile: Tables<"profiles"> | null
 */
   const [searchInput, setSearchInput] = useState<string>("")
-  const [activeCategory, setActiveCategory] = useState<string>("")
+  const [activeCategory, setActiveCategory] = useState<string>("All")
 
   useEffect(() => {
     ;(async () => {

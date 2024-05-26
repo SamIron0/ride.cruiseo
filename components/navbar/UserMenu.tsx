@@ -61,8 +61,8 @@ export default function UserMenu() {
           onClick={toggleOpen}
           className="
           p-4
-          md:py-2
-          md:px-3
+          md:py-3
+          md:px-4
           border-[1px] 
           border-[#232325]
           flex 
