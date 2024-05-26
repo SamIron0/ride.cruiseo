@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     try {
       const formData = await req.json();
       const cookieStore = cookies();
-
+      console.log('d',formData);
       const supabase = createClient(cookieStore);
       let email = formData.email;
       let password = formData.password;
@@ -17,14 +17,20 @@ export async function POST(req: Request) {
       });
 
       if (error) {
-        return new Response(JSON.stringify({ error: { statusCode: 500, message: error.message } }));
+        return new Response(
+          JSON.stringify({ error: { statusCode: 500, message: error.message } })
+        );
       }
-      return new Response(JSON.stringify({ message: 'Signed in successfully' }), {
-        status: 200
-      });
+      return new Response(
+        JSON.stringify({ message: 'Signed in successfully' }),
+        {
+          status: 200
+        }
+      );
     } catch (error) {
-      return new Response(JSON.stringify({ error: { statusCode: 500, message: error } }));
+      return new Response(
+        JSON.stringify({ error: { statusCode: 500, message: error } })
+      );
     }
   }
-
 }

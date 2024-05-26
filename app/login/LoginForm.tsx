@@ -6,7 +6,11 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
-export default function LoginForm({ searchParams }: { searchParams: { message: string } }) {
+export default function LoginForm({
+  searchParams
+}: {
+  searchParams: { message: string };
+}) {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -16,7 +20,8 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement;
+    const submitter = (e.nativeEvent as SubmitEvent)
+      .submitter as HTMLButtonElement;
 
     const action = submitter.name === 'login' ? '/api/signin' : '/api/signup';
 
@@ -24,8 +29,8 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     });
 
     const result = await response.json();
@@ -41,7 +46,10 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 pb-12 sm:max-w-md">
       <span className="pt-12 text-3xl font-semibold mx-auto">Cruiseo</span>
 
-      <form className="flex w-full flex-1 flex-col gap-2 text-foreground animate-in" onSubmit={handleSubmit}>
+      <form
+        className="flex w-full flex-1 flex-col gap-2 text-foreground animate-in"
+        onSubmit={handleSubmit}
+      >
         <Label className="text-md mt-4" htmlFor="email">
           Email
         </Label>
@@ -66,16 +74,26 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
           onChange={handleChange}
         />
 
-        <Button className="mb-2 rounded-md bg-blue-700 px-4 py-2 text-white" type="submit" name="login">
+        <Button
+          className="mb-2 rounded-md bg-blue-700 px-4 py-2 text-white"
+          type="submit"
+          name="login"
+        >
           Login
         </Button>
 
-        <Button className="mb-2 rounded-md border border-input px-4 text-white py-2" type="submit" name="signup">
+        <Button
+          className="mb-2 rounded-md border  px-4 text-white py-2"
+          type="submit"
+          name="signup"
+        >
           Sign Up
         </Button>
 
         {searchParams?.message && (
-          <p className="mt-4 bg-foreground/10 p-4 text-center text-foreground">{searchParams.message}</p>
+          <p className="mt-4 bg-foreground/10 p-4 text-center text-foreground">
+            {searchParams.message}
+          </p>
         )}
       </form>
     </div>
