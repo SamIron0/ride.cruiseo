@@ -70,7 +70,7 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
           Login
         </Button>
 
-        <Button className="mb-2 rounded-md border border-foreground/20 px-4 py-2" type="submit" name="signup">
+        <Button className="mb-2 rounded-md border px-4 text-white py-2" type="submit" name="signup">
           Sign Up
         </Button>
 
