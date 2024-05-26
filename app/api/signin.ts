@@ -1,18 +1,30 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
-    import { cookies } from 'next/headers';
+import { cookies } from 'next/headers';
 
-export default async function signIn(req: NextApiRequest, res: NextApiResponse) {
-  const { email, password } = req.body;
-  const cookieStore = cookies();
+export async function POST(req: Request) {
+  if (req.method === 'POST') {
+    try {
+      const formData = await req.json();
+      const cookieStore = cookies();
 
-  const supabase = createClient( cookieStore);
+      const supabase = createClient(cookieStore);
+      let email = formData.email;
+      let password = formData.password;
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    return res.status(400).json({ error: error.message });
+      if (error) {
+        return new Response(JSON.stringify({ error: { statusCode: 500, message: error.message } }));
+      }
+      return new Response(JSON.stringify({ message: 'Signed in successfully' }), {
+        status: 200
+      });
+    } catch (error) {
+      return new Response(JSON.stringify({ error: { statusCode: 500, message: error } }));
+    }
   }
 
-  return res.status(200).json({ message: 'Signed in successfully' });
 }

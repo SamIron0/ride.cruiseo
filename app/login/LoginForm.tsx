@@ -59,7 +59,6 @@ export default function LoginForm({ searchParams }: { searchParams: { message: s
         </Label>
         <Input
           className="mb-6 rounded-md border bg-inherit px-4 py-2 text-[16px]"
-          type="password"
           name="password"
           placeholder="••••••••"
           required
