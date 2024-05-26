@@ -6,10 +6,7 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
     const { data: destinations } = await supabase
       .from('destinations')
       .select('id,name,address,photo,category');
-
-    if (!destinations || destinations.length === 0) {
-      return null;
-    }
+      
 
     return destinations;
   } catch (error) {
