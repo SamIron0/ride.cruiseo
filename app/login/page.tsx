@@ -13,7 +13,7 @@ export default async function Login({ searchParams }: { searchParams: { message:
   const session = (await supabase.auth.getSession()).data.session;
 
   if (session) {
-    return redirect(`/dashboard`);
+    return redirect(`/destinations`);
   }
 
   return <LoginForm searchParams={searchParams} />;
