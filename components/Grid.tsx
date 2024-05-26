@@ -35,9 +35,9 @@ function editDistance(a: string, b: string): number {
 }
 interface GridProps {}
 export function Grid() {
-  const { allListings, searchInput, activeCategory } = useContext(CruiseoContext)
+  const { destinations, searchInput, activeCategory } = useContext(CruiseoContext)
   // display empty state if no destinations to displaay
-  if (allListings?.length === 0) {
+  if (destinations?.length === 0) {
     return (
       <ClientOnly>
         <EmptyState showReset />
@@ -50,7 +50,7 @@ export function Grid() {
   return (
     <ClientOnly>
       <Container>
-        {allListings && (
+        {destinations && (
           <div
             className="
               py-[198px]
@@ -65,7 +65,7 @@ export function Grid() {
             "
           >
             {category === 'All'
-              ? allListings
+              ? destinations
                   .filter((listing: any) =>
                     listing.name
                       .toLowerCase()
@@ -85,7 +85,7 @@ export function Grid() {
                   .map((listing: any) => (
                     <ListingCard key={listing.id} data={listing} />
                   ))
-              : allListings
+              : destinations
                   .filter((listing: any) => listing.category === category)
                   .map((listing: any) => (
                     <ListingCard key={listing.id} data={listing} />
