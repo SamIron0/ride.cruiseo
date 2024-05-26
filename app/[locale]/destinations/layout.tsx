@@ -15,5 +15,5 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       setDestinations(x)
     }
   }, [])
-  return <div> {children}</div>
+  return <> {children}</>
 }
