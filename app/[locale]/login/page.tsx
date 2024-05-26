@@ -33,7 +33,7 @@ export default async function Login({
   const session = (await supabase.auth.getSession()).data.session
 
   if (session) {
-    return redirect(`/dashboard`)
+    return redirect(`/destinations`)
   }
 
   const signIn = async (formData: FormData) => {
@@ -52,7 +52,7 @@ export default async function Login({
     if (error) {
       return redirect(`/login?message=${error.message}`)
     }
-    return redirect(`/dashboard`)
+    return redirect(`/destinations`)
   }
 
   const signUp = async (formData: FormData) => {
@@ -105,7 +105,7 @@ export default async function Login({
 
   return (
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 sm:max-w-md">
-      <span className="pb-8 text-xl">Scrapify</span>
+      <span className="pb-8 text-xl">Cruiseo</span>
 
       <form
         className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in"
