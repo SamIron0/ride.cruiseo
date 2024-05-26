@@ -10,10 +10,10 @@ import { Analytics } from "@vercel/analytics/react"
 import { GlobalState } from "@/components/utility/global-state"
 
 const inter = Inter({ subsets: ["latin"] })
-const APP_NAME = "Fitpal AI"
-const APP_DEFAULT_TITLE = "Fitpal AI"
-const APP_TITLE_TEMPLATE = "%s - Fitpal AI"
-const APP_DESCRIPTION = "Chabot UI PWA!"
+const APP_NAME = "Cruiseo"
+const APP_DEFAULT_TITLE = "Cruiseo"
+const APP_TITLE_TEMPLATE = "%s - Cruiseo"
+const APP_DESCRIPTION = "Cruiseo"
 
 interface RootLayoutProps {
   children: ReactNode
