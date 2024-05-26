@@ -1,18 +1,14 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useMemo, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
-import { differenceInDays } from 'date-fns';
-
-import useSearchModal from '@/app/hooks/useSearchModal';
 import { TextareaAutosize } from '../ui/textarea-autosize';
-import { cn } from '@/utils/helpers';
-import { useListings } from '@/app/providers/ListingProvider';
+import { cn } from '@/lib/utils';
+import { CruiseoContext } from '@/context/context';
 
 const Search = () => {
-  const { setSearchInput } = useListings();
-  const searchModal = useSearchModal();
+  const { setSearchInput } = useContext(CruiseoContext);
   const params = useSearchParams();
   const [isTyping, setIsTyping] = useState<boolean>(false);
 

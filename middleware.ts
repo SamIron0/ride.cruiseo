@@ -1,12 +1,29 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
-import { NextResponse } from 'next/server'
+import { createClient } from "@/lib/supabase/middleware"
+import { i18nRouter } from "next-i18n-router"
+import { NextResponse, type NextRequest } from "next/server"
+import i18nConfig from "./i18nConfig"
 
-import type { NextRequest } from 'next/server'
-import type { Database } from '@/types_db'
+export async function middleware(request: NextRequest) {
+  const i18nResult = i18nRouter(request, i18nConfig)
+  if (i18nResult) return i18nResult
 
-export async function middleware(req: NextRequest) {
-  const res = NextResponse.next()
-  const supabase = createMiddlewareClient<Database>({ req, res })
-  await supabase.auth.getSession()
-  return res
+  try {
+    const { supabase, response } = createClient(request)
+
+    const session = await supabase.auth.getSession()
+
+    const redirectToChat = session && request.nextUrl.pathname === "/"
+
+    return response
+  } catch (e) {
+    return NextResponse.next({
+      request: {
+        headers: request.headers
+      }
+    })
+  }
+}
+
+export const config = {
+  matcher: "/((?!api|static|.*\\..*|_next|auth).*)"
 }

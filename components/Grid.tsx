@@ -2,12 +2,9 @@
 import Container from './Container';
 import ListingCard from './listings/ListingCard';
 import EmptyState from './EmptyState';
-import Navbar from './navbar/NavBar';
 import ClientOnly from './ClientOnly';
-import { Destination } from '@/types';
-import { useEffect, useState } from 'react';
-import { all } from 'axios';
-import { useListings } from '@/app/providers/ListingProvider';
+import { useContext } from 'react';
+import { CruiseoContext } from '@/context/context';
 
 function editDistance(a: string, b: string): number {
   const m = a.length;
@@ -38,7 +35,7 @@ function editDistance(a: string, b: string): number {
 }
 interface GridProps {}
 export function Grid() {
-  const { allListings, searchInput, activeCategory } = useListings();
+  const { allListings, searchInput, activeCategory } = useContext(CruiseoContext)
   // display empty state if no destinations to displaay
   if (allListings?.length === 0) {
     return (

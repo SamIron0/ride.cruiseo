@@ -1,44 +1,40 @@
-'use client';
+"use client"
 
-import { useListings } from '@/app/providers/ListingProvider';
-import MenuItem from './MenuItem';
-import { useSupabase } from '@/app/supabase-provider';
-import { createClient } from '@/lib/supabase/client';
-import { UserDetails } from '@/types';
-import { User } from '@supabase/supabase-js';
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { CiUser } from 'react-icons/ci';
-import { TbUserFilled } from 'react-icons/tb';
+import { CruiseoContext } from "@/context/context"
+import MenuItem from "./MenuItem"
+import { createClient } from "@/lib/supabase/client"
+import { useRouter } from "next/navigation"
+import { useCallback, useContext, useEffect, useState } from "react"
+import { AiOutlineMenu } from "react-icons/ai"
+import { TbUserFilled } from "react-icons/tb"
+import { toast } from "sonner"
 
 interface UserMenuProps {}
 
 export default function UserMenu() {
-  const supabase = createClient();
-  const router = useRouter();
-  const { userDetails } = useListings();
+  const supabase = createClient()
+  const router = useRouter()
+  const { profile } = useContext(CruiseoContext)
   // get session from api
   const signOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
+      const { error } = await supabase.auth.signOut()
       if (error) {
-        toast.error(error.message);
+        toast.error(error.message)
       } else {
-        toast.success('Signed Out');
-        router.refresh();
+        toast.success("Signed Out")
+        router.refresh()
       }
     } catch (error) {
-      toast.error('An error occurred during signout.');
+      toast.error("An error occurred during signout.")
     }
-  };
+  }
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
+    setIsOpen(value => !value)
+  }, [])
 
   return (
     <div className="relative">
@@ -104,26 +100,26 @@ export default function UserMenu() {
           "
         >
           <div className="flex flex-col cursor-pointer">
-            {userDetails ? (
+            {profile ? (
               <>
                 <MenuItem
                   label="Account"
-                  onClick={() => router.push('/account')}
+                  onClick={() => router.push("/account")}
                 />
                 <MenuItem
                   label="My Trips"
-                  onClick={() => router.push('/trips')}
+                  onClick={() => router.push("/trips")}
                 />
                 <MenuItem
                   label="Help"
-                  onClick={() => router.push('/contactus')}
+                  onClick={() => router.push("/contactus")}
                 />
                 <hr className="text-input bg-input " />
                 <MenuItem
                   label="Logout"
                   onClick={() => {
-                    signOut();
-                    toggleOpen();
+                    signOut()
+                    toggleOpen()
                   }}
                 />
               </>
@@ -132,15 +128,15 @@ export default function UserMenu() {
                 <MenuItem
                   label="Login"
                   onClick={() => {
-                    router.push('/login');
-                    toggleOpen();
+                    router.push("/login")
+                    toggleOpen()
                   }}
                 />
                 <MenuItem
                   label="Sign up"
                   onClick={() => {
-                    router.push('/login');
-                    toggleOpen();
+                    router.push("/login")
+                    toggleOpen()
                   }}
                 />
               </>
@@ -149,5 +145,5 @@ export default function UserMenu() {
         </div>
       )}
     </div>
-  );
+  )
 }

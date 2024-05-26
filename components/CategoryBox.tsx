@@ -1,10 +1,9 @@
 "use client";
 
-import qs from "query-string";
+import { CruiseoContext } from "@/context/context";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { IconType } from "react-icons";
-import { useListings } from "@/app/providers/ListingProvider";
 interface CategoryBoxProps {
   icon: IconType;
   label: string;
@@ -17,7 +16,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
   label,
   selected,
 }) => {
-  const { activeCategory, setActiveCategory } = useListings();
+  const { activeCategory, setActiveCategory } = useContext(CruiseoContext);
 
   const handleCategoryClick = () => {
     setActiveCategory(label);

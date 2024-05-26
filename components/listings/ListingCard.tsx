@@ -4,10 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 import { Destination } from '@/types';
-import HeartButton from '../HeartButton';
 import Button from '../Button';
-import ClientOnly from '../ClientOnly';
-import { useListings } from '@/app/providers/ListingProvider';
 interface ListingCardProps {
   data: Destination;
   onAction?: (id: string) => void;

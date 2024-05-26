@@ -1,67 +1,43 @@
-"use client";
+"use client"
 
-import CategoryBox from "../CategoryBox";
-import Container from "../Container";
-import { useListings } from "@/app/providers/ListingProvider";
-import { usePathname, useSearchParams } from "next/navigation";
-import { BsSnow } from "react-icons/bs";
-import { FaSkiing } from "react-icons/fa";
-import {
-  GiBarn,
-  GiBoatFishing,
-  GiCactus,
-  GiCastle,
-  GiCaveEntrance,
-  GiForestCamp,
-  GiIsland,
-  GiWindmill,
-} from "react-icons/gi";
-import { IoDiamond } from "react-icons/io5";
-import { MdFlight, MdOutlineVilla } from "react-icons/md";
-import {
-  TbBeach,
-  TbCar,
-  TbMountain,
-  TbMovie,
-  TbPool,
-  TbSchool,
-  TbShoppingCart,
-} from "react-icons/tb";
+import { CruiseoContext } from "@/context/context"
+import CategoryBox from "../CategoryBox"
+import Container from "../Container"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useContext } from "react"
+import { MdFlight } from "react-icons/md"
+import { TbCar, TbMovie, TbSchool, TbShoppingCart } from "react-icons/tb"
 
 export const categories = [
   {
     label: "All",
     icon: TbCar,
-    description: "View All Available Destinations!",
+    description: "View All Available Destinations!"
   },
   {
     label: "Shop",
     icon: TbShoppingCart,
-    description: "This property is has windmills!",
+    description: "This property is has windmills!"
   },
   {
     label: "Airport",
     icon: MdFlight,
-    description: "This property is modern!",
+    description: "This property is modern!"
   },
   {
     label: "School",
     icon: TbSchool,
-    description: "This property is in the countryside!",
+    description: "This property is in the countryside!"
   },
   {
     label: "Cinema",
     icon: TbMovie,
-    description: "Wanna see a movie?!",
-  },
-];
+    description: "Wanna see a movie?!"
+  }
+]
 
 const Categories = (onCategoryClick: any) => {
-  const params = useSearchParams();
-  const { activeCategory } = useListings();
-  const pathname = usePathname();
-  const isMainPage = pathname === "/";
-
+  const { activeCategory } = useContext(CruiseoContext)
 
   return (
     <Container>
@@ -81,7 +57,7 @@ const Categories = (onCategoryClick: any) => {
         ))}
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default Categories;
+export default Categories

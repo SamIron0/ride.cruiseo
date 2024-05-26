@@ -3,7 +3,6 @@
 import Image from 'next/image';
 
 import Heading from '../Heading';
-import HeartButton from '../HeartButton';
 import { User } from '@supabase/supabase-js';
 interface ListingHeadProps {
   title: string | undefined;
@@ -38,15 +37,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           className="object-cover w-full"
           alt="Image"
         />
-        <div
-          className="
-            absolute
-            top-5
-            right-5
-          "
-        >
-          <HeartButton listingId={id as string} currentUser={currentUser} />
-        </div>
+       
       </div>
     </>
   );

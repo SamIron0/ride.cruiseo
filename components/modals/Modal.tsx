@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import useSearchModal from '@/app/hooks/useSearchModal';
 import { useRouter } from 'next/navigation';
 import Button from '../Button';
 
@@ -33,7 +32,6 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
   const router = useRouter();
-  const searchModal = useSearchModal();
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
@@ -43,7 +41,6 @@ const Modal: React.FC<ModalProps> = ({
       return;
     }
     setShowModal(false);
-    searchModal.onClose();
     router.push('/');
   }, [onClose, disabled]);
 
