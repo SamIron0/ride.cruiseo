@@ -1,15 +1,11 @@
 import { supabase } from "@/lib/supabase/browser-client"
 import { Destination, Trip } from "@/types"
 
-export const retrieveDestinations = async (): Promise<Destination[] | null> => {
+export const retrieveDestinations = async () => {
   try {
-    const { data: destinations } = await supabase
+    const { data: destinations, error } = await supabase
       .from("destinations")
-      .select("*")
-
-    if (!destinations) {
-      return null
-    }
+      .select("id,name,address,photo,category")
 
     return destinations
   } catch (error) {
