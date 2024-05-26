@@ -88,6 +88,9 @@ export default function UserMenu() {
       {isOpen && (
         <div
           className="
+          border
+          border-input
+        
           bg-black
           text-white
             absolute 
@@ -116,7 +119,7 @@ export default function UserMenu() {
                   label="Help"
                   onClick={() => router.push('/contactus')}
                 />
-                <hr className="text-[#232325] bg-[#232325] " />
+                <hr className="text-input bg-input " />
                 <MenuItem
                   label="Logout"
                   onClick={() => {
