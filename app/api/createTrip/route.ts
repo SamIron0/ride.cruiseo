@@ -7,7 +7,6 @@ import { createTrip } from '@/db/trips';
 import { Trip } from '@/types';
 import { Database } from '@/types_db';
 import { cookies } from 'next/headers';
-import { getSession } from '@/app/supabase-server';
 
 export async function POST(req: Request) {
   if (req.method === 'POST') {
