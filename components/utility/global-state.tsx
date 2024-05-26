@@ -2,6 +2,7 @@
 
 "use client"
 import { CruiseoContext } from "@/context/context"
+import { retrieveDestinations } from "@/db/listings"
 import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { Tables } from "@/supabase/types"
@@ -17,6 +18,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
 }: GlobalStateProps) => {
   // PROFILE STORE
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null)
+  const [destinations, setDestinations] = useState<Destination[] | null>([])
   /*
   allListings: Destination[]
   setAllListings: Dispatch<SetStateAction<Destination[]>>
@@ -26,9 +28,8 @@ export const GlobalState: FC<GlobalStateProps> = ({
   setActiveCategory: Dispatch<SetStateAction<string>>
   profile: Tables<"profiles"> | null
 */
-    const [allListings, setAllListings] = useState<Destination[]>([]) 
-    const [searchInput, setSearchInput] = useState<string>("")
-    const [activeCategory, setActiveCategory] = useState<string>("")
+  const [searchInput, setSearchInput] = useState<string>("")
+  const [activeCategory, setActiveCategory] = useState<string>("")
 
   useEffect(() => {
     ;(async () => {
@@ -43,7 +44,9 @@ export const GlobalState: FC<GlobalStateProps> = ({
       const user = session.user
 
       const profile = await getProfileByUserId(user.id)
+      const listings = await retrieveDestinations()
       setProfile(profile)
+      setDestinations(listings)
 
       return profile
     }
@@ -54,13 +57,12 @@ export const GlobalState: FC<GlobalStateProps> = ({
       value={{
         profile,
         setProfile,
-        allListings,
-        setAllListings,
+        destinations,
+        setDestinations,
         searchInput,
-        setSearchInput, 
+        setSearchInput,
         activeCategory,
         setActiveCategory
-          
       }}
     >
       {children}
