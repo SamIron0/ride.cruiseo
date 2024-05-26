@@ -18,66 +18,6 @@ export const retrieveDestinations = async (): Promise<Destination[] | null> => {
   }
 };
 
-export const retrieveDestinations2 = async (): Promise<
-  Destination[] | null
-> => {
-  try {
-    const { data: destinations } = await supabase
-      .from('destinations')
-      .select('*');
-
-    if (!destinations || destinations.length === 0) {
-      return null;
-    }
-
-    const enhancedDestinations = await Promise.all(
-      destinations.map(async (destination) => {
-        if (destination.trip_ids && destination.trip_ids.length > 0) {
-          const activeTrips = await Promise.all(
-            destination.trip_ids.map(async (tripId) => {
-              const { data: trip } = await supabase
-                .from('trips')
-                .select('*')
-                .eq('id', tripId)
-                .single();
-
-              if (trip && trip.status === 'Active') {
-                return {
-                  id: trip.id,
-                  date: trip.date,
-                  status: trip.status,
-                  origin: trip.origin,
-                  destination_id: trip.destination_id,
-                  user_ids: trip.user_ids,
-                  price: trip.price
-                } as Trip;
-              } else {
-                return null;
-              }
-            })
-          );
-
-          destination.activeTrips = activeTrips.filter(
-            (trip) => trip !== null
-          ) as Trip[];
-          destination.times = destination.activeTrips.map(
-            (trip) => trip?.date || ''
-          );
-        } else {
-          destination.activeTrips = [];
-          destination.times = [];
-        }
-
-        return destination;
-      })
-    );
-
-    return enhancedDestinations;
-  } catch (error) {
-    console.error('Error retrieving destinations:', error);
-    return null;
-  }
-};
 export const getDestinationById = async (id: string) => {
   const destination = (
     await supabase.from('destinations').select('*').eq('id', id).single()
@@ -87,7 +27,7 @@ export const getDestinationById = async (id: string) => {
       destination.activeTrips = (
         await Promise.all(
           destination.trip_ids.map(
-            async (tripId) =>
+            async (tripId:any) =>
               (
                 await supabase
                   .from('trips')
