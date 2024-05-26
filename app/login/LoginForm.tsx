@@ -38,10 +38,11 @@ export default function LoginForm({
     if (result.error) {
       router.push(`/login?message=${result.error.message}`);
     } else {
-      if (submitter.name === 'login') {
+      if (action === '/api/signin') {
         router.push('/destinations');
+      } else {
+        router.push(`/login?message=Check your email to confirm your account`);
       }
-      router.push(`/login?message=Check your email to confirm your account`);
     }
   };
 
