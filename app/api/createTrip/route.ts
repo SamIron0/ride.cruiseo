@@ -3,7 +3,7 @@ import {
   createServerSupabaseClient
 } from '@supabase/auth-helpers-nextjs';
 import { NextApiHandler } from 'next';
-import { createOrRetrieveCustomer, createTrip } from '@/utils/supabase-admin';
+import { createTrip } from '@/db/trips';
 import { Trip } from '@/types';
 import { Database } from '@/types_db';
 import { cookies } from 'next/headers';
