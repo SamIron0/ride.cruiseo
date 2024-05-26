@@ -1,8 +1,7 @@
 // TODO: Separate into multiple contexts, keeping simple for now
 
 "use client"
-
-import { ChatbotUIContext } from "@/context/context"
+import { CruiseoContext } from "@/context/context"
 import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { Tables } from "@/supabase/types"
@@ -38,7 +37,7 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
   }
 
   return (
-    <ChatbotUIContext.Provider
+    <CruiseoContext.Provider
       value={{
         profile,
         setProfile,
@@ -49,6 +48,6 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
       }}
     >
       {children}
-    </ChatbotUIContext.Provider>
+    </CruiseoContext.Provider>
   )
 }
