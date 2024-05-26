@@ -10,10 +10,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const [destinations, setDestinations] = useState<Destination[] | null>([])
 
   useEffect(() => {
-    ;async () => {
+    const fetchDestinations = async () => {
       const x = await retrieveDestinations()
       setDestinations(x)
     }
+
+    fetchDestinations()
   }, [])
   return <> {children}</>
 }
