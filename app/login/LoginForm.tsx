@@ -36,9 +36,12 @@ export default function LoginForm({
     const result = await response.json();
 
     if (result.error) {
-      router.push(`/login?message=${ result.error.message }`);
+      router.push(`/login?message=${result.error.message}`);
     } else {
-      router.push('/destinations');
+      if (submitter.name === 'login') {
+        router.push('/destinations');
+      }
+      router.push(`/login?message=Check your email to confirm your account`);
     }
   };
 
