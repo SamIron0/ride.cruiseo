@@ -5,17 +5,30 @@ import { CruiseoContext } from "@/context/context"
 import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { Tables } from "@/supabase/types"
+import { Destination } from "@/types"
 import { FC, useEffect, useState } from "react"
 
 interface GlobalStateProps {
   children: React.ReactNode
 }
 
-export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
+export const GlobalState: FC<GlobalStateProps> = ({
+  children
+}: GlobalStateProps) => {
   // PROFILE STORE
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null)
-  const [schema, setSchema] = useState<Tables<"schemas"> | null>(null)
-  const [apikeys, setApikeys] = useState<Tables<"apikeys"> | null>(null)
+  /*
+  allListings: Destination[]
+  setAllListings: Dispatch<SetStateAction<Destination[]>>
+  searchInput: string
+  setSearchInput: Dispatch<SetStateAction<string>>
+  activeCategory: string
+  setActiveCategory: Dispatch<SetStateAction<string>>
+  profile: Tables<"profiles"> | null
+*/
+    const [allListings, setAllListings] = useState<Destination[]>([]) 
+    const [searchInput, setSearchInput] = useState<string>("")
+    const [activeCategory, setActiveCategory] = useState<string>("")
 
   useEffect(() => {
     ;(async () => {
@@ -41,10 +54,13 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
       value={{
         profile,
         setProfile,
-        schema,
-        setSchema,
-        apikeys,
-        setApikeys
+        allListings,
+        setAllListings,
+        searchInput,
+        setSearchInput, 
+        activeCategory,
+        setActiveCategory
+          
       }}
     >
       {children}
