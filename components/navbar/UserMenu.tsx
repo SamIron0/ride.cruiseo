@@ -61,8 +61,8 @@ export default function UserMenu() {
           onClick={toggleOpen}
           className="
           p-4
-          md:py-1
-          md:px-2
+          md:py-2
+          md:px-3
           border-[1px] 
           border-[#232325]
           flex 
@@ -114,7 +114,6 @@ export default function UserMenu() {
                   label="Help"
                   onClick={() => router.push("/contactus")}
                 />
-                <hr className="text-input bg-input " />
                 <MenuItem
                   label="Logout"
                   onClick={() => {
