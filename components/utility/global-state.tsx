@@ -44,9 +44,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
       const user = session.user
 
       const profile = await getProfileByUserId(user.id)
-      const x = await retrieveDestinations()
       setProfile(profile)
-      setDestinations(x)
 
       return profile
     }
