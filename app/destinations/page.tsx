@@ -2,7 +2,7 @@
 import { Grid } from '@/components/Grid';
 import Navbar from '@/components/navbar/NavBar';
 import { createClient } from '@/lib/supabase/server';
-export default async function Home() {
+export default function Home() {
   return (
     <div>
       {" "}
