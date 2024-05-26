@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="mx-auto max-w-[1920px] px-6 bg-black">
+    <footer className="mx-auto border-t max-w-[1920px] px-6 bg-black">
       <div className="grid grid-cols-1 gap-8 py-12 text-white transition-colors duration-150 border-b lg:grid-cols-12 border-zinc-600 bg-black">
         <div className="col-span-1 lg:mt-3 lg:pr-2 lg:col-span-2">
           <Link
@@ -20,15 +20,22 @@ export default function Footer() {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className="lucide lucide-car-front">
-                <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8" /><path d="M7 14h.01" /><path d="M17 14h.01" /><rect width="18" height="8" x="3" y="10" rx="2" /><path d="M5 18v2" /><path d="M19 18v2" /></svg>
+                className="lucide lucide-car-front"
+              >
+                <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8" />
+                <path d="M7 14h.01" />
+                <path d="M17 14h.01" />
+                <rect width="18" height="8" x="3" y="10" rx="2" />
+                <path d="M5 18v2" />
+                <path d="M19 18v2" />
+              </svg>
             </span>
             <span>cruiseo</span>
           </Link>
         </div>
         <div className="col-span-1 lg:col-span-2">
           <ul className="flex flex-col flex-initial md:flex-1">
-          <li className="py-3 md:py-0 md:pb-4">
+            <li className="py-1 md:py-0 md:pb-4">
               <Link
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
@@ -36,7 +43,7 @@ export default function Footer() {
                 Home
               </Link>
             </li>
-            <li className="py-3 md:py-0 md:pb-4">
+            <li className="py-1 md:py-0 md:pb-4">
               <Link
                 href="/contactus"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
@@ -44,17 +51,23 @@ export default function Footer() {
                 Contact Us
               </Link>
             </li>
-
+            <li className="py-1 md:py-0 md:pb-4">
+              <Link
+                href="/contactus"
+                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
+              >
+                How it Works
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-black">
-        <div className='text-white'>
+        <div className="text-white">
           <span>
             &copy; {new Date().getFullYear()} cruiseo. All rights reserved.
           </span>
         </div>
-
       </div>
     </footer>
   );
