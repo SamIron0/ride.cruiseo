@@ -8,6 +8,7 @@ import { ReactNode } from "react"
 import "./globals.css"
 import { Analytics } from "@vercel/analytics/react"
 import { GlobalState } from "@/components/utility/global-state"
+import Footer from "@/components/ui/Footer"
 
 const inter = Inter({ subsets: ["latin"] })
 const APP_NAME = "Cruiseo"
@@ -101,6 +102,7 @@ export default async function RootLayout({
           <Toaster richColors position="top-center" duration={3000} />
           <div className="flex h-dvh flex-col items-center overflow-x-auto bg-black text-foreground">
             {session ? <GlobalState>{children}</GlobalState> : children}
+            <Footer />
           </div>
           <Analytics />
         </Providers>

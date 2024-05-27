@@ -86,7 +86,7 @@ export default function UserMenu() {
           className="
           border
           border-input
-          bg-black
+          bg-background
           text-white
             absolute 
             rounded-xl 
