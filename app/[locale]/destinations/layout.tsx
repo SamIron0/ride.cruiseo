@@ -20,6 +20,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         }
 
         const response = await fetch(url, options)
+        setDestinations(await response.json())
       } catch (err) {
         console.error(err)
       }

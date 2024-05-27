@@ -2,7 +2,6 @@
 
 "use client"
 import { CruiseoContext } from "@/context/context"
-import { retrieveDestinations } from "@/db/listings"
 import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { Tables } from "@/supabase/types"
