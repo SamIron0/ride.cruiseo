@@ -12,16 +12,18 @@ interface IParams {
 
 const ListingPage = async ({ params }: { params: IParams }) => {
   const [destination, setDestination] = useState(null)
+
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
         const url = "/api/getDestinationById"
         const options = {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json"
           }
         }
+        const body = JSON.stringify({ id: params.listingId })
 
         const response = await fetch(url, options)
         setDestination(await response.json())
