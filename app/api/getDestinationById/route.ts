@@ -10,6 +10,10 @@ export async function POST(req: Request) {
         return new Response(JSON.stringify(destination), {
           status: 200
         })
+      } else {
+        return new Response(JSON.stringify("Destination Not Found"), {
+          status: 200
+        })
       }
     } catch (err: any) {
       return new Response(
@@ -17,6 +21,11 @@ export async function POST(req: Request) {
       )
     }
   } else {
-    return new Response(JSON.stringify("Method Not Allowed"))
+    return new Response(
+      JSON.stringify({
+        error: { statusCode: 405, message: "Method Not Allowed" }
+      }),
+      { status: 405 }
+    )
   }
 }
