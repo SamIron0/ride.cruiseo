@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
+import { Button } from "../button"
 interface CarpoolFormProps {}
 
 export const CarpoolForm = ({}: CarpoolFormProps) => {
@@ -223,7 +224,8 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               }
             >
               {formattedOriginOptions?.map((formatOption, index) => (
-                <button
+                <Button
+                  variant="outline"
                   onClick={() => onOriginSuggestionClick(formatOption.value)}
                   className="text-md hover:bg-gray-100 flex items-center text-left w-full p-1"
                   key={index}
@@ -240,7 +242,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
                     </svg>
                   </div>
                   {formatOption.value}
-                </button>
+                </Button>
               ))}
             </div>
           )}
