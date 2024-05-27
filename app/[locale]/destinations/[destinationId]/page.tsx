@@ -3,7 +3,6 @@
 import ClientOnly from "@/components/ClientOnly"
 import EmptyState from "@/components/EmptyState"
 import ListingClient from "./ListingClient"
-import { getDestinationById } from "@/db/admin"
 import { useEffect, useState } from "react"
 
 interface IParams {

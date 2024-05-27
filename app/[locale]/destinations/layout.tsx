@@ -6,7 +6,7 @@ import { ReactNode, useContext, useEffect, useState } from "react"
 interface RootLayoutProps {
   children: ReactNode
 }
-export default async function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   const { setDestinations } = useContext(CruiseoContext)
   useEffect(() => {
     const fetchDestinations = async () => {
