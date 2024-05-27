@@ -224,10 +224,9 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               }
             >
               {formattedOriginOptions?.map((formatOption, index) => (
-                <Button
-                  variant="outline"
+                <button
                   onClick={() => onOriginSuggestionClick(formatOption.value)}
-                  className="text-md hover:bg-gray-100 flex items-center text-left w-full p-1"
+                  className="text-md hover:bg-gray-800 flex items-center text-left w-full p-1"
                   key={index}
                 >
                   <div className="bg-gray-100 flex rounded-xl justify-center items-center p-2 mr-3">
@@ -242,7 +241,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
                     </svg>
                   </div>
                   {formatOption.value}
-                </Button>
+                </button>
               ))}
             </div>
           )}
