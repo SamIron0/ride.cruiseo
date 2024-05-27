@@ -186,7 +186,11 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
     >
       {originIsOpen ? (
         <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40">
-          <h1 className="font-medium text-lg ">Pickup from</h1>
+          <div className="flex flex-row justify-between">
+            {" "}
+            <h1 className="font-medium text-lg ">Pickup from </h1>{" "}
+            <p className="text-sm font-light text-neutral-500">{origin}</p>
+          </div>
           <div className="mt-2 border border-input rounded-xl relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
