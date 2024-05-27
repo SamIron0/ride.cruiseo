@@ -3,7 +3,7 @@
 import ClientOnly from "@/components/ClientOnly"
 import EmptyState from "@/components/EmptyState"
 import ListingClient from "./ListingClient"
-import { getDestinationById } from "@/db/listings"
+import { getDestinationById } from "@/db/admin"
 
 interface IParams {
   listingId?: string
