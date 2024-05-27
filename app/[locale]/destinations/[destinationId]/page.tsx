@@ -10,7 +10,7 @@ interface IParams {
   listingId?: string
 }
 
-const ListingPage = async ({ params }: { params: IParams }) => {
+const ListingPage = ({ params }: { params: IParams }) => {
   const [destination, setDestination] = useState(null)
 
   useEffect(() => {
