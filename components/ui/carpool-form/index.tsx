@@ -218,17 +218,17 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               ref={originRef}
               className={
                 formattedOriginOptions.length > 0
-                  ? "w-full mt-2 divide-y  rounded-xl shadow bg-background divide-input "
+                  ? "w-full mt-2 divide-y border border-input  rounded-xl shadow bg-background divide-input "
                   : ""
               }
             >
               {formattedOriginOptions?.map((formatOption, index) => (
                 <button
                   onClick={() => onOriginSuggestionClick(formatOption.value)}
-                  className="text-md hover:bg-zinc-800 flex items-center text-left w-full p-1"
+                  className="text-md hover:bg-zinc-900 flex items-center text-left w-full p-2   "
                   key={index}
                 >
-                  <div className="bg-gray-100 flex rounded-xl justify-center items-center p-2 mr-3">
+                  <div className="bg-gray-100 flex rounded-xl justify-center items-center p-1 mr-3">
                     {" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
