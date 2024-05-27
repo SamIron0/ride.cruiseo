@@ -4,7 +4,6 @@ import { retrieveDestinations } from "@/db/listings";
 export async function GET(req: Request) {
     if (req.method === 'GET') {
         try {
-            const region = await req.json();
             const destinations: Destination[] | null = await retrieveDestinations();
             let response;
             // filter destinations to only give contain destinations based on users location
