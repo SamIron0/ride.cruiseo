@@ -1,13 +1,13 @@
 "use client"
+import { CruiseoContext } from "@/context/context"
 import { Destination } from "@/types"
-import { ReactNode, useEffect, useState } from "react"
+import { ReactNode, useContext, useEffect, useState } from "react"
 
 interface RootLayoutProps {
   children: ReactNode
 }
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const [destinations, setDestinations] = useState<Destination[] | null>([])
-
+  const { setDestinations } = useContext(CruiseoContext)
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
