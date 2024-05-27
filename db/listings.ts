@@ -2,16 +2,16 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { Destination, Trip } from "@/types"
 
 export const retrieveDestinations = async () => {
-  try {
-    const { data: destinations, error } = await supabase
-      .from("destinations")
-      .select("id,name,address,photo,category")
+  const { data: destinations, error } = await supabase
+    .from("destinations")
+    .select("id,name,address,photo,category")
 
-    return destinations
-  } catch (error) {
+  if (error) {
     console.error("Error retrieving destinations:", error)
     return null
   }
+
+  return destinations
 }
 
 export const getDestinationById = async (id: string) => {

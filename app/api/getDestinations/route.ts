@@ -5,7 +5,6 @@ export async function GET(req: Request) {
   if (req.method === "GET") {
     try {
       const destinations: Destination[] | null = await retrieveDestinations()
-      let response
       if (destinations != null) {
         return new Response(JSON.stringify(destinations), {
           status: 200
