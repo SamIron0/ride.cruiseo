@@ -5,12 +5,11 @@ import ListingClient from "./ListingClient"
 import { useEffect, useState } from "react"
 
 interface IParams {
-  listingId?: string
+  destinationId?: string
 }
 
 const ListingPage = ({ params }: { params: IParams }) => {
   const [destination, setDestination] = useState(null)
-  console.log('id', params)
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -22,7 +21,7 @@ const ListingPage = ({ params }: { params: IParams }) => {
             "Content-Type": "application/json"
           },
 
-          body: JSON.stringify({ id: destination })
+          body: JSON.stringify({ id: params.destinationId })
         }
         const response = await fetch(url, options)
         setDestination(await response.json())
