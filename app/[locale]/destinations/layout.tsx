@@ -11,8 +11,19 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   useEffect(() => {
     const fetchDestinations = async () => {
-      const x = await retrieveDestinations()
-      setDestinations(x)
+      try {
+        const url = "/api/getDestinations"
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+
+        const response = await fetch(url, options)
+      } catch (err) {
+        console.error(err)
+      }
     }
 
     fetchDestinations()

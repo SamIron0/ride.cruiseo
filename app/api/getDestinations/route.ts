@@ -1,8 +1,8 @@
 import {  Destination } from "@/types";
 import { retrieveDestinations } from "@/db/listings";
 
-export async function POST(req: Request) {
-    if (req.method === 'POST') {
+export async function GET(req: Request) {
+    if (req.method === 'GET') {
         try {
             const region = await req.json();
             const destinations: Destination[] | null = await retrieveDestinations();
