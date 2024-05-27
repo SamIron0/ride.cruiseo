@@ -11,17 +11,9 @@ import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import {toast} from "sonner"
 interface CarpoolFormProps {
-  user: User | null | undefined
-  onClose: () => void
-  selectedDestination: Destination | undefined
-  allDestinations: Destination[]
 }
 
 export const CarpoolForm = ({
-  user,
-  onClose,
-  selectedDestination,
-  allDestinations
 }: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
@@ -29,7 +21,7 @@ export const CarpoolForm = ({
   const [price, setPrice] = useState("")
   const [origin, setOrigin] = useState("")
   const [originIsValid, setOriginIsValid] = useState(true)
-  const [destination, setDestination] = useState(selectedDestination)
+  const [destination, setDestination] = useState()
   const [destinationIsValid, setDestinationIsValid] = useState(true)
   const [name, setName] = useState("")
   const [nameIsValid, setNameIsValid] = useState(true)

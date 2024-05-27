@@ -1,42 +1,43 @@
-'use client';
+"use client"
 
-import {  useMemo, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { Destination, Trip} from '@/types';
-import Container from '@/components/Container';
-import ListingHead from '@/components/listings/ListingHead';
-import {useContext} from 'react';
-import {toast} from 'sonner';
-import { CruiseoContext } from '@/context/context';
+import { useMemo, useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { Destination, Trip } from "@/types"
+import Container from "@/components/Container"
+import ListingHead from "@/components/listings/ListingHead"
+import { useContext } from "react"
+import { toast } from "sonner"
+import { CruiseoContext } from "@/context/context"
+import { CarpoolForm } from "@/components/ui/carpool-form"
 interface ListingClientProps {
-  listing: Destination;
+  listing: Destination
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
-  const { profile } = useContext(CruiseoContext);
-  const [isLoading, setIsLoading] = useState(false);
-  const [priceIsLoading, setPriceIsLoading] = useState(false);
-  const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>());
+  const { profile } = useContext(CruiseoContext)
+  const [isLoading, setIsLoading] = useState(false)
+  const [priceIsLoading, setPriceIsLoading] = useState(false)
+  const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
 
   const getPrice = async (trip: Trip) => {
-    setIsLoading(true);
-    setPriceIsLoading(true);
-    const toastId = toast.loading('Calculating price...');
+    setIsLoading(true)
+    setPriceIsLoading(true)
+    const toastId = toast.loading("Calculating price...")
 
-    const workerID = 1;
+    const workerID = 1
     const destinationraw = {
       address: listing.address,
       latitude: listing?.coordinates?.lat,
       longitude: listing?.coordinates?.lon
-    };
+    }
 
     try {
       const response = await fetch(
-        'https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final',
+        "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             originraw: profile?.geolocation,
@@ -45,97 +46,97 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             userID: profile?.id
           })
         }
-      );
-      const result = await response.json();
+      )
+      const result = await response.json()
 
       if (response.ok) {
-        const responseBody = JSON.parse(result.body);
-        if (responseBody.result && responseBody.result.startsWith('C')) {
-          const discount = 0.1;
+        const responseBody = JSON.parse(result.body)
+        if (responseBody.result && responseBody.result.startsWith("C")) {
+          const discount = 0.1
           const fullPrice = parseFloat(
-            responseBody.result.replace(/[^0-9.]/g, '')
-          );
+            responseBody.result.replace(/[^0-9.]/g, "")
+          )
           const discountedPrice = parseFloat(
             (fullPrice * (1 - discount)).toFixed(2)
-          );
-          const updatedPrices = new Map(loadedPrices);
-          updatedPrices.set(trip.id, discountedPrice);
-          setLoadedPrices(updatedPrices);
-          setIsLoading(false);
-          setPriceIsLoading(false);
-          toast.dismiss(toastId);
-          toast.success('Done');
+          )
+          const updatedPrices = new Map(loadedPrices)
+          updatedPrices.set(trip.id, discountedPrice)
+          setLoadedPrices(updatedPrices)
+          setIsLoading(false)
+          setPriceIsLoading(false)
+          toast.dismiss(toastId)
+          toast.success("Done")
         } else {
-          console.error('Error invoking Lambda function');
+          console.error("Error invoking Lambda function")
         }
       }
     } catch (error) {
-      toast.dismiss(toastId);
-      setIsLoading(false);
-      toast.error('An error occurred while calculating price');
+      toast.dismiss(toastId)
+      setIsLoading(false)
+      toast.error("An error occurred while calculating price")
     }
-  };
+  }
   const [selectedTrip, setSelectedTrip] = useState<Trip>({
-    id: '',
-    origin: '',
-    destination_id: '',
+    id: "",
+    origin: "",
+    destination_id: "",
     user_ids: [],
-    date: 'new Date()',
+    date: "new Date()",
     price: 0,
-    status: ''
-  });
+    status: ""
+  })
   const onCreateReservation = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
     if (!selectedTrip.id) {
-      toast.error('Please select a trip');
-      return;
+      toast.error("Please select a trip")
+      return
     }
     // if (!profile) {
     // router.push('/login');
     //}
     if (!loadedPrices.get(selectedTrip.id)) {
-      await getPrice(selectedTrip);
+      await getPrice(selectedTrip)
     }
     if (!loadedPrices.get(selectedTrip.id)) {
-      return;
+      return
     }
     const newTrip: Trip = {
       id: uuidv4(),
-      origin: profile?.address || '',
-      destination_id: listing?.id || '',
-      user_ids: [profile?.id || ''],
+      origin: profile?.address || "",
+      destination_id: listing?.id || "",
+      user_ids: [profile?.id || ""],
       date: selectedTrip.date,
       price: loadedPrices.get(selectedTrip.id) || 0,
-      status: 'Active'
-    };
+      status: "Active"
+    }
     try {
-      const url = '/api/createTrip';
+      const url = "/api/createTrip"
       const options = {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(newTrip)
-      };
-      const response = await fetch(url, options);
-      const data = await response.json();
-      console.log('data', data);
+      }
+      const response = await fetch(url, options)
+      const data = await response.json()
+      console.log("data", data)
       if (data.error) {
-        toast.error('An error occurred while creating the trip');
+        toast.error("An error occurred while creating the trip")
       } else {
-        toast.success('Trip created successfully');
+        toast.success("Trip created successfully")
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-    setIsLoading(false);
-  };
-  const [selectedDate, setSelectedDate] = useState();
+    setIsLoading(false)
+  }
+  const [selectedDate, setSelectedDate] = useState()
   return (
     <Container>
       <div
         className="
-          max-w-screen-2xl 
+          max-w-3xl 
           mx-auto
           pt-6
         "
@@ -169,6 +170,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             locationValue={listing?.address}
             id={listing?.id}
           />
+          <CarpoolForm />
           <div className="sm:flex sm:flex-1 gap-4 ">
             <div className="w-full sm:pr-6 ">
               {listing.activeTrips?.map((trip: any) => (
@@ -189,20 +191,20 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       >
                         <div className="flex flex-col">
                           <div className="font-normal text-sm text-zinc-300 leading-snug tracking-tight mb-1">
-                            Price:{' '}
+                            Price:{" "}
                             <span className="text-white font-semibold">
                               {loadedPrices?.get(trip.id)}
                             </span>
                           </div>
 
                           <div className="font-normal text-sm text-zinc-300 text-smleading-snug tracking-tight mb-1">
-                            Time:{' '}
+                            Time:{" "}
                             <span className="text-white font-semibold">
                               {trip.date}
                             </span>
                           </div>
                           <div className="font-normal text-sm text-zinc-300 leading-snug tracking-tight mb-1">
-                            Riders:{' '}
+                            Riders:{" "}
                             <span className="text-white font-semibold">
                               {trip.user_ids.length}
                             </span>
@@ -228,13 +230,12 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                             Select
                           </button>
                         </div>
-                      </div>{' '}
+                      </div>{" "}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            
           </div>
 
           <button
@@ -247,7 +248,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default ListingClient;
+export default ListingClient
