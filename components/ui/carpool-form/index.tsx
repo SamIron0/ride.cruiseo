@@ -32,7 +32,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
   const [destinationSuggestionIsOpen, setDestinationSuggestionIsOpen] =
     useState(true)
   const adminEmail = "samuelironkwec@gmail.com"
-  const [originIsOpen, setOriginIsOpen] = useState(false)
+  const [originIsOpen, setOriginIsOpen] = useState(true)
   const [destinationIsOpen, setDestinationIsOpen] = useState(true)
   const [dateIsOpen, setDateIsOpen] = useState(false)
   //const [prediction, setPredictions] = useState<any>();
