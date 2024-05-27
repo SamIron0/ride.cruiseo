@@ -184,39 +184,9 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       onSubmit={handleTripDetailsSubmit}
       className="flex flex-col text-white items-center max-w-xl justify-center w-full"
     >
-      {destinationIsOpen ? (
-        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40">
-          <div className="w-full">
-            <h1 className=" font-medium   text-lg ">Where to?</h1>
-            <div className="relative overflow-hidden w-full h-40">
-              <div className="absolute inset-y-0 right-0 z-10 bg-black w-1/12"></div>
-            </div>
-            {!destinationIsValid && (
-              <div className="text-red-500 text-left  text-xs">
-                Destination cannot be blank
-              </div>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div
-          onClick={() => {
-            setDateIsOpen(false)
-            setOriginIsOpen(false)
-            setDestinationIsOpen(true)
-          }}
-          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40"
-        >
-          <div className="w-full flex flex-col justify-center">
-            <span>
-              <h1 className=" font-medium   text-lg">Where to?</h1>
-            </span>
-          </div>
-        </div>
-      )}
       {originIsOpen ? (
         <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40">
-          <h1 className="font-medium text-lg ">From where?</h1>
+          <h1 className="font-medium text-lg ">Pickup from</h1>
           <div className="mt-2 border relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
@@ -286,7 +256,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         >
           <div className="w-full flex flex-col justify-center">
             <span>
-              <h1 className=" font-medium   text-lg">From where?</h1>
+              <h1 className=" font-medium   text-lg">Pickup from</h1>
             </span>
           </div>
         </div>
