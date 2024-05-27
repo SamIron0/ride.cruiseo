@@ -25,7 +25,6 @@ export const CarpoolForm = ({
   const [destinationIsValid, setDestinationIsValid] = useState(true)
   const [name, setName] = useState("")
   const [nameIsValid, setNameIsValid] = useState(true)
-  const [email, setEmail] = useState(user?.email)
   const [status, setStatus] = useState("Active")
   const [emailIsValid, setEmailIsValid] = useState(true)
   const [number, setNumber] = useState("")
@@ -61,62 +60,7 @@ export const CarpoolForm = ({
   const handleDateTimeChange = (date: any) => {
     setDate(date)
   }
-  const requestButton = () => {
-    if (!user) {
-      return (
-        <>
-          <Link
-            href="/signin"
-            className="inline-flex mt-8 items-center px-[98px] justify-center py-3 w-full text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400	 hover:text-white hover:bg-fuchsia-500"
-          >
-            Request{" "}
-            <svg
-              className="w-3 h-3 ms-2 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </Link>
-        </>
-      )
-    } else {
-      return (
-        <>
-          <button
-            onClick={handleConfirm}
-            className="inline-flex mt-8 items-center  justify-center w-full py-3 text-sm font-medium  border rounded-lg  bg-fuchsia-600 text-white border-fuchsia-400 hover:text-white hover:bg-fuchsia-500 "
-          >
-            Request{" "}
-            <svg
-              className="w-3 h-3 ms-2 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </button>
-        </>
-      )
-    }
-  }
-
+ 
   let confirm = true
   const router = useRouter()
 
@@ -140,11 +84,10 @@ export const CarpoolForm = ({
 
     if (confirm && destination != undefined) {
       const userIds: any[] = []
-      userIds.push(user?.id)
       setTrip({
         id: uuidv4(),
         origin: origin,
-        destination_id: destination.id,
+        destination_id: 's',
         user_ids: userIds,
         date: date,
         price: 0,
@@ -192,9 +135,7 @@ export const CarpoolForm = ({
       setOriginSuggestionIsOpen(true)
     } else setOriginSuggestionIsOpen(false)
   }
-  function setDestinationAndSuggestions(value: Destination) {
-    setDestination(value)
-  }
+  
   function onOriginSuggestionClick(value: any) {
     setOrigin(value)
     setOriginSuggestionIsOpen(false)
@@ -247,7 +188,6 @@ export const CarpoolForm = ({
       <div className="w-full flex p-6 flex-col items-center justify-center">
         <div className="w-full sm:px-28 md:px-44 lg:px-72 xl:px-96  3xl:[450px] pt-2 h-full">
           <div
-            onClick={() => onClose()}
             className="mb-4 ml-3 w-8 h-8 flex justify-center hover:scale-110 items-center rounded-full border border-gray-500"
           >
             <svg
@@ -410,7 +350,7 @@ export const CarpoolForm = ({
                 </div>
               </div>
             )}
-            <div className="w-full">{requestButton()}</div>
+            <div className="w-full">{}</div>
           </form>
           <div></div>
         </div>
