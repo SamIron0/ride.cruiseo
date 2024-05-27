@@ -5,6 +5,7 @@ export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
       const id: string = await req.json()
+      console.log("id: ", id)
       const destination: Destination | null = await getDestinationById(id)
       if (destination != null) {
         return new Response(JSON.stringify(destination), {
