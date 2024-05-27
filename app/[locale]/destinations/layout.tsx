@@ -1,5 +1,4 @@
 "use client"
-import { retrieveDestinations } from "@/db/listings"
 import { Destination } from "@/types"
 import { ReactNode, useEffect, useState } from "react"
 
