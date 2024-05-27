@@ -259,7 +259,14 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       {dateIsOpen ? (
         <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background">
           <div className="w-full flex flex-col justify-center">
-            <h1 className="font-medium   text-lg">When?</h1>
+            <h1 className=" font-medium   text-lg ">When?</h1>
+          </div>
+          <div>
+            <input type="datetime-local" value={dateTime} />
+          </div>
+
+          <div className="container">
+            <div id="react-container"></div>
           </div>
         </div>
       ) : (
@@ -272,9 +279,6 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         >
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
-          </div>
-          <div>
-            <input type="datetime-local" value={dateTime} />
           </div>
         </div>
       )}
