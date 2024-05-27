@@ -1,6 +1,10 @@
-import { supabase } from "@/lib/supabase/browser-client"
-import { Destination, Trip } from "@/types"
+import { createClient } from "@/lib/supabase/server"
+import type { Database, Tables, TablesInsert } from "@/supabase/types"
 
+import { Destination, Trip } from "@/types"
+import { cookies } from "next/headers"
+
+const supabase = createClient(cookies())
 export const retrieveDestinations = async () => {
   const { data: destinations, error } = await supabase
     .from("destinations")
