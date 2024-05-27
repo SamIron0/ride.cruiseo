@@ -1,7 +1,6 @@
 "use client"
 
 import ClientOnly from "@/components/ClientOnly"
-import { useRouter } from 'next/router';
 import ListingClient from "./ListingClient"
 import { useEffect, useState } from "react"
 
@@ -11,9 +10,7 @@ interface IParams {
 
 const ListingPage = ({ params }: { params: IParams }) => {
   const [destination, setDestination] = useState(null)
-  const router = useRouter();
-  const { destinationId } = router.query;
-  console.log('id', destinationId)
+  console.log('id', params)
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -25,7 +22,7 @@ const ListingPage = ({ params }: { params: IParams }) => {
             "Content-Type": "application/json"
           },
 
-          body: JSON.stringify({ id: destinationId })
+          body: JSON.stringify({ id: destination })
         }
         const response = await fetch(url, options)
         setDestination(await response.json())
