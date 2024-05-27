@@ -186,11 +186,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
     >
       {originIsOpen ? (
         <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40">
-          <div className="flex flex-row justify-between">
-            {" "}
-            <h1 className="font-medium text-lg ">Pickup from </h1>{" "}
-            <p className="text-sm font-light text-neutral-500">{origin}</p>
-          </div>
+          <h1 className=" font-medium   text-lg">Pickup from</h1>
           <div className="mt-2 border border-input rounded-xl relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
@@ -222,14 +218,14 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               ref={originRef}
               className={
                 formattedOriginOptions.length > 0
-                  ? "w-full mt-2 divide-y  rounded-xl shadow bg-background dark:divide-gray-600 "
+                  ? "w-full mt-2 divide-y  rounded-xl shadow bg-background divide-input "
                   : ""
               }
             >
               {formattedOriginOptions?.map((formatOption, index) => (
                 <button
                   onClick={() => onOriginSuggestionClick(formatOption.value)}
-                  className="text-md hover:bg-gray-800 flex items-center text-left w-full p-1"
+                  className="text-md hover:bg-zinc-800 flex items-center text-left w-full p-1"
                   key={index}
                 >
                   <div className="bg-gray-100 flex rounded-xl justify-center items-center p-2 mr-3">
@@ -258,10 +254,10 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           }}
           className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40"
         >
-          <div className="w-full flex flex-col justify-center">
-            <span>
-              <h1 className=" font-medium   text-lg">Pickup from</h1>
-            </span>
+          <div className="flex flex-row justify-between">
+            {" "}
+            <h1 className="font-medium text-lg ">Pickup from </h1>{" "}
+            <p className="text-sm font-light text-neutral-500">{origin}</p>
           </div>
         </div>
       )}
