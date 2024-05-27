@@ -25,7 +25,7 @@ const ListingPage = ({ params }: { params: IParams }) => {
             "Content-Type": "application/json"
           },
 
-          body: JSON.stringify({ id: params.listingId })
+          body: JSON.stringify({ id: destinationId })
         }
         const response = await fetch(url, options)
         setDestination(await response.json())
