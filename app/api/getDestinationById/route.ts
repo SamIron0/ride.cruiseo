@@ -4,8 +4,10 @@ import { getDestinationById } from "@/db/admin"
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      const id: string = await req.json()
-      console.log("id: ", id)
+      const body = await req.json()
+
+      // Extract the id from the request body
+      const { id } = body
       const destination: Destination | null = await getDestinationById(id)
       if (destination != null) {
         return new Response(JSON.stringify(destination), {
