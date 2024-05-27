@@ -26,7 +26,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
   const [emailIsValid, setEmailIsValid] = useState(true)
   const [number, setNumber] = useState("")
   const [numberIsValid, setNumberIsValid] = useState(true)
-  const [date, setDate] = useState("")
+  const [dateTime, setDateTime] = useState("")
   const [dateIsValid, setDateIsValid] = useState(true)
   const [originSuggestionIsOpen, setOriginSuggestionIsOpen] = useState(true)
   const [destinationSuggestionIsOpen, setDestinationSuggestionIsOpen] =
@@ -54,9 +54,6 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
     event.preventDefault()
     setIsOpen(true)
   }
-  const handleDateTimeChange = (date: any) => {
-    setDate(date)
-  }
 
   let confirm = true
   const router = useRouter()
@@ -74,7 +71,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       setDestinationIsValid(false)
       confirm = false
     }
-    if (date === "") {
+    if (dateTime === "") {
       setDateIsValid(false)
       confirm = false
     }
@@ -86,7 +83,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         origin: origin,
         destination_id: "s",
         user_ids: userIds,
-        date: date,
+        date: dateTime,
         price: 0,
         status: "Active"
       })
@@ -120,8 +117,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
 
   function clearForm() {
     setOrigin("")
-    setDate("")
-    setDestination(undefined)
+    setDateTime("")
   }
 
   let formattedOriginOptions = formatOptions(originPredictions)
@@ -250,7 +246,6 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           onClick={() => {
             setDateIsOpen(false)
             setOriginIsOpen(true)
-            setDestinationIsOpen(false)
           }}
           className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background"
         >
@@ -272,14 +267,14 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           onClick={() => {
             setDateIsOpen(true)
             setOriginIsOpen(false)
-            setDestinationIsOpen(false)
           }}
           className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background"
         >
           <div className="w-full flex flex-col justify-center">
-            <span>
-              <h1 className=" font-medium   text-lg ">When?</h1>
-            </span>
+            <h1 className=" font-medium   text-lg ">When?</h1>
+          </div>
+          <div>
+            <input type="datetime-local" value={dateTime} />
           </div>
         </div>
       )}
