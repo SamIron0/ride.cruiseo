@@ -254,7 +254,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           }}
           className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background"
         >
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row w-full items-center justify-between">
             {" "}
             <h1 className="font-medium text-lg ">Pickup from </h1>{" "}
             <p className="text-sm font-light text-neutral-500">{origin}</p>
