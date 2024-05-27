@@ -1,7 +1,6 @@
 "use client"
 
 import { Suspense, useEffect, useCallback, useRef, useState } from "react"
-import DateTime from "@/components/ui/dateTime"
 import { Destination, Trip } from "@/types"
 import { User } from "@supabase/supabase-js"
 import Link from "next/link"
@@ -331,7 +330,6 @@ export const CarpoolForm = ({
               <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full flex flex-col justify-center">
                   <h1 className=" font-semibold  text-black text-lg">When?</h1>
-                  <DateTime onDateTimeChange={handleDateTimeChange} />
                 </div>
               </div>
             ) : (
