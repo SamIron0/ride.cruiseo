@@ -185,7 +185,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       className="flex flex-col text-white items-center max-w-xl justify-center w-full"
     >
       {originIsOpen ? (
-        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40">
+        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background">
           <h1 className=" font-medium   text-lg">Pickup from</h1>
           <div className="mt-2 border border-input rounded-xl relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -252,7 +252,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
             setOriginIsOpen(true)
             setDestinationIsOpen(false)
           }}
-          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40"
+          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background"
         >
           <div className="flex flex-row justify-between">
             {" "}
@@ -262,7 +262,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         </div>
       )}
       {dateIsOpen ? (
-        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40">
+        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background">
           <div className="w-full flex flex-col justify-center">
             <h1 className="font-medium   text-lg">When?</h1>
           </div>
@@ -274,7 +274,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
             setOriginIsOpen(false)
             setDestinationIsOpen(false)
           }}
-          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40"
+          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background"
         >
           <div className="w-full flex flex-col justify-center">
             <span>
