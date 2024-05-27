@@ -1,5 +1,5 @@
 import { Destination } from "@/types"
-import { retrieveDestinations } from "@/db/listings"
+import { retrieveDestinations } from "@/db/admin"
 
 export async function GET(req: Request) {
   if (req.method === "GET") {
