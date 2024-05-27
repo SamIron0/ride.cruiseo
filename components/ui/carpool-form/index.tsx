@@ -8,12 +8,10 @@ import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/navigation"
 import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
-import {toast} from "sonner"
-interface CarpoolFormProps {
-}
+import { toast } from "sonner"
+interface CarpoolFormProps {}
 
-export const CarpoolForm = ({
-}: CarpoolFormProps) => {
+export const CarpoolForm = ({}: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false)
@@ -59,7 +57,7 @@ export const CarpoolForm = ({
   const handleDateTimeChange = (date: any) => {
     setDate(date)
   }
- 
+
   let confirm = true
   const router = useRouter()
 
@@ -86,7 +84,7 @@ export const CarpoolForm = ({
       setTrip({
         id: uuidv4(),
         origin: origin,
-        destination_id: 's',
+        destination_id: "s",
         user_ids: userIds,
         date: date,
         price: 0,
@@ -134,7 +132,7 @@ export const CarpoolForm = ({
       setOriginSuggestionIsOpen(true)
     } else setOriginSuggestionIsOpen(false)
   }
-  
+
   function onOriginSuggestionClick(value: any) {
     setOrigin(value)
     setOriginSuggestionIsOpen(false)
@@ -183,12 +181,10 @@ export const CarpoolForm = ({
     }
   }, [])
   return (
-    <div className="flex flex-col items-center 2xl:px-22  h-screen w-full ">
+    <div className="flex flex-col text-white items-center 2xl:px-22  h-screen w-full ">
       <div className="w-full flex p-6 flex-col items-center justify-center">
         <div className="w-full sm:px-28 md:px-44 lg:px-72 xl:px-96  3xl:[450px] pt-2 h-full">
-          <div
-            className="mb-4 ml-3 w-8 h-8 flex justify-center hover:scale-110 items-center rounded-full border border-gray-500"
-          >
+          <div className="mb-4 ml-3 w-8 h-8 flex justify-center hover:scale-110 items-center rounded-full border border-input">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="20"
@@ -203,11 +199,9 @@ export const CarpoolForm = ({
             className=" h-fit flex flex-col items-center px-1 justify-center  w-full"
           >
             {destinationIsOpen ? (
-              <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className=" font-semibold  text-black text-lg ">
-                    Where to?
-                  </h1>
+                  <h1 className=" font-semibold   text-lg ">Where to?</h1>
                   <div className="relative overflow-hidden w-full h-40">
                     <div className="absolute inset-y-0 right-0 z-10 bg-black w-1/12"></div>
                   </div>
@@ -225,23 +219,19 @@ export const CarpoolForm = ({
                   setOriginIsOpen(false)
                   setDestinationIsOpen(true)
                 }}
-                className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40"
+                className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40"
               >
                 <div className="w-full flex flex-col justify-center">
                   <span>
-                    <h1 className=" font-bold  text-black text-lg">
-                      Where to?
-                    </h1>
+                    <h1 className=" font-bold   text-lg">Where to?</h1>
                   </span>
                 </div>
               </div>
             )}
             {originIsOpen ? (
-              <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full">
-                  <h1 className=" font-semibold  text-black text-lg ">
-                    From where?
-                  </h1>
+                  <h1 className=" font-semibold   text-lg ">From where?</h1>
                   <div className="mt-2  relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg
@@ -264,7 +254,7 @@ export const CarpoolForm = ({
                       value={origin}
                       onChange={e => setOriginAndSuggestions(e.target.value)}
                       placeholder={"Search"}
-                      className="bg-transparent p-4 placeholder:text-gray-400 text-gray-900 ring-0  rounded-lg ps-10 border focus:ring-black focus:border-black bg-gray-100 border-gray-400 outline-none w-full "
+                      className="bg-transparent p-4 placeholder:text-gray-400 text-gray-900 ring-0  rounded-lg ps-10 border focus:ring-black focus:border-black bg-gray-100 border-input outline-none w-full "
                     ></input>
                   </div>
 
@@ -319,17 +309,15 @@ export const CarpoolForm = ({
               >
                 <div className="w-full flex flex-col justify-center">
                   <span>
-                    <h1 className=" font-bold  text-black text-lg">
-                      From where?
-                    </h1>
+                    <h1 className=" font-bold   text-lg">From where?</h1>
                   </span>
                 </div>
               </div>
             )}
             {dateIsOpen ? (
-              <div className="flex flex-col mb-4 border-gray-300  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
+              <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40">
                 <div className="w-full flex flex-col justify-center">
-                  <h1 className=" font-semibold  text-black text-lg">When?</h1>
+                  <h1 className=" font-semibold   text-lg">When?</h1>
                 </div>
               </div>
             ) : (
@@ -339,11 +327,11 @@ export const CarpoolForm = ({
                   setOriginIsOpen(false)
                   setDestinationIsOpen(false)
                 }}
-                className="flex mb-4 flex-col items-center border-gray-300 border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40"
+                className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-3xl shadow-blue-gray-500/40"
               >
                 <div className="w-full flex flex-col justify-center">
                   <span>
-                    <h1 className=" font-bold  text-black text-lg ">When?</h1>
+                    <h1 className=" font-bold   text-lg ">When?</h1>
                   </span>
                 </div>
               </div>
@@ -352,7 +340,7 @@ export const CarpoolForm = ({
           </form>
           <div></div>
         </div>
-      </div>
+      </div> 
     </div>
   )
 }
