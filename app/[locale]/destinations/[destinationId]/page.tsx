@@ -20,10 +20,10 @@ const ListingPage = ({ params }: { params: IParams }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
-          }
-        }
-        const body = JSON.stringify({ id: params.listingId })
+          },
 
+          body: JSON.stringify({ id: params.listingId })
+        }
         const response = await fetch(url, options)
         setDestination(await response.json())
       } catch (err) {
@@ -36,7 +36,11 @@ const ListingPage = ({ params }: { params: IParams }) => {
   if (!destination) {
     return (
       <ClientOnly>
-        <EmptyState />
+        <div role="status" className="max-w-3xl animate-pulse">
+          <div className="h-5 rounded-full bg-gray-700 w-4 mb-6"></div>
+          <div className="h-2.5 rounded-full bg-gray-700 w-8 mb-4"></div>
+          <div className="h-12 rounded-full bg-gray-700 w-48 mb-8"></div>
+        </div>
       </ClientOnly>
     )
   }
