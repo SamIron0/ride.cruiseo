@@ -1,7 +1,7 @@
 "use client"
 
 import ClientOnly from "@/components/ClientOnly"
-import EmptyState from "@/components/EmptyState"
+import { useRouter } from 'next/router';
 import ListingClient from "./ListingClient"
 import { useEffect, useState } from "react"
 
@@ -11,6 +11,9 @@ interface IParams {
 
 const ListingPage = ({ params }: { params: IParams }) => {
   const [destination, setDestination] = useState(null)
+  const router = useRouter();
+  const { destinationId } = router.query;
+  console.log('id', destinationId)
 
   useEffect(() => {
     const fetchDestinations = async () => {
