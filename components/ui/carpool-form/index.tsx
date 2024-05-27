@@ -185,9 +185,9 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       className="flex flex-col text-white items-center max-w-xl justify-center w-full"
     >
       {originIsOpen ? (
-        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40">
+        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40">
           <h1 className="font-medium text-lg ">Pickup from</h1>
-          <div className="mt-2 border relative">
+          <div className="mt-2 border border-input rounded-xl relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
                 className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -209,7 +209,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               value={origin}
               onChange={e => setOriginAndSuggestions(e.target.value)}
               placeholder={"Search"}
-              className="bg-transparent p-4 placeholder:text-gray-400 text-gray-400 ring-0  rounded-lg ps-10 border  bg-gray-100 border-input outline-none w-full "
+              className="bg-transparent p-4 placeholder:text-gray-400 text-gray-400 ring-0  rounded-xl ps-10 border  bg-gray-100 border-input outline-none w-full "
             ></input>
           </div>
 
@@ -218,7 +218,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               ref={originRef}
               className={
                 formattedOriginOptions.length > 0
-                  ? "w-5/6 sm:w-3/5 md:w-3/6 lg:w-3/7 xl:w-2/5 z-10 p-2 w-50 absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 left-1/2 transform -translate-x-1/2"
+                  ? "w-full mt-2 divide-y  rounded-xl shadow bg-background dark:divide-gray-600 "
                   : ""
               }
             >
@@ -228,7 +228,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
                   className="text-md hover:bg-gray-100 flex items-center text-left w-full p-1"
                   key={index}
                 >
-                  <div className="bg-gray-100 flex rounded-lg justify-center items-center p-2 mr-3">
+                  <div className="bg-gray-100 flex rounded-xl justify-center items-center p-2 mr-3">
                     {" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +252,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
             setOriginIsOpen(true)
             setDestinationIsOpen(false)
           }}
-          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40"
+          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40"
         >
           <div className="w-full flex flex-col justify-center">
             <span>
@@ -262,7 +262,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         </div>
       )}
       {dateIsOpen ? (
-        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40">
+        <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40">
           <div className="w-full flex flex-col justify-center">
             <h1 className="font-medium   text-lg">When?</h1>
           </div>
@@ -274,7 +274,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
             setOriginIsOpen(false)
             setDestinationIsOpen(false)
           }}
-          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-lg shadow-blue-gray-500/40"
+          className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl shadow-blue-gray-500/40"
         >
           <div className="w-full flex flex-col justify-center">
             <span>
