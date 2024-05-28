@@ -7,9 +7,11 @@ export const Trips = ({ trips }: TripsProps) => {
   return (
     <div className="p-4">
       {trips.map(trip => (
-        <div className="flex flex-row items-center border border-input mb-2 p-4 rounded">
+        <div className="flex text-sm flex-row items-center border border-input mb-2 p-4 rounded">
           <div key={trip.id} className="flex flex-col justify-between">
-            {trip.price}
+            <span>{trip.date}</span>
+            <span className="font-semibold">2 seats</span>
+            <span>${trip.price}</span>
           </div>
           <span className="flex flex-col text-sm ">{trip.origin}</span>
           <span className="flex flex-col text-sm">{trip.origin}</span>
