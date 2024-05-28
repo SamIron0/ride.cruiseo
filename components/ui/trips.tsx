@@ -16,10 +16,10 @@ export const Trips = ({ trips }: TripsProps) => {
             selectedTrip.id === trip.id ? "border-input" : "border-zinc-500"
           }`}
         >
-          <div className="mb-2 flex flex-row w-full justify-between">
+          <div className="mb-4 flex flex-row w-full justify-between">
             <span className="">{trip.date?.date}</span>
             <div className="flex flex-row">
-              <span className="font-semibold mr-3">2 seats</span>
+              <span className="font-semibold mr-2">2 seats</span>
               <span>${trip.price}</span>
             </div>
           </div>
