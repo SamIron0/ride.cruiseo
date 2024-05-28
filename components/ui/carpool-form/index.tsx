@@ -8,14 +8,25 @@ import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
 import DateTimePicker from "../dateTimePicker/dateTimePicker"
-interface CarpoolFormProps {}
+interface CarpoolFormProps {
+  origin: string
+  dateTime: {
+    date: string
+    hour: string
+    ampm: string
+    minute: string
+  }
+  onSetOrigin: (origin: string) => void
+  onSetDateTime: (dateTime: { date: string; hour: string; ampm: string; minute: string }) => void
 
-export const CarpoolForm = ({}: CarpoolFormProps) => {
+}
+
+export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: CarpoolFormProps) => {
+  
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false)
   const [price, setPrice] = useState("")
-  const [origin, setOrigin] = useState("")
   const [originIsValid, setOriginIsValid] = useState(true)
   const [destination, setDestination] = useState()
   const [destinationIsValid, setDestinationIsValid] = useState(true)
@@ -114,20 +125,20 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
   }
 
   function clearForm() {
-    setOrigin("")
+    onSetOrigin("")
     
   }
 
   let formattedOriginOptions = formatOptions(originPredictions)
   function setOriginAndSuggestions(value: string) {
-    setOrigin(value)
+    onSetOrigin(value)
     if (value.length > 0) {
       setOriginSuggestionIsOpen(true)
     } else setOriginSuggestionIsOpen(false)
   }
 
   function onOriginSuggestionClick(value: any) {
-    setOrigin(value)
+    onSetOrigin(value)
     setOriginSuggestionIsOpen(false)
   }
   function onDestinationSuggestionClick(value: any) {
@@ -174,12 +185,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
     }
   }, [])
 
-  const [dateTime, setDateTime] = useState({
-    date: "",
-    hour: "",
-    ampm: "",
-    minute: ""
-  } )
+  
   return (
     <form
       onSubmit={handleTripDetailsSubmit}
@@ -266,7 +272,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
-          <DateTimePicker setDateTime={setDateTime} />
+          <DateTimePicker setDateTime={onSetDateTime} />
         </div>
       ) : (
         <div

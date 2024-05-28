@@ -46,7 +46,7 @@ const ListingPage = ({ params }: { params: IParams }) => {
 
   return (
     <ClientOnly>
-      <ListingClient listing={destination} />
+      <ListingClient listing={destination}  />
     </ClientOnly>
   )
 }

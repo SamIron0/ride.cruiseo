@@ -23,10 +23,16 @@ import { Button } from "@/components/ui/button"
 import { Trips } from "@/components/ui/trips"
 interface ListingClientProps {
   listing: Destination
-  dateTime: string
 }
 
-const ListingClient: React.FC<ListingClientProps> = ({ listing, dateTime }) => {
+const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
+  const [origin, setOrigin] = useState<string>("")
+  const [dateTime, setDateTime] = useState({
+    date: "",
+    hour: "",
+    ampm: "",
+    minute: ""
+  })
   const { profile } = useContext(CruiseoContext)
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
@@ -35,7 +41,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, dateTime }) => {
     {
       id: uuidv4(),
       price: 25,
-      date: dateTime
+      date: dateTime.date,
+      origin: origin
     }
   ])
   const getPrice = async (trip: Trip) => {
@@ -157,9 +164,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, dateTime }) => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ listingID: listing?.id })
+        body: JSON.stringify({
+          listingID: listing?.id,
+          dateTime: dateTime,
+          origin: origin
+        })
       }).then(res => res.json())
-      setAvailableTrips(trips)
+      setAvailableTrips(availableTrips.concat(trips))
     } catch {
       console.error("An error occurred while fetching trips")
     }
@@ -202,73 +213,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, dateTime }) => {
             locationValue={listing?.address}
             id={listing?.id}
           />
-          <CarpoolForm />
-          <div className="sm:flex sm:flex-1 gap-4 ">
-            <div className="w-full sm:pr-6 ">
-              {listing.activeTrips?.map((trip: any) => (
-                <div className="w-full pb-3">
-                  {/* Content */}
-                  <div
-                    className="max-w-xl md:max-w-none md:w-full sm:mx-auto md:col-span-7 lg:col-span-6 "
-                    data-aos="fade-right"
-                  >
-                    {/* Tabs buttons */}
-                    <div className=" text-white">
-                      <div
-                        className={`flex justify-between bg-zinc-800  w-full items-center text-lg p-3 rounded-lg  transition duration-300 ease-in-out hover:shadow-lg ${
-                          selectedTrip.id === trip.id
-                            ? `shadow-lg border-blue-500 border first-letter:hover:shadow-lg`
-                            : `  shadow-md border border-zinc-600 `
-                        }`}
-                      >
-                        <div className="flex flex-col">
-                          <div className="font-normal text-sm text-zinc-300 leading-snug tracking-tight mb-1">
-                            Price:{" "}
-                            <span className="text-white font-semibold">
-                              {loadedPrices?.get(trip.id)}
-                            </span>
-                          </div>
+          <CarpoolForm
+            origin={origin}
+            dateTime={dateTime}
+            onSetOrigin={setOrigin}
+            onSetDateTime={setDateTime}
+          />
 
-                          <div className="font-normal text-sm text-zinc-300 text-smleading-snug tracking-tight mb-1">
-                            Time:{" "}
-                            <span className="text-white font-semibold">
-                              {trip.date}
-                            </span>
-                          </div>
-                          <div className="font-normal text-sm text-zinc-300 leading-snug tracking-tight mb-1">
-                            Riders:{" "}
-                            <span className="text-white font-semibold">
-                              {trip.user_ids.length}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex gap-2 flex-col">
-                          <button
-                            onClick={() => getPrice(trip)}
-                            disabled={
-                              isLoading ||
-                              loadedPrices?.get(trip.id) !== undefined
-                            }
-                            className="flex text-sm pb-2 justify-center items-center px-4 py-2 bg-zinc-100 text-black rounded-lg shadow flex-shrink-0 ml-3 active:bg-zinc-300 transition duration-150 transform active:scale-110"
-                          >
-                            Show Price
-                          </button>
-
-                          <button
-                            disabled={isLoading || trip.id == selectedTrip.id}
-                            onClick={() => setSelectedTrip(trip)}
-                            className="flex text-sm justify-center items-center px-4 py-2 bg-fuchsia-600 text-white rounded-lg shadow flex-shrink-0 ml-3 active:bg-fuchsia-800 transition duration-150 transform active:scale-110"
-                          >
-                            Select
-                          </button>
-                        </div>
-                      </div>{" "}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
           <Drawer>
             <DrawerTrigger
               onClick={() => getTrips()}
