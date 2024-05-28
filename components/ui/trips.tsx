@@ -11,12 +11,12 @@ export const Trips = ({ trips }: TripsProps) => {
       {trips.map(trip => (
         <div
           key={trip.id}
-          onAbort={() => setSelectedTrip(trip)}
+          onClick={() => setSelectedTrip(trip)}
           className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg ${
             selectedTrip.id === trip.id ? "border-input" : "border-zinc-500"
           }`}
         >
-          <div className="mb-4 flex flex-row w-full justify-between">
+          <div className="mb-3 flex flex-row w-full justify-between">
             <span className="">{trip.date?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-2">2 seats</span>
@@ -24,7 +24,7 @@ export const Trips = ({ trips }: TripsProps) => {
             </div>
           </div>
           <div className="flex mb-2 w-full  flex-col">
-            <span className="flex flex-col text-sm ">{trip.origin}</span>
+            <span className="flex flex-col text-sm mb-1  ">{trip.origin}</span>
             <span className="flex flex-col text-sm">
               {trip.destination?.address}
             </span>
