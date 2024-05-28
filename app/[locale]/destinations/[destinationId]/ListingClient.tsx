@@ -20,16 +20,24 @@ import {
   DrawerTrigger
 } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
+import { Trips } from "@/components/ui/trips"
 interface ListingClientProps {
   listing: Destination
+  dateTime: string
 }
 
-const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
+const ListingClient: React.FC<ListingClientProps> = ({ listing, dateTime }) => {
   const { profile } = useContext(CruiseoContext)
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
-  const [availableTrips, setAvailableTrips] = useState<Trip[]>([])
+  const [availableTrips, setAvailableTrips] = useState<Trip[]>([
+    {
+      id: uuidv4(),
+      price: 25,
+      date: dateTime
+    }
+  ])
   const getPrice = async (trip: Trip) => {
     setIsLoading(true)
     setPriceIsLoading(true)
@@ -276,6 +284,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </div>
                 </DrawerTitle>
               </DrawerHeader>
+              <Trips trips={availableTrips} />
               <DrawerFooter>
                 <Button>Book</Button>
                 <DrawerClose>

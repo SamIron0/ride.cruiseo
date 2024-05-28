@@ -1,14 +1,14 @@
 import { Json } from './types_db';
 
 export interface Trip {
-  origin: string;
+  origin?: string;
   destination?: Destination;
-  destination_id: string;
+  destination_id?: string;
   id: string;
-  date: string;
+  date?: string;
   user_ids?: string[] | undefined;
-  price: number;
-  status: string;
+  price?: number;
+  status?: string;
 }
 
 export interface GeoCoordinate {
