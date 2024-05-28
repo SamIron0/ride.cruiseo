@@ -1,15 +1,13 @@
 "use client"
 
-import { Suspense, useEffect, useCallback, useRef, useState } from "react"
-import { Destination, Trip } from "@/types"
-import { User } from "@supabase/supabase-js"
-import Link from "next/link"
+import {  useEffect useRef, useState } from "react"
+import {  Trip } from "@/types"
 import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/navigation"
 import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
-import DateTimePicker from "./DatePicker"
+import DateTimePicker from "../dateTimePicker/datePicker"
 interface CarpoolFormProps {}
 
 export const CarpoolForm = ({}: CarpoolFormProps) => {
