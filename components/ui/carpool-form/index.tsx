@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
+import DatePicker from "react-mobile-datepicker"
 interface CarpoolFormProps {}
 
 export const CarpoolForm = ({}: CarpoolFormProps) => {
@@ -175,6 +176,29 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       document.removeEventListener("click", handleOutsideOriginClick)
     }
   }, [])
+
+  function convertDate(date: any, formate: string) {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+
+    return formate
+      .replace(/Y+/, year)
+      .replace(/M+/, month)
+      .replace(/D+/, day)
+      .replace(/h+/, hour)
+      .replace(/m+/, minute)
+      .replace(/s+/, second)
+  }
+
+  const [time, setTime] = useState(new Date())
+  const theme = "ios"
+  const handleSelect = (time: any) => {
+    setTime(time)
+  }
   return (
     <form
       onSubmit={handleTripDetailsSubmit}
@@ -261,13 +285,8 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
-          <div>
-            <input type="datetime-local" value={dateTime} />
-          </div>
 
-          <div className="container">
-            <div id="react-container"></div>
-          </div>
+          <DatePicker value={time} onSelect={handleSelect} />
         </div>
       ) : (
         <div
