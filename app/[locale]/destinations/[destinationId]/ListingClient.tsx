@@ -248,6 +248,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               ))}
             </div>
           </div>
+          <Drawer>
           <DrawerTrigger>
             <button
               className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
@@ -266,7 +267,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                 <Button variant="outline">Cancel</Button>
               </DrawerClose>
             </DrawerFooter>
-          </DrawerContent>
+          </DrawerContent></Drawer>
         </div>
       </div>
     </Container>
