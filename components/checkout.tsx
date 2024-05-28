@@ -45,7 +45,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               type="text"
               id="email"
               name="email"
-              className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="your.email@gmail.com"
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -76,7 +76,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               type="text"
               id="card-holder"
               name="card-holder"
-              className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full  rounded-md border border-gray-200 px-4 py-3 pl-11 text-[16px] uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="Your full name here"
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -147,7 +147,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
                 type="text"
                 id="billing-address"
                 name="billing-address"
-                className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Street Address"
               />
               <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -173,7 +173,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
             />
           </div>
 
-          <div className="mt-6 border-t border-b py-2">
+          <div className="mt-6 border-t border-b border-input py-2">
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-white">Subtotal</p>
               <p className="font-semibold text-white">$399.00</p>

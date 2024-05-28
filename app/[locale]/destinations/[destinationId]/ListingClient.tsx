@@ -270,7 +270,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </DrawerFooter>
                 </div>
               ) : (
-                step == 1 && <Checkout selectedTrip={selectedTrip} />
+                <Checkout selectedTrip={selectedTrip} />
               )}
             </DrawerContent>
           </Drawer>
