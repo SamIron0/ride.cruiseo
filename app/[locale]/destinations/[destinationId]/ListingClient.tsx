@@ -52,6 +52,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     }
   ])
   useEffect(() => {
+    setStep(0)
     setAvailableTrips([
       {
         id: uuidv4(),
@@ -124,15 +125,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       toast.error("An error occurred while calculating price")
     }
   }
-  const [selectedTrip, setSelectedTrip] = useState<Trip>({
-    id: "",
-    origin: "",
-    destination_id: "",
-    user_ids: [],
-    date: {} as Date,
-    price: 0,
-    status: ""
-  })
+  // we use availabletrips[0] because the user's new trip is always  inserted first
+  const [selectedTrip, setSelectedTrip] = useState<Trip>(availableTrips[0])
   const onCreateReservation = async () => {
     setIsLoading(true)
     if (!selectedTrip.id) {
@@ -197,7 +191,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       console.error("An error occurred while fetching trips")
     }
   }
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
   return (
     <Container>
       <div
@@ -252,7 +246,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               Search
             </DrawerTrigger>
             <DrawerContent>
-              {step == 1 ? (
+              {step == 0 ? (
                 <div className="max-w-3xl w-full mx-auto flex flex-col">
                   <DrawerHeader>
                     <DrawerTitle>
@@ -276,7 +270,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </DrawerFooter>
                 </div>
               ) : (
-                step == 2 && <Checkout selectedTrip={selectedTrip} />
+                step == 1 && <Checkout selectedTrip={selectedTrip} />
               )}
             </DrawerContent>
           </Drawer>
