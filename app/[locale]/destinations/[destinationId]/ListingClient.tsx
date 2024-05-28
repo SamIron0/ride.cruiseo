@@ -29,7 +29,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
-
+  const [availableTrips, setAvailableTrips] = useState<Trip[]>([])
   const getPrice = async (trip: Trip) => {
     setIsLoading(true)
     setPriceIsLoading(true)
@@ -142,7 +142,20 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     }
     setIsLoading(false)
   }
-  const [selectedDate, setSelectedDate] = useState()
+  const getTrips = async () => {
+    try {
+      const trips: Trip[] = await fetch("/api/getTrips", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ listingID: listing?.id })
+      }).then(res => res.json())
+      setAvailableTrips(trips)
+    } catch {
+      console.error("An error occurred while fetching trips")
+    }
+  }
   return (
     <Container>
       <div
@@ -249,25 +262,28 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             </div>
           </div>
           <Drawer>
-          <DrawerTrigger>
-            <button
+            <DrawerTrigger
+              onClick={() => getTrips()}
               className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
-              disabled={isLoading}
             >
               Search
-            </button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Results</DrawerTitle>
-            </DrawerHeader>
-            <DrawerFooter>
-              <Button>Book</Button>
-              <DrawerClose>
-                <Button variant="outline">Cancel</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </DrawerContent></Drawer>
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>
+                  <div>
+                    <h1 className="text-2xl font-bold w-full">Results</h1>
+                  </div>
+                </DrawerTitle>
+              </DrawerHeader>
+              <DrawerFooter>
+                <Button>Book</Button>
+                <DrawerClose>
+                  <Button variant="outline">Cancel</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
         </div>
       </div>
     </Container>
