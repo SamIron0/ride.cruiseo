@@ -402,7 +402,7 @@ const WheelPickerComponent = ({
 
   return (
     <div
-      className="flex relative flex-row"
+      className="container flex relative flex-row"
       style={{
         height: `${containerHeight}px`,
         //width: 210px
