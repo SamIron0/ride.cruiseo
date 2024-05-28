@@ -1,5 +1,5 @@
 import DatePicker from "react-mobile-datepicker"
-const DatePicker = ({ time }) => {
+const DateTimePicker = ({ time }) => {
   return <DatePicker value={time} />
 }
-export default DatePicker
+export default DateTimePicker

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
-import DatePicker from "./DatePicker"
+import DateTimePicker from "./DatePicker"
 interface CarpoolFormProps {}
 
 export const CarpoolForm = ({}: CarpoolFormProps) => {
@@ -285,7 +285,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
-          <DatePicker time={time} />
+          <DateTimePicker time={time} />
         </div>
       ) : (
         <div
