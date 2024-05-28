@@ -274,20 +274,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   <DrawerHeader>
                     <DrawerTitle>
                       <div>
-                        <h1 className="text-2xl font-bold w-full">Results</h1>
+                        <h1 className="text-2xl font-bold w-full">Checkout</h1>
                       </div>
                     </DrawerTitle>
                   </DrawerHeader>
 
                   <Checkout selectedTrip={selectedTrip} />
-                  <DrawerFooter>
-                    <Button onClick={() => setStep(2)}>Book</Button>
-                    <DrawerClose>
-                      <Button className="w-full" variant="outline">
-                        Cancel
-                      </Button>
-                    </DrawerClose>
-                  </DrawerFooter>
+                  
                 </div>
               )}
             </DrawerContent>
