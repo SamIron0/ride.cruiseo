@@ -14,7 +14,7 @@ export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
           key={trip.id}
           onClick={() => onSelectTrip(trip)}
           className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg ${
-            selectedTrip.id === trip.id ? "border-zinc-300" : "border-input"
+            selectedTrip.id === trip.id ? "border-zinc-500" : "border-input"
           }`}
         >
           <div className="mb-3 flex flex-row w-full justify-between">
