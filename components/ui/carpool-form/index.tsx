@@ -67,58 +67,7 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
   let confirm = true
   const router = useRouter()
 
-  const handleConfirm = async (event: { preventDefault: () => void }) => {
-    event.preventDefault()
-
-    // create a trip with entered info and send it to api
-    if (origin === "") {
-      setOriginIsValid(false)
-      confirm = false
-    }
-
-    if (destination == undefined) {
-      setDestinationIsValid(false)
-      confirm = false
-    }
-    if (dateTime) {
-      setDateIsValid(false)
-      confirm = false
-    }
-
-    if (confirm && destination != undefined) {
-      const userIds: any[] = []
-      setTrip({
-        id: uuidv4(),
-        origin: origin,
-        destination_id: "s",
-        user_ids: userIds,
-        date: 'dateTime',
-        price: 0,
-        status: "Active"
-      })
-      //sendEmail();
-    }
-  }
-  async function sendEmail() {
-    try {
-      const url = "/api/save-trip"
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(trip)
-      }
-
-      const response = await fetch(url, options)
-      const data = await response.json()
-      toast.success("Trip requested!")
-      clearForm()
-      router.refresh()
-    } catch (err) {
-      console.error(err)
-    }
-  }
+ 
 
   function clearForm() {
     onSetOrigin("")

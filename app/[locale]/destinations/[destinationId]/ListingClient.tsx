@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
-import { Destination, Trip } from "@/types"
+import { Date, Destination, Trip } from "@/types"
 import Container from "@/components/Container"
 import ListingHead from "@/components/listings/ListingHead"
 import { useContext } from "react"
@@ -128,7 +128,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     origin: "",
     destination_id: "",
     user_ids: [],
-    date: "new Date()",
+    date: {} as Date,
     price: 0,
     status: ""
   })

@@ -12,7 +12,7 @@ export const Trips = ({ trips }: TripsProps) => {
           className="flex text-sm flex-col items-center border border-input mb-2 p-4 rounded"
         >
           <div className="flex flex-row w-full justify-between">
-            <span>{trip.date}</span>
+            <span>{trip.date?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-3">2 seats</span>
               <span>${trip.price}</span>

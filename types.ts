@@ -1,6 +1,6 @@
 import { Json } from "./types_db"
 
-export type Date = {
+export interface Date  {
   date: string
   hour: string
   minute: string
