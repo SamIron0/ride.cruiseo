@@ -32,11 +32,12 @@ const DateTimePicker = () => {
   const [ampm, setAmpm] = useState(ampmItems[0].value)
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="App">
       <span className="text-sm w-full">
         {" "}
         {date} {hour}:{minute} {ampm}
       </span>
+
       <WheelPicker
         dateItems={dateItems}
         dateValue={date}
