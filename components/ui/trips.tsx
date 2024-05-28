@@ -5,9 +5,12 @@ interface TripsProps {
 }
 export const Trips = ({ trips }: TripsProps) => {
   return (
-    <div>
+    <div className="p-4">
       {trips.map(trip => (
-        <div key={trip.id}>{trip.price}</div>
+        <div>
+          <div key={trip.id}>{trip.date}</div>
+          <div>{trip.price}</div>
+        </div>
       ))}
     </div>
   )
