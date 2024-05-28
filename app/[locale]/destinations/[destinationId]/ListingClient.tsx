@@ -52,7 +52,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         price: 25,
         date: dateTime.date,
         origin: origin,
-        destination: listing.addresss
+        destination: listing.address
       }
     ])
   }, [dateTime.date, origin])
