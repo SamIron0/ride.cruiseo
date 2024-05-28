@@ -51,7 +51,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         id: uuidv4(),
         price: 25,
         date: dateTime.date,
-        origin: origin
+        origin: origin,
+        destination: listing.addresss
       }
     ])
   }, [dateTime.date, origin])
