@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { Trips } from "@/components/ui/trips"
+import { Checkout } from "@/components/checkout"
 interface ListingClientProps {
   listing: Destination
 }
@@ -196,6 +197,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       console.error("An error occurred while fetching trips")
     }
   }
+  let step = 1
   return (
     <Container>
       <div
@@ -243,31 +245,35 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
 
           <Drawer>
             <DrawerTrigger
-            disabled={origin =="" || dateTime.date==""}
+              disabled={origin == "" || dateTime.date == ""}
               onClick={() => getTrips()}
               className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
             >
               Search
             </DrawerTrigger>
             <DrawerContent>
-              <div className="max-w-3xl w-full mx-auto flex flex-col">
-                <DrawerHeader>
-                  <DrawerTitle>
-                    <div>
-                      <h1 className="text-2xl font-bold w-full">Results</h1>
-                    </div>
-                  </DrawerTitle>
-                </DrawerHeader>
-                <Trips trips={availableTrips} />
-                <DrawerFooter>
-                  <Button>Book</Button>
-                  <DrawerClose>
-                    <Button className="w-full" variant="outline">
-                      Cancel
-                    </Button>
-                  </DrawerClose>
-                </DrawerFooter>
-              </div>
+              {step == 1 ? (
+                <div className="max-w-3xl w-full mx-auto flex flex-col">
+                  <DrawerHeader>
+                    <DrawerTitle>
+                      <div>
+                        <h1 className="text-2xl font-bold w-full">Results</h1>
+                      </div>
+                    </DrawerTitle>
+                  </DrawerHeader>
+                  <Trips selectedTrip={selectedTrip} onSelectTrip={setSelectedTrip} trips={availableTrips} />
+                  <DrawerFooter>
+                    <Button>Book</Button>
+                    <DrawerClose>
+                      <Button className="w-full" variant="outline">
+                        Cancel
+                      </Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </div>
+              ) : (
+                step == 2 && <Checkout selectedTrip={selectedTrip} />
+              )}
             </DrawerContent>
           </Drawer>
         </div>
