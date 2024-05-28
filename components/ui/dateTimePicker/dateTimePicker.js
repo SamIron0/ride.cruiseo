@@ -37,7 +37,20 @@ const DateTimePicker = () => {
         {" "}
         {date} {hour}:{minute} {ampm}
       </span>
-      
+      <WheelPicker
+        dateItems={dateItems}
+        dateValue={date}
+        onDateChange={setDate}
+        hourItems={hourItems}
+        hourValue={hour}
+        onHourChange={setHour}
+        minuteItems={minuteItems}
+        minuteValue={minute}
+        onMinuteChange={setMinute}
+        ampmItems={ampmItems}
+        ampmValue={ampm}
+        onAmpmChange={setAmpm}
+      />
     </div>
   )
 }
