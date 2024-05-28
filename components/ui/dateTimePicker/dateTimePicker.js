@@ -33,7 +33,7 @@ const DateTimePicker = () => {
   const [ampm, setAmpm] = useState(ampmItems[0].value)
 
   return (
-    <div className="App flex justify-center ">
+    <div className="App flex items-center ">
       <span className="text-sm w-full">
         {" "}
         {date} {hour}:{minute} {ampm}
