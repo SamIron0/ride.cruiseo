@@ -8,7 +8,7 @@ interface TripsProps {
 }
 export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
   return (
-    <div className="p-4">
+    <div className="p-4 overflow-y-auto">
       {trips.map(trip => (
         <div
           key={trip.id}
