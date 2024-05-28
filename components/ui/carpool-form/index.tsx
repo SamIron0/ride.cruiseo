@@ -1,7 +1,7 @@
 "use client"
 
-import {  useEffect, useRef, useState } from "react"
-import {  Trip } from "@/types"
+import { useEffect, useRef, useState } from "react"
+import { Trip } from "@/types"
 import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/navigation"
 import React from "react"
@@ -25,7 +25,6 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
   const [emailIsValid, setEmailIsValid] = useState(true)
   const [number, setNumber] = useState("")
   const [numberIsValid, setNumberIsValid] = useState(true)
-  const [dateTime, setDateTime] = useState("")
   const [dateIsValid, setDateIsValid] = useState(true)
   const [originSuggestionIsOpen, setOriginSuggestionIsOpen] = useState(true)
   const [destinationSuggestionIsOpen, setDestinationSuggestionIsOpen] =
@@ -175,27 +174,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
     }
   }, [])
 
-  function convertDate(date: any, formate: string) {
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
-    const second = date.getSeconds()
-
-    return formate
-      .replace(/Y+/, year)
-      .replace(/M+/, month)
-      .replace(/D+/, day)
-      .replace(/h+/, hour)
-      .replace(/m+/, minute)
-      .replace(/s+/, second)
-  }
-
-  const [time, setTime] = useState(new Date())
-  const handleSelect = (time: any) => {
-    setTime(time)
-  }
+  const [dateTime, setDateTime] = useState("")
   return (
     <form
       onSubmit={handleTripDetailsSubmit}
@@ -282,7 +261,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
-          <DateTimePicker />
+          <DateTimePicker setDateTime={setDateTime} />
         </div>
       ) : (
         <div
