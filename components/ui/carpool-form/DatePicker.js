@@ -11,8 +11,8 @@ const DateTimePicker = ({ time, isOpen }) => {
     <DatePicker
       value={time}
       isOpen={isOpen}
-      onSelect={this.handleSelect}
-      onCancel={this.handleCancel}
+      onSelect={handleSelect}
+      onCancel={handleCancel}
     />
   )
 }
