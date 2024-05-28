@@ -280,7 +280,7 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
         >
           <div className="flex flex-row w-full items-center justify-between">
             <h1 className=" font-medium   text-lg ">When?</h1>
-           <span className="text-sm ">
+           <span className="text-sm font-light text-neutral-500 ">
         {" "}
         {dateTime.date} {dateTime.hour}:{dateTime.minute} {dateTime.ampm} 
       </span>

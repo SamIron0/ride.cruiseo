@@ -11,20 +11,20 @@ export const Trips = ({ trips }: TripsProps) => {
           key={trip.id}
           className="flex text-sm flex-col items-center border border-input mb-2 p-4 rounded"
         >
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row w-full justify-between">
             <span>{trip.date}</span>
             <div className="flex flex-row">
-              <span className="font-semibold">2 seats</span>
+              <span className="font-semibold mr-3">2 seats</span>
               <span>${trip.price}</span>
             </div>
           </div>
-          <div className="flex mb-2  flex-col">
+          <div className="flex mb-2 w-full  flex-col">
             <span className="flex flex-col text-sm ">{trip.origin}</span>
             <span className="flex flex-col text-sm">
               {trip.destination?.address}
             </span>
           </div>{" "}
-          <div className="flex -space-x-4 rtl:space-x-reverse">
+          <div className="flex w-full  -space-x-4 rtl:space-x-reverse">
             <img
               className="w-8 h-8 border-2  rounded-full border-gray-800"
               src="public/forks.jpg"

@@ -41,7 +41,12 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     {
       id: uuidv4(),
       price: 25,
-      date: dateTime.date,
+      date: {
+        date: dateTime.date,
+        hour: dateTime.hour,
+        ampm: dateTime.ampm,
+        minute: dateTime.minute
+      },
       origin: origin
     }
   ])
@@ -50,7 +55,12 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       {
         id: uuidv4(),
         price: 25,
-        date: dateTime.date,
+        date: {
+          date: dateTime.date,
+          hour: dateTime.hour,
+          ampm: dateTime.ampm,
+          minute: dateTime.minute
+        },
         origin: origin,
         destination: listing
       }
@@ -238,7 +248,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             >
               Search
             </DrawerTrigger>
-            <DrawerContent className="h-75vh">
+            <DrawerContent className="max-w-3xl">
               <DrawerHeader>
                 <DrawerTitle>
                   <div>
