@@ -60,7 +60,6 @@ export default async function Login({
 
     const email = formData.get("email") as string
     const password = formData.get("password") as string
-
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
 
@@ -105,7 +104,12 @@ export default async function Login({
 
   return (
     <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 pb-28 sm:max-w-md">
-      <Link href="/" className="pb-8 text-2xl mx-auto font-semibold  ">Cruiseo</Link>
+      <span
+        onClick={redirect("/")}
+        className="pb-8 text-2xl mx-auto font-semibold  "
+      >
+        Cruiseo
+      </span>
 
       <form
         className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in"
