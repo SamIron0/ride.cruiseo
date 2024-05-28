@@ -1,7 +1,7 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 import WheelPicker from "./wheelPicker";
-const DateTimePicker = ({ onSelect }) => {
+const DateTimePicker = () => {
   const hourItems = Array.from({ length: 12 }, (_, index) => ({
     value: index + 1,
     label: index + 1
@@ -37,20 +37,7 @@ const DateTimePicker = ({ onSelect }) => {
         {" "}
         {date} {hour}:{minute} {ampm}
       </span>
-      <WheelPicker
-        dateItems={dateItems}
-        dateValue={date}
-        onDateChange={setDate}
-        hourItems={hourItems}
-        hourValue={hour}
-        onHourChange={setHour}
-        minuteItems={minuteItems}
-        minuteValue={minute}
-        onMinuteChange={setMinute}
-        ampmItems={ampmItems}
-        ampmValue={ampm}
-        onAmpmChange={setAmpm}
-      />
+      
     </div>
   )
 }
