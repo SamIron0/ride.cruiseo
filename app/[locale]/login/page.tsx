@@ -60,6 +60,7 @@ export default async function Login({
 
     const email = formData.get("email") as string
     const password = formData.get("password") as string
+
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
 
@@ -103,13 +104,8 @@ export default async function Login({
   }
 
   return (
-    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 pb-28 sm:max-w-md">
-      <span
-        onClick={redirect("/")}
-        className="pb-8 text-2xl mx-auto font-semibold  "
-      >
-        Cruiseo
-      </span>
+    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 sm:max-w-md">
+      <span className="pb-8 text-xl">Cruiseo</span>
 
       <form
         className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in"
@@ -119,7 +115,7 @@ export default async function Login({
           Email
         </Label>
         <Input
-          className="mb-3 rounded-md border  px-4 py-2 text-[16px]"
+          className="mb-3 rounded-md border bg-inherit px-4 py-2 text-[16px]"
           name="email"
           placeholder="you@example.com"
           required
@@ -129,7 +125,8 @@ export default async function Login({
           Password
         </Label>
         <Input
-          className="mb-6 rounded-md border px-4 py-2 text-[16px]"
+          className="mb-6 rounded-md border bg-inherit px-4 py-2 text-[16px]"
+          type="password"
           name="password"
           placeholder="••••••••"
         />
