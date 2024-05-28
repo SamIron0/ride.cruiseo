@@ -1,18 +1,23 @@
 import { Trip } from "@/types"
+import { useState } from "react"
 
 interface TripsProps {
   trips: Trip[]
 }
 export const Trips = ({ trips }: TripsProps) => {
+  const [selectedTrip, setSelectedTrip] = useState(trips[0])
   return (
     <div className="p-4">
       {trips.map(trip => (
         <div
           key={trip.id}
-          className="flex text-sm flex-col items-center border border-input mb-2 p-4 rounded"
+          onAbort={() => setSelectedTrip(trip)}
+          className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg ${
+            selectedTrip.id === trip.id ? "border-input" : "border-zinc-500"
+          }`}
         >
-          <div className="flex flex-row w-full justify-between">
-            <span>{trip.date?.date}</span>
+          <div className="mb-2 flex flex-row w-full justify-between">
+            <span className="">{trip.date?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-3">2 seats</span>
               <span>${trip.price}</span>
