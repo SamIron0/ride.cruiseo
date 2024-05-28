@@ -19,7 +19,7 @@ export const Trips = ({ trips }: TripsProps) => {
             </div>
           </div>
           <span className="flex flex-col text-sm ">{trip.origin}</span>
-          <span className="flex flex-col text-sm">{trip.origin}</span>
+          <span className="flex flex-col text-sm">{trip.destination?.address}</span>
           <div className="flex -space-x-4 rtl:space-x-reverse">
             <img
               className="w-8 h-8 border-2  rounded-full border-gray-800"
