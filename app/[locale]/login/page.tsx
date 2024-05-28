@@ -115,8 +115,9 @@ export default async function Login({
           Email
         </Label>
         <Input
-          className="mb-3 rounded-md border  px-4 py-2 text-[16px]"
+          className="mb-3 rounded-md border bg-background  px-4 py-2 text-[16px]"
           name="email"
+          type="email"
           placeholder="you@example.com"
           required
         />
@@ -125,7 +126,8 @@ export default async function Login({
           Password
         </Label>
         <Input
-          className="mb-6 rounded-md border px-4 py-2 text-[16px]"
+          className="mb-6 rounded-md border bg-background px-4 py-2 text-[16px]"
+          type="password"
           name="password"
           placeholder="••••••••"
         />

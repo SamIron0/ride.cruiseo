@@ -276,7 +276,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, dateTime }) => {
             >
               Search
             </DrawerTrigger>
-            <DrawerContent>
+            <DrawerContent className="h-75vh">
               <DrawerHeader>
                 <DrawerTitle>
                   <div>
