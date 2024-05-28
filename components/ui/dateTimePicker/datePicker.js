@@ -1,6 +1,6 @@
 import { useState } from "react";
 import dayjs from "dayjs";
-
+import WheelPicker from "./wheelPicker";
 const DateTimePicker = ({ onSelect }) => {
   const hourItems = Array.from({ length: 12 }, (_, index) => ({
     value: index + 1,
@@ -33,7 +33,7 @@ const DateTimePicker = ({ onSelect }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <span>
+      <span className="text-sm w-full">
         {" "}
         {date} {hour}:{minute} {ampm}
       </span>
