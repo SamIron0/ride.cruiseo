@@ -197,7 +197,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       console.error("An error occurred while fetching trips")
     }
   }
-  let step = 1
+  const [step, setStep] = useState(1)
   return (
     <Container>
       <div
@@ -261,9 +261,13 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                       </div>
                     </DrawerTitle>
                   </DrawerHeader>
-                  <Trips selectedTrip={selectedTrip} onSelectTrip={setSelectedTrip} trips={availableTrips} />
+                  <Trips
+                    selectedTrip={selectedTrip}
+                    onSelectTrip={setSelectedTrip}
+                    trips={availableTrips}
+                  />
                   <DrawerFooter>
-                    <Button>Book</Button>
+                    <Button onClick={() => setStep(2)}>Book</Button>
                     <DrawerClose>
                       <Button className="w-full" variant="outline">
                         Cancel
