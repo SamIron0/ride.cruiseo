@@ -402,9 +402,11 @@ const WheelPickerComponent = ({
 
   return (
     <div
-      className="container"
+      className="flex relative flex-row"
       style={{
-        height: `${containerHeight}px`
+        height: `${containerHeight}px`,
+        //width: 210px
+        width: "210px"
       }}
     >
       <ul className="items" ref={dateItemsContRef}>
