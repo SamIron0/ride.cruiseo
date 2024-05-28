@@ -1,4 +1,4 @@
-import { Destination, GeoCoordinate, Trip } from "@/types"
+import { Date, Destination, GeoCoordinate, Trip } from "@/types"
 
 export type Json =
   | string
@@ -205,7 +205,7 @@ export type Database = {
           destination?: Destination;
           destination_id: string;
           id: string;
-          date: string;
+          date: Date;
           user_ids: string[];
           price: number;
           status: string;
@@ -216,7 +216,7 @@ export type Database = {
           destination_id?: string | null;
           user_ids?: string[];
           id: string | null;
-          date?: string | null;
+          date?: Date | null;
           price?: number | null;
           status?: string | null;
         };
@@ -226,7 +226,7 @@ export type Database = {
           destination_id?: string | null;
           user_ids?: string[];
           id?: string | null;
-          date?: string | null;
+          date?: Date | null;
           price?: number | null;
           status?: string | null;
         };
