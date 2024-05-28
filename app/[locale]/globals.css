@@ -48,22 +48,5 @@
     }
   }
   
-  @layer base {
-    
-    body {
-      @apply bg-background text-foreground;
-    }
-  }
-  path {
-    transition: transform 0.2s, opacity 0.2s;
-  }
-  .hide-scrollbar {
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-  
-  }
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
   
   
