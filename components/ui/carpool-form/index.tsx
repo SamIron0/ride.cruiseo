@@ -210,7 +210,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
               value={origin}
               onChange={e => setOriginAndSuggestions(e.target.value)}
               placeholder={"Search"}
-              className="bg-transparent p-4 placeholder:text-gray-400 text-gray-400 ring-0  rounded-xl ps-10 border  bg-gray-100 border-input outline-none w-full "
+              className="bg-transparent px-4 py-2 placeholder:text-gray-400 text-gray-400 ring-0  rounded-xl ps-10 border  bg-gray-100 border-input outline-none w-full "
             ></input>
           </div>
 
