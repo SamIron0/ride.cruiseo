@@ -401,8 +401,7 @@ const WheelPickerComponent = ({
   }, [ampmValue])
 
   return (
-    <div className="relative flex items-center w-210">
-      <div className="absolute top-1/2 z-1 transform -translate-y-1/2 left-0 right-0 w-full h-32 bg-gray-800 rounded-lg"></div>
+    <div className="container ">
 
       <ul className="items" ref={dateItemsContRef}>
         {dateItems.map((item, index) => (
