@@ -195,7 +195,6 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
   }
 
   const [time, setTime] = useState(new Date())
-  const theme = "ios"
   const handleSelect = (time: any) => {
     setTime(time)
   }
@@ -285,7 +284,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
-          <DateTimePicker time={time} isOpen={true} />
+          <DateTimePicker onSelect={handleSelect}/>
         </div>
       ) : (
         <div
