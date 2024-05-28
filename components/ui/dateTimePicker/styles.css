@@ -1,21 +1,21 @@
 .container {
-    display: flex;
-    width: 210px;
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 50%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 50%,
-      transparent 100%
-    );
-    position: relative;
-  }
-  
+  display: flex;
+  width: 210px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 50%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 50%,
+    transparent 100%
+  );
+  position: relative;
+}
+
   .container::after {
     position: absolute;
     content: "";
@@ -58,5 +58,15 @@
   
   .item div {
     display: inline-block;
+  }
+  .App {
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  * {
+    box-sizing: border-box;
   }
   

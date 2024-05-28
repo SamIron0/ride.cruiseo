@@ -1,6 +1,7 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 import {WheelPicker} from "./wheelPicker";
+import "./styles.css";
 const DateTimePicker = () => {
   const hourItems = Array.from({ length: 12 }, (_, index) => ({
     value: index + 1,
