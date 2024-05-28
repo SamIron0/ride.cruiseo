@@ -104,7 +104,7 @@ export default async function Login({
   }
 
   return (
-    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 sm:max-w-md">
+    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 pb-28 sm:max-w-md">
       <span className="pb-8 text-xl">Cruiseo</span>
 
       <form
@@ -125,8 +125,7 @@ export default async function Login({
           Password
         </Label>
         <Input
-          className="mb-6 rounded-md border bg-inherit px-4 py-2 text-[16px]"
-          type="password"
+          className="mb-6 rounded-md border px-4 py-2 text-[16px]"
           name="password"
           placeholder="••••••••"
         />
