@@ -9,6 +9,17 @@ import { useContext } from "react"
 import { toast } from "sonner"
 import { CruiseoContext } from "@/context/context"
 import { CarpoolForm } from "@/components/ui/carpool-form"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
+} from "@/components/ui/drawer"
+import { Button } from "@/components/ui/button"
 interface ListingClientProps {
   listing: Destination
 }
@@ -237,14 +248,25 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               ))}
             </div>
           </div>
-
-          <button
-            className=" rounded-lg py-2 px-8 bg-blue-500 text-md"
-            onClick={() => onCreateReservation()}
-            disabled={isLoading}
-          >
-            Reserve
-          </button>
+          <DrawerTrigger>
+            <button
+              className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
+              disabled={isLoading}
+            >
+              Search
+            </button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Results</DrawerTitle>
+            </DrawerHeader>
+            <DrawerFooter>
+              <Button>Book</Button>
+              <DrawerClose>
+                <Button variant="outline">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
         </div>
       </div>
     </Container>
