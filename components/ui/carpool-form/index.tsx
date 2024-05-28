@@ -278,7 +278,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         >
           <div className="flex flex-row w-full items-center justify-between">
             <h1 className=" font-medium   text-lg ">When?</h1>
-           <span className="text-sm w-full">
+           <span className="text-sm ">
         {" "}
         {dateTime.date} {dateTime.hour}:{dateTime.minute} {dateTime.ampm} 
       </span>
