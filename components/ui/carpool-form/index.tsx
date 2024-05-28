@@ -99,10 +99,6 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
       //sendEmail();
     }
   }
-  useEffect(() => {
-    if (trip != undefined) sendEmail()
-  }, [trip])
-
   async function sendEmail() {
     try {
       const url = "/api/save-trip"

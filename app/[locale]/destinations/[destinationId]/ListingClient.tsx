@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { Destination, Trip } from "@/types"
 import Container from "@/components/Container"
@@ -45,6 +45,16 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       origin: origin
     }
   ])
+  useEffect(() => {
+    setAvailableTrips([
+      {
+        id: uuidv4(),
+        price: 25,
+        date: dateTime.date,
+        origin: origin
+      }
+    ])
+  }, [dateTime.date, origin])
   const getPrice = async (trip: Trip) => {
     setIsLoading(true)
     setPriceIsLoading(true)
@@ -239,7 +249,9 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               <DrawerFooter>
                 <Button>Book</Button>
                 <DrawerClose>
-                  <Button variant="outline">Cancel</Button>
+                  <Button className="w-full" variant="outline">
+                    Cancel
+                  </Button>
                 </DrawerClose>
               </DrawerFooter>
             </DrawerContent>
