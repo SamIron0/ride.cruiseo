@@ -250,7 +250,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
               Search
             </DrawerTrigger>
             <DrawerContent>
-              <div className="max-w-3xl flex flex-col">
+              <div className="max-w-3xl w-full mx-auto flex flex-col">
                 <DrawerHeader>
                   <DrawerTitle>
                     <div>

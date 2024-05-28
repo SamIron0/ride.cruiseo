@@ -13,7 +13,7 @@ export const Trips = ({ trips }: TripsProps) => {
           key={trip.id}
           onClick={() => setSelectedTrip(trip)}
           className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg ${
-            selectedTrip.id === trip.id ? "border-input" : "border-zinc-500"
+            selectedTrip.id === trip.id ? "border-white" : "border-input"
           }`}
         >
           <div className="mb-3 flex flex-row w-full justify-between">
