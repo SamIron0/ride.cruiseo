@@ -42,11 +42,7 @@ const DateTimePicker = ({setDateTime}) => {
   }, [date, hour, minute, ampm])
   return (
     <div className="App flex items-center ">
-      <span className="text-sm w-full">
-        {" "}
-        {date} {hour}:{minute} {ampm}
-      </span>
-
+     
       <WheelPicker
         dateItems={dateItems}
         dateValue={date}

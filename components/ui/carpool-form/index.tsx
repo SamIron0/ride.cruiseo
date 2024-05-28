@@ -69,7 +69,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
       setDestinationIsValid(false)
       confirm = false
     }
-    if (dateTime === "") {
+    if (dateTime) {
       setDateIsValid(false)
       confirm = false
     }
@@ -81,7 +81,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
         origin: origin,
         destination_id: "s",
         user_ids: userIds,
-        date: dateTime,
+        date: 'dateTime',
         price: 0,
         status: "Active"
       })
@@ -115,7 +115,7 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
 
   function clearForm() {
     setOrigin("")
-    setDateTime("")
+    
   }
 
   let formattedOriginOptions = formatOptions(originPredictions)
@@ -174,7 +174,12 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
     }
   }, [])
 
-  const [dateTime, setDateTime] = useState("")
+  const [dateTime, setDateTime] = useState({
+    date: "",
+    hour: "",
+    ampm: "",
+    minute: ""
+  } )
   return (
     <form
       onSubmit={handleTripDetailsSubmit}
@@ -271,9 +276,13 @@ export const CarpoolForm = ({}: CarpoolFormProps) => {
           }}
           className="flex mb-4 flex-col items-center border-input border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background"
         >
-          <div className="w-full flex flex-col justify-center">
+          <div className="flex flex-row w-full items-center justify-between">
             <h1 className=" font-medium   text-lg ">When?</h1>
-          </div>
+           <span className="text-sm w-full">
+        {" "}
+        {dateTime.date} {dateTime.hour}:{dateTime.minute} {dateTime.ampm} 
+      </span>
+</div>
         </div>
       )}
     </form>
