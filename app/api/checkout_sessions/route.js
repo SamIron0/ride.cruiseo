@@ -1,46 +1,59 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2020-08-27',
+});
 
-export default async function handler(req, res) {
-  switch (req.method) {
-    case "POST":
-      try {
-        // Create Checkout Sessions from body params.
-        const session = await stripe.checkout.sessions.create({
-          ui_mode: "embedded",
-          line_items: [
-            {
-              // Provide the exact Price ID (for example, pr_1234) of
-              // the product you want to sell
-              price: "{{PRICE_ID}}",
-              quantity: 1
-            }
-          ],
-          mode: "payment",
-          return_url: `${req.headers.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
-          automatic_tax: { enabled: true }
-        })
+export async function POST(req) {
+  try {
+    const { priceId } = await req.json();
+    
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: 'embedded',
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      return_url: `${req.headers.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
+      automatic_tax: { enabled: true },
+    });
 
-        res.send({ clientSecret: session.client_secret })
-      } catch (err) {
-        res.status(err.statusCode || 500).json(err.message)
-      }
-      break
-    case "GET":
-      try {
-        const session = await stripe.checkout.sessions.retrieve(
-          req.query.session_id
-        )
-
-        res.send({
-          status: session.status,
-          customer_email: session.customer_details.email
-        })
-      } catch (err) {
-        res.status(err.statusCode || 500).json(err.message)
-      }
-      break
-    default:
-      res.setHeader("Allow", req.method)
-      res.status(405).end("Method Not Allowed")
+    return new Response(JSON.stringify({ clientSecret: session.client_secret }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: err.statusCode || 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
+}
+
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const sessionId = searchParams.get('session_id');
+
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    return new Response(JSON.stringify({
+      status: session.status,
+      customer_email: session.customer_details.email,
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: err.statusCode || 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
+export async function DELETE(req) {
+  return new Response('Method Not Allowed', { status: 405 });
 }
