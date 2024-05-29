@@ -1,4 +1,5 @@
 "use client"
+import { UserTrips } from "@/components/UserTrips"
 import { CruiseoContext } from "@/context/context"
 import { createTrip } from "@/db/admin"
 import { useRouter } from "next/navigation"
@@ -49,9 +50,7 @@ export default function Dashboard() {
           <a href="mailto:orders@example.com">orders@example.com</a>.
         </p>
       </section>
-      <div className="flex justify-center w-full ">
-
-      </div>
+      <UserTrips/>
       </div>
     )
   }
