@@ -1,12 +1,32 @@
 "use client"
 
+import { getUsersTrips } from "@/db/trips"
 import { Trip } from "@/types"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabase/browser-client"
+interface UserTripsProps {}
+export const UserTrips = () => {
+  const [trips, setTrips] = useState<Trip[]>([])
+  const getTrips = async () => {
+    try {
+      const session = await supabase.auth.getSession()
+      const userID = session.data.session?.user.id
 
-interface UserTripsProps {
-  trips: Trip[]
-}
-export const UserTrips = ({ trips }:  UserTripsProps) => {
+      // Ensure userID is retrieved successfully
+      if (!userID) throw new Error("User ID not found")
+
+      const trips = await getUsersTrips(userID)
+      setTrips(trips)
+    } catch (error) {
+      console.error("Error retrieving user ID:", error)
+      return
+    }
+  }
+
+  useEffect(() => {
+    getTrips()
+  }, [])
+
   return (
     <div className="p-4 overflow-y-auto">
       {trips.map(trip => (

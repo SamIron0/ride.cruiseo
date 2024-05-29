@@ -38,6 +38,10 @@ export async function POST(req: Request) {
           status: 200
         })
       }
+
+      return new Response(JSON.stringify("Trip Not Saved"), {
+        status: 200
+      })
     } catch (err: any) {
       return new Response(
         JSON.stringify({ error: { statusCode: 500, message: err.message } })
