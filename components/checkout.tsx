@@ -11,21 +11,22 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
       <div className="px-4 pt-8">
         <p className="text-zinc-300">Order Summary</p>
         <div className="mt-8 space-y-3 rounded-lg border bg-transparent px-2 py-4 sm:px-6">
-          <div className="flex flex-col rounded-lg sm:flex-row">
+          <div className="flex flex-col sm:items-center rounded-lg sm:flex-row">
             <img
               className="m-2 h-24 w-28 rounded-md border object-cover object-center"
               src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
               alt=""
             />
             <div className="flex w-full flex-col px-4 py-4">
-              <span className="font-semibold"></span>
+              <span className="font-semibold">
+                {" "}
+                Leaving: {selectedTrip.date?.date}
+              </span>
               <span className="float-right text-zinc-300">Origin: Wal</span>
               <span className="float-right text-zinc-300">
                 Destination: {selectedTrip.destination?.address}
               </span>
-              <span className="float-right text-zinc-300">
-                Leaving: {selectedTrip.date?.date}
-              </span>
+
               <p className="text-lg font-bold">${selectedTrip.price}</p>
             </div>
           </div>

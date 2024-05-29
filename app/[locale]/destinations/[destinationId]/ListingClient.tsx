@@ -67,6 +67,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         destination: listing
       }
     ])
+    
   }, [dateTime.date, origin])
   const getPrice = async (trip: Trip) => {
     setIsLoading(true)
@@ -240,7 +241,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           <Drawer>
             <DrawerTrigger
               disabled={origin == "" || dateTime.date == ""}
-              onClick={() => getTrips()}
+              onClick={() => getTrips().then(() => setSelectedTrip(availableTrips[0]))}
               className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
             >
               Search
@@ -280,7 +281,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </DrawerHeader>
 
                   <Checkout selectedTrip={selectedTrip} />
-                  
                 </div>
               )}
             </DrawerContent>
