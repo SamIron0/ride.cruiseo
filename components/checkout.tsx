@@ -46,7 +46,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               type="text"
               id="email"
               name="email"
-              className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full bg-background rounded-md border border-input px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="your.email@gmail.com"
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -77,7 +77,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               type="text"
               id="card-holder"
               name="card-holder"
-              className="w-full  rounded-md border border-gray-200 px-4 py-3 pl-11 text-[16px] uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full bg-background  rounded-md border border-input px-4 py-3 pl-11 text-[16px] uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="Your full name here"
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -109,10 +109,10 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
                 type="text"
                 id="card-no"
                 name="card-no"
-                className="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full bg-background rounded-md border border-input px-2 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="xxxx-xxxx-xxxx-xxxx"
               />
-              <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+              <div className="pointer-events-none  absolute inset-y-0 left-0 inline-flex items-center px-3">
                 <svg
                   className="h-4 w-4 text-zinc-300"
                   xmlns="http://www.w3.org/2000/svg"
@@ -129,13 +129,13 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
             <input
               type="text"
               name="credit-expiry"
-              className="w-full rounded-md border border-gray-200 px-2 py-3 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border bg-background border-input px-2 py-3 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="MM/YY"
             />
             <input
               type="text"
               name="credit-cvc"
-              className="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-1/6 flex-shrink-0 bg-background rounded-md border border-input px-2 py-3 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="CVC"
             />
           </div>
@@ -148,7 +148,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
                 type="text"
                 id="billing-address"
                 name="billing-address"
-                className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                className="w-full bg-background rounded-md border border-input px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Street Address"
               />
               <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -162,14 +162,14 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
             <select
               typeof="text"
               name="billing-state"
-              className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border border-input px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
             >
               <option value="State">State</option>
             </select>
             <input
               type="text"
               name="billing-zip"
-              className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-[16px] shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="flex-shrink-0 bg-background rounded-md border border-input px-4 py-3 text-[16px] shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="ZIP"
             />
           </div>
