@@ -1,5 +1,6 @@
 import { Trip } from "@/types"
 import { Button } from "./ui/button"
+import { DrawerClose } from "./ui/drawer"
 
 interface CheckoutProps {
   selectedTrip: Trip
@@ -17,11 +18,15 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               alt=""
             />
             <div className="flex w-full flex-col px-4 py-4">
-              <span className="font-semibold">
-                Nike Air Max Pro 8888 - Super Light
+              <span className="font-semibold"></span>
+              <span className="float-right text-zinc-300">Origin: Wal</span>
+              <span className="float-right text-zinc-300">
+                Destination: {selectedTrip.destination?.address}
               </span>
-              <span className="float-right text-zinc-300">42EU - 8.5US</span>
-              <p className="text-lg font-bold">$138.99</p>
+              <span className="float-right text-zinc-300">
+                Leaving: {selectedTrip.date?.date}
+              </span>
+              <p className="text-lg font-bold">{selectedTrip.price}</p>
             </div>
           </div>
         </div>
@@ -180,6 +185,11 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
         >
           Place Order
         </Button>
+        <DrawerClose>
+          <Button className="w-full" variant="outline">
+            Cancel
+          </Button>
+        </DrawerClose>
       </div>
     </div>
   )
