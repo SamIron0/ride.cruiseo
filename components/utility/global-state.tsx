@@ -5,7 +5,7 @@ import { CruiseoContext } from "@/context/context"
 import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { Tables } from "@/supabase/types"
-import { Destination } from "@/types"
+import { Destination, Trip } from "@/types"
 import { FC, useEffect, useState } from "react"
 
 interface GlobalStateProps {
@@ -20,7 +20,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
   const [destinations, setDestinations] = useState<Destination[] | null>([])
   const [searchInput, setSearchInput] = useState<string>("")
   const [activeCategory, setActiveCategory] = useState<string>("All")
-
+  const [trip, setTrip] = useState<Trip | null>(null)
   useEffect(() => {
     ;(async () => {
       const profile = await fetchStartingData()
@@ -45,6 +45,8 @@ export const GlobalState: FC<GlobalStateProps> = ({
       value={{
         profile,
         setProfile,
+        trip,
+        setTrip,
         destinations,
         setDestinations,
         searchInput,
