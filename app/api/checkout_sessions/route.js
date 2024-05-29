@@ -21,7 +21,7 @@ export async function POST(req) {
       ui_mode: 'embedded',
       line_items: [
         {
-          price: priceId,
+          price: price.id,
           quantity: 1,
         },
       ],
