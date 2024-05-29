@@ -1,6 +1,6 @@
 import { Trip } from "@/types"
 import { Button } from "./ui/button"
-import { DrawerClose } from "./ui/drawer"
+import { DrawerClose, DrawerFooter } from "./ui/drawer"
 
 interface CheckoutProps {
   selectedTrip: Trip
@@ -26,7 +26,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               <span className="float-right text-zinc-300">
                 Leaving: {selectedTrip.date?.date}
               </span>
-              <p className="text-lg font-bold">{selectedTrip.price}</p>
+              <p className="text-lg font-bold">${selectedTrip.price}</p>
             </div>
           </div>
         </div>
@@ -185,11 +185,13 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
         >
           Place Order
         </Button>
-        <DrawerClose>
-          <Button className="w-full" variant="outline">
-            Cancel
-          </Button>
-        </DrawerClose>
+        <DrawerFooter>
+          <DrawerClose>
+            <Button className="w-full" variant="outline">
+              Cancel
+            </Button>
+          </DrawerClose>
+        </DrawerFooter>
       </div>
     </div>
   )
