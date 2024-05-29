@@ -6,7 +6,7 @@ interface CheckoutProps {
 }
 export const Checkout = ({ selectedTrip }: CheckoutProps) => {
   return (
-    <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 max-h-96 sm:max-h-[550px] overflow-y-auto ">
+    <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 sm:max-h-96 max-h-[450px] overflow-y-auto ">
       <div className="px-4 pt-8">
         <p className="text-xl font-medium">Order Summary</p>
         <p className="text-zinc-300">
