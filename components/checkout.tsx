@@ -6,7 +6,7 @@ interface CheckoutProps {
 }
 export const Checkout = ({ selectedTrip }: CheckoutProps) => {
   return (
-    <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 max-h-96 overflow-y-auto ">
+    <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 max-h-96 sm:max-h-[400px] overflow-y-auto ">
       <div className="px-4 pt-8">
         <p className="text-xl font-medium">Order Summary</p>
         <p className="text-zinc-300">
@@ -43,7 +43,6 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
           </label>
           <div className="relative">
             <input
-              type="text"
               id="email"
               name="email"
               className="w-full bg-background rounded-md border border-input px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -74,7 +73,6 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
           </label>
           <div className="relative">
             <input
-              type="text"
               id="card-holder"
               name="card-holder"
               className="w-full bg-background  rounded-md border border-input px-4 py-3 pl-11 text-[16px] uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -106,7 +104,6 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
           <div className="flex">
             <div className="relative w-7/12 flex-shrink-0">
               <input
-                type="text"
                 id="card-no"
                 name="card-no"
                 className="w-full bg-background rounded-md border border-input px-2 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -127,13 +124,11 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               </div>
             </div>
             <input
-              type="text"
               name="credit-expiry"
               className="w-full rounded-md border bg-background border-input px-2 py-3 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="MM/YY"
             />
             <input
-              type="text"
               name="credit-cvc"
               className="w-1/6 flex-shrink-0 bg-background rounded-md border border-input px-2 py-3 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="CVC"
@@ -145,7 +140,6 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
           <div className="flex flex-col sm:flex-row">
             <div className="relative flex-shrink-0 sm:w-7/12">
               <input
-                type="text"
                 id="billing-address"
                 name="billing-address"
                 className="w-full bg-background rounded-md border border-input px-4 py-3 pl-11 text-[16px] shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -160,14 +154,12 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
               </div>
             </div>
             <select
-              typeof="text"
               name="billing-state"
-              className="w-full rounded-md border border-input px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+              className="w-full bg-background rounded-md border border-input px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
             >
-              <option value="State">State</option>
+              <option value="State">MB</option>
             </select>
             <input
-              type="text"
               name="billing-zip"
               className="flex-shrink-0 bg-background rounded-md border border-input px-4 py-3 text-[16px] shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               placeholder="ZIP"
@@ -185,7 +177,10 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
             <p className="text-2xl font-semibold text-white">$408.00</p>
           </div>
         </div>
-        <Button onClick={() => {}} className="mt-4 mb-8 w-full rounded-md bg-zinc-900 px-6 py-3 font-medium text-white">
+        <Button
+          onClick={() => {}}
+          className="mt-4 mb-8 w-full rounded-md bg-zinc-900 px-6 py-3 font-medium text-white"
+        >
           Place Order
         </Button>
       </div>
