@@ -27,7 +27,7 @@ export async function POST(req: Request): Promise<Response> {
         },
       ],
       mode: 'payment',
-      return_url: `${req.headers.get('origin')}/return?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `/dashboard?session_id={CHECKOUT_SESSION_ID}`,
     });
 
     return new Response(JSON.stringify({ clientSecret: session.client_secret }), {
