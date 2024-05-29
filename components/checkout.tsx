@@ -27,7 +27,7 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
   const options = { fetchClientSecret }
 
   return (
-    <div className="grid px-4  sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 sm:max-h-96 max-h-[450px] overflow-y-auto ">
+    <div className="grid px-4  sm:px-10  sm:max-h-96 max-h-[450px] overflow-y-auto ">
       <button
         onClick={() => onBackClick}
         type="button"
