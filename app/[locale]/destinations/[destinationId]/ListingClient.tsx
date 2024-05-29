@@ -267,7 +267,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                     <DrawerClose>
                       <Button
                         onClick={() => setStep(0)}
-                        className="w-full sm:max-w-md"
+                        className="w-full "
                         variant="outline"
                       >
                         Cancel

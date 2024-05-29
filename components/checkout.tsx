@@ -82,7 +82,7 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
        
         <DrawerFooter>
           <DrawerClose className="p-0 mt-2 mb-4">
-            <Button className="w-full" variant="outline">
+            <Button className="w-full sm:max-w-md" variant="outline">
               Cancel
             </Button>
           </DrawerClose>
