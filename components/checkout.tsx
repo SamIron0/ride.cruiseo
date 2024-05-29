@@ -1,4 +1,5 @@
 import { Trip } from "@/types"
+import { Button } from "./ui/button"
 
 interface CheckoutProps {
   selectedTrip: Trip
@@ -184,9 +185,9 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
             <p className="text-2xl font-semibold text-white">$408.00</p>
           </div>
         </div>
-        <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+        <Button onClick={() => {}} className="mt-4 mb-8 w-full rounded-md bg-zinc-900 px-6 py-3 font-medium text-white">
           Place Order
-        </button>
+        </Button>
       </div>
     </div>
   )
