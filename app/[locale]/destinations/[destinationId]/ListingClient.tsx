@@ -270,7 +270,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </DrawerFooter>
                 </div>
               ) : (
-                <div className="max-w-3xl w-full mx-auto flex max-h-75vh flex-col overflow-y-auto">
+                <div className="max-w-3xl w-full mx-auto flex flex-col ">
                   <DrawerHeader>
                     <DrawerTitle>
                       <div>
