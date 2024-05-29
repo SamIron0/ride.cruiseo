@@ -1,30 +1,33 @@
 import { Trip } from "@/types"
 import { Button } from "./ui/button"
 import { DrawerClose, DrawerFooter } from "./ui/drawer"
+import React, { useCallback } from "react"
+import { loadStripe } from "@stripe/stripe-js"
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from "@stripe/react-stripe-js"
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "")
 
 interface CheckoutProps {
   selectedTrip: Trip
   onBackClick: () => void
 }
 export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
-  const processPayment = async () => {
-    const response = await fetch("/api/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ selectedTrip })
+  const fetchClientSecret = useCallback(() => {
+    // Create a Checkout Session
+    return fetch("/api/checkout_sessions", {
+      method: "POST"
     })
+      .then(res => res.json())
+      .then(data => data.clientSecret)
+  }, [])
 
-    const { url } = await response.json()
-
-    if (url) {
-      window.location.assign(url)
-    }
-  }
+  const options = { fetchClientSecret }
 
   return (
-    <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 sm:max-h-96 max-h-[450px] overflow-y-auto ">
+    <div className="grid px-4  sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 sm:max-h-96 max-h-[450px] overflow-y-auto ">
       <button
         onClick={() => onBackClick}
         type="button"
@@ -46,7 +49,7 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
         </svg>
         <span>Go back</span>
       </button>
-      <div className="px-4 pt-4">
+      <div className="pt-4">
         <p className="text-zinc-300">Order Summary</p>
         <div className="mt-8 space-y-3 rounded-lg border bg-transparent px-2 py-4 sm:px-6">
           <div className="flex flex-col sm:items-center rounded-lg sm:flex-row">
@@ -70,14 +73,13 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
           </div>
         </div>
       </div>
-      <div className="mt-10 bg-background px-4 pt-8 lg:mt-0">
-        
-        <Button
-          onClick={() => {}}
-          className="mt-4 mb-8 w-full rounded-md bg-zinc-900 px-6 py-3 font-medium text-white"
-        >
-          Proceed to Payment
-        </Button>
+      <div className="mt-5 bg-background px-4 pt-8 lg:mt-0">
+      <div id="checkout" className='w-full'>
+      <EmbeddedCheckoutProvider stripe={stripePromise} options={options} >
+        <EmbeddedCheckout />
+      </EmbeddedCheckoutProvider>
+    </div> 
+       
         <DrawerFooter>
           <DrawerClose className="p-0 mt-2 mb-4">
             <Button className="w-full" variant="outline">
