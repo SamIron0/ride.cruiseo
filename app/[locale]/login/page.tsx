@@ -33,7 +33,7 @@ export default async function Login({
   const session = (await supabase.auth.getSession()).data.session
 
   if (session) {
-    return redirect(`/destinations`)
+    return redirect(`/`)
   }
 
   const signIn = async (formData: FormData) => {
