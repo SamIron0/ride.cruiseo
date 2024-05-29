@@ -264,7 +264,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   <DrawerFooter>
                     <Button onClick={() => setStep(2)}>Book</Button>
                     <DrawerClose>
-                      <Button className="w-full" variant="outline">
+                      <Button className="w-full sm:max-w-md" variant="outline">
                         Cancel
                       </Button>
                     </DrawerClose>
