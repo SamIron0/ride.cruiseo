@@ -1,9 +1,10 @@
 import Stripe from 'stripe';
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2020-08-27',
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: '2024-04-10',
 });
 
-export async function POST(req) {
+export async function POST(req: Request): Promise<Response> {
   try {
     const product = await stripe.products.create({
       name: 'productName',
@@ -12,8 +13,8 @@ export async function POST(req) {
 
     // Create a Price for the Product
     const price = await stripe.prices.create({
-      unit_amount:2000,
-      currency: "usd",
+      unit_amount: 2000,
+      currency: 'usd',
       product: product.id,
     });
     
@@ -26,7 +27,7 @@ export async function POST(req) {
         },
       ],
       mode: 'payment',
-      return_url: `${req.headers.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${req.headers.get('origin')}/return?session_id={CHECKOUT_SESSION_ID}`,
       automatic_tax: { enabled: true },
     });
 
@@ -34,7 +35,7 @@ export async function POST(req) {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (err) {
+  } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), {
       status: err.statusCode || 500,
       headers: { 'Content-Type': 'application/json' },
@@ -42,21 +43,28 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req) {
+export async function GET(req: Request): Promise<Response> {
   const { searchParams } = new URL(req.url);
   const sessionId = searchParams.get('session_id');
+
+  if (!sessionId) {
+    return new Response(JSON.stringify({ error: 'Session ID is required' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     return new Response(JSON.stringify({
       status: session.status,
-      customer_email: session.customer_details.email,
+      customer_email: session.customer_details?.email,
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (err) {
+  } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), {
       status: err.statusCode || 500,
       headers: { 'Content-Type': 'application/json' },
@@ -64,6 +72,6 @@ export async function GET(req) {
   }
 }
 
-export async function DELETE(req) {
+export async function DELETE(_req: Request): Promise<Response> {
   return new Response('Method Not Allowed', { status: 405 });
 }
