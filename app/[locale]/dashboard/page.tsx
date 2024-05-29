@@ -1,11 +1,14 @@
 "use client"
+import { CruiseoContext } from "@/context/context"
+import { createTrip } from "@/db/admin"
 import { useRouter } from "next/navigation"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 export default function Dashboard() {
   const [status, setStatus] = useState(null)
   const [customerEmail, setCustomerEmail] = useState("")
   const router = useRouter()
+  const { trip, setTrip } = useContext(CruiseoContext)
   useEffect(() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
@@ -26,6 +29,17 @@ export default function Dashboard() {
   }
 
   if (status === "complete") {
+    //save trip to db
+    try {
+      fetch("/api/createTrip", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ trip })
+      })
+    } catch (e) {}
+
     return (
       <section id="success">
         <p>

@@ -1,9 +1,11 @@
 import { Tables } from "@/supabase/types"
-import { Destination } from "@/types"
+import { Destination, Trip } from "@/types"
 import { Dispatch, SetStateAction, createContext } from "react"
 interface CruiseoContext {
+  trip: Trip | null
+  setTrip: Dispatch<SetStateAction<Trip | null>>
   destinations: Destination[] | null
-  setDestinations: Dispatch<SetStateAction<Destination[] | null >>
+  setDestinations: Dispatch<SetStateAction<Destination[] | null>>
   searchInput: string
   setSearchInput: Dispatch<SetStateAction<string>>
   activeCategory: string
@@ -13,12 +15,14 @@ interface CruiseoContext {
 }
 
 export const CruiseoContext = createContext<CruiseoContext>({
+  trip: null,
+  setTrip: () => {},
   destinations: [],
   setDestinations: () => {},
   searchInput: "",
   setSearchInput: () => {},
   activeCategory: "",
   setActiveCategory: () => {},
-   profile: null,
+  profile: null,
   setProfile: () => {}
 })
