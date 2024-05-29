@@ -28,7 +28,6 @@ export async function POST(req: Request): Promise<Response> {
       ],
       mode: 'payment',
       return_url: `${req.headers.get('origin')}/return?session_id={CHECKOUT_SESSION_ID}`,
-      automatic_tax: { enabled: true },
     });
 
     return new Response(JSON.stringify({ clientSecret: session.client_secret }), {
