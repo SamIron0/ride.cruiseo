@@ -8,7 +8,7 @@ export default function Dashboard() {
   const [status, setStatus] = useState(null)
   const [customerEmail, setCustomerEmail] = useState("")
   const router = useRouter()
-  const { trip, setTrip } = useContext(CruiseoContext)
+  const { selectedTrip,setSelectedTrip } = useContext(CruiseoContext)
   useEffect(() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
@@ -36,11 +36,12 @@ export default function Dashboard() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ trip })
+        body: JSON.stringify({ selectedTrip })
       })
     } catch (e) {}
 
     return (
+      <div className=" w-full flex flex-col ">
       <section id="success">
         <p>
           We appreciate your business! A confirmation email will be sent to{" "}
@@ -48,6 +49,10 @@ export default function Dashboard() {
           <a href="mailto:orders@example.com">orders@example.com</a>.
         </p>
       </section>
+      <div className="flex justify-center w-full ">
+
+      </div>
+      </div>
     )
   }
 
