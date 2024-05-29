@@ -8,7 +8,7 @@ export async function POST(req: Request,) {
     if (req.method === 'POST') {
 
         try {
-            const trip: Trip = await req.json();
+             const trip: Trip = await req.json();
 
             const supabase = createRouteHandlerClient<Database>({ cookies });
             const {

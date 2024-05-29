@@ -5,7 +5,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export async function POST(req) {
   try {
-    const { priceId } = await req.json();
+    const product = await stripe.products.create({
+      name: 'productName',
+      description: 'productDescription',
+    });
+
+    // Create a Price for the Product
+    const price = await stripe.prices.create({
+      unit_amount:2000,
+      currency: "usd",
+      product: product.id,
+    });
     
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
