@@ -7,6 +7,22 @@ interface CheckoutProps {
   onBackClick: () => void
 }
 export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
+  const processPayment = async () => {
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ selectedTrip })
+    })
+
+    const { url } = await response.json()
+
+    if (url) {
+      window.location.assign(url)
+    }
+  }
+
   return (
     <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 sm:max-h-96 max-h-[450px] overflow-y-auto ">
       <button
