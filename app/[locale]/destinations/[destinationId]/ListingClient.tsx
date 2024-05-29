@@ -280,7 +280,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                     </DrawerTitle>
                   </DrawerHeader>
 
-                  <Checkout selectedTrip={selectedTrip} />
+                  <Checkout selectedTrip={selectedTrip} onBackClick={()=>setStep(0)} />
                 </div>
               )}
             </DrawerContent>
