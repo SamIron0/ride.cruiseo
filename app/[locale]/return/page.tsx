@@ -1,10 +1,11 @@
+"use client"
+import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
-import { redirect } from "next/navigation"
 
 export default function Return() {
   const [status, setStatus] = useState(null)
   const [customerEmail, setCustomerEmail] = useState("")
-
+const router = useRouter()
   useEffect(() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
@@ -21,7 +22,7 @@ export default function Return() {
   }, [])
 
   if (status === "open") {
-    return redirect("/")
+    return router.push("/")
   }
 
   if (status === "complete") {
