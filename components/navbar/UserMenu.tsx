@@ -22,8 +22,8 @@ export default function UserMenu() {
       if (error) {
         toast.error(error.message)
       } else {
-        toast.success("Signed Out")
         router.push("/")
+        toast.success("Signed Out")
       }
     } catch (error) {
       toast.error("An error occurred during signout.")
