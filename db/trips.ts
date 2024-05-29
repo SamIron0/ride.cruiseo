@@ -45,3 +45,17 @@ export const getTrip = async (tripId: string) => {
 
   return trip
 }
+
+export const getUsersTrips = async (userId: string) => {
+  const { data: trips, error } = await supabase
+    .from("trips")
+    .select("*")
+    .eq("user_id", userId)
+
+  if (error) {
+    console.error("Error fetching trips:", error)
+    throw error
+  }
+
+  return trips
+}

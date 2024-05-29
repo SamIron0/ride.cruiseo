@@ -2,14 +2,17 @@
 import { UserTrips } from "@/components/UserTrips"
 import { CruiseoContext } from "@/context/context"
 import { createTrip } from "@/db/admin"
+import { getUsersTrips } from "@/db/trips"
 import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabase/browser-client"
 import React, { useContext, useEffect, useState } from "react"
 
 export default function Dashboard() {
   const [status, setStatus] = useState(null)
   const [customerEmail, setCustomerEmail] = useState("")
   const router = useRouter()
-  const { selectedTrip,setSelectedTrip } = useContext(CruiseoContext)
+  const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
+  const [trips, setTrips] = useState([])
   useEffect(() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
@@ -43,14 +46,14 @@ export default function Dashboard() {
 
     return (
       <div className=" w-full flex flex-col ">
-      <section id="success">
-        <p>
-          We appreciate your business! A confirmation email will be sent to{" "}
-          {customerEmail}. If you have any questions, please email{" "}
-          <a href="mailto:orders@example.com">orders@example.com</a>.
-        </p>
-      </section>
-      <UserTrips/>
+        <section id="success">
+          <p>
+            We appreciate your business! A confirmation email will be sent to{" "}
+            {customerEmail}. If you have any questions, please email{" "}
+            <a href="mailto:orders@example.com">orders@example.com</a>.
+          </p>
+        </section>
+        <UserTrips trips={trips} />
       </div>
     )
   }

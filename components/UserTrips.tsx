@@ -1,8 +1,12 @@
 "use client"
+
 import { Trip } from "@/types"
-import { useState } from "react"
-export const UserTrips = () => {
-  const [trips, setTrips] = useState<Trip[]>([])
+import { useEffect } from "react"
+
+interface UserTripsProps {
+  trips: Trip[]
+}
+export const UserTrips = ({ trips }:  UserTripsProps) => {
   return (
     <div className="p-4 overflow-y-auto">
       {trips.map(trip => (
