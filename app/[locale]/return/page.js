@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react"
 export default function Return() {
   const [status, setStatus] = useState(null)
   const [customerEmail, setCustomerEmail] = useState("")
-const router = useRouter()
+  const router = useRouter()
   useEffect(() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
