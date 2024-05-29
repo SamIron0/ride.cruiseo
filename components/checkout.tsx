@@ -29,7 +29,7 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
   return (
     <div className="grid px-4  sm:px-10  sm:max-h-96 max-h-[450px] overflow-y-auto ">
       <button
-        onClick={() => onBackClick}
+        onClick={() => onBackClick()}
         type="button"
         className="w-32 flex items-center justify-center px-5 py-2 text-sm text-gray-700 transition-all duration-200 bg-white border rounded-lg gap-x-2 dark:hover:bg-zinc-800 dark:bg-background dark:text-zinc-200 dark:border-input hover:scale-105 active:scale-90"
       >
