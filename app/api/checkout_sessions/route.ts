@@ -27,7 +27,7 @@ export async function POST(req: Request): Promise<Response> {
         }
       ],
       mode: "payment",
-      return_url: `${process.env.BASE_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}`
+      return_url: `https://cruiseo.xyz/dashboard?session_id={CHECKOUT_SESSION_ID}`
     })
 
     return new Response(
