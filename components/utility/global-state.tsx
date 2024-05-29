@@ -18,15 +18,6 @@ export const GlobalState: FC<GlobalStateProps> = ({
   // PROFILE STORE
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null)
   const [destinations, setDestinations] = useState<Destination[] | null>([])
-  /*
-  allListings: Destination[]
-  setAllListings: Dispatch<SetStateAction<Destination[]>>
-  searchInput: string
-  setSearchInput: Dispatch<SetStateAction<string>>
-  activeCategory: string
-  setActiveCategory: Dispatch<SetStateAction<string>>
-  profile: Tables<"profiles"> | null
-*/
   const [searchInput, setSearchInput] = useState<string>("")
   const [activeCategory, setActiveCategory] = useState<string>("All")
 
