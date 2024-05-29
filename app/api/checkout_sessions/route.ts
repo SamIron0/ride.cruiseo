@@ -13,8 +13,8 @@ export async function POST(req: Request): Promise<Response> {
 
     // Create a Price for the Product
     const price = await stripe.prices.create({
-      unit_amount: 2000,
-      currency: 'usd',
+      unit_amount: 200.00,
+      currency: 'cad',
       product: product.id,
     });
     
