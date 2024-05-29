@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <div id="checkout" className='w-full'>
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+      <EmbeddedCheckoutProvider stripe={stripePromise} options={options} style={{ base: { width: '100%' } }}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
     </div>
