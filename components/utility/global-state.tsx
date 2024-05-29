@@ -21,6 +21,8 @@ export const GlobalState: FC<GlobalStateProps> = ({
   const [searchInput, setSearchInput] = useState<string>("")
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [trip, setTrip] = useState<Trip | null>(null)
+  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null)
+  
   useEffect(() => {
     ;(async () => {
       const profile = await fetchStartingData()
@@ -45,8 +47,8 @@ export const GlobalState: FC<GlobalStateProps> = ({
       value={{
         profile,
         setProfile,
-        trip,
-        setTrip,
+        selectedTrip,
+        setSelectedTrip,
         destinations,
         setDestinations,
         searchInput,

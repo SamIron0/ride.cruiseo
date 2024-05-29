@@ -34,7 +34,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     ampm: "",
     minute: ""
   })
-  const { profile } = useContext(CruiseoContext)
+  const { profile,selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
@@ -125,54 +125,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       toast.error("An error occurred while calculating price")
     }
   }
-  // we use availabletrips[0] because the user's new trip is always  inserted first
-  const [selectedTrip, setSelectedTrip] = useState<Trip>(availableTrips[0])
-  const onCreateReservation = async () => {
-    setIsLoading(true)
-    if (!selectedTrip.id) {
-      toast.error("Please select a trip")
-      return
-    }
-    // if (!profile) {
-    // router.push('/login');
-    //}
-    if (!loadedPrices.get(selectedTrip.id)) {
-      await getPrice(selectedTrip)
-    }
-    if (!loadedPrices.get(selectedTrip.id)) {
-      return
-    }
-    const newTrip: Trip = {
-      id: uuidv4(),
-      origin: profile?.address || "",
-      destination_id: listing?.id || "",
-      user_ids: [profile?.id || ""],
-      date: selectedTrip.date,
-      price: loadedPrices.get(selectedTrip.id) || 0,
-      status: "Active"
-    }
-    try {
-      const url = "/api/createTrip"
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newTrip)
-      }
-      const response = await fetch(url, options)
-      const data = await response.json()
-      console.log("data", data)
-      if (data.error) {
-        toast.error("An error occurred while creating the trip")
-      } else {
-        toast.success("Trip created successfully")
-      }
-    } catch (error) {
-      console.error(error)
-    }
-    setIsLoading(false)
-  }
+
   const getTrips = async () => {
     try {
       const trips: Trip[] = await fetch("/api/getTrips", {
