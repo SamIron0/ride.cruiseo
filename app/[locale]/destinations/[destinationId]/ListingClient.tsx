@@ -280,7 +280,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </DrawerHeader>
 
                   <Checkout selectedTrip={selectedTrip} />
-                  
+                  <DrawerClose>
+                    <Button className="w-full" variant="outline">
+                      Cancel
+                    </Button>
+                  </DrawerClose>
                 </div>
               )}
             </DrawerContent>

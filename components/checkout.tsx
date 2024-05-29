@@ -8,10 +8,7 @@ export const Checkout = ({ selectedTrip }: CheckoutProps) => {
   return (
     <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 sm:max-h-96 max-h-[450px] overflow-y-auto ">
       <div className="px-4 pt-8">
-        <p className="text-xl font-medium">Order Summary</p>
-        <p className="text-zinc-300">
-          Check your items. And select a suitable shipping method.
-        </p>
+        <p className="text-zinc-300">Order Summary</p>
         <div className="mt-8 space-y-3 rounded-lg border bg-transparent px-2 py-4 sm:px-6">
           <div className="flex flex-col rounded-lg sm:flex-row">
             <img
