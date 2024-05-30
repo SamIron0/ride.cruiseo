@@ -68,6 +68,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       }
     ])
   }, [dateTime.date, origin])
+
+
   const getPrice = async (trip: Trip) => {
     setIsLoading(true)
     setPriceIsLoading(true)

@@ -16,7 +16,9 @@ interface CruiseoContext {
 
 export const CruiseoContext = createContext<CruiseoContext>({
   selectedTrip: null,
-  setSelectedTrip: () => {},
+  setSelectedTrip: () => {
+    
+  },
   destinations: [],
   setDestinations: () => {},
   searchInput: "",

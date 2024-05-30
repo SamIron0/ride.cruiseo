@@ -1,20 +1,32 @@
 import { Trip } from "@/types"
 import { Button } from "./ui/button"
 import { DrawerClose, DrawerFooter } from "./ui/drawer"
-import React, { useCallback } from "react"
+import React, { useCallback, useContext, useEffect } from "react"
 import { loadStripe } from "@stripe/stripe-js"
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout
 } from "@stripe/react-stripe-js"
+import { CruiseoContext } from "@/context/context"
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "")
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
+)
 
 interface CheckoutProps {
   selectedTrip: Trip | null
   onBackClick: () => void
 }
+
 export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
+  const { setSelectedTrip } = useContext(CruiseoContext)
+
+  useEffect(() => {
+    if (selectedTrip) {
+      setSelectedTrip(selectedTrip)
+    }
+  }, [selectedTrip, setSelectedTrip])
+
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
     return fetch("/api/checkout_sessions", {
@@ -67,19 +79,17 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
               <span className="float-right text-zinc-300">
                 Destination: {selectedTrip?.destination?.address}
               </span>
-
               <p className="text-lg font-bold">${selectedTrip?.price}</p>
             </div>
           </div>
         </div>
       </div>
       <div className="mt-5 bg-background px-4 pt-8 lg:mt-0">
-      <div id="checkout" className='w-full'>
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options} >
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-    </div> 
-       
+        <div id="checkout" className="w-full">
+          <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+            <EmbeddedCheckout />
+          </EmbeddedCheckoutProvider>
+        </div>
         <DrawerFooter>
           <DrawerClose className="p-0 mt-2 mb-4">
             <Button className="w-full sm:max-w-md" variant="outline">

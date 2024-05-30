@@ -21,8 +21,22 @@ export const GlobalState: FC<GlobalStateProps> = ({
   const [searchInput, setSearchInput] = useState<string>("")
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [trip, setTrip] = useState<Trip | null>(null)
-  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null)
-  
+
+  const [selectedTrip, setSelectedTrip] = useState(() => {
+    // Initialize state from localStorage
+    const storedTrip = localStorage.getItem("selectedTrip")
+    return storedTrip ? JSON.parse(storedTrip) : null
+  })
+
+  useEffect(() => {
+    // Update localStorage when selectedTrip changes
+    if (selectedTrip) {
+      localStorage.setItem("selectedTrip", JSON.stringify(selectedTrip))
+    } else {
+      localStorage.removeItem("selectedTrip")
+    }
+  }, [selectedTrip])
+
   useEffect(() => {
     ;(async () => {
       const profile = await fetchStartingData()
