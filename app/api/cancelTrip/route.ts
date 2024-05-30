@@ -1,8 +1,8 @@
 import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Trip } from "@/types";
-import { Database } from "@/types_db";
 import { cookies } from "next/headers";
 import { deleteTrip } from "@/db/trips";
+import { Database } from "@/supabase/types";
 
 export async function POST(req: Request,) {
     if (req.method === 'POST') {
