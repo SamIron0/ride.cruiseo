@@ -14,11 +14,7 @@ export default function Dashboard() {
   const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
 
   useEffect(() => {
-    const storedTrip = localStorage.getItem("selectedTrip")
-    if (!selectedTrip && storedTrip) {
-      setSelectedTrip(JSON.parse(storedTrip))
-    }
-
+    
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const sessionId = urlParams.get("session_id")
@@ -33,29 +29,6 @@ export default function Dashboard() {
       })
   }, [])
 
-  useEffect(() => {
-    if (status === "complete" && selectedTrip) {
-      ;(async () => {
-        try {
-          const session = await supabase.auth.getSession()
-          const userID = session.data.session?.user.id
-          if (!userID) throw new Error("User ID not found")
-
-          const response = await fetch("/api/createTrip", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ selectedTrip })
-          })
-
-          if (!response.ok) throw new Error("Failed to create trip")
-        } catch (e) {
-          console.error(e)
-        }
-      })()
-    }
-  }, [])
 
   if (status === "open") {
     return router.push("/")

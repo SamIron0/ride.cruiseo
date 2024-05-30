@@ -2,11 +2,41 @@
 
 import { getUsersTrips } from "@/db/trips"
 import { Trip } from "@/types"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
+import { CruiseoContext } from "@/context/context"
 interface UserTripsProps {}
 export const UserTrips = () => {
   const [trips, setTrips] = useState<Trip[] | null>([])
+  const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
+  const storedTrip = localStorage.getItem("selectedTrip")
+  if (!selectedTrip && storedTrip) {
+    setSelectedTrip(JSON.parse(storedTrip))
+  }
+
+  useEffect(() => {
+    if (status === "complete" && selectedTrip) {
+      ;(async () => {
+        try {
+          const session = await supabase.auth.getSession()
+          const userID = session.data.session?.user.id
+          if (!userID) throw new Error("User ID not found")
+
+          const response = await fetch("/api/createTrip", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ selectedTrip })
+          })
+
+          if (!response.ok) throw new Error("Failed to create trip")
+        } catch (e) {
+          console.error(e)
+        }
+      })()
+    }
+  }, [])
   const getTrips = async () => {
     try {
       const session = await supabase.auth.getSession()
