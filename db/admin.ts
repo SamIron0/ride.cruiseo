@@ -1,9 +1,5 @@
 import { createClient } from "@supabase/supabase-js"
 import type { Database, Tables, TablesInsert } from "@/supabase/types"
-import { Trip } from "@/types"
-
-type Product = Tables<"products">
-type Price = Tables<"prices">
 
 // Change to control trial period length
 const TRIAL_PERIOD_DAYS = 0
@@ -29,36 +25,18 @@ export const retrieveDestinations = async () => {
 }
 
 export const getDestinationById = async (id: string) => {
-  const destination = (
-    await supabaseAdmin.from("destinations").select("*").eq("id", id).single()
-  ).data
-  if (destination) {
-    try {
-      destination.activeTrips = (
-        await Promise.all(
-          destination.trip_ids.map(
-            async (tripId: any) =>
-              (
-                await supabaseAdmin
-                  .from("trips")
-                  .select("*")
-                  .eq("id", tripId)
-                  .single()
-              ).data
-          )
-        )
-      ).filter(trip => trip?.status === "Active") as Trip[]
-    } catch (error) {
-      console.error("Error retrieving destination:", error)
-    }
-  }
+  const { data: destination, error } = await supabaseAdmin
+    .from("destinations")
+    .select("*")
+    .eq("id", id)
+    .single()
+
+  if (error) console.error("Error retrieving destination:", error)
+  return destination
+
   return destination
 }
 
-export const createTrip = async ({
-  trip
-}: {
-  trip: Trip
-}) => {
+export const createTrip = async ({ trip }: { trip: TablesInsert<"trips"> }) => {
   return trip.id
 }
