@@ -135,7 +135,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
 
   const getTrips = async () => {
     try {
-      const trips: Trip[] = await fetch("/api/getAvailableTrips", {
+      const trips = await fetch("/api/getAvailableTrips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

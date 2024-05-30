@@ -130,7 +130,6 @@ export type Database = {
           trip_ids: string[]
           name: string
           times?: string[] | null
-          activeTrips?: Trip[] | null
           lon: number
           lat: number
         }
@@ -142,7 +141,6 @@ export type Database = {
           trip_ids?: string[] | null
           name?: string | null
           times?: string[] | null
-          activeTrips?: Trip[] | null
           lon?: number | null
           lat?: number | null
         }
@@ -154,7 +152,6 @@ export type Database = {
           trip_ids?: string[] | null
           name?: string | null
           times?: string[] | null
-          activeTrips?: Trip[] | null
           lon?: number | null
           lat?: number | null
         }

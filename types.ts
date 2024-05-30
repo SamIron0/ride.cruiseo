@@ -1,4 +1,4 @@
-import { Json } from "./types_db"
+import { Json, Tables } from "./supabase/types"
 
 export interface Date {
   date: string
@@ -29,11 +29,11 @@ export interface Destination {
   trip_ids?: string[]
   name: string
   times?: string[] | null
-  activeTrips?: Trip[] | null
+  activeTrips?: Tables<"trips">[] | null
   coordinates?: GeoCoordinate | null
 }
 export interface UserDetails {
-  trips: Trip[] | null
+  trips: Tables<"trips">[] | null
   avatar_url: string | null
   billing_address: Json | null
   full_name: string | null
