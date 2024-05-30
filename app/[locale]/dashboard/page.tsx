@@ -6,7 +6,6 @@ import { getUsersTrips } from "@/db/trips"
 import { supabase } from "@/lib/supabase/browser-client"
 import { useRouter } from "next/navigation"
 import React, { useContext, useEffect, useState } from "react"
-
 export default function Dashboard() {
   const [status, setStatus] = useState(null)
   const [customerEmail, setCustomerEmail] = useState("")

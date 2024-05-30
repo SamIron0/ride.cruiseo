@@ -1,10 +1,9 @@
-import { Trip } from "@/types"
-import { useState } from "react"
+import { Tables } from "@/supabase/types"
 
 interface TripsProps {
-  trips: Trip[]
-  onSelectTrip: (trip: Trip) => void
-  selectedTrip: Trip | null
+  trips: Tables<"usertrips">[]
+  onSelectTrip: (trip: Tables<"usertrips">) => void
+  selectedTrip: Tables<"usertrips"> | null
 }
 export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
   return (

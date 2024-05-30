@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Trip } from "@/types"
-import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/navigation"
 import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
@@ -17,12 +15,20 @@ interface CarpoolFormProps {
     minute: string
   }
   onSetOrigin: (origin: string) => void
-  onSetDateTime: (dateTime: { date: string; hour: string; ampm: string; minute: string }) => void
-
+  onSetDateTime: (dateTime: {
+    date: string
+    hour: string
+    ampm: string
+    minute: string
+  }) => void
 }
 
-export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: CarpoolFormProps) => {
-  
+export const CarpoolForm = ({
+  origin,
+  dateTime,
+  onSetOrigin,
+  onSetDateTime
+}: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
   const [isOpen, setIsOpen] = useState(false)
@@ -57,8 +63,6 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
     }))
   }
 
-  const [trip, setTrip] = useState<Trip | null>()
-
   const handleTripDetailsSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
     setIsOpen(true)
@@ -67,11 +71,8 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
   let confirm = true
   const router = useRouter()
 
- 
-
   function clearForm() {
     onSetOrigin("")
-    
   }
 
   let formattedOriginOptions = formatOptions(originPredictions)
@@ -130,7 +131,6 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
     }
   }, [])
 
-  
   return (
     <form
       onSubmit={handleTripDetailsSubmit}
@@ -229,11 +229,11 @@ export const CarpoolForm = ({origin,dateTime,onSetOrigin, onSetDateTime}: Carpoo
         >
           <div className="flex flex-row w-full items-center justify-between">
             <h1 className=" font-medium   text-lg ">When?</h1>
-           <span className="text-sm font-light text-neutral-500 ">
-        {" "}
-        {dateTime.date} {dateTime.hour}:{dateTime.minute} {dateTime.ampm} 
-      </span>
-</div>
+            <span className="text-sm font-light text-neutral-500 ">
+              {" "}
+              {dateTime.date} {dateTime.hour}:{dateTime.minute} {dateTime.ampm}
+            </span>
+          </div>
         </div>
       )}
     </form>

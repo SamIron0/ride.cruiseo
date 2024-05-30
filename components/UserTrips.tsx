@@ -1,7 +1,6 @@
 "use client"
 
 import { getUsersTrips } from "@/db/trips"
-import { Trip } from "@/types"
 import { useContext, useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
 import { CruiseoContext } from "@/context/context"

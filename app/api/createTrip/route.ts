@@ -4,14 +4,14 @@ import {
 } from "@supabase/auth-helpers-nextjs"
 import { NextApiHandler } from "next"
 import { createTrip } from "@/db/admin"
-import { Trip } from "@/types"
 import { Database } from "@/types_db"
 import { cookies } from "next/headers"
+import { TablesInsert } from "@/supabase/types"
 
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      const trip: Trip = await req.json()
+      const trip: TablesInsert<"usertrips"> = await req.json()
 
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {

@@ -1,4 +1,3 @@
-import { Trip } from "@/types"
 import { Button } from "./ui/button"
 import { DrawerClose, DrawerFooter } from "./ui/drawer"
 import React, { useCallback, useContext, useEffect } from "react"
@@ -8,13 +7,14 @@ import {
   EmbeddedCheckout
 } from "@stripe/react-stripe-js"
 import { CruiseoContext } from "@/context/context"
+import { Tables } from "@/supabase/types"
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
 )
 
 interface CheckoutProps {
-  selectedTrip: Trip | null
+  selectedTrip: Tables<"usertrips"> | null
   onBackClick: () => void
 }
 
@@ -73,11 +73,11 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
             <div className="flex w-full flex-col px-4 py-4">
               <span className="font-semibold">
                 {" "}
-                Leaving: {selectedTrip?.date?.date}
+                Leaving: {selectedTrip?.pickup?.date}
               </span>
               <span className="float-right text-zinc-300">Origin: Wal</span>
               <span className="float-right text-zinc-300">
-                Destination: {selectedTrip?.destination?.address}
+                Destination: {selectedTrip?.destination}
               </span>
               <p className="text-lg font-bold">${selectedTrip?.price}</p>
             </div>

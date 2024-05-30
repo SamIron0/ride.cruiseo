@@ -37,6 +37,6 @@ export const getDestinationById = async (id: string) => {
   return destination
 }
 
-export const createTrip = async ({ trip }: { trip: TablesInsert<"trips"> }) => {
+export const createTrip = async ({ trip }: { trip: TablesInsert<"usertrips"> }) => {
   return trip.id
 }
