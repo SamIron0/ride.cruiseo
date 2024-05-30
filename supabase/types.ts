@@ -300,6 +300,7 @@ export type Database = {
           updated_at: string | null
           address: string | null
           username: string
+          trips?: string[] | null
         }
         Insert: {
           bio?: string
@@ -316,6 +317,7 @@ export type Database = {
           updated_at?: string | null
           address?: string | null
           username?: string
+          trips?: string[] | null
         }
         Update: {
           bio?: string
@@ -332,6 +334,7 @@ export type Database = {
           updated_at?: string | null
           address?: string | null
           username?: string
+          trips?: string[] | null
         }
         Relationships: [
           {

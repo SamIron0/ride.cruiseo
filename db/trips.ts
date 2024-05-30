@@ -30,33 +30,38 @@ export const deleteTrip = async (tripId: string, userId: string) => {
           .eq('id', userId);
       }*/
 }
-
 export const getUsersTrips = async (userId: string) => {
-  // Assuming `trips` is an array of user IDs
-  let allTrips = null
+  // Initialize allTrips as an empty array
+  let allTrips: Trip[] = []
+
+  // Fetch trips array from the profiles table
   const { data: tripsArray, error: tripsError } = await supabase
     .from("profiles")
-    .select("trips(*)")
+    .select("trips")
     .eq("id", userId)
 
   if (tripsError) {
     console.error("Error fetching trips from profiles:", tripsError)
+    return null
   } else {
-    const tripIds = tripsArray[0]?.trips.map(trip => trip.id) || []
+    // Extract trip IDs
+    const tripIds = tripsArray[0].trips || []
 
     if (tripIds.length > 0) {
-      const { data: allTrips, error: allTripsError } = await supabase
+      // Fetch all trips where the ID is in the tripIds array
+      const { data: trips, error: tripsError } = await supabase
         .from("trips")
         .select("*")
         .in("id", tripIds)
 
-      if (allTripsError) {
-        console.error("Error fetching all trips:", allTripsError)
+      if (tripsError) {
+        console.error("Error fetching all trips:", tripsError)
+        return null
       }
-      return allTrips
+      return trips
     } else {
       console.log("No trips found for the given user.")
+      return allTrips
     }
   }
-  return allTrips
 }
