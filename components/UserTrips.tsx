@@ -11,6 +11,7 @@ export const UserTrips = () => {
   const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
   if (typeof window !== "undefined") {
     const storedTrip = window.localStorage.getItem("selectedTrip")
+    console.log("storedTrip", storedTrip)
     if (!selectedTrip && storedTrip) {
       setSelectedTrip(JSON.parse(storedTrip))
     }

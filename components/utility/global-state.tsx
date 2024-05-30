@@ -36,6 +36,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
         window.localStorage.removeItem("selectedTrip")
       }
     }
+    console.log('local changed to ',window.localStorage.getItem('selectedTrip'))
   }, [selectedTrip])
 
   useEffect(() => {
