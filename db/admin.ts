@@ -37,6 +37,29 @@ export const getDestinationById = async (id: string) => {
   return destination
 }
 
-export const createTrip = async ({ trip }: { trip: TablesInsert<"usertrips"> }) => {
+export const createTrip = async ({
+  trip
+}: {
+  trip: TablesInsert<"usertrips">
+}) => {
   return trip.id
+}
+
+export const getAvailableTrips = async (
+  date: string,
+  destinationId: string
+) => {
+  const { data: trips, error } = await supabaseAdmin
+    .from("trips")
+    .select("*")
+    .eq("destination", destinationId)
+    .eq("status", "available")
+    .eq("date->>date", date) // Extract the text value of the date field from the JSONB column
+
+  if (error) {
+    console.error("Error retrieving trips:", error)
+    return null
+  }
+
+  return trips
 }

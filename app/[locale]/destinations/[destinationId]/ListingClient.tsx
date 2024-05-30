@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Trips } from "@/components/ui/trips"
 import { Checkout } from "@/components/checkout"
+import { Tables } from "@/supabase/types"
 interface ListingClientProps {
   listing: Destination
 }
@@ -38,17 +39,20 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
-  const [availableTrips, setAvailableTrips] = useState<Trip[]>([
+  const [availableTrips, setAvailableTrips] = useState<Tables<"trips">[]>([
     {
       id: uuidv4(),
       price: 25,
-      pickup: {
+      start: {
         date: dateTime.date,
         hour: dateTime.hour,
         ampm: dateTime.ampm,
         minute: dateTime.minute
       },
-      origin: origin
+      destination: listing.id,
+      status: "available",
+      riders: [profile?.id || ""],
+      route: [origin, listing?.address]
     }
   ])
   useEffect(() => {
@@ -57,14 +61,16 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       {
         id: uuidv4(),
         price: 25,
-        pickup: {
+        start: {
           date: dateTime.date,
           hour: dateTime.hour,
           ampm: dateTime.ampm,
           minute: dateTime.minute
         },
-        origin: origin,
-        destination: listing.address
+        destination: listing.id,
+        status: "available",
+        riders: [profile?.id || ""],
+        route: [origin, listing?.address]
       }
     ])
   }, [dateTime.date, origin])
@@ -129,15 +135,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
 
   const getTrips = async () => {
     try {
-      const trips: Trip[] = await fetch("/api/getTrips", {
+      const trips: Trip[] = await fetch("/api/getAvailableTrips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          listingID: listing?.id,
-          dateTime: dateTime,
-          origin: origin
+          destinationId: listing?.id,
+          dateTime: dateTime
         })
       }).then(res => res.json())
       setAvailableTrips(availableTrips.concat(trips))

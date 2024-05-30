@@ -42,18 +42,31 @@ export type Database = {
           riders?: string[] | null // uuid[]
           price?: number | null // double precision
           route?: string[] | null // text[]
+          status?: string | null // text
+          start?: Date | null // timestamp with time zone
+          end?: Date | null // timestamp
+          destination?: string | null // uuid
         }
         Insert: {
           id?: string | null // bigint, nullable for insert as it's auto-generated
           riders?: string[] | null // uuid[], nullable
           price?: number | null // double precision, nullable
           route?: string[] | null // text[], nullable
+          status?: string | null // text
+          start?: Date | null // timestamp with time zone
+          end?: Date | null // timestamp
+          destination?: string | null // uuid
+       
         }
         Update: {
           id?: string | null // bigint, nullable for update
           riders?: string[] | null // uuid[], nullable
           price?: number | null // double precision, nullable
           route?: string[] | null // text[], nullable
+          status?: string | null // text
+          start?: Date | null // timestamp with time zone
+          end?: Date | null // timestamp
+          destination?: string | null // uuid
         }
         Relationships: [
           {
@@ -74,7 +87,6 @@ export type Database = {
           price?: number | null // numeric
           pickup?: Date | null // jsonb
           dropoff?: Date | null // jsonb
-          status?: string | null // text
           created_at?: string | null // timestamp with time zone
         }
         Insert: {
@@ -86,7 +98,6 @@ export type Database = {
           price?: number | null // numeric, nullable
           pickup?: Date | null // jsonb, nullable
           dropoff?: Date | null // jsonb, nullable
-          status?: string | null // text, nullable
           created_at?: string | null // timestamp with time zone, nullable
         }
         Update: {
@@ -98,7 +109,6 @@ export type Database = {
           price?: number | null // numeric, nullable
           pickup?: Date | null // jsonb, nullable
           dropoff?: Date | null // jsonb, nullable
-          status?: string | null // text, nullable
           created_at?: string | null // timestamp with time zone, nullable
         }
         Relationships: [

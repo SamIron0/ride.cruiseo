@@ -3,7 +3,6 @@ import { Destination, Trip } from "@/types"
 
 export const deleteTrip = async (tripId: string, userId: string) => {
   // delete from trips array
-
   /*  const user = await supabase
         .from('users')
         .select('trips')
@@ -31,9 +30,9 @@ export const deleteTrip = async (tripId: string, userId: string) => {
 }
 export const getUsersTrips = async (userId: string) => {
   const { data, error } = await supabase
-  .from("usertrips")
-  .select("*")
-  .eq("id", userId)
-  .order("created_at", { ascending: false })
+    .from("usertrips")
+    .select("*")
+    .eq("id", userId)
+    .order("created_at", { ascending: false })
   return data
 }
