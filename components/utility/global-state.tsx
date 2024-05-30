@@ -30,10 +30,12 @@ export const GlobalState: FC<GlobalStateProps> = ({
 
   useEffect(() => {
     // Update localStorage when selectedTrip changes
-    if (selectedTrip) {
-      localStorage.setItem("selectedTrip", JSON.stringify(selectedTrip))
-    } else {
-      localStorage.removeItem("selectedTrip")
+    if (typeof window !== "undefined") {
+      if (selectedTrip) {
+        localStorage.setItem("selectedTrip", JSON.stringify(selectedTrip))
+      } else {
+        localStorage.removeItem("selectedTrip")
+      }
     }
   }, [selectedTrip])
 
