@@ -50,8 +50,6 @@ export default function Dashboard() {
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
-
-          const trips = await getUsersTrips(userID)
         } catch (e) {
           console.error(e)
         }

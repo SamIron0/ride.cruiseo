@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
 interface UserTripsProps {}
 export const UserTrips = () => {
-  const [trips, setTrips] = useState<Trip[]>([])
+  const [trips, setTrips] = useState<Trip[] | null>([])
   const getTrips = async () => {
     try {
       const session = await supabase.auth.getSession()
@@ -29,7 +29,7 @@ export const UserTrips = () => {
 
   return (
     <div className="p-4 overflow-y-auto">
-      {trips.map(trip => (
+      {trips?.map(trip => (
         <div
           key={trip.id}
           className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg border-input`}
