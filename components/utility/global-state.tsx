@@ -32,17 +32,17 @@ export const GlobalState: FC<GlobalStateProps> = ({
           "selectedTrip",
           JSON.stringify(selectedTrip)
         )
-      } else {
-        window.localStorage.removeItem("selectedTrip")
       }
     }
-    console.log('local changed to ',window.localStorage.getItem('selectedTrip'))
+    console.log(
+      "local changed to ",
+      window.localStorage.getItem("selectedTrip")
+    )
   }, [selectedTrip])
 
   useEffect(() => {
     ;(async () => {
       const profile = await fetchStartingData()
-      
     })()
   }, [])
 

@@ -2,8 +2,10 @@
 import Container from "./Container"
 import ListingCard from "./listings/ListingCard"
 import ClientOnly from "./ClientOnly"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { CruiseoContext } from "@/context/context"
+import { getProfileByUserId } from "@/db/profile"
+import { supabase } from "@/lib/supabase/browser-client"
 
 function editDistance(a: string, b: string): number {
   const m = a.length
@@ -34,11 +36,39 @@ function editDistance(a: string, b: string): number {
 }
 interface GridProps {}
 export function Grid() {
-  const { destinations, searchInput, activeCategory } =
-    useContext(CruiseoContext)
+  const {
+    destinations,
+    setDestinations,
+    setProfile,
+    searchInput,
+    activeCategory
+  } = useContext(CruiseoContext)
 
-  const category: any = activeCategory
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const userID = await supabase.auth.getUser()
+        const url = "/api/getDestinations"
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
 
+        const response = await fetch(url, options)
+        setDestinations(await response.json())
+        const profile = userID.data.user
+          ? await getProfileByUserId(userID.data.user?.id as string)
+          : null
+        setProfile(profile)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    fetchDestinations()
+  }, [])
   return (
     <ClientOnly>
       <Container>
@@ -56,7 +86,7 @@ export function Grid() {
               gap-7
             "
           >
-            {category === "All"
+            {activeCategory === "All"
               ? destinations
                   .filter((listing: any) =>
                     listing.name
@@ -78,7 +108,7 @@ export function Grid() {
                     <ListingCard key={listing.id} data={listing} />
                   ))
               : destinations
-                  .filter((listing: any) => listing.category === category)
+                  .filter((listing: any) => listing.category === activeCategory)
                   .map((listing: any) => (
                     <ListingCard key={listing.id} data={listing} />
                   ))}
