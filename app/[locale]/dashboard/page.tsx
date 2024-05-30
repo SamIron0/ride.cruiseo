@@ -1,9 +1,6 @@
 "use client"
 import { UserTrips } from "@/components/UserTrips"
 import { CruiseoContext } from "@/context/context"
-import { createTrip } from "@/db/admin"
-import { getUsersTrips } from "@/db/trips"
-import { supabase } from "@/lib/supabase/browser-client"
 import { useRouter } from "next/navigation"
 import React, { useContext, useEffect, useState } from "react"
 export default function Dashboard() {

@@ -40,23 +40,23 @@ export type Database = {
         Row: {
           id: string // bigint
           riders?: string[] | null // uuid[]
-          price?: number | null // double precision
-          route?: string[] | null // text[]
+          price: number
+          route: string[]
           status?: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp
+
           destination?: string | null // uuid
         }
         Insert: {
           id?: string | null // bigint, nullable for insert as it's auto-generated
           riders?: string[] | null // uuid[], nullable
-          price?: number | null // double precision, nullable
-          route?: string[] | null // text[], nullable
+          price: number
+          route: string[] | null // text[], nullable
           status?: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp
           destination?: string | null // uuid
-       
         }
         Update: {
           id?: string | null // bigint, nullable for update
@@ -80,30 +80,30 @@ export type Database = {
       usertrips: {
         Row: {
           id: string // bigint
-          uid?: string | null // uuid
-          tripid?: string | null // uuid
-          origin?: string | null // uuid
-          destination?: string | null // uuid
-          price?: number | null // numeric
+          uid: string
+          tripid: string
+          origin: string
+          destination: string
+          price: number
           pickup?: Date | null // jsonb
           dropoff?: Date | null // jsonb
           created_at?: string | null // timestamp with time zone
         }
         Insert: {
           id?: string | null // bigint, nullable for insert as it's auto-generated
-          uid?: string | null // uuid, nullable
-          tripid?: string | null // uuid, nullable
-          origin?: string | null // uuid, nullable
-          destination?: string | null // uuid, nullable
-          price?: number | null // numeric, nullable
+          uid: string
+          tripid: string
+          origin: string
+          destination: string
+          price: number
           pickup?: Date | null // jsonb, nullable
           dropoff?: Date | null // jsonb, nullable
           created_at?: string | null // timestamp with time zone, nullable
         }
         Update: {
           id?: string | null // bigint, nullable for update
-          uid?: string | null // uuid, nullable
-          tripid?: string | null // uuid, nullable
+          uid: string | null // uuid, nullable
+          tripid: string
           origin?: string | null // uuid, nullable
           destination?: string | null // uuid, nullable
           price?: number | null // numeric, nullable

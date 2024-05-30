@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
 import type { Database, Tables, TablesInsert } from "@/supabase/types"
-
+import { v4 as uuid } from "uuid"
 // Change to control trial period length
 const TRIAL_PERIOD_DAYS = 0
 
@@ -42,7 +42,49 @@ export const createTrip = async ({
 }: {
   trip: TablesInsert<"usertrips">
 }) => {
-  return trip.id
+  const { data: tripVal, error } = await supabaseAdmin
+    .from("trips")
+    .select("*")
+    .eq("id", trip?.tripid)
+    .single()
+
+  if (error) {
+    console.error("Error creating trip:", error)
+    return null
+  }
+  // Check if trip already exists
+  if (tripVal) {
+    //update trip if it exists
+    const { data: y, error } = await supabaseAdmin
+      .from("trips")
+      .update({
+        ...tripVal,
+        riders: tripVal?.riders?.concat(trip?.uid),
+        price: tripVal?.price + trip?.price,
+        route: tripVal?.route?.concat(trip.origin)
+      })
+      .eq("id", trip.tripid)
+
+    if (error) {
+      console.error("Error updating trip:", error)
+      return null
+    }
+  } else {
+    const { data, error } = await supabaseAdmin.from("trips").insert({
+      id: uuid(),
+      riders: [trip?.uid],
+      price: trip?.price,
+      route: [trip?.origin, trip?.destination],
+      status: "available",
+      destination: trip?.tripid,
+      start: trip?.pickup
+    })
+
+    if (error) {
+      console.error("Error creating trip:", error)
+      return null
+    }
+  }
 }
 
 export const getAvailableTrips = async (
