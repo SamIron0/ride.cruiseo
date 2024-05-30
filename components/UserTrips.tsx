@@ -5,20 +5,16 @@ import { Trip } from "@/types"
 import { useContext, useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
 import { CruiseoContext } from "@/context/context"
+import { Tables } from "@/supabase/types"
+import { TablesInsert } from "@/supabase/types"
 interface UserTripsProps {}
 export const UserTrips = () => {
-  const [trips, setTrips] = useState<Trip[] | null>([])
-  const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
-  if (typeof window !== "undefined") {
-    const storedTrip = window.localStorage.getItem("selectedTrip")
-    console.log("storedTrip", storedTrip)
-    if (!selectedTrip && storedTrip) {
-      setSelectedTrip(JSON.parse(storedTrip))
-    }
-  }
+  const [trips, setTrips] = useState<Tables<"usertrips">[] | null>([])
 
   useEffect(() => {
-    if (status === "complete" && selectedTrip) {
+    const storedTrip = window.localStorage.getItem("selectedTrip")
+
+    if (storedTrip) {
       ;(async () => {
         try {
           const session = await supabase.auth.getSession()
@@ -30,7 +26,7 @@ export const UserTrips = () => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ selectedTrip })
+            body: JSON.stringify({ storedTrip })
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
@@ -39,6 +35,7 @@ export const UserTrips = () => {
         }
       })()
     }
+    getTrips()
   }, [])
   const getTrips = async () => {
     try {
@@ -56,10 +53,6 @@ export const UserTrips = () => {
     }
   }
 
-  useEffect(() => {
-    getTrips()
-  }, [])
-
   return (
     <div className="p-4 overflow-y-auto">
       {trips?.map(trip => (
@@ -68,7 +61,7 @@ export const UserTrips = () => {
           className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg border-input`}
         >
           <div className="mb-3 flex flex-row w-full justify-between">
-            <span className="">{trip.date?.date}</span>
+            <span className="">{trip.pickup?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-2">2 seats</span>
               <span>${trip.price}</span>
@@ -76,9 +69,7 @@ export const UserTrips = () => {
           </div>
           <div className="flex mb-2 w-full  flex-col">
             <span className="flex flex-col text-sm mb-1  ">{trip.origin}</span>
-            <span className="flex flex-col text-sm">
-              {trip.destination?.address}
-            </span>
+            <span className="flex flex-col text-sm">{trip.destination}</span>
           </div>{" "}
           <div className="flex w-full  -space-x-4 rtl:space-x-reverse">
             <img

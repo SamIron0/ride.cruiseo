@@ -3,7 +3,6 @@ import { Destination, Trip } from "@/types"
 
 export const deleteTrip = async (tripId: string, userId: string) => {
   // delete from trips array
-  await supabase.from("trips").update({ status: "Cancelled" }).eq("id", tripId)
 
   /*  const user = await supabase
         .from('users')
@@ -31,37 +30,10 @@ export const deleteTrip = async (tripId: string, userId: string) => {
       }*/
 }
 export const getUsersTrips = async (userId: string) => {
-  // Initialize allTrips as an empty array
-  let allTrips: Trip[] = []
-
-  // Fetch trips array from the profiles table
-  const { data: tripsArray, error: tripsError } = await supabase
-    .from("profiles")
-    .select("trips")
-    .eq("id", userId)
-
-  if (tripsError) {
-    console.error("Error fetching trips from profiles:", tripsError)
-    return null
-  } else {
-    // Extract trip IDs
-    const tripIds = tripsArray[0].trips || []
-
-    if (tripIds.length > 0) {
-      // Fetch all trips where the ID is in the tripIds array
-      const { data: trips, error: tripsError } = await supabase
-        .from("trips")
-        .select("*")
-        .in("id", tripIds)
-
-      if (tripsError) {
-        console.error("Error fetching all trips:", tripsError)
-        return null
-      }
-      return trips
-    } else {
-      console.log("No trips found for the given user.")
-      return allTrips
-    }
-  }
+  const { data, error } = await supabase
+  .from("usertrips")
+  .select("*")
+  .eq("id", userId)
+  .order("created_at", { ascending: false })
+  return data
 }

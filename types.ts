@@ -1,20 +1,20 @@
 import { Json } from "./types_db"
 
-export interface Date  {
+export interface Date {
   date: string
   hour: string
   minute: string
   ampm: string
 }
 export interface Trip {
-  origin?: string
-  destination?: Destination
-  destination_id?: string
   id: string
-  date?: Date
-  user_ids?: string[] | undefined
+  user_id?: string
+  origin?: string
+  destination?: string
   price?: number
+  pickup?: Date
   status?: string
+  dropoff?: Date
 }
 
 export interface GeoCoordinate {

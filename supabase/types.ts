@@ -36,209 +36,81 @@ export type Database = {
   }
   public: {
     Tables: {
-      customers: {
-        Row: {
-          id: string
-          stripe_customer_id: string | null
-        }
-        Insert: {
-          id: string
-          stripe_customer_id?: string | null
-        }
-        Update: {
-          id?: string
-          stripe_customer_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "customers_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      prices: {
-        Row: {
-          active: boolean | null
-          currency: string | null
-          id: string
-          interval: Database["public"]["Enums"]["pricing_plan_interval"] | null
-          interval_count: number | null
-          product_id: string | null
-          trial_period_days: number | null
-          type: Database["public"]["Enums"]["pricing_type"] | null
-          unit_amount: number | null
-        }
-        Insert: {
-          active?: boolean | null
-          currency?: string | null
-          id: string
-          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null
-          interval_count?: number | null
-          product_id?: string | null
-          trial_period_days?: number | null
-          type?: Database["public"]["Enums"]["pricing_type"] | null
-          unit_amount?: number | null
-        }
-        Update: {
-          active?: boolean | null
-          currency?: string | null
-          id?: string
-          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null
-          interval_count?: number | null
-          product_id?: string | null
-          trial_period_days?: number | null
-          type?: Database["public"]["Enums"]["pricing_type"] | null
-          unit_amount?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "prices_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      products: {
-        Row: {
-          active: boolean | null
-          description: string | null
-          id: string
-          image: string | null
-          metadata: Json | null
-          name: string | null
-        }
-        Insert: {
-          active?: boolean | null
-          description?: string | null
-          id: string
-          image?: string | null
-          metadata?: Json | null
-          name?: string | null
-        }
-        Update: {
-          active?: boolean | null
-          description?: string | null
-          id?: string
-          image?: string | null
-          metadata?: Json | null
-          name?: string | null
-        }
-        Relationships: []
-      }
-      subscriptions: {
-        Row: {
-          cancel_at: string | null
-          cancel_at_period_end: boolean | null
-          canceled_at: string | null
-          created: string
-          current_period_end: string
-          current_period_start: string
-          ended_at: string | null
-          id: string
-          metadata: Json | null
-          price_id: string | null
-          quantity: number | null
-          status: Database["public"]["Enums"]["subscription_status"] | null
-          trial_end: string | null
-          trial_start: string | null
-          user_id: string
-        }
-        Insert: {
-          cancel_at?: string | null
-          cancel_at_period_end?: boolean | null
-          canceled_at?: string | null
-          created?: string
-          current_period_end?: string
-          current_period_start?: string
-          ended_at?: string | null
-          id: string
-          metadata?: Json | null
-          price_id?: string | null
-          quantity?: number | null
-          status?: Database["public"]["Enums"]["subscription_status"] | null
-          trial_end?: string | null
-          trial_start?: string | null
-          user_id: string
-        }
-        Update: {
-          cancel_at?: string | null
-          cancel_at_period_end?: boolean | null
-          canceled_at?: string | null
-          created?: string
-          current_period_end?: string
-          current_period_start?: string
-          ended_at?: string | null
-          id?: string
-          metadata?: Json | null
-          price_id?: string | null
-          quantity?: number | null
-          status?: Database["public"]["Enums"]["subscription_status"] | null
-          trial_end?: string | null
-          trial_start?: string | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "subscriptions_price_id_fkey"
-            columns: ["price_id"]
-            isOneToOne: false
-            referencedRelation: "prices"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "subscriptions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       trips: {
         Row: {
-          origin: string;
-          destination?: Destination;
-          destination_id: string;
-          id: string;
-          date: Date;
-          user_ids: string[];
-          price: number;
-          status: string;
-        };
+          id: string // bigint
+          riders?: string[] | null // uuid[]
+          price?: number | null // double precision
+          route?: string[] | null // text[]
+        }
         Insert: {
-          origin?: string | null;
-          destination?: Destination | null;
-          destination_id?: string | null;
-          user_ids?: string[];
-          id: string | null;
-          date?: Date | null;
-          price?: number | null;
-          status?: string | null;
-        };
+          id?: string | null // bigint, nullable for insert as it's auto-generated
+          riders?: string[] | null // uuid[], nullable
+          price?: number | null // double precision, nullable
+          route?: string[] | null // text[], nullable
+        }
         Update: {
-          origin?: string | null;
-          destination?: Destination | null;
-          destination_id?: string | null;
-          user_ids?: string[];
-          id?: string | null;
-          date?: Date | null;
-          price?: number | null;
-          status?: string | null;
-        };
+          id?: string | null // bigint, nullable for update
+          riders?: string[] | null // uuid[], nullable
+          price?: number | null // double precision, nullable
+          route?: string[] | null // text[], nullable
+        }
         Relationships: [
           {
-            foreignKeyName: 'trips_id_fkey';
-            columns: ['trip_id'];
-            referencedRelation: 'trips';
-            referencedColumns: ['id'];
+            foreignKeyName: "trips_id_fkey"
+            columns: ["trip_id"]
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
           }
-        ];
-      };
+        ]
+      }
+      usertrips: {
+        Row: {
+          id: string // bigint
+          uid?: string | null // uuid
+          tripid?: string | null // uuid
+          origin?: string | null // uuid
+          destination?: string | null // uuid
+          price?: number | null // numeric
+          pickup?: Date | null // jsonb
+          dropoff?: Date | null // jsonb
+          status?: string | null // text
+          created_at?: string | null // timestamp with time zone
+        }
+        Insert: {
+          id?: string | null // bigint, nullable for insert as it's auto-generated
+          uid?: string | null // uuid, nullable
+          tripid?: string | null // uuid, nullable
+          origin?: string | null // uuid, nullable
+          destination?: string | null // uuid, nullable
+          price?: number | null // numeric, nullable
+          pickup?: Date | null // jsonb, nullable
+          dropoff?: Date | null // jsonb, nullable
+          status?: string | null // text, nullable
+          created_at?: string | null // timestamp with time zone, nullable
+        }
+        Update: {
+          id?: string | null // bigint, nullable for update
+          uid?: string | null // uuid, nullable
+          tripid?: string | null // uuid, nullable
+          origin?: string | null // uuid, nullable
+          destination?: string | null // uuid, nullable
+          price?: number | null // numeric, nullable
+          pickup?: Date | null // jsonb, nullable
+          dropoff?: Date | null // jsonb, nullable
+          status?: string | null // text, nullable
+          created_at?: string | null // timestamp with time zone, nullable
+        }
+        Relationships: [
+          {
+            foreignKeyName: "userTrips_id_fkey"
+            columns: ["trip_id"]
+            referencedRelation: "userTrips"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+
       destinations: {
         Row: {
           id: string
@@ -346,154 +218,11 @@ export type Database = {
           }
         ]
       }
-      schemas: {
-        Row: {
-          id: string
-          url: string | null
-          json: string
-          uid: string | null
-        }
-        Insert: {
-          id: string
-          url: string | null
-          json: string
-          uid: string | null
-        }
-        Update: {
-          id?: string
-          url?: string | null
-          json?: string
-          uid?: string | null
-        }
-        Relationships: [] // No relationships defined in the schema
-      }
-      apikeys: {
-        Row: {
-          id: number
-          user_id: string
-          api_key: string
-          rate_limit: number
-          requests_made: number | null
-          reset_at: Date | null
-          created_at: Date | null
-          updated_at: Date | null
-        }
-        Insert: {
-          user_id: string
-          api_key: string
-          rate_limit: number
-          requests_made: number | null
-          reset_at: Date | null
-        }
-        Update: {
-          api_key?: string
-          rate_limit?: number
-          requests_made?: number | null
-          reset_at?: Date | null
-        }
-      }
     }
     Views: {
       [_ in never]: never
     }
-    Functions: {
-      match_documents: {
-        Args: {
-          query_embedding: number[]
-          match_threshold: number
-          match_count: number
-        }
-        Returns: {
-          workspace_id: string
-          body: number
-          similarity: number
-        }[]
-      }
-      create_duplicate_messages_for_new_chat: {
-        Args: {
-          old_chat_id: string
-          new_chat_id: string
-          new_user_id: string
-        }
-        Returns: undefined
-      }
-      delete_message_including_and_after: {
-        Args: {
-          p_user_id: string
-          p_chat_id: string
-          p_sequence_number: number
-        }
-        Returns: undefined
-      }
-      delete_messages_including_and_after: {
-        Args: {
-          p_user_id: string
-          p_chat_id: string
-          p_sequence_number: number
-        }
-        Returns: undefined
-      }
-      delete_storage_object: {
-        Args: {
-          bucket: string
-          object: string
-        }
-        Returns: Record<string, unknown>
-      }
-      delete_storage_object_from_bucket: {
-        Args: {
-          bucket_name: string
-          object_path: string
-        }
-        Returns: Record<string, unknown>
-      }
-      match_file_items_local: {
-        Args: {
-          query_embedding: string
-          match_count?: number
-          file_ids?: string[]
-        }
-        Returns: {
-          id: string
-          file_id: string
-          content: string
-          tokens: number
-          similarity: number
-        }[]
-      }
-      match_file_items_openai: {
-        Args: {
-          query_embedding: string
-          match_count?: number
-          file_ids?: string[]
-        }
-        Returns: {
-          id: string
-          file_id: string
-          content: string
-          tokens: number
-          similarity: number
-        }[]
-      }
-      non_private_assistant_exists: {
-        Args: {
-          p_name: string
-        }
-        Returns: boolean
-      }
-      non_private_file_exists: {
-        Args: {
-          p_name: string
-        }
-        Returns: boolean
-      }
-      non_private_workspace_exists: {
-        Args: {
-          p_name: string
-        }
-        Returns: boolean
-      }
-    }
+    Functions: {}
     Enums: {
       pricing_plan_interval: "day" | "week" | "month" | "year"
       pricing_type: "one_time" | "recurring"

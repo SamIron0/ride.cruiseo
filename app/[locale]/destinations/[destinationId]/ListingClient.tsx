@@ -34,7 +34,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     ampm: "",
     minute: ""
   })
-  const { profile,selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
+  const { profile, selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
@@ -42,7 +42,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     {
       id: uuidv4(),
       price: 25,
-      date: {
+      pickup: {
         date: dateTime.date,
         hour: dateTime.hour,
         ampm: dateTime.ampm,
@@ -57,18 +57,17 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       {
         id: uuidv4(),
         price: 25,
-        date: {
+        pickup: {
           date: dateTime.date,
           hour: dateTime.hour,
           ampm: dateTime.ampm,
           minute: dateTime.minute
         },
         origin: origin,
-        destination: listing
+        destination: listing.address
       }
     ])
   }, [dateTime.date, origin])
-
 
   const getPrice = async (trip: Trip) => {
     setIsLoading(true)
