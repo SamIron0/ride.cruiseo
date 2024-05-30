@@ -10,7 +10,7 @@ export const UserTrips = () => {
   const [trips, setTrips] = useState<Trip[] | null>([])
   const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
   if (typeof window !== "undefined") {
-    const storedTrip = localStorage.getItem("selectedTrip")
+    const storedTrip = window.localStorage.getItem("selectedTrip")
     if (!selectedTrip && storedTrip) {
       setSelectedTrip(JSON.parse(storedTrip))
     }
