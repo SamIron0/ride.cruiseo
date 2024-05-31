@@ -32,7 +32,7 @@ export const getUsersTrips = async (userId: string) => {
   const { data, error } = await supabase
     .from("usertrips")
     .select("*")
-    .eq("id", userId)
+    .eq("uid", userId)
     .order("created_at", { ascending: false })
   return data
 }
