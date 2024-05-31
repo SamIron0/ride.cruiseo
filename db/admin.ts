@@ -96,7 +96,7 @@ export const getAvailableTrips = async (
     .select("*")
     .eq("destination", destinationId)
     .eq("status", "available")
-    .eq("date->>date", date) // Extract the text value of the date field from the JSONB column
+    .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
 
   if (error) {
     console.error("Error retrieving trips:", error)

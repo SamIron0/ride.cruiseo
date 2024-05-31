@@ -70,7 +70,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         origin: origin,
         destination: listing.id,
         uid: profile?.id || "",
-        tripid: "",
+        tripid: ""
       }
     ])
   }, [dateTime.date, origin])
@@ -145,7 +145,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           dateTime: dateTime
         })
       }).then(res => res.json())
-      setAvailableTrips(availableTrips.concat(trips))
+
+      trips ? setAvailableTrips(availableTrips.concat(trips)) : null
     } catch {
       console.error("An error occurred while fetching trips")
     }
