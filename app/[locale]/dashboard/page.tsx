@@ -9,6 +9,9 @@ export default function Dashboard() {
   const router = useRouter()
   const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
 
+  const sendEmail = async () => {
+    
+  }
   useEffect(() => {
     
     const queryString = window.location.search
@@ -31,6 +34,7 @@ export default function Dashboard() {
   }
 
   if (status === "complete") {
+    sendEmail()
     return (
       <div className="w-full flex flex-col">
         <section id="success">
