@@ -66,7 +66,7 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
       return null
     }
   } else {
-    const { data, error: createTripError } = await supabaseAdmin
+    const { data: tripID, error: createTripError } = await supabaseAdmin
       .from("trips")
       .insert({
         id: uuid(),
@@ -77,6 +77,9 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
         destination: trip?.tripid,
         start: trip?.pickup
       })
+      .select("id")
+      .single()
+
     if (createTripError) {
       console.error("Error creating new trip:", createTripError)
       return null
@@ -88,7 +91,7 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
       .insert({
         id: uuid(),
         uid: trip?.uid,
-        tripid: trip?.tripid,
+        tripid: tripID?.id,
         origin: trip?.origin,
         destination: trip?.destination,
         price: trip?.price,
