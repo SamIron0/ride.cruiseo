@@ -20,7 +20,7 @@ export const UserTrips = () => {
           const userID = session.data.session?.user.id
           if (!userID) throw new Error("User ID not found")
 
-          const response = await fetch("/api/createTrip", {
+          const response = await fetch("/api/saveTrip", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
