@@ -39,20 +39,20 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
-  const [availableTrips, setAvailableTrips] = useState<Tables<"trips">[]>([
+  const [availableTrips, setAvailableTrips] = useState<Tables<"usertrips">[]>([
     {
       id: uuidv4(),
       price: 25,
-      start: {
+      pickup: {
         date: dateTime.date,
         hour: dateTime.hour,
         ampm: dateTime.ampm,
         minute: dateTime.minute
       },
-      destination: listing.id,
-      status: "available",
-      riders: [profile?.id || ""],
-      route: [origin, listing?.address]
+      uid: profile?.id || "",
+      tripid: "",
+      origin: origin,
+      destination: listing.id
     }
   ])
   useEffect(() => {
@@ -61,16 +61,16 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       {
         id: uuidv4(),
         price: 25,
-        start: {
+        pickup: {
           date: dateTime.date,
           hour: dateTime.hour,
           ampm: dateTime.ampm,
           minute: dateTime.minute
         },
+        origin: origin,
         destination: listing.id,
-        status: "available",
-        riders: [profile?.id || ""],
-        route: [origin, listing?.address]
+        uid: profile?.id || "",
+        tripid: "",
       }
     ])
   }, [dateTime.date, origin])
