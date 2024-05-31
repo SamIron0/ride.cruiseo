@@ -50,7 +50,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
 
       return () => clearTimeout(timer) // Clean up the timer on unmount
     }
-  }, [bookingConfirmation])
+  }, [])
 
   const getTrips = async () => {
     try {
