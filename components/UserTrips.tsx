@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { CruiseoContext } from "@/context/context"
 import { Tables } from "@/supabase/types"
 import { TablesInsert } from "@/supabase/types"
+import { toast } from "sonner"
 
 interface UserTripsProps {
   bookingConfirmation?: boolean
@@ -12,9 +13,6 @@ interface UserTripsProps {
 
 export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
   const [trips, setTrips] = useState<Tables<"usertrips">[] | null>([])
-  const [showConfirmation, setShowConfirmation] = useState(
-    bookingConfirmation || false
-  )
 
   useEffect(() => {
     const storedTrip = window.localStorage.getItem("selectedTrip")
@@ -44,11 +42,9 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
     }
 
     if (bookingConfirmation) {
-      const timer = setTimeout(() => {
-        setShowConfirmation(false)
-      }, 8000) // Hide the confirmation message after 3 seconds
-
-      return () => clearTimeout(timer) // Clean up the timer on unmount
+      toast.success(
+        " Booking confirmed! We appreciate your business! If you have any questions, please contact us."
+      )
     }
   }, [])
 
@@ -79,28 +75,15 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
   }
 
   return (
-    <div className="overflow-y-auto">
-      {showConfirmation && (
-        <section
-          id="success"
-          className="bg-blue-500 text-white p-4 mb-4 rounded"
-        >
-          <p>
-            Booking confirmed! We appreciate your business! A confirmation email
-            will be sent to you. If you have any questions, please email{" "}
-            <a href="mailto:orders@example.com" className="underline">
-              orders@example.com
-            </a>
-            .
-          </p>
-        </section>
-      )}
+    <div className="p-4 w-full flex mb-4 flex-col  max-w-3xl">
+      <p>Welcome back to Cruiseo</p>
+
       {trips?.map(trip => (
         <div
           key={trip.id}
           className={`flex text-sm flex-col items-center border mb-2 p-4 rounded-lg border-input`}
         >
-          <div className="mb-3 flex flex-row w-full justify-between">
+          <div className="mb-5 flex flex-row w-full justify-between">
             <span className="">{trip.pickup?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-2">2 seats</span>
