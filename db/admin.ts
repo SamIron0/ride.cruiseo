@@ -38,9 +38,9 @@ export const getDestinationById = async (id: string) => {
 }
 
 export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
-  //console.log("Saving trip:", trip)
+  console.log("Saving trip:", trip)
   let tripID: any = null
-  if (trip?.tripid) {
+  if (trip?.tripid !="") {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
       .from("trips")
       .select("*")
