@@ -103,17 +103,10 @@ export default function UserMenu() {
             {profile ? (
               <>
                 <MenuItem
-                  label="Account"
-                  onClick={() => router.push("/account")}
+                  label="My Account"
+                  onClick={() => router.push("/dashboard")}
                 />
-                <MenuItem
-                  label="My Trips"
-                  onClick={() => router.push("/trips")}
-                />
-                <MenuItem
-                  label="Help"
-                  onClick={() => router.push("/contactus")}
-                />
+
                 <MenuItem
                   label="Logout"
                   onClick={() => {
