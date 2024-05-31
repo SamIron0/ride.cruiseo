@@ -77,12 +77,25 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     ])
   }, [dateTime.date, origin])
   const [distance, setDistance] = useState(null)
-  const onSearchClick = () => {
+  const onSearchClick = async () => {
     getTrips()
     setSelectedTrip(availableTrips[0])
-    calculatePrice()
+    for (let i = 0; i < availableTrips.length; i++) {
+      const price = await fetch("/api/price", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          origin: listing?.address,
+          destination: availableTrips[i]?.destination,
+          trip: availableTrips[i]
+        })
+      })
+      const data = await price.json()
+      console.log(data)
+    }
   }
-  
 
   const getTrips = async () => {
     try {
