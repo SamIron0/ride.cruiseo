@@ -28,6 +28,7 @@ export async function POST(req: Request) {
         )
       }
       console.log("in save api", trip)
+      console.log("in save api", trip.trip)
       const tripID = await saveTrip(trip.trip)
       if (tripID) {
         const response = "Trip saved"
