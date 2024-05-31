@@ -77,11 +77,11 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
   }
 
   return (
-    <div className="p-4 w-full mt-12 flex mb-4 flex-col  max-w-3xl">
+    <div className="p-4 w-full mb-20 mt-12 flex flex-col  max-w-3xl">
       <p className="text-2xl  mb-4">Welcome back to Cruiseo</p>
       <Link
         href="/"
-        className="px-4 py-2 mb-8 border border-input bg-baackground rounded-xl"
+        className="px-4 w-32 py-2 mb-8 flex justify-center border border-input bg-background rounded-xl"
       >
         Book Trip
       </Link>
