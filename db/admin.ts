@@ -37,11 +37,8 @@ export const getDestinationById = async (id: string) => {
   return destination
 }
 
-export const saveTrip = async ({
-  trip
-}: {
-  trip: TablesInsert<"usertrips">
-}) => {
+export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
+  console.log("Saving trip:", trip)
   if (trip?.tripid) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
       .from("trips")
