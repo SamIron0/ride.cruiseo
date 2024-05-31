@@ -27,7 +27,8 @@ export async function POST(req: Request) {
           { status: 500 }
         )
       }
-      const tripID = await saveTrip(trip.trip)
+      console.log(JSON.parse(trip.trip))
+      const tripID = await saveTrip(JSON.parse(trip.trip))
       if (tripID) {
         const response = "Trip saved"
         return new Response(JSON.stringify(response), {
