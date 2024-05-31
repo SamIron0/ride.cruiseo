@@ -1,6 +1,5 @@
 "use client"
 
-import { getUsersTrips } from "@/db/trips"
 import { useContext, useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
 import { CruiseoContext } from "@/context/context"
@@ -25,7 +24,7 @@ export const UserTrips = () => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ trip:storedTrip })
+            body: JSON.stringify({ trip: storedTrip })
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
@@ -44,8 +43,18 @@ export const UserTrips = () => {
       // Ensure userID is retrieved successfully
       if (!userID) throw new Error("User ID not found")
 
-      const trips = await getUsersTrips(userID)
-      setTrips(trips)
+      const trips = await fetch("/api/getUserTrips", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userID })
+      })
+
+      if (!trips.ok) throw new Error("Failed to retrieve trips")
+
+      const data = await trips.json()
+      setTrips(data)
     } catch (error) {
       console.error("Error retrieving user ID:", error)
       return

@@ -28,11 +28,4 @@ export const deleteTrip = async (tripId: string, userId: string) => {
           .eq('id', userId);
       }*/
 }
-export const getUsersTrips = async (userId: string) => {
-  const { data, error } = await supabase
-    .from("usertrips")
-    .select("*")
-    .eq("uid", userId)
-    .order("created_at", { ascending: false })
-  return data
-}
+

@@ -108,17 +108,13 @@ export const saveTrip = async (trip: any) => {
     console.error("Error creating usertrip:", createUserTripError)
     return null
   }
-  return userTrip
 }
 
-export const getAvailableTrips = async (
-  date: string,
-  destinationId: string
-) => {
+export const getAvailableTrips = async (date: string, destination: string) => {
   const { data: trips, error } = await supabaseAdmin
     .from("trips")
     .select("*")
-    .eq("destination", destinationId)
+    .eq("destination", destination)
     .eq("status", "available")
     .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
 
@@ -128,4 +124,13 @@ export const getAvailableTrips = async (
   }
 
   return trips
+}
+
+export const getUsersTrips = async (userId: string) => {
+  const { data, error } = await supabaseAdmin
+    .from("usertrips")
+    .select("*")
+    .eq("uid", userId)
+    .order("created_at", { ascending: false })
+  return data
 }
