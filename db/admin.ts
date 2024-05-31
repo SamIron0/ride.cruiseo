@@ -42,20 +42,19 @@ export const saveTrip = async ({
 }: {
   trip: TablesInsert<"usertrips">
 }) => {
-  const { data: tripVal, error } = await supabaseAdmin
-    .from("trips")
-    .select("*")
-    .eq("id", trip?.tripid)
-    .single()
+  if (trip?.tripid) {
+    const { data: tripVal, error: findTripError } = await supabaseAdmin
+      .from("trips")
+      .select("*")
+      .eq("id", trip?.tripid)
+      .single()
 
-  if (error) {
-    console.error("Error finding trip:", error)
-    return null
-  }
-  // If trip already exists
-  if (tripVal) {
+    if (findTripError) {
+      console.error("Error finding trip:", findTripError)
+      return null
+    }
     //update trip if it exists
-    const { data: y, error } = await supabaseAdmin
+    const { data: y, error: updateTripError } = await supabaseAdmin
       .from("trips")
       .update({
         ...tripVal,
@@ -65,41 +64,46 @@ export const saveTrip = async ({
       })
       .eq("id", trip.tripid)
 
-    if (error) {
-      console.error("Error updating trip:", error)
+    if (updateTripError) {
+      console.error("Error updating trip:", updateTripError)
       return null
     }
   } else {
-    const { data, error } = await supabaseAdmin.from("trips").insert({
-      id: uuid(),
-      riders: [trip?.uid],
-      price: trip?.price,
-      route: [trip?.origin, trip?.destination],
-      status: "available",
-      destination: trip?.tripid,
-      start: trip?.pickup
-    })
-    if (error) {
-      console.error("Error creating new trip:", error)
+    const { data, error: createTripError } = await supabaseAdmin
+      .from("trips")
+      .insert({
+        id: uuid(),
+        riders: [trip?.uid],
+        price: trip?.price,
+        route: [trip?.origin, trip?.destination],
+        status: "available",
+        destination: trip?.tripid,
+        start: trip?.pickup
+      })
+    if (createTripError) {
+      console.error("Error creating new trip:", createTripError)
       return null
     }
-  }
-  // next, create usertrips entry
-  const { data: userTrip } = await supabaseAdmin.from("usertrips").insert({
-    id: uuid(),
-    uid: trip?.uid,
-    tripid: trip?.tripid,
-    origin: trip?.origin,
-    destination: trip?.destination,
-    price: trip?.price,
-    pickup: trip?.pickup
-  })
 
-  if (error) {
-    console.error("Error creating usertrip:", error)
-    return null
+    // next, create usertrips entry
+    const { data: userTrip, error: createUserTripError } = await supabaseAdmin
+      .from("usertrips")
+      .insert({
+        id: uuid(),
+        uid: trip?.uid,
+        tripid: trip?.tripid,
+        origin: trip?.origin,
+        destination: trip?.destination,
+        price: trip?.price,
+        pickup: trip?.pickup
+      })
+
+    if (createUserTripError) {
+      console.error("Error creating usertrip:", createUserTripError)
+      return null
+    }
+    return userTrip
   }
-  return userTrip
 }
 
 export const getAvailableTrips = async (
