@@ -115,6 +115,7 @@ export const getAvailableTrips = async (date: string, destination: string) => {
     .from("trips")
     .select("*")
     .eq("status", "available")
+    .eq("destination", "1225 St Mary's Rd, Winnipeg, MB R2M 5L5")
     .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
 
   if (error) {

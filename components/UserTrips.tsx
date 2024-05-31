@@ -23,7 +23,7 @@ export const UserTrips = () => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ trip: storedTrip })
+            body: JSON.stringify({ trip: storedTrip})
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
