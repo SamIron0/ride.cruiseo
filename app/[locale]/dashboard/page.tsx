@@ -10,10 +10,16 @@ export default function Dashboard() {
   const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
 
   const sendEmail = async () => {
-    
+    const res = await fetch(`api/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: "message",
+        email: ""
+      })
+    })
   }
   useEffect(() => {
-    
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const sessionId = urlParams.get("session_id")
@@ -27,7 +33,6 @@ export default function Dashboard() {
         setCustomerEmail(data.customer_email)
       })
   }, [])
-
 
   if (status === "open") {
     return router.push("/")
