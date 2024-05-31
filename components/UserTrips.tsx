@@ -46,7 +46,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
     if (bookingConfirmation) {
       const timer = setTimeout(() => {
         setShowConfirmation(false)
-      }, 3000) // Hide the confirmation message after 3 seconds
+      }, 8000) // Hide the confirmation message after 3 seconds
 
       return () => clearTimeout(timer) // Clean up the timer on unmount
     }
