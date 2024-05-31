@@ -49,7 +49,7 @@ export const saveTrip = async ({
     .single()
 
   if (error) {
-    console.error("Error creating trip:", error)
+    console.error("Error finding trip:", error)
     return null
   }
   // If trip already exists
@@ -80,7 +80,7 @@ export const saveTrip = async ({
       start: trip?.pickup
     })
     if (error) {
-      console.error("Error creating trip:", error)
+      console.error("Error creating new trip:", error)
       return null
     }
   }
