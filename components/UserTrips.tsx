@@ -11,7 +11,6 @@ export const UserTrips = () => {
 
   useEffect(() => {
     const storedTrip = window.localStorage.getItem("selectedTrip")
-
     if (storedTrip) {
       ;(async () => {
         try {
@@ -28,13 +27,16 @@ export const UserTrips = () => {
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
+
+          // Call getTrips only after saveTrip completes successfully
+          getTrips()
         } catch (e) {
           console.error(e)
         }
       })()
     }
-    getTrips()
   }, [])
+
   const getTrips = async () => {
     try {
       const session = await supabase.auth.getSession()
