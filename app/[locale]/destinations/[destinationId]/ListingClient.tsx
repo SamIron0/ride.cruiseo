@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button"
 import { Trips } from "@/components/ui/trips"
 import { Checkout } from "@/components/checkout"
 import { Tables } from "@/supabase/types"
+import axios from "axios"
 interface ListingClientProps {
   listing: Destination
 }
@@ -74,62 +75,27 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       }
     ])
   }, [dateTime.date, origin])
+  const [distance, setDistance] = useState(null)
+  const onSearchClick = () => {
+    getTrips()
+    setSelectedTrip(availableTrips[0])
+    calculateDistance()
+  }
+  const calculateDistance = async () => {
+    const apiKey = process.env.GOOGLE_MAPS_API_KEY
+    const origin = "37.7749,-122.4194" // San Francisco
+    const destination = "34.0522,-118.2437" // Los Angeles
 
-  const getPrice = async (trip: Trip) => {
-    setIsLoading(true)
-    setPriceIsLoading(true)
-    const toastId = toast.loading("Calculating price...")
-
-    const workerID = 1
-    const destinationraw = {
-      address: listing.address,
-      latitude: listing?.coordinates?.lat,
-      longitude: listing?.coordinates?.lon
-    }
+    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apiKey}`
 
     try {
-      const response = await fetch(
-        "https://1ni3q9uo0h.execute-api.us-east-1.amazonaws.com/final",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            originraw: profile?.geolocation,
-            destinationraw: destinationraw,
-            worker: workerID,
-            userID: profile?.id
-          })
-        }
-      )
-      const result = await response.json()
-
-      if (response.ok) {
-        const responseBody = JSON.parse(result.body)
-        if (responseBody.result && responseBody.result.startsWith("C")) {
-          const discount = 0.1
-          const fullPrice = parseFloat(
-            responseBody.result.replace(/[^0-9.]/g, "")
-          )
-          const discountedPrice = parseFloat(
-            (fullPrice * (1 - discount)).toFixed(2)
-          )
-          const updatedPrices = new Map(loadedPrices)
-          updatedPrices.set(trip.id, discountedPrice)
-          setLoadedPrices(updatedPrices)
-          setIsLoading(false)
-          setPriceIsLoading(false)
-          toast.dismiss(toastId)
-          toast.success("Done")
-        } else {
-          console.error("Error invoking Lambda function")
-        }
-      }
+      const response = await axios.get(url)
+      const result = response.data
+      const distanceInMeters = result.rows[0].elements[0].distance.value
+      setDistance(distanceInMeters)
+      console.log("distanceee", distanceInMeters)
     } catch (error) {
-      toast.dismiss(toastId)
-      setIsLoading(false)
-      toast.error("An error occurred while calculating price")
+      console.error("Error fetching data: ", error)
     }
   }
 
@@ -200,9 +166,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           <Drawer>
             <DrawerTrigger
               disabled={origin == "" || dateTime.date == ""}
-              onClick={() =>
-                getTrips().then(() => setSelectedTrip(availableTrips[0]))
-              }
+              onClick={() => onSearchClick()}
               className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
             >
               Search
