@@ -39,6 +39,7 @@ export const getDestinationById = async (id: string) => {
 
 export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
   console.log("Saving trip:", trip)
+  let tripID: any = null
   if (trip?.tripid) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
       .from("trips")
@@ -51,7 +52,7 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
       return null
     }
     //update trip if it exists
-    const { data: y, error: updateTripError } = await supabaseAdmin
+    const { data: tripID, error: updateTripError } = await supabaseAdmin
       .from("trips")
       .update({
         ...tripVal,
@@ -60,6 +61,7 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
         route: tripVal?.route?.concat(trip.origin)
       })
       .eq("id", trip.tripid)
+      .select("id")
 
     if (updateTripError) {
       console.error("Error updating trip:", updateTripError)
@@ -84,26 +86,26 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
       console.error("Error creating new trip:", createTripError)
       return null
     }
-
-    // next, create usertrips entry
-    const { data: userTrip, error: createUserTripError } = await supabaseAdmin
-      .from("usertrips")
-      .insert({
-        id: uuid(),
-        uid: trip?.uid,
-        tripid: tripID?.id,
-        origin: trip?.origin,
-        destination: trip?.destination,
-        price: trip?.price,
-        pickup: trip?.pickup
-      })
-
-    if (createUserTripError) {
-      console.error("Error creating usertrip:", createUserTripError)
-      return null
-    }
-    return userTrip
   }
+
+  // next, create usertrips entry
+  const { data: userTrip, error: createUserTripError } = await supabaseAdmin
+    .from("usertrips")
+    .insert({
+      id: uuid(),
+      uid: trip?.uid,
+      tripid: tripID?.id,
+      origin: trip?.origin,
+      destination: trip?.destination,
+      price: trip?.price,
+      pickup: trip?.pickup
+    })
+
+  if (createUserTripError) {
+    console.error("Error creating usertrip:", createUserTripError)
+    return null
+  }
+  return userTrip
 }
 
 export const getAvailableTrips = async (
