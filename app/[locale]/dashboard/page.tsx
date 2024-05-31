@@ -16,7 +16,7 @@ export default function Dashboard() {
       body: JSON.stringify({
         message: "message",
         email: "",
-        subject:"Thanks"
+        subject: "Thanks"
       })
     })
   }
@@ -38,16 +38,11 @@ export default function Dashboard() {
   if (status === "open") {
     return router.push("/")
   }
-
-  if (status === "complete") {
-    //sendEmail()
-    return (
-      <div className="w-full flex flex-col">
-        
-        <UserTrips bookingConfirmation={true} />
-      </div>
-    )
-  }
+  return (
+    <div className="w-full flex flex-col">
+      <UserTrips bookingConfirmation={status === "complete"} />
+    </div>
+  )
 
   return null
 }
