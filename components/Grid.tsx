@@ -69,6 +69,24 @@ export function Grid() {
 
     fetchDestinations()
   }, [])
+
+  const filteredListings =
+    activeCategory === "All"
+      ? destinations?.filter(listing =>
+          listing.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
+      : destinations?.filter(
+          listing =>
+            listing.category === activeCategory &&
+            listing.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
+
+  const sortedListings = filteredListings?.sort((a, b) => {
+    const aScore = editDistance(a.name.toLowerCase(), searchInput.toLowerCase())
+    const bScore = editDistance(b.name.toLowerCase(), searchInput.toLowerCase())
+    return aScore - bScore
+  })
+
   return (
     <ClientOnly>
       <Container>
@@ -86,32 +104,9 @@ export function Grid() {
               gap-7
             "
           >
-            {activeCategory === "All"
-              ? destinations
-                  .filter((listing: any) =>
-                    listing.name
-                      .toLowerCase()
-                      .includes(searchInput.toLowerCase())
-                  )
-                  .sort((a, b) => {
-                    const aScore = editDistance(
-                      a.name.toLowerCase(),
-                      searchInput.toLowerCase()
-                    )
-                    const bScore = editDistance(
-                      b.name.toLowerCase(),
-                      searchInput.toLowerCase()
-                    )
-                    return aScore - bScore
-                  })
-                  .map((listing: any) => (
-                    <ListingCard key={listing.id} data={listing} />
-                  ))
-              : destinations
-                  .filter((listing: any) => listing.category === activeCategory)
-                  .map((listing: any) => (
-                    <ListingCard key={listing.id} data={listing} />
-                  ))}
+            {sortedListings?.map(listing => (
+              <ListingCard key={listing.id} data={listing} />
+            ))}
           </div>
         )}
       </Container>
