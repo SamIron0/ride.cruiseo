@@ -11,8 +11,8 @@ export async function POST(req: Request) {
       const body = await req.json()
 
       // Extract the id from the request body
-      const { id } = body
-      const trips = await getUsersTrips(id)
+      const { userID } = body
+      const trips = await getUsersTrips(userID)
 
       return new Response(JSON.stringify(trips), {
         status: 200
