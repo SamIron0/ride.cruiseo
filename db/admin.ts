@@ -111,7 +111,6 @@ export const saveTrip = async (trip: any) => {
 }
 
 export const getAvailableTrips = async (date: string, destination: string) => {
-  console.log("check:" ,destination)
   const { data: trips, error } = await supabaseAdmin
     .from("trips")
     .select("*")

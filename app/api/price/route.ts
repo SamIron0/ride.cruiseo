@@ -14,6 +14,9 @@ export async function POST(req: Request) {
       const { origin, destination, trip } = await req.json()
 
       const res = calculatePrice(origin, destination, trip)
+      return new Response(JSON.stringify(res), {
+        status: 200
+      })
     } catch (err: any) {
       return new Response(
         JSON.stringify({ error: { statusCode: 500, message: err.message } })
