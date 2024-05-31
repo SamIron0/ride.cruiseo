@@ -41,7 +41,7 @@ export const saveTrip = async (trip: TablesInsert<"usertrips">) => {
   console.log("Saving trip:", trip)
   console.log("Saving tripid:", trip.tripid)
   let tripID: any = null
-  if (trip?.tripid !== "") {
+  if (trip?.tripid === undefined) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
       .from("trips")
       .select("*")
