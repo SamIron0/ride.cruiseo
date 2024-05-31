@@ -5,9 +5,16 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { CruiseoContext } from "@/context/context"
 import { Tables } from "@/supabase/types"
 import { TablesInsert } from "@/supabase/types"
-interface UserTripsProps {}
-export const UserTrips = () => {
+
+interface UserTripsProps {
+  bookingConfirmation?: boolean
+}
+
+export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
   const [trips, setTrips] = useState<Tables<"usertrips">[] | null>([])
+  const [showConfirmation, setShowConfirmation] = useState(
+    bookingConfirmation || false
+  )
 
   useEffect(() => {
     const storedTrip = window.localStorage.getItem("selectedTrip")
@@ -23,7 +30,7 @@ export const UserTrips = () => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ trip: storedTrip})
+            body: JSON.stringify({ trip: storedTrip })
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
@@ -35,7 +42,15 @@ export const UserTrips = () => {
         }
       })()
     }
-  }, [])
+
+    if (bookingConfirmation) {
+      const timer = setTimeout(() => {
+        setShowConfirmation(false)
+      }, 3000) // Hide the confirmation message after 3 seconds
+
+      return () => clearTimeout(timer) // Clean up the timer on unmount
+    }
+  }, [bookingConfirmation])
 
   const getTrips = async () => {
     try {
@@ -64,7 +79,22 @@ export const UserTrips = () => {
   }
 
   return (
-    <div className="p-4 overflow-y-auto">
+    <div className="overflow-y-auto">
+      {showConfirmation && (
+        <section
+          id="success"
+          className="bg-blue-500 text-white p-4 mb-4 rounded"
+        >
+          <p>
+            Booking confirmed! We appreciate your business! A confirmation email
+            will be sent to you. If you have any questions, please email{" "}
+            <a href="mailto:orders@example.com" className="underline">
+              orders@example.com
+            </a>
+            .
+          </p>
+        </section>
+      )}
       {trips?.map(trip => (
         <div
           key={trip.id}
@@ -77,32 +107,32 @@ export const UserTrips = () => {
               <span>${trip.price}</span>
             </div>
           </div>
-          <div className="flex mb-2 w-full  flex-col">
-            <span className="flex flex-col text-sm mb-1  ">{trip.origin}</span>
+          <div className="flex mb-2 w-full flex-col">
+            <span className="flex flex-col text-sm mb-1">{trip.origin}</span>
             <span className="flex flex-col text-sm">{trip.destination}</span>
-          </div>{" "}
-          <div className="flex w-full  -space-x-4 rtl:space-x-reverse">
+          </div>
+          <div className="flex w-full -space-x-4 rtl:space-x-reverse">
             <img
-              className="w-8 h-8 border-2  rounded-full border-gray-800"
+              className="w-8 h-8 border-2 rounded-full border-gray-800"
               src="public/forks.jpg"
               alt=""
             />
             <img
-              className="w-8 h-8 border-2  rounded-full border-gray-800"
+              className="w-8 h-8 border-2 rounded-full border-gray-800"
               src="/docs/images/people/profile-picture-2.jpg"
               alt=""
             />
             <img
-              className="w-8 h-8 border-2  rounded-full border-gray-800"
+              className="w-8 h-8 border-2 rounded-full border-gray-800"
               src="/docs/images/people/profile-picture-3.jpg"
               alt=""
             />
             <img
-              className="w-8 h-8 border-2  rounded-full border-gray-800"
+              className="w-8 h-8 border-2 rounded-full border-gray-800"
               src="/docs/images/people/profile-picture-4.jpg"
               alt=""
             />
-          </div>{" "}
+          </div>
         </div>
       ))}
     </div>
