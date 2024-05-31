@@ -90,7 +90,7 @@ export type Database = {
           created_at?: string | null // timestamp with time zone
         }
         Insert: {
-          id?: string | null // bigint, nullable for insert as it's auto-generated
+          id: string | null // bigint, nullable for insert as it's auto-generated
           uid: string
           tripid: string
           origin: string

@@ -68,7 +68,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           minute: dateTime.minute
         },
         origin: origin,
-        destination: listing.id,
+        destination: listing.address,
         uid: profile?.id || "",
         tripid: ""
       }

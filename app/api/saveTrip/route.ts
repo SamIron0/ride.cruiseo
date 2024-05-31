@@ -3,7 +3,7 @@ import {
   createServerSupabaseClient
 } from "@supabase/auth-helpers-nextjs"
 import { NextApiHandler } from "next"
-import { createTrip } from "@/db/admin"
+import { saveTrip } from "@/db/admin"
 import { cookies } from "next/headers"
 import { Database, TablesInsert } from "@/supabase/types"
 
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
         )
       }
 
-      const tripID = await createTrip({
+      const tripID = await saveTrip({
         trip: trip
       })
       if (tripID) {

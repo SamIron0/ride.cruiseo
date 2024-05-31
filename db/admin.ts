@@ -37,7 +37,7 @@ export const getDestinationById = async (id: string) => {
   return destination
 }
 
-export const createTrip = async ({
+export const saveTrip = async ({
   trip
 }: {
   trip: TablesInsert<"usertrips">
@@ -52,7 +52,7 @@ export const createTrip = async ({
     console.error("Error creating trip:", error)
     return null
   }
-  // Check if trip already exists
+  // If trip already exists
   if (tripVal) {
     //update trip if it exists
     const { data: y, error } = await supabaseAdmin
@@ -79,12 +79,27 @@ export const createTrip = async ({
       destination: trip?.tripid,
       start: trip?.pickup
     })
-
     if (error) {
       console.error("Error creating trip:", error)
       return null
     }
   }
+  // next, create usertrips entry
+  const { data: userTrip } = await supabaseAdmin.from("usertrips").insert({
+    id: uuid(),
+    uid: trip?.uid,
+    tripid: trip?.tripid,
+    origin: trip?.origin,
+    destination: trip?.destination,
+    price: trip?.price,
+    pickup: trip?.pickup
+  })
+
+  if (error) {
+    console.error("Error creating usertrip:", error)
+    return null
+  }
+  return userTrip
 }
 
 export const getAvailableTrips = async (
