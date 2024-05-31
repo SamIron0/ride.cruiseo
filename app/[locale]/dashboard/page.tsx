@@ -15,7 +15,8 @@ export default function Dashboard() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         message: "message",
-        email: ""
+        email: "",
+        subject:"Thanks"
       })
     })
   }
@@ -39,7 +40,7 @@ export default function Dashboard() {
   }
 
   if (status === "complete") {
-    sendEmail()
+    //sendEmail()
     return (
       <div className="w-full flex flex-col">
         <section id="success">
