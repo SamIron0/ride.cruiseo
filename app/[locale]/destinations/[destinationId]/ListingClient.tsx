@@ -24,6 +24,7 @@ import { Trips } from "@/components/ui/trips"
 import { Checkout } from "@/components/checkout"
 import { Tables } from "@/supabase/types"
 import axios from "axios"
+import { calculatePrice } from "@/utils/helpers"
 interface ListingClientProps {
   listing: Destination
 }
@@ -79,25 +80,9 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const onSearchClick = () => {
     getTrips()
     setSelectedTrip(availableTrips[0])
-    calculateDistance()
+    calculatePrice()
   }
-  const calculateDistance = async () => {
-    const apiKey = process.env.GOOGLE_MAPS_API_KEY
-    const origin = "37.7749,-122.4194" // San Francisco
-    const destination = "34.0522,-118.2437" // Los Angeles
-
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apiKey}`
-
-    try {
-      const response = await axios.get(url)
-      const result = response.data
-      const distanceInMeters = result.rows[0].elements[0].distance.value
-      setDistance(distanceInMeters)
-      console.log("distanceee", distanceInMeters)
-    } catch (error) {
-      console.error("Error fetching data: ", error)
-    }
-  }
+  
 
   const getTrips = async () => {
     try {
