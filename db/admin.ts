@@ -77,7 +77,7 @@ export const saveTrip = async (trip: any) => {
         price: trip?.price,
         route: [trip?.origin, trip?.destination],
         status: "available",
-        destination: trip?.tripid,
+        destination: trip?.destination,
         start: trip?.pickup
       })
       .select("id")
