@@ -38,6 +38,7 @@ export const getDestinationById = async (id: string) => {
 }
 
 export const saveTrip = async (trip: any) => {
+  console.log("Saving trip:", trip)
   let tripID: any = null
   if (trip?.tripid) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
