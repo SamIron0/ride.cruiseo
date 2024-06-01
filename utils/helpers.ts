@@ -13,6 +13,7 @@ const calculateDistance = async (origin1?: string, destination1?: string) => {
     const result = response.data
     const distanceInMeters = result.rows[0].elements[0].distance.value
     console.log("distanceee", distanceInMeters)
+    return distanceInMeters
   } catch (error) {
     console.error("Error fetching data: ", error)
   }
