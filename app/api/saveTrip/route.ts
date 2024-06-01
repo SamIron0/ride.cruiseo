@@ -31,8 +31,8 @@ export async function POST(req: Request) {
       }
 
       console.log("trip", trip)
-      console.log("check", trip.trip)
-      console.log("check", JSON.parse(trip.trip))
+      console.log("check", trip)
+      console.log("check", JSON.parse(trip))
       const tripID = await saveTrip(JSON.parse(trip.trip))
       const response = "Trip saved"
       return new Response(JSON.stringify(response), {
