@@ -23,7 +23,7 @@ export async function calculatePrice(
   trip?: Tables<"trips">
 ) {
   // Example values
-  let distanceInMiles = calculateDistance(origin, destination)
+  let distanceInMiles = await calculateDistance(origin, destination)
   let baseFare = 2.5
   let costPerMile = 1.25
   let costPerMinute = 0.2
@@ -37,7 +37,7 @@ export async function calculatePrice(
     estimatedDurationMinutes,
     minimumFare
   )*/
-  return
+  return distanceInMiles
 }
 function calculateTripPrice(
   baseFare: number,

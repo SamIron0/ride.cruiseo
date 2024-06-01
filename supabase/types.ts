@@ -45,7 +45,6 @@ export type Database = {
           status?: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp
-          destinationID?: string | null
           destination?: string | null // uuid
         }
         Insert: {
@@ -56,7 +55,6 @@ export type Database = {
           status?: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp
-          destinationID?: string | null
           destination?: string | null // uuid
         }
         Update: {
@@ -67,7 +65,6 @@ export type Database = {
           status?: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp
-          destinationID?: string | null
           destination?: string | null // uuid
         }
         Relationships: [

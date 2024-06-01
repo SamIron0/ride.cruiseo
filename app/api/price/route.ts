@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     try {
       const { origin, destination, trip } = await req.json()
 
-      const res = calculatePrice(origin, destination, trip)
+      const res = await calculatePrice(origin, destination, trip)
       return new Response(JSON.stringify(res), {
         status: 200
       })
