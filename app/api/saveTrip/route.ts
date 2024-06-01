@@ -10,7 +10,10 @@ import { Database, TablesInsert } from "@/supabase/types"
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      const { trip } = await req.json()
+      const body = await req.json()
+
+      // Extract the id from the request body
+      const { trip } = body
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
@@ -27,6 +30,7 @@ export async function POST(req: Request) {
         )
       }
 
+      console.log("trip", trip)
       console.log("check", trip.trip)
       console.log("check", JSON.parse(trip.trip))
       const tripID = await saveTrip(JSON.parse(trip.trip))
