@@ -22,7 +22,9 @@ export const GlobalState: FC<GlobalStateProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [trip, setTrip] = useState<Trip | null>(null)
 
-  const [selectedTrip, setSelectedTrip] = useState<Tables<"usertrips"> | null>(null)
+  const [selectedTrip, setSelectedTrip] = useState<Tables<"usertrips"> | null>(
+    null
+  )
 
   useEffect(() => {
     // Update localStorage when selectedTrip changes
@@ -34,10 +36,6 @@ export const GlobalState: FC<GlobalStateProps> = ({
         )
       }
     }
-    console.log(
-      "local changed to ",
-      window.localStorage.getItem("selectedTrip")
-    )
   }, [selectedTrip])
 
   useEffect(() => {
