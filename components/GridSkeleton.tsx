@@ -34,10 +34,10 @@ export function GridSkeleton() {
 
             <div className="flex flex-col gap-2">
               <p className="block text-sm font-sans antialiased font-semibold leading-relaxed text-inherit">
-                <div className="h-4 bg-gray-200 rounded-md" />
+                <div className="h-4 bg-background rounded-md" />
               </p>
               <p className="block text-sm font-sans antialiased font-light leading-relaxed text-inherit">
-                <div className="h-4 bg-gray-200 rounded-md" />
+                <div className="h-4 bg-background rounded-md" />
               </p>
             </div>
           </div>
