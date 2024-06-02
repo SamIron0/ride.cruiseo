@@ -18,7 +18,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
 
   useEffect(() => {
     const storedTrip = window.localStorage.getItem("selectedTrip")
-    if (storedTrip) {
+    if (storedTrip && bookingConfirmation) {
       ;(async () => {
         try {
           const session = await supabase.auth.getSession()
