@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react"
 import { CruiseoContext } from "@/context/context"
 import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
+import { GridSkeleton } from "./GridSkeleton"
 
 function editDistance(a: string, b: string): number {
   const m = a.length
@@ -90,7 +91,7 @@ export function Grid() {
   return (
     <ClientOnly>
       <Container>
-        {destinations && (
+        {destinations ? (
           <div
             className="
               py-[198px]
@@ -108,6 +109,8 @@ export function Grid() {
               <ListingCard key={listing.id} data={listing} />
             ))}
           </div>
+        ) : (
+          <GridSkeleton />
         )}
       </Container>
     </ClientOnly>
