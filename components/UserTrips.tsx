@@ -34,15 +34,14 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
           })
 
           if (!response.ok) throw new Error("Failed to create trip")
-
-          // Call getTrips only after saveTrip completes successfully
-          getTrips()
         } catch (e) {
           console.error(e)
         }
       })()
     }
-
+    // Call getTrips only after saveTrip completes successfully
+    getTrips()
+    console.log('a',bookingConfirmation)
     if (bookingConfirmation) {
       toast.success(
         " Booking confirmed! We appreciate your business! If you have any questions, please contact us."

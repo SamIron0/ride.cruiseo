@@ -110,8 +110,7 @@ export function Grid() {
             ))}
           </div>
         ) : (
-          <GridSkeleton />
-        )}
+<></>        )}
       </Container>
     </ClientOnly>
   )
