@@ -35,6 +35,10 @@ export const GlobalState: FC<GlobalStateProps> = ({
           JSON.stringify(selectedTrip)
         )
       }
+
+      if (!selectedTrip) {
+        window.localStorage.removeItem("selectedTrip")
+      }
     }
   }, [selectedTrip])
 

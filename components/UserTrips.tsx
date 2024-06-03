@@ -15,10 +15,11 @@ interface UserTripsProps {
 
 export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
   const [trips, setTrips] = useState<Tables<"usertrips">[] | null>([])
+  const { selectedTrip,setSelectedTrip } = useContext(CruiseoContext)
 
   useEffect(() => {
     const storedTrip = window.localStorage.getItem("selectedTrip")
-    if (storedTrip && bookingConfirmation) {
+    if (storedTrip) {
       ;(async () => {
         try {
           const session = await supabase.auth.getSession()
@@ -41,7 +42,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
     }
     // Call getTrips only after saveTrip completes successfully
     getTrips()
-    console.log('a',bookingConfirmation)
+    selectedTrip && setSelectedTrip(null)
     if (bookingConfirmation) {
       toast.success(
         " Booking confirmed! We appreciate your business! If you have any questions, please contact us."
