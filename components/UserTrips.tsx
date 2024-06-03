@@ -15,7 +15,7 @@ interface UserTripsProps {
 
 export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
   const [trips, setTrips] = useState<Tables<"usertrips">[] | null>([])
-  const { selectedTrip,setSelectedTrip } = useContext(CruiseoContext)
+  const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
 
   useEffect(() => {
     const storedTrip = window.localStorage.getItem("selectedTrip")
@@ -39,15 +39,13 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
           console.error(e)
         }
       })()
-    }
-    // Call getTrips only after saveTrip completes successfully
-    getTrips()
-    selectedTrip && setSelectedTrip(null)
-    if (bookingConfirmation) {
       toast.success(
         " Booking confirmed! We appreciate your business! If you have any questions, please contact us."
       )
     }
+    // Call getTrips only after saveTrip completes successfully
+    getTrips()
+    selectedTrip && setSelectedTrip(null)
   }, [])
 
   const getTrips = async () => {
