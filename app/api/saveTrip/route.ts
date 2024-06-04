@@ -16,9 +16,12 @@ import { Database, TablesInsert } from "@/supabase/types"
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
+      const { searchParams } = new URL(req.url)
+      const sessionId = searchParams.get("session_id")
+
       const body = await req.json()
 
-      const { trip, sessionId } = body
+      const { trip } = body
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
@@ -35,21 +38,7 @@ export async function POST(req: Request) {
         )
       }
 
-      //check if stripe sessionID  is valid or expired
-      const sess = await stripe.checkout.sessions.retrieve(sessionId)
-      await stripe.checkout.sessions.expire(sessionId)
-
-      if (sess.status !== "complete") {
-        return new Response(
-          JSON.stringify({
-            error: "not authenticated",
-            description: "The user does not have an active stripe session"
-          }),
-          { status: 500 }
-        )
-      }
-
-      const tripID = await saveTrip(JSON.parse(trip), sessionId)
+      const tripID = await saveTrip(JSON.parse(trip), sessionId as string)
       const response = "Trip saved"
       return new Response(JSON.stringify(response), {
         status: 200

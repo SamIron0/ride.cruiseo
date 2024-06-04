@@ -15,7 +15,7 @@ export const cancelTrip = async (tripId: string, userId: string) => {
   console.log("Cancelling trip:", tripId)
   const { data: userTrips, error: cancelUserTripsError } = await supabaseAdmin
     .from("usertrips")
-    .update({id: tripId, uid: userId, status: "cancelled" })
+    .update({ id: tripId, uid: userId, status: "cancelled" })
     .eq("id", tripId)
     .select("*")
 
@@ -57,8 +57,38 @@ export const getDestinationById = async (id: string) => {
 
   return destination
 }
+async function hasSessionIdBeenUsed(sessionId: string): Promise<boolean> {
+  // Query your database to see if the session ID exists
+  const { data, error } = await supabaseAdmin
+    .from("stripe_sessions")
+    .select("id")
+    .eq("id", sessionId)
+    .single()
 
+  if (error) {
+    throw new Error("Error checking session ID")
+  }
+
+  return data !== null
+}
+
+// Function to mark a session ID as used
+async function markSessionIdAsUsed(sessionId: string): Promise<void> {
+  const { error } = await supabaseAdmin
+    .from("stripe_sessions")
+    .insert([{ id: sessionId }])
+
+  if (error) {
+    throw new Error("Error marking session ID as used")
+  }
+}
 export const saveTrip = async (trip: any, sessionId: string) => {
+  const hasSessionBeenUsed = await hasSessionIdBeenUsed(sessionId)
+
+  if (hasSessionBeenUsed) {
+    return null
+  }
+
   console.log("Saving trip:", trip)
   let tripID: any = null
   if (trip?.tripid) {
