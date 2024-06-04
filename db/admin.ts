@@ -57,7 +57,9 @@ export const getDestinationById = async (id: string) => {
 
   return destination
 }
-export async function hasSessionIdBeenUsed(sessionId: string): Promise<boolean> {
+export async function hasSessionIdBeenUsed(
+  sessionId: string
+): Promise<boolean> {
   // Query your database to see if the session ID exists
   const { data, error } = await supabaseAdmin
     .from("stripe_sessions")
@@ -66,7 +68,7 @@ export async function hasSessionIdBeenUsed(sessionId: string): Promise<boolean> 
     .single()
 
   if (error) {
-    throw new Error("Error checking session ID")
+    console.error("Error checking if session ID has been used:", error)
   }
 
   return data !== null
@@ -83,7 +85,6 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
   }
 }
 export const saveTrip = async (trip: any, sessionId: string) => {
- 
   await markSessionIdAsUsed(sessionId)
 
   console.log("Saving trip:", trip)
