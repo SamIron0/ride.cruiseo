@@ -158,7 +158,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
                     </div>
                   </DrawerTitle>
                 </DrawerHeader>
-                <DrawerFooter>
+                <DrawerFooter className="w-full max-w-lg">
                   {trip.status === "pending" ? (
                     <Button
                       variant={"destructive"}
