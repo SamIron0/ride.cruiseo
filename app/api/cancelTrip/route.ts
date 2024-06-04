@@ -1,7 +1,7 @@
 import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Trip } from "@/types";
 import { cookies } from "next/headers";
-import { cancelTrip } from "@/db/trips";
+import { cancelTrip } from "@/db/admin";
 import { Database } from "@/supabase/types";
 
 export async function POST(req: Request,) {
