@@ -46,7 +46,7 @@ export async function POST(req: Request) {
           { status: 400 }
         )
       }
-      const tripID = await saveTrip(JSON.parse(trip), sessionId as string)
+      const tripID = await saveTrip(JSON.parse(trip), sessionId)
       const response = "Trip saved"
       return new Response(JSON.stringify(response), {
         status: 200
