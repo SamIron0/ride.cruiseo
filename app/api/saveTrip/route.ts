@@ -13,16 +13,28 @@ export async function POST(req: Request) {
       const body = await req.json()
 
       // Extract the id from the request body
-      const { trip,sessionId } = body
+      const { trip, sessionId } = body
 
       //check if sessionID  is valid or expired
-      const res =  await fetch("/api/checkout_sessions", {
+      const res = await fetch("/api/checkout_sessions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ sessionId })
       })
+
+      const data = await res.json()
+      if (data.status !== "complete") {
+        return new Response(
+          JSON.stringify({
+            error: "not authenticated",
+            description: "The user does not have an active stripe session"
+          }),
+          { status: 500 }
+        )
+      }
+
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
