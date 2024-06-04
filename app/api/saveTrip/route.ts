@@ -13,7 +13,16 @@ export async function POST(req: Request) {
       const body = await req.json()
 
       // Extract the id from the request body
-      const { trip } = body
+      const { trip,sessionId } = body
+
+      //check if sessionID  is valid or expired
+      const res =  await fetch("/api/checkout_sessions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ sessionId })
+      })
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
@@ -30,10 +39,7 @@ export async function POST(req: Request) {
         )
       }
 
-      console.log("trip", trip)
-      console.log("check", trip)
-      console.log("check", JSON.parse(trip))
-      const tripID = await saveTrip(JSON.parse(trip))
+      const tripID = await saveTrip(JSON.parse(trip), sessionId)
       const response = "Trip saved"
       return new Response(JSON.stringify(response), {
         status: 200

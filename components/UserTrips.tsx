@@ -19,84 +19,11 @@ import {
 } from "./ui/drawer"
 
 interface UserTripsProps {
-  bookingConfirmation?: boolean
+  trips?: Tables<"usertrips">[]
+  onCancelTrip: (tripID: string) => void
 }
 
-export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
-  const [trips, setTrips] = useState<Tables<"usertrips">[] | null>([])
-  const { selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
-
-  useEffect(() => {
-    const storedTrip = window.localStorage.getItem("selectedTrip")
-    if (storedTrip) {
-      ;(async () => {
-        try {
-          const session = await supabase.auth.getSession()
-          const userID = session.data.session?.user.id
-          if (!userID) throw new Error("User ID not found")
-
-          const response = await fetch("/api/saveTrip", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ trip: storedTrip })
-          })
-
-          if (!response.ok) throw new Error("Failed to create trip")
-        } catch (e) {
-          console.error(e)
-        }
-      })()
-      toast.success(
-        " Booking confirmed! We appreciate your business! If you have any questions, please contact us."
-      )
-    }
-    // Call getTrips only after saveTrip completes successfully
-    getTrips()
-    selectedTrip && setSelectedTrip(null)
-  }, [])
-
-  const getTrips = async () => {
-    try {
-      const session = await supabase.auth.getSession()
-      const userID = session.data.session?.user.id
-
-      // Ensure userID is retrieved successfully
-      if (!userID) throw new Error("User ID not found")
-
-      const trips = await fetch("/api/getUserTrips", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ userID })
-      })
-
-      if (!trips.ok) throw new Error("Failed to retrieve trips")
-
-      const data = await trips.json()
-      setTrips(data)
-    } catch (error) {
-      console.error("Error retrieving user ID:", error)
-      return
-    }
-  }
-  const cancelTrip = async (trip: Tables<"usertrips">) => {
-    const res = await fetch("/api/cancelTrip", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ trip })
-    })
-
-    if (res.ok) {
-      toast.success("Trip canceled successfully")
-      getTrips()
-    }
-  }
-
+export const UserTrips = ({ trips, onCancelTrip }: UserTripsProps) => {
   return (
     <div className="p-4 w-full mb-20 mt-12 flex flex-col  max-w-3xl">
       <p className="text-2xl  mb-4">Welcome back to Cruiseo</p>
@@ -169,7 +96,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
                       <Button
                         variant={"destructive"}
                         onClick={() => {
-                          cancelTrip(trip)
+                          onCancelTrip(trip.id)
                         }}
                       >
                         Cancel Trip

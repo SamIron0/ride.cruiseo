@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       const body = await req.json()
 
       // Extract the id from the request body
-      const { trip } = body
+      const { trip_id } = body
 
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
           { status: 500 }
         )
       }
-      const tripID = await cancelTrip(trip.id, session.user.id)
+      const tripID = await cancelTrip(trip_id, session.user.id)
       if (tripID != undefined) {
         const response = "Trip deleted"
         return new Response(JSON.stringify(response), {

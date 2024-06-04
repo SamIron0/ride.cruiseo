@@ -58,7 +58,7 @@ export async function GET(req: Request): Promise<Response> {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId)
-
+    await stripe.checkout.sessions.expire(sessionId)
     return new Response(
       JSON.stringify({
         status: session.status,

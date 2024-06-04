@@ -58,7 +58,7 @@ export const getDestinationById = async (id: string) => {
   return destination
 }
 
-export const saveTrip = async (trip: any) => {
+export const saveTrip = async (trip: any, sessionId: string) => {
   console.log("Saving trip:", trip)
   let tripID: any = null
   if (trip?.tripid) {
