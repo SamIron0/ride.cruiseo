@@ -141,7 +141,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
                 </div>
               </div>
             </DrawerTrigger>
-            <DrawerContent>
+            <DrawerContent className="max-w-3xl ">
               <DrawerHeader>
                 <DrawerTitle>
                   <div>
@@ -164,15 +164,6 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
                     Rebook{" "}
                   </Button>
                 )}
-                <DrawerClose>
-                  <Button
-                    onClick={() => {}}
-                    className="w-full "
-                    variant="outline"
-                  >
-                    Cancel
-                  </Button>
-                </DrawerClose>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
