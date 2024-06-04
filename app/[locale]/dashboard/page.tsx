@@ -13,13 +13,15 @@ export default function Dashboard() {
   const [trips, setTrips] = useState<Tables<"usertrips">[]>([])
   const { profile } = useContext(CruiseoContext)
   const getUsersTrips = async () => {
+    const session = await supabase.auth.getSession()
+    const userID = session.data.session?.user?.id
     try {
       const response = await fetch("/api/getUserTrips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userID: profile?.id })
+        body: JSON.stringify({ userID })
       })
 
       if (!response.ok) {
