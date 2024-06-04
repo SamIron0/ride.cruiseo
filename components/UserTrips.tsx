@@ -82,7 +82,16 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
       return
     }
   }
-  const cancelTrip = (trip: Tables<"usertrips">) => {}
+  const cancelTrip = async (trip: Tables<"usertrips">) => {
+    const res = await fetch("/api/cancelTrip", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ trip })
+    })
+
+  }
 
   return (
     <div className="p-4 w-full mb-20 mt-12 flex flex-col  max-w-3xl">
@@ -91,7 +100,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
         href="/"
         className="px-4 w-32 py-2 mb-8 flex justify-center border border-input bg-background rounded-xl"
       >
-        Book Trip
+        New Trip
       </Link>
       <div className="flex flex-col">
         <h2 className="text-2xl font-semibold mb-4">Recent Trips </h2>

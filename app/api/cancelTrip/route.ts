@@ -1,7 +1,7 @@
 import { createRouteHandlerClient, createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { Trip } from "@/types";
 import { cookies } from "next/headers";
-import { deleteTrip } from "@/db/trips";
+import { cancelTrip } from "@/db/trips";
 import { Database } from "@/supabase/types";
 
 export async function POST(req: Request,) {
@@ -24,7 +24,7 @@ export async function POST(req: Request,) {
             }
 
             if (trip.id != null) {
-                const tripID = await deleteTrip(trip.id, session.user.id);
+                const tripID = await cancelTrip(trip.id, session.user.id);
                 if (tripID != undefined) {
                     const response = "Trip deleted";
                     return new Response(JSON.stringify(response), {

@@ -11,6 +11,26 @@ const supabaseAdmin = createClient<Database>(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ""
 )
 
+export const cancelTrip = async (tripId: string, userId: string) => {
+  const { error: cancelUserTripsError } = await supabaseAdmin
+    .from("usertrips")
+    .update({ uid: userId, tripid: tripId, status: "cancelled" })
+    .eq("tripid", tripId)
+    .eq("uid", userId)
+
+  if (cancelUserTripsError) {
+    console.error("Error cancelling trip:", cancelUserTripsError)
+  }
+
+  const { error: caancelTripsError } = await supabaseAdmin
+    .from("trips")
+    .update({ status: "cancelled" })
+    .eq("id", tripId)
+
+  if (caancelTripsError) {
+    console.error("Error cancelling trip:", caancelTripsError)
+  }
+}
 export const retrieveDestinations = async () => {
   const { data: destinations, error } = await supabaseAdmin
     .from("destinations")
