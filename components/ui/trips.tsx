@@ -1,9 +1,9 @@
 import { Tables } from "@/supabase/types"
 
 interface TripsProps {
-  trips: Tables<"usertrips">[]
-  onSelectTrip: (trip: Tables<"usertrips">) => void
-  selectedTrip: Tables<"usertrips"> | null
+  trips: Tables<"trips">[]
+  onSelectTrip: (trip: Tables<"trips">) => void
+  selectedTrip: Tables<"trips"> | null
 }
 export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
   return (
@@ -17,14 +17,14 @@ export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
           }`}
         >
           <div className="mb-3 flex flex-row w-full justify-between">
-            <span className="">{trip.pickup?.date}</span>
+            <span className="">{trip.start?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-2">2 seats</span>
               <span>${trip.price}</span>
             </div>
           </div>
           <div className="flex mb-2 w-full  flex-col">
-            <span className="flex flex-col text-sm mb-1  ">{trip.origin}</span>
+            <span className="flex flex-col text-sm mb-1  ">{trip.route}</span>
             <span className="flex flex-col text-sm">
               {trip.destination}
             </span>
