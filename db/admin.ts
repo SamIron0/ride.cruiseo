@@ -84,10 +84,10 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
     throw new Error("Error marking session ID as used")
   }
 }
-export const saveTrip = async (trip: any, sessionId: string) => {
+export const saveTrip = async (tripa: any, sessionId: string) => {
   await markSessionIdAsUsed(sessionId)
-  const x = JSON.parse(trip)
-  console.log("Saving trip:", x.tripid)
+  const trip = JSON.parse(tripa)
+  console.log("Saving trip:", trip.tripid)
   let tripID: any = null
   if (trip?.tripid) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
