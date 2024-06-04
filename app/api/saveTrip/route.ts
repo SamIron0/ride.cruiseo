@@ -1,3 +1,9 @@
+import Stripe from "stripe"
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: "2024-04-10"
+})
+
 import {
   createRouteHandlerClient,
   createServerSupabaseClient
@@ -12,29 +18,7 @@ export async function POST(req: Request) {
     try {
       const body = await req.json()
 
-      // Extract the id from the request body
       const { trip, sessionId } = body
-
-      //check if sessionID  is valid or expired
-      const res = await fetch("/api/checkout_sessions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ sessionId })
-      })
-
-      const data = await res.json()
-      if (data.status !== "complete") {
-        return new Response(
-          JSON.stringify({
-            error: "not authenticated",
-            description: "The user does not have an active stripe session"
-          }),
-          { status: 500 }
-        )
-      }
-
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
@@ -46,6 +30,20 @@ export async function POST(req: Request) {
             error: "not authenticated",
             description:
               "The user does not have an active session or is not authenticated"
+          }),
+          { status: 500 }
+        )
+      }
+
+      //check if stripe sessionID  is valid or expired
+      const sess = await stripe.checkout.sessions.retrieve(sessionId)
+      await stripe.checkout.sessions.expire(sessionId)
+
+      if (sess.status !== "complete") {
+        return new Response(
+          JSON.stringify({
+            error: "not authenticated",
+            description: "The user does not have an active stripe session"
           }),
           { status: 500 }
         )

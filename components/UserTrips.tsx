@@ -24,6 +24,7 @@ interface UserTripsProps {
 }
 
 export const UserTrips = ({ trips, onCancelTrip }: UserTripsProps) => {
+  const [tripArray, setTripArray] = useState<Tables<"usertrips">[]>()
   return (
     <div className="p-4 w-full mb-20 mt-12 flex flex-col  max-w-3xl">
       <p className="text-2xl  mb-4">Welcome back to Cruiseo</p>
