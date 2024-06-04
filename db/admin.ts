@@ -78,7 +78,7 @@ export async function hasSessionIdBeenUsed(
 async function markSessionIdAsUsed(sessionId: string): Promise<void> {
   const { error } = await supabaseAdmin
     .from("stripe_sessions")
-    .insert([{ id: sessionId }])
+    .insert({ id: sessionId })
 
   if (error) {
     throw new Error("Error marking session ID as used")
