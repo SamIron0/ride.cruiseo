@@ -86,7 +86,7 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
 }
 export const saveTrip = async (trip: any, sessionId: string) => {
   await markSessionIdAsUsed(sessionId)
-s  console.log("Saving trip:", trip)
+  console.log("Saving trip:", trip)
   console.log("Saving trip:", trip.id)
 
   let tripID: any = null
