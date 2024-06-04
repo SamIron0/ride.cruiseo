@@ -90,6 +90,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
       },
       body: JSON.stringify({ trip })
     })
+    getTrips()
   }
 
   return (
