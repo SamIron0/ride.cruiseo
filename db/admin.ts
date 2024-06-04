@@ -84,10 +84,14 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
     throw new Error("Error marking session ID as used")
   }
 }
-export const saveTrip = async (trip: any, sessionId: string) => {
+export const saveTrip = async (
+  trip: TablesInsert<"usertrips">,
+  sessionId: string
+) => {
   await markSessionIdAsUsed(sessionId)
-
   console.log("Saving trip:", trip)
+  console.log("Saving trip:", trip.tripid)
+
   let tripID: any = null
   if (trip?.tripid) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
@@ -104,10 +108,10 @@ export const saveTrip = async (trip: any, sessionId: string) => {
     const { data: id, error: updateTripError } = await supabaseAdmin
       .from("trips")
       .update({
-        id:    tripVal.id,
-        riders: tripVal?.riders?.concat(trip?.uid),
-        price: tripVal?.price + trip?.price,
-        route: tripVal?.route?.concat(trip.origin)
+        id: tripVal.id,
+        riders: tripVal?.riders?.concat(trip.uid as string),
+        price: tripVal?.price + (trip?.price as number),
+        route: tripVal?.route?.concat(trip.origin as string)
       })
       .eq("id", trip.tripid)
       .select("id")

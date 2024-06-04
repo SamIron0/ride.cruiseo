@@ -154,15 +154,15 @@ export type Database = {
         }
         Insert: {
           id: string
-          driver_id: string
-          trip_id: string
-          status: string
+          driver_id?: string
+          trip_id?: string
+          status?: string
         }
         Update: {
           id: string
-          driver_id: string
-          trip_id: string
-          status: string
+          driver_id?: string
+          trip_id?: string
+          status?: string
         }
       }
       stripe_sessions: {
