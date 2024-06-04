@@ -48,6 +48,7 @@ export async function POST(req: Request): Promise<Response> {
 export async function GET(req: Request): Promise<Response> {
   const { searchParams } = new URL(req.url)
   const sessionId = searchParams.get("session_id")
+  console.log("sesh", sessionId)
 
   if (!sessionId) {
     return new Response(JSON.stringify({ error: "Session ID is required" }), {
