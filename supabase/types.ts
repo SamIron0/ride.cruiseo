@@ -122,6 +122,49 @@ export type Database = {
           }
         ]
       }
+      drivers: {
+        Row: {
+          id: string
+          user_id: string
+          license_number: string
+          vehicle_details: string
+          rating: number
+        }
+        Insert: {
+          id: string
+          user_id: string
+          license_number: string
+          vehicle_details: string
+          rating: number
+        }
+        Update: {
+          id: string
+          user_id: string
+          license_number: string
+          vehicle_details: string
+          rating: number
+        }
+      }
+      drivertrips: {
+        Row: {
+          id: string
+          driver_id: string
+          trip_id: string
+          status: string
+        }
+        Insert: {
+          id: string
+          driver_id: string
+          trip_id: string
+          status: string
+        }
+        Update: {
+          id: string
+          driver_id: string
+          trip_id: string
+          status: string
+        }
+      }
       stripe_sessions: {
         Row: {
           id: string
