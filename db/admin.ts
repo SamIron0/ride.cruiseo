@@ -86,11 +86,13 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
 }
 export const saveTrip = async (trip: any, sessionId: string) => {
   await markSessionIdAsUsed(sessionId)
+  
   console.log("Saving trip:", trip)
-  console.log("Saving trip:", trip.id)
+  console.log("Saving trip:", trip.tripid)
+  console.log("Saving trip:", trip)
 
   let tripID: any = null
-  if (trip?.id) {
+  if (trip?.tripid) {
     const { data: tripVal, error: findTripError } = await supabaseAdmin
       .from("trips")
       .select("*")
