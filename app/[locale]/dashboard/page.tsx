@@ -53,6 +53,7 @@ export default function Dashboard() {
         const queryString = window.location.search
         const urlParams = new URLSearchParams(queryString)
         const sessionId = urlParams.get("session_id")
+        getUsersTrips()
 
         if (!sessionId) {
           return
@@ -79,12 +80,12 @@ export default function Dashboard() {
           const data = await response.json()
           console.log(data)
           setStatus(data.status)
+          getUsersTrips()
         }
       } catch (error) {
         console.error(error)
         toast.error("An error occurred. Please try again.")
       }
-      getUsersTrips()
     })()
   }, [])
 
