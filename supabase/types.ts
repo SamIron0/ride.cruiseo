@@ -87,6 +87,7 @@ export type Database = {
           pickup?: Date | null // jsonb
           dropoff?: Date | null // jsonb
           created_at?: string | null // timestamp with time zone
+          status?: string | null // text
         }
         Insert: {
           id: string | null // bigint, nullable for insert as it's auto-generated
@@ -98,6 +99,7 @@ export type Database = {
           pickup?: Date | null // jsonb, nullable
           dropoff?: Date | null // jsonb, nullable
           created_at?: string | null // timestamp with time zone, nullable
+          status?: string | null // text
         }
         Update: {
           id?: string | null // bigint, nullable for update
@@ -109,6 +111,7 @@ export type Database = {
           pickup?: Date | null // jsonb, nullable
           dropoff?: Date | null // jsonb, nullable
           created_at?: string | null // timestamp with time zone, nullable
+          status?: string | null // text
         }
         Relationships: [
           {
