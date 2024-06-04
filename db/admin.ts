@@ -104,7 +104,7 @@ export const saveTrip = async (trip: any, sessionId: string) => {
     const { data: id, error: updateTripError } = await supabaseAdmin
       .from("trips")
       .update({
-        ...tripVal,
+        id:    tripVal.id,
         riders: tripVal?.riders?.concat(trip?.uid),
         price: tripVal?.price + trip?.price,
         route: tripVal?.route?.concat(trip.origin)
