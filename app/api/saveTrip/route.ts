@@ -17,11 +17,11 @@ export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
       const { searchParams } = new URL(req.url)
-      const sessionId = searchParams.get("session_id")
+      //const sessionId = searchParams.get("session_id")
 
       const body = await req.json()
 
-      const { trip } = body
+      const { trip,sessionId } = body
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
