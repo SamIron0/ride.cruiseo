@@ -97,7 +97,7 @@ export const saveTrip = async (trip: any) => {
         riders: [trip?.uid],
         price: trip?.price,
         route: [trip?.origin, trip?.destination],
-        status: "available",
+        status: "pending",
         destination: trip?.destination,
         start: trip?.pickup
       })
@@ -135,7 +135,7 @@ export const getAvailableTrips = async (date: string, destination: string) => {
   const { data: trips, error } = await supabaseAdmin
     .from("trips")
     .select("*")
-    .eq("status", "available")
+    .eq("status", "pending")
     .eq("destination", destination)
     .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
 
