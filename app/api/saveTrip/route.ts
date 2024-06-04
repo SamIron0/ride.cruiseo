@@ -9,7 +9,7 @@ import {
   createServerSupabaseClient
 } from "@supabase/auth-helpers-nextjs"
 import { NextApiHandler } from "next"
-import { saveTrip } from "@/db/admin"
+import { hasSessionIdBeenUsed, saveTrip } from "@/db/admin"
 import { cookies } from "next/headers"
 import { Database, TablesInsert } from "@/supabase/types"
 
@@ -37,7 +37,14 @@ export async function POST(req: Request) {
           { status: 500 }
         )
       }
+      const hasSessionBeenUsed = await hasSessionIdBeenUsed(sessionId as string)
 
+      if (hasSessionBeenUsed) {
+        return new Response(
+          JSON.stringify({ error: "Session ID has been used" }),
+          { status: 400 }
+        )
+      }
       const tripID = await saveTrip(JSON.parse(trip), sessionId as string)
       const response = "Trip saved"
       return new Response(JSON.stringify(response), {
