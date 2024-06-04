@@ -150,7 +150,7 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
               </div>
             </DrawerTrigger>
             <DrawerContent>
-              <div className="max-w-3xl flex items-center flex-col ">
+              <div className="max-w-3xl mx-auto w-full flex items-center flex-col ">
                 <DrawerHeader>
                   <DrawerTitle>
                     <div>
