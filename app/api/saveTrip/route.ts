@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
       const body = await req.json()
 
-      const { trip,sessionId } = body
+      const { trip, sessionId } = body
       const supabase = createRouteHandlerClient<Database>({ cookies })
       const {
         data: { session }
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
         )
       }
       console.log("Session ID:", sessionId)
-      const hasSessionBeenUsed = await hasSessionIdBeenUsed(sessionId as string)
+      const hasSessionBeenUsed = await hasSessionIdBeenUsed(sessionId)
 
       if (hasSessionBeenUsed) {
         return new Response(
