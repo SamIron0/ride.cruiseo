@@ -90,7 +90,6 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
       },
       body: JSON.stringify({ trip })
     })
-
   }
 
   return (
@@ -150,30 +149,32 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
                 </div>
               </div>
             </DrawerTrigger>
-            <DrawerContent className="max-w-3xl ">
-              <DrawerHeader>
-                <DrawerTitle>
-                  <div>
-                    <h1 className="text-2xl font-bold w-full">Edit Trip</h1>
-                  </div>
-                </DrawerTitle>
-              </DrawerHeader>
-              <DrawerFooter>
-                {trip.status === "pending" ? (
-                  <Button
-                    variant={"destructive"}
-                    onClick={() => {
-                      cancelTrip(trip)
-                    }}
-                  >
-                    Cancel Trip
-                  </Button>
-                ) : (
-                  <Button variant={"outline"} onClick={() => {}}>
-                    Rebook{" "}
-                  </Button>
-                )}
-              </DrawerFooter>
+            <DrawerContent>
+              <div className="max-w-3xl flex justify-center flex-col ">
+                <DrawerHeader>
+                  <DrawerTitle>
+                    <div>
+                      <h1 className="text-2xl font-bold w-full">Edit Trip</h1>
+                    </div>
+                  </DrawerTitle>
+                </DrawerHeader>
+                <DrawerFooter>
+                  {trip.status === "pending" ? (
+                    <Button
+                      variant={"destructive"}
+                      onClick={() => {
+                        cancelTrip(trip)
+                      }}
+                    >
+                      Cancel Trip
+                    </Button>
+                  ) : (
+                    <Button variant={"outline"} onClick={() => {}}>
+                      Rebook{" "}
+                    </Button>
+                  )}
+                </DrawerFooter>
+              </div>
             </DrawerContent>
           </Drawer>
         ))}
