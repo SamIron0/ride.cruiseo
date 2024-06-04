@@ -90,7 +90,11 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
       },
       body: JSON.stringify({ trip })
     })
-    getTrips()
+
+    if (res.ok) {
+      toast.success("Trip canceled successfully")
+      getTrips()
+    }
   }
 
   return (
@@ -160,20 +164,22 @@ export const UserTrips = ({ bookingConfirmation }: UserTripsProps) => {
                   </DrawerTitle>
                 </DrawerHeader>
                 <DrawerFooter className="w-full max-w-lg">
-                  {trip.status === "pending" ? (
-                    <Button
-                      variant={"destructive"}
-                      onClick={() => {
-                        cancelTrip(trip)
-                      }}
-                    >
-                      Cancel Trip
-                    </Button>
-                  ) : (
-                    <Button variant={"outline"} onClick={() => {}}>
-                      Rebook{" "}
-                    </Button>
-                  )}
+                  <DrawerClose>
+                    {trip.status === "pending" ? (
+                      <Button
+                        variant={"destructive"}
+                        onClick={() => {
+                          cancelTrip(trip)
+                        }}
+                      >
+                        Cancel Trip
+                      </Button>
+                    ) : (
+                      <Button variant={"outline"} onClick={() => {}}>
+                        Rebook{" "}
+                      </Button>
+                    )}
+                  </DrawerClose>
                 </DrawerFooter>
               </div>
             </DrawerContent>
