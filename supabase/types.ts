@@ -125,12 +125,15 @@ export type Database = {
       stripe_sessions: {
         Row: {
           id: string
+          session_id: string
         }
         Insert: {
-          id?: string
+          id: string
+          session_id?: string
         }
         Update: {
-          id?: string
+          id: string
+          session_id?: string
         }
         Relationships: []
       }
