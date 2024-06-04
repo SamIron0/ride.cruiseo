@@ -12,20 +12,18 @@ const supabaseAdmin = createClient<Database>(
 )
 
 export const cancelTrip = async (tripId: string, userId: string) => {
-  const { error: cancelUserTripsError } = await supabaseAdmin
+  const { data: userTrips, error: cancelUserTripsError } = await supabaseAdmin
     .from("usertrips")
     .update({ uid: userId, tripid: tripId, status: "cancelled" })
-    .eq("tripid", tripId)
-    .eq("uid", userId)
+    .select("*")
 
   if (cancelUserTripsError) {
-    console.error("Error cancelling trip:", cancelUserTripsError)
+    console.error("Error cancelling user trip:", cancelUserTripsError)
   }
-
+  if (!userTrips) return
   const { error: caancelTripsError } = await supabaseAdmin
     .from("trips")
-    .update({id: tripId, status: "cancelled" })
-    .eq("id", tripId)
+    .update({ id: userTrips[0].tripid, status: "cancelled" })
 
   if (caancelTripsError) {
     console.error("Error cancelling trip:", caancelTripsError)
