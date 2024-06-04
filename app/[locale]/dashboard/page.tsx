@@ -72,7 +72,7 @@ export default function Dashboard() {
           })
 
           if (!response.ok) {
-            throw new Error("Failed to create trip")
+            return
           }
 
           toast.success(

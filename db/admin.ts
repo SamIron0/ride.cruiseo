@@ -61,7 +61,7 @@ export async function hasSessionIdBeenUsed(sessionId: string): Promise<boolean> 
   // Query your database to see if the session ID exists
   const { data, error } = await supabaseAdmin
     .from("stripe_sessions")
-    .select("id")
+    .select("*")
     .eq("id", sessionId)
     .single()
 

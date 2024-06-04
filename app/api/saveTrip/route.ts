@@ -37,6 +37,7 @@ export async function POST(req: Request) {
           { status: 500 }
         )
       }
+      console.log("Session ID:", sessionId)
       const hasSessionBeenUsed = await hasSessionIdBeenUsed(sessionId as string)
 
       if (hasSessionBeenUsed) {
