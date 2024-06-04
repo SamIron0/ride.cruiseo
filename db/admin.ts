@@ -15,7 +15,7 @@ export const cancelTrip = async (tripId: string, userId: string) => {
   console.log("Cancelling trip:", tripId)
   const { data: userTrips, error: cancelUserTripsError } = await supabaseAdmin
     .from("usertrips")
-    .update({ uid: userId, tripid: tripId, status: "cancelled" })
+    .update({id: tripId, uid: userId, status: "cancelled" })
     .eq("id", tripId)
     .select("*")
 

@@ -91,20 +91,20 @@ export type Database = {
         }
         Insert: {
           id: string | null // bigint, nullable for insert as it's auto-generated
-          uid: string
-          tripid: string
-          origin: string
-          destination: string
-          price: number
+          uid?: string
+          tripid?: string
+          origin?: string
+          destination?: string
+          price?: number
           pickup?: Date | null // jsonb, nullable
           dropoff?: Date | null // jsonb, nullable
           created_at?: string | null // timestamp with time zone, nullable
           status?: string | null // text
         }
         Update: {
-          id?: string | null // bigint, nullable for update
+          id: string | null // bigint, nullable for update
           uid: string | null // uuid, nullable
-          tripid: string
+          tripid?: string
           origin?: string | null // uuid, nullable
           destination?: string | null // uuid, nullable
           price?: number | null // numeric, nullable
