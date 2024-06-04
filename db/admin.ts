@@ -89,6 +89,8 @@ export const saveTrip = async (trip: any, sessionId: string) => {
     return null
   }
 
+  await markSessionIdAsUsed(sessionId)
+
   console.log("Saving trip:", trip)
   let tripID: any = null
   if (trip?.tripid) {
