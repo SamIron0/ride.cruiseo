@@ -115,13 +115,14 @@ export const saveTrip = async (
       })
       .eq("id", tripVal.id)
       .select("id")
+      .single()
 
     if (updateTripError) {
       console.error("Error updating trip:", updateTripError)
       return null
     }
 
-    tripID = id
+    tripID = id.id
   } else {
     const { data: id, error: createTripError } = await supabaseAdmin
       .from("trips")
@@ -142,7 +143,7 @@ export const saveTrip = async (
       return null
     }
 
-    tripID = id
+    tripID = id.id
   }
 
   // next, create usertrips entry
