@@ -88,13 +88,9 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
 }
 export const saveTrip = async (
   trip: Tables<"usertrips">,
-  sessionId: string,
+  sessionId: string
 ) => {
   await markSessionIdAsUsed(sessionId)
-
-  console.log("Saving trip:", trip)
-  console.log("Saving trip:", trip?.id)
-  console.log("Saving trip:", trip)
 
   let tripID: any = null
   const { data: tripVal, error: getUserTripsError } = await supabaseAdmin
@@ -150,14 +146,15 @@ export const saveTrip = async (
   const { data: userTrip, error: createUserTripError } = await supabaseAdmin
     .from("usertrips")
     .insert({
-      id: trip?.id, 
+      id: trip?.id,
       uid: trip?.uid,
       tripid: tripID,
       origin: trip?.origin,
       destination: trip?.destination,
       price: trip?.price,
-      pickup: trip?.pickup
-    })  
+      pickup: trip?.pickup,
+      status: "pending"
+    })
 
   if (createUserTripError) {
     console.error("Error creating usertrip:", createUserTripError)
@@ -165,14 +162,18 @@ export const saveTrip = async (
   }
 }
 
-export const getAvailableTrips = async (date: string, destination: string) => {
+export const getAvailableTrips = async (
+  uid: string,
+  date: string,
+  destination: string
+) => {
   const { data: trips, error } = await supabaseAdmin
     .from("trips")
     .select("*")
     .eq("status", "pending")
     .eq("destination", destination)
     .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
-
+    .not("riders", "cs", [uid])
   if (error) {
     console.error("Error retrieving trips:", error)
     return null
