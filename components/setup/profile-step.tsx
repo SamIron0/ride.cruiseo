@@ -9,20 +9,16 @@ import { FC, useCallback, useState } from "react"
 
 interface ProfileStepProps {
   username: string
-  usernameAvailable: boolean
-  displayName: string
-  onUsernameAvailableChange: (isAvailable: boolean) => void
   onUsernameChange: (username: string) => void
-  onDisplayNameChange: (name: string) => void
+  phone: string
+  onPhoneChange: (phone: string) => void
 }
 
 export const ProfileStep: FC<ProfileStepProps> = ({
   username,
-  usernameAvailable,
-  displayName,
-  onUsernameAvailableChange,
   onUsernameChange,
-  onDisplayNameChange
+  phone,
+  onPhoneChange
 }) => {
   const [loading, setLoading] = useState(false)
 
@@ -45,14 +41,6 @@ export const ProfileStep: FC<ProfileStepProps> = ({
       <div className="space-y-1">
         <div className="flex items-center space-x-2">
           <Label>Full name</Label>
-
-          <div className="text-xs">
-            {usernameAvailable ? (
-              <div className="text-green-500">AVAILABLE</div>
-            ) : (
-              <div className="text-red-500">UNAVAILABLE</div>
-            )}
-          </div>
         </div>
 
         <div className="relative">
@@ -64,16 +52,20 @@ export const ProfileStep: FC<ProfileStepProps> = ({
               onUsernameChange(e.target.value)
             }}
           />
+        </div>
+        <div className="flex items-center space-x-2">
+          <Label>Phone number</Label>
+        </div>
 
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-            {loading ? (
-              <IconLoader2 className="animate-spin" />
-            ) : usernameAvailable ? (
-              <IconCircleCheckFilled className="text-green-500" />
-            ) : (
-              <IconCircleXFilled className="text-red-500" />
-            )}
-          </div>
+        <div className="relative">
+          <Input
+            className="pr-10 text-[16px]"
+            placeholder="e.g. 2041329178"
+            value={username}
+            onChange={e => {
+              onPhoneChange(e.target.value)
+            }}
+          />
         </div>
       </div>
     </>

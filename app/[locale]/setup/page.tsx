@@ -76,7 +76,7 @@ export default function SetupPage() {
       has_onboarded: true,
       display_name: displayName,
       username,
-      phone,
+      phone
     }
     const updatedProfile = await updateProfile(profile.id, updateProfilePayload)
 
@@ -92,7 +92,7 @@ export default function SetupPage() {
       case 1:
         return (
           <StepContainer
-            stepDescription="Let's create your driver profile."
+            stepDescription="Let's create your profile."
             stepNum={currentStep}
             stepTitle="Welcome to Cruiseo"
             onShouldProceed={handleShouldProceed}
@@ -101,11 +101,9 @@ export default function SetupPage() {
           >
             <ProfileStep
               username={username}
-              usernameAvailable={usernameAvailable}
-              displayName={displayName}
-              onUsernameAvailableChange={setUsernameAvailable}
               onUsernameChange={setUsername}
-              onDisplayNameChange={setDisplayName}
+              phone={phone}
+              onPhoneChange={setPhone}
             />
           </StepContainer>
         )
@@ -122,7 +120,7 @@ export default function SetupPage() {
             showNextButton={true}
             showBackButton={true}
           >
-            <FinishStep displayName={displayName} />
+            <FinishStep username={username} />
           </StepContainer>
         )
 
