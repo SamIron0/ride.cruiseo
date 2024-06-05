@@ -87,8 +87,8 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
   }
 }
 export const saveTrip = async (
+  trip: Tables<"usertrips">,
   sessionId: string,
-  trip: Tables<"usertrips">
 ) => {
   await markSessionIdAsUsed(sessionId)
 
@@ -149,14 +149,14 @@ export const saveTrip = async (
   const { data: userTrip, error: createUserTripError } = await supabaseAdmin
     .from("usertrips")
     .insert({
-      id: trip?.id,
+      id: trip?.id, 
       uid: trip?.uid,
       tripid: tripID,
       origin: trip?.origin,
       destination: trip?.destination,
       price: trip?.price,
       pickup: trip?.pickup
-    })
+    })  
 
   if (createUserTripError) {
     console.error("Error creating usertrip:", createUserTripError)
