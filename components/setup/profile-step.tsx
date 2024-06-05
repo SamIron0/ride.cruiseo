@@ -58,10 +58,10 @@ export const ProfileStep: FC<ProfileStepProps> = ({
         </div>
 
         <div className="relative">
-          <Input
+          <Input  
             className="pr-10 text-[16px]"
             placeholder="e.g. 2041329178"
-            value={username}
+            value={phone}
             onChange={e => {
               onPhoneChange(e.target.value)
             }}
