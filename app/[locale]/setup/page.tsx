@@ -96,7 +96,7 @@ export default function SetupPage() {
             stepNum={currentStep}
             stepTitle="Welcome to Cruiseo"
             onShouldProceed={handleShouldProceed}
-            showNextButton={!!(username && usernameAvailable)}
+            showNextButton={!!(username && phone.length == 10)}
             showBackButton={false}
           >
             <ProfileStep
