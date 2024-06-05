@@ -1,11 +1,11 @@
 import { Tables } from "@/supabase/types"
 
 interface TripsProps {
-  trips: Tables<"trips">[]
-  onSelectTrip: (trip: Tables<"trips">) => void
-  selectedTrip: Tables<"trips"> | null
+  trips: Tables<"usertrips">[]
+  onSelectTrip: (trip: Tables<"usertrips">) => void
+  selectedTrip: Tables<"usertrips"> | null
 }
-export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
+export const Trips = ({ trips, selectedTrip, onSelectTrip }: TripsProps) => {
   return (
     <div className="p-4 overflow-y-auto">
       {trips.map(trip => (
@@ -17,17 +17,15 @@ export const Trips = ({ trips, selectedTrip ,onSelectTrip}: TripsProps) => {
           }`}
         >
           <div className="mb-3 flex flex-row w-full justify-between">
-            <span className="">{trip.start?.date}</span>
+            <span className="">{trip?.pickup?.date}</span>
             <div className="flex flex-row">
               <span className="font-semibold mr-2">2 seats</span>
               <span>${trip.price}</span>
             </div>
           </div>
           <div className="flex mb-2 w-full  flex-col">
-            <span className="flex flex-col text-sm mb-1  ">{trip.route}</span>
-            <span className="flex flex-col text-sm">
-              {trip.destination}
-            </span>
+            <span className="flex flex-col text-sm mb-1  ">{trip.origin}</span>
+            <span className="flex flex-col text-sm">{trip.destination}</span>
           </div>{" "}
           <div className="flex w-full  -space-x-4 rtl:space-x-reverse">
             <img

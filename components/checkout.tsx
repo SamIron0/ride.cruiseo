@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 )
 
 interface CheckoutProps {
-  selectedTrip: Tables<"trips"> | null
+  selectedTrip: Tables<"usertrips"> | null
   onBackClick: () => void
 }
 

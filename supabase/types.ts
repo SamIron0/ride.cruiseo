@@ -48,7 +48,7 @@ export type Database = {
           destination?: string | null // uuid
         }
         Insert: {
-          id?: string | null // bigint, nullable for insert as it's auto-generated
+          id: string// bigint, nullable for insert as it's auto-generated
           riders?: string[] | null // uuid[], nullable
           price: number
           route: string[] | null // text[], nullable
@@ -58,7 +58,7 @@ export type Database = {
           destination?: string | null // uuid
         }
         Update: {
-          id?: string | null // bigint, nullable for update
+          id: string // bigint, nullable for update
           riders?: string[] | null // uuid[], nullable
           price?: number | null // double precision, nullable
           route?: string[] | null // text[], nullable
@@ -90,7 +90,7 @@ export type Database = {
           status?: string | null // text
         }
         Insert: {
-          id: string | null // bigint, nullable for insert as it's auto-generated
+          id: string// bigint, nullable for insert as it's auto-generated
           uid?: string
           tripid?: string
           origin?: string
@@ -102,7 +102,7 @@ export type Database = {
           status?: string | null // text
         }
         Update: {
-          id: string | null // bigint, nullable for update
+          id: string  // bigint, nullable for update
           uid: string | null // uuid, nullable
           tripid?: string
           origin?: string | null // uuid, nullable

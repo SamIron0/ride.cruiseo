@@ -41,22 +41,25 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
-  const [availableTrips, setAvailableTrips] = useState<Tables<"trips">[]>([])
+  const [availableTrips, setAvailableTrips] = useState<Tables<"usertrips">[]>(
+    []
+  )
   useEffect(() => {
     setStep(0)
     setAvailableTrips([
       {
         id: uuidv4(),
+        uid: profile?.id || "",
+        tripid: "",
         price: 25,
-        start: {
+        pickup: {
           date: dateTime.date,
           hour: dateTime.hour,
           ampm: dateTime.ampm,
           minute: dateTime.minute
         },
-        route: [origin, listing.address],
+        origin: listing.address,
         destination: listing.address,
-        riders: [profile?.id || ""],
         status: "available"
       }
     ])
@@ -93,7 +96,21 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         })
       }).then(res => res.json())
 
-      trips ? setAvailableTrips(availableTrips.concat(trips)) : null
+      if (!trips) return
+      let retrievedTrips: any[] = []
+      for (let trip of trips) {
+        retrievedTrips.push({
+          id: uuidv4(),
+          uid: profile?.id || "",
+          tripid: trip.id,
+          price: 25,
+          pickup: trip.pickup,
+          origin: listing.address,
+          destination: listing.address,
+          status: "available"
+        })
+      }
+      setAvailableTrips(availableTrips.concat(retrievedTrips))
     } catch {
       console.error("An error occurred while fetching trips")
     }

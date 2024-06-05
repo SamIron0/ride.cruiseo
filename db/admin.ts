@@ -1,6 +1,8 @@
 import { createClient } from "@supabase/supabase-js"
 import type { Database, Tables, TablesInsert } from "@/supabase/types"
 import { v4 as uuid } from "uuid"
+import { use } from "react"
+import { tr } from "date-fns/locale"
 // Change to control trial period length
 const TRIAL_PERIOD_DAYS = 0
 
@@ -84,35 +86,34 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
     throw new Error("Error marking session ID as used")
   }
 }
-export const saveTrip = async (trip: any, sessionId: string) => {
+export const saveTrip = async (
+  sessionId: string,
+  trip: Tables<"usertrips">
+) => {
   await markSessionIdAsUsed(sessionId)
-  
+
   console.log("Saving trip:", trip)
-  console.log("Saving trip:", trip.tripid)
+  console.log("Saving trip:", trip?.id)
   console.log("Saving trip:", trip)
 
   let tripID: any = null
-  if (trip?.tripid) {
-    const { data: tripVal, error: findTripError } = await supabaseAdmin
-      .from("trips")
-      .select("*")
-      .eq("id", trip?.tripid)
-      .single()
+  const { data: tripVal, error: getUserTripsError } = await supabaseAdmin
+    .from("trips")
+    .select("*")
+    .eq("id", trip.tripid)
+    .single()
 
-    if (findTripError) {
-      console.error("Error finding trip:", findTripError)
-      return null
-    }
+  if (tripVal) {
     //update trip if it exists
     const { data: id, error: updateTripError } = await supabaseAdmin
       .from("trips")
       .update({
-        id:    tripVal.id,
-        riders: tripVal?.riders?.concat(trip?.uid),
-        price: tripVal?.price + trip?.price,
-        route: tripVal?.route?.concat(trip.origin)
+        id: tripVal.id,
+        riders: tripVal.riders?.concat(trip.uid),
+        price: tripVal.price + trip?.price,
+        route: tripVal.route?.concat(trip?.origin, trip?.destination)
       })
-      .eq("id", trip.tripid)
+      .eq("id", tripVal.id)
       .select("id")
 
     if (updateTripError) {
@@ -148,9 +149,9 @@ export const saveTrip = async (trip: any, sessionId: string) => {
   const { data: userTrip, error: createUserTripError } = await supabaseAdmin
     .from("usertrips")
     .insert({
-      id: uuid(),
+      id: trip?.id,
       uid: trip?.uid,
-      tripid: tripID?.id,
+      tripid: tripID,
       origin: trip?.origin,
       destination: trip?.destination,
       price: trip?.price,

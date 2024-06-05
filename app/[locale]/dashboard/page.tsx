@@ -2,15 +2,16 @@
 import { UserTrips } from "@/components/UserTrips"
 import { CruiseoContext } from "@/context/context"
 import { supabase } from "@/lib/supabase/browser-client"
-import { Tables } from "@/supabase/types"
+import { Tables, TablesInsert } from "@/supabase/types"
 import { useRouter } from "next/navigation"
 import React, { useContext, useEffect, useState } from "react"
 import { toast } from "sonner"
-
+import { v4 as uuid } from "uuid"
 export default function Dashboard() {
   const [status, setStatus] = useState(null)
   const router = useRouter()
   const [trips, setTrips] = useState<Tables<"usertrips">[]>([])
+  const [userTrip, setUserTrip] = useState<Tables<"usertrips"> | null>(null)
   const { profile } = useContext(CruiseoContext)
   const getUsersTrips = async () => {
     const session = await supabase.auth.getSession()
@@ -62,13 +63,25 @@ export default function Dashboard() {
         }
 
         const storedTrip = window.localStorage.getItem("selectedTrip")
+        
         if (storedTrip) {
+          //create a usertrip
+          const x  = JSON.parse(storedTrip)
+          const u_trip: TablesInsert<"usertrips"> = {
+            id: uuid(),
+            uid: profile?.id || "",
+            status: "pending",
+            origin:x.origin,
+            destination:x.destination,          }
           const response = await fetch("/api/saveTrip", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ trip: storedTrip, sessionId })
+            body: JSON.stringify({
+              trip: storedTrip,
+              sessionId
+            })
           })
 
           if (!response.ok) {
