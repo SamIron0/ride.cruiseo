@@ -231,7 +231,6 @@ export type Database = {
           billing_address: Json | null
           payment_method: Json | null
           created_at: string
-          display_name: string
           has_onboarded: boolean
           id: string
           image_path: string
@@ -248,7 +247,6 @@ export type Database = {
           billing_address?: Json | null
           payment_method?: Json | null
           created_at?: string
-          display_name?: string
           has_onboarded?: boolean
           id?: string
           image_path?: string
@@ -266,7 +264,6 @@ export type Database = {
           billing_address?: Json | null
           payment_method?: Json | null
           created_at?: string
-          display_name?: string
           has_onboarded?: boolean
           id?: string
           image_path?: string

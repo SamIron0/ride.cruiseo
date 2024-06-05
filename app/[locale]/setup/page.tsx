@@ -74,7 +74,6 @@ export default function SetupPage() {
       ...profile,
 
       has_onboarded: true,
-      display_name: displayName,
       username,
       phone
     }

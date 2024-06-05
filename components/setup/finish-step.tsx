@@ -12,7 +12,7 @@ export const FinishStep: FC<FinishStepProps> = ({ username }) => {
         {username.length > 0 ? `, ${username.split(" ")[0]}` : null}!
       </div>
 
-      <div>Click next to start creating.</div>
+      <div>Click next to begin.</div>
     </div>
   )
 }
