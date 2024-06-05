@@ -85,7 +85,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
 
   const getTrips = async () => {
     try {
-      const trips = await fetch("/api/getAvailableTrips", {
+      const trips: Tables<"trips">[] = await fetch("/api/getAvailableTrips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -104,7 +104,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           uid: profile?.id || "",
           tripid: trip.id,
           price: 25,
-          pickup: trip.pickup,
+          pickup: trip.start,
           origin: listing.address,
           destination: listing.address,
           status: "available"
