@@ -170,7 +170,8 @@ export const getAvailableTrips = async (
   const { data: trips, error } = await supabaseAdmin
     .from("trips")
     .select("*")
-    .eq("status", "pending")
+    // where status is pending / accepted
+    .eq("status", ["pending", "accepted"])
     .eq("destination", destination)
     .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
     .contains("riders", [])
