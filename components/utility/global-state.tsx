@@ -6,6 +6,7 @@ import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { Tables } from "@/supabase/types"
 import { Destination, Trip } from "@/types"
+import { useRouter } from "next/navigation"
 import { FC, useEffect, useState } from "react"
 
 interface GlobalStateProps {
@@ -15,6 +16,7 @@ interface GlobalStateProps {
 export const GlobalState: FC<GlobalStateProps> = ({
   children
 }: GlobalStateProps) => {
+  const router = useRouter()
   // PROFILE STORE
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null)
   const [destinations, setDestinations] = useState<Destination[] | null>([])
@@ -55,6 +57,10 @@ export const GlobalState: FC<GlobalStateProps> = ({
       const user = session.user
 
       const profile = await getProfileByUserId(user.id)
+
+      if (!profile.has_onboarded) {
+        return router.push("/setup")
+      }
       setProfile(profile)
 
       return profile
