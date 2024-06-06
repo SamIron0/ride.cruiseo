@@ -73,7 +73,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          origin: listing?.address,
+          origin: origin,
           destination: trip?.destination,
           trip: trip
         })
