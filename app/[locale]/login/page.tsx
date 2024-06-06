@@ -79,9 +79,6 @@ export default async function Login({
     }
 
     return redirect("/login?message=Check email to verify account")
-
-    // login after signup
-    return
   }
 
   const handleResetPassword = async (formData: FormData) => {
