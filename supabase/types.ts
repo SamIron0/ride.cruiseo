@@ -40,9 +40,9 @@ export type Database = {
         Row: {
           id: string // bigint
           riders?: string[] | null // uuid[]
-          price: number
+          price?: number
           route: string[]
-          status?: string | null // text
+          status: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp
           destination?: string | null // uuid
@@ -50,8 +50,8 @@ export type Database = {
         Insert: {
           id: string // bigint, nullable for insert as it's auto-generated
           riders?: string[] | null // uuid[], nullable
-          price: number
-          route: string[] | null // text[], nullable
+          price?: number
+          route?: string[] | null // text[], nullable
           status?: string | null // text
           start?: Date | null // timestamp with time zone
           end?: Date | null // timestamp

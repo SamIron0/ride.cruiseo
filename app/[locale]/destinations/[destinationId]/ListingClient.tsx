@@ -41,26 +41,22 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
-  const [availableTrips, setAvailableTrips] = useState<Tables<"usertrips">[]>(
-    []
-  )
+  const [availableTrips, setAvailableTrips] = useState<Tables<"trips">[]>([])
   useEffect(() => {
     setStep(0)
     setAvailableTrips([
       {
         id: uuidv4(),
-        uid: profile?.id || "",
-        tripid: "",
-        price: 25,
-        pickup: {
+        start: {
           date: dateTime.date,
           hour: dateTime.hour,
           ampm: dateTime.ampm,
           minute: dateTime.minute
         },
-        origin: listing.address,
-        destination: listing.address,
-        status: "available"
+        route: [origin, listing?.address],
+        status: "pending",
+        destination: listing?.address,
+        riders: [profile?.id || ""]
       }
     ])
   }, [dateTime.date, origin])

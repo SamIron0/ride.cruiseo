@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 )
 
 interface CheckoutProps {
-  selectedTrip: Tables<"usertrips"> | null
+  selectedTrip: Tables<"trips"> | null
   onBackClick: () => void
 }
 
@@ -73,7 +73,7 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
             <div className="flex w-full flex-col px-4 py-4">
               <span className="font-semibold">
                 {" "}
-                Leaving: {selectedTrip?.pickup?.date}
+                Leaving: {selectedTrip?.start?.date}
               </span>
               <span className="float-right text-zinc-300">Origin: Wal</span>
               <span className="float-right text-zinc-300">
