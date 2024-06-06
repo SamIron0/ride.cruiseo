@@ -106,7 +106,7 @@ export const saveTrip = async (
       .update({
         id: tripVal.id,
         riders: tripVal.riders?.concat(trip.uid),
-        price: tripVal.price + trip?.price,
+        price: tripVal?.price + trip?.price,
         route: tripVal.route?.concat(trip?.origin, trip?.destination)
       })
       .eq("id", tripVal.id)

@@ -40,7 +40,7 @@ export type Database = {
         Row: {
           id: string // bigint
           riders?: string[] | null // uuid[]
-          price?: number
+          price: number
           route: string[]
           status: string | null // text
           start?: Date | null // timestamp with time zone
