@@ -83,7 +83,12 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     const pricePromises = availableTrips.map(trip => fetchPrice(trip))
     const prices = await Promise.all(pricePromises)
 
-    return prices
+    const updatedTrips = availableTrips.map((trip: Tables<"trips">, index) => {
+      const price = prices[index]
+      return { ...trip, price }
+    })
+    setAvailableTrips(updatedTrips)
+    return 
   }
 
   const getTrips = async () => {
