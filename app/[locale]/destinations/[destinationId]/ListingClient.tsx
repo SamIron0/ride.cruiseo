@@ -64,19 +64,26 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const onSearchClick = async () => {
     getTrips()
     setSelectedTrip(availableTrips[0])
-    const price = await fetch("/api/price", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        origin: listing?.address,
-        destination: availableTrips[0]?.destination,
-        trip: availableTrips[0]
+
+    const fetchPrice = async (trip: Tables<"trips">) => {
+      const response = await fetch("/api/price", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          origin: listing?.address,
+          destination: trip?.destination,
+          trip: trip
+        })
       })
-    })
-    const data = await price.json()
-    console.log(data)
+      return response.json()
+    }
+
+    const pricePromises = availableTrips.map(trip => fetchPrice(trip))
+    const prices = await Promise.all(pricePromises)
+
+    return prices
   }
 
   const getTrips = async () => {
