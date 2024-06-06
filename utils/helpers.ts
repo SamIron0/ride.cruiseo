@@ -37,7 +37,7 @@ export async function calculatePrice(
     estimatedDurationMinutes,
     minimumFare
   )
-  return distanceInMiles
+  return res
 }
 function calculateTripPrice(
   baseFare: number,
