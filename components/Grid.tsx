@@ -59,10 +59,6 @@ export function Grid() {
 
         const response = await fetch(url, options)
         setDestinations(await response.json())
-        const profile = userID.data.user
-          ? await getProfileByUserId(userID.data.user?.id as string)
-          : null
-        setProfile(profile)
       } catch (err) {
         console.error(err)
       }
@@ -110,7 +106,8 @@ export function Grid() {
             ))}
           </div>
         ) : (
-<></>        )}
+          <></>
+        )}
       </Container>
     </ClientOnly>
   )
