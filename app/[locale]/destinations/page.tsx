@@ -5,8 +5,8 @@ import { CruiseoContext } from "@/context/context"
 import { createClient } from "@/lib/supabase/server"
 import { useContext, useEffect } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
-import { useRouter } from "next/router"
 import { getProfileByUserId } from "@/db/profile"
+import { useRouter } from "next/navigation"
 export default function Home() {
   const router = useRouter()
   const { profile, setProfile } = useContext(CruiseoContext)
