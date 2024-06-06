@@ -53,6 +53,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           ampm: dateTime.ampm,
           minute: dateTime.minute
         },
+        price: 0,
         route: [origin, listing?.address],
         status: "pending",
         destination: listing?.address,
