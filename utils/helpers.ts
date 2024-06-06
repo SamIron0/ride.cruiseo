@@ -12,7 +12,6 @@ const calculateDistance = async (origin1?: string, destination1?: string) => {
     const response = await axios.get(url)
     const result = response.data
     const distanceInMeters = result.rows[0].elements[0].distance.value
-    //console.log("distanceee", distanceInMeters)
     return distanceInMeters
   } catch (error) {
     console.error("Error fetching data: ", error)
@@ -30,14 +29,14 @@ export async function calculatePrice(
   let costPerMinute = 0.2
   let estimatedDurationMinutes = 20 // This would be the estimated duration
   let minimumFare = 5.0
-  /* const res = calculateTripPrice(
+  const res = calculateTripPrice(
     baseFare,
     costPerMile,
     distanceInMiles,
     costPerMinute,
     estimatedDurationMinutes,
     minimumFare
-  )*/
+  )
   return distanceInMiles
 }
 function calculateTripPrice(
