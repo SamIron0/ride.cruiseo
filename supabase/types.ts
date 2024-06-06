@@ -237,7 +237,7 @@ export type Database = {
           image_url: string
           updated_at: string | null
           address: string | null
-          username: string
+          full_name: string
           trips?: string[] | null
           phone: string | null
         }
@@ -254,7 +254,7 @@ export type Database = {
           profile_context?: string
           updated_at?: string | null
           address?: string | null
-          username?: string
+          full_name?: string
           trips?: string[] | null
           phone?: string | null
         }
@@ -271,7 +271,7 @@ export type Database = {
           profile_context?: string
           updated_at?: string | null
           address?: string | null
-          username?: string
+          full_name?: string
           trips?: string[] | null
           phone?: string | null
         }
