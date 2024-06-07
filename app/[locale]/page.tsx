@@ -37,12 +37,12 @@ export default function ChatPage() {
               together, save together.
             </p>
             <div className="flex flex-row gap-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
+              <button className="bg-blue-600 text-md hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
                 Sign up to ride
               </button>
               <Link
                 href={"https://drive.cruiseo.xyz"}
-                className="bg-zinc-200 hover:bg-zinc-300 text-black font-semibold py-3 px-5 rounded-lg"
+                className="bg-white hover:bg-zinc-300  text-md text-black font-semibold py-3 px-5 rounded-lg"
               >
                 Apply to drive
               </Link>
@@ -151,7 +151,7 @@ export default function ChatPage() {
             <div className="flex flex-row gap-4">
               <Link
                 href="https://drive.cruiseo.xyz"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg"
+                className="bg-blue-600 text-md hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg"
               >
                 Apply to drive
               </Link>
