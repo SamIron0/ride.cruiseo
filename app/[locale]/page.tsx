@@ -136,11 +136,11 @@ export default function ChatPage() {
           <div className="lg:w-1/2 w-full mt-8 lg:mt-0 md:pr-12">
             <img src="/driver.jpg" alt=" driver image" className="max-w-md" />
           </div>
-          <div className="lg:w-1/2 text-gray-600 ">
+          <div className="lg:w-1/2 w-full text-gray-600 ">
             <h1 className="text-4xl text-gray-800 font-bold mb-4">
               Earn Flexibly, Keep More
             </h1>
-            <p className="text-md mb-8 text-zinc-500">
+            <p className="text-md max-w-xl mb-8 text-zinc-500">
               Drive on your own time, keep a higher percentage of each fare, and
               enjoy the freedom to choose your rides. Your car, your schedule,
               your profits.
