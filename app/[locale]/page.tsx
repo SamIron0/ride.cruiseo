@@ -40,7 +40,7 @@ export default function ChatPage() {
               src="/hero.jpg"
               alt="Rideshare Image"
               className="rounded-lg shadow-lg"
-            ></img>
+            />
           </div>
         </section>
         <section className="md:px-12 lg:px-16 py-12 bg-white">
@@ -51,7 +51,7 @@ export default function ChatPage() {
                   src="https://via.placeholder.com/64"
                   alt="Icon 1"
                   className="w-16 h-16"
-                ></img>
+                />
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                 Easy Booking
@@ -67,9 +67,7 @@ export default function ChatPage() {
                   src="https://via.placeholder.com/64"
                   alt="Icon 2"
                   className="w-16 h-16"
-                >
-                  {" "}
-                </img>
+                />{" "}
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                 Cost Sharing
@@ -85,7 +83,7 @@ export default function ChatPage() {
                   src="https://via.placeholder.com/64"
                   alt="Icon 3"
                   className="w-16 h-16"
-                ></img>
+                />
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                 Safe and Reliable
@@ -101,7 +99,7 @@ export default function ChatPage() {
                   src="https://via.placeholder.com/64"
                   alt="Icon 4"
                   className="w-16 h-16"
-                ></img>
+                />
               </div>
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                 Eco-Friendly
