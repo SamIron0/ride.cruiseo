@@ -85,11 +85,7 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
     throw new Error("Error marking session ID as used")
   }
 }
-export const saveTrip = async (
-  trip: Tables<"trips">,
-  sessionId: string,
-  user_id: string
-) => {
+export const saveTrip = async (trip: Tables<"trips">, sessionId: string) => {
   await markSessionIdAsUsed(sessionId)
 
   let tripID: any = null
@@ -142,7 +138,7 @@ export const saveTrip = async (
     .from("usertrips")
     .insert({
       id: trip?.id,
-      uid: user_id,
+      uid: trip?.riders ? trip?.riders[0] : "",
       tripid: tripID,
       origin: trip?.route?.[0],
       destination: trip?.route?.[1],
