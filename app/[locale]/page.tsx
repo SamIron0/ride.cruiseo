@@ -2,12 +2,10 @@
 
 import Container from "@/components/Container"
 import Logo from "@/components/navbar/Logo"
-import Navbar from "@/components/navbar/NavBar"
 import UserMenu from "@/components/navbar/UserMenu"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase/client"
 import Link from "next/link"
-import { redirect } from "next/navigation"
 
 export default async function ChatPage() {
   return (
