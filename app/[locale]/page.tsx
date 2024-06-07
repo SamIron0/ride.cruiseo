@@ -40,9 +40,12 @@ export default function ChatPage() {
               <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
                 Sign up to ride
               </button>
-              <button className="bg-zinc-200 hover:bg-zinc-300 text-black font-semibold py-3 px-5 rounded-lg">
+              <Link
+                href={"https://drive.cruiseo.xyz"}
+                className="bg-zinc-200 hover:bg-zinc-300 text-black font-semibold py-3 px-5 rounded-lg"
+              >
                 Apply to drive
-              </button>
+              </Link>
             </div>
           </div>
           <div className="lg:w-1/2 mt-8 lg:mt-0">
@@ -147,7 +150,7 @@ export default function ChatPage() {
             </p>
             <div className="flex flex-row gap-4">
               <Link
-                href="drive.cruiseo.xyz"
+                href="https://drive.cruiseo.xyz"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg"
               >
                 Apply to drive
