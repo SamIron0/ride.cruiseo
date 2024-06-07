@@ -56,53 +56,59 @@ export default function ChatPage() {
       </div>
       <section className="md:px-12 lg:px-16 py-12 bg-white w-full">
         <div className="max-w-5xl px-6 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex flex-col ">
-            <div className="mb-4">
-              <img
-                src="https://via.placeholder.com/64"
-                alt="Icon 1"
-                className="w-16 h-16"
-              />
+          <div className=" flex justify-center">
+            <div className="flex flex-col ">
+              <div className="mb-4">
+                <img
+                  src="https://via.placeholder.com/64"
+                  alt="Icon 1"
+                  className="w-16 h-16"
+                />
+              </div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                Easy Booking
+              </h2>
+              <p className="text-gray-600">
+                Quickly book your trip with a few clicks, and get ready to share
+                your journey.
+              </p>
             </div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">
-              Easy Booking
-            </h2>
-            <p className="text-gray-600">
-              Quickly book your trip with a few clicks, and get ready to share
-              your journey.
-            </p>
           </div>
-          <div className="flex flex-col ">
-            <div className="mb-4">
-              <img
-                src="https://via.placeholder.com/64"
-                alt="Icon 2"
-                className="w-16 h-16"
-              />{" "}
+          <div className="flex justify-center">
+            <div className="flex flex-col ">
+              <div className="mb-4">
+                <img
+                  src="https://via.placeholder.com/64"
+                  alt="Icon 2"
+                  className="w-16 h-16"
+                />{" "}
+              </div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                Cost Sharing
+              </h2>
+              <p className="text-gray-600">
+                Save money by sharing the travel costs with others heading in
+                the same direction.
+              </p>
             </div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">
-              Cost Sharing
-            </h2>
-            <p className="text-gray-600">
-              Save money by sharing the travel costs with others heading in the
-              same direction.
-            </p>
           </div>
-          <div className="flex flex-col">
-            <div className="mb-4">
-              <img
-                src="https://via.placeholder.com/64"
-                alt="Icon 3"
-                className="w-16 h-16"
-              />
+          <div className="flex justify-center">
+            <div className="flex flex-col">
+              <div className="mb-4">
+                <img
+                  src="https://via.placeholder.com/64"
+                  alt="Icon 3"
+                  className="w-16 h-16"
+                />
+              </div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                Safe and Reliable
+              </h2>
+              <p className="text-gray-600">
+                Travel with verified drivers and passengers for a safe and
+                reliable experience.
+              </p>
             </div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">
-              Safe and Reliable
-            </h2>
-            <p className="text-gray-600">
-              Travel with verified drivers and passengers for a safe and
-              reliable experience.
-            </p>
           </div>
         </div>
       </section>
