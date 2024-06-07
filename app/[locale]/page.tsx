@@ -20,7 +20,7 @@ export default function ChatPage() {
           </Container>
         </div>
       </div>
-      <div className=" ">
+      <div className=" px-6 ">
         <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
           <div className="lg:w-1/2 lg:pr-12">
             <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
@@ -49,7 +49,7 @@ export default function ChatPage() {
         </section>
       </div>
       <section className="md:px-12 lg:px-16 py-12 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-7xl px-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-center text-center">
             <div className="mb-4">
               <img
