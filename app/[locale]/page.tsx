@@ -13,11 +13,11 @@ export default async function ChatPage() {
         <h1 className="text-4xl lg:text-6xl font-bold mb-4">
           Share Your Journey, Share the Cost
         </h1>
-        <p className="text-md lg:text-xl mb-8 text-muted">
+        <p className="text-lg lg:text-xl mb-8 text-secondary">
           Book a trip to your destination and let others join in. Travel
           together, save together.
         </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-lg">
           Book Your Trip
         </button>
       </div>
