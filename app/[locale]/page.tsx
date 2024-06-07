@@ -15,6 +15,7 @@ import { getProfileByUserId } from "@/db/profile"
 import { supabase } from "@/lib/supabase/browser-client"
 import { createClient } from "@/lib/supabase/client"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useContext, useEffect } from "react"
 
 export default function HomePage() {
