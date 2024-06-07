@@ -29,7 +29,7 @@ export const Trips = ({ trips, selectedTrip, onSelectTrip }: TripsProps) => {
           <div className="flex w-full  -space-x-4 rtl:space-x-reverse">
             <img
               className="w-8 h-8 border-2  rounded-full border-gray-800"
-              src="public/forks.jpg"
+              src="/forks.jpg"
               alt=""
             />
             <img

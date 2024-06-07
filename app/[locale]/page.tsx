@@ -23,7 +23,7 @@ export default async function ChatPage() {
       </div>
       <div className="lg:w-1/2 mt-8 lg:mt-0">
         <img
-          src="hero.jpg"
+          src="/hero.jpg"
           alt="Rideshare Image"
           className="rounded-lg shadow-lg"
         ></img>
