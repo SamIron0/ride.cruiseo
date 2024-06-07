@@ -10,18 +10,18 @@ export default async function ChatPage() {
   return (
     <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen px-6 md:px-10 lg:px-16 py-12">
       <div className="lg:w-1/2 lg:pr-12">
-        <h1 className="text-4xl lg:text-6xl font-bold mb-4">
+        <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
           Share Your Journey, Share the Cost
         </h1>
-        <p className="text-lg lg:text-xl mb-8 text-secondary">
+        <p className="text-lg lg:text-xl mb-8 text-zinc-500">
           Book a trip to your destination and let others join in. Travel
           together, save together.
         </p>
         <div className="flex flex-row gap-4">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-lg">
             Sign up to ride
           </button>
-          <button className="bg-white hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
+          <button className="bg-zinc-200 hover:bg-zinc-300 text-white font-bold py-3 px-5 rounded-lg">
             Apply to drive
           </button>
         </div>
