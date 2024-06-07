@@ -49,8 +49,8 @@ export default function ChatPage() {
         </section>
       </div>
       <section className="md:px-12 lg:px-16 py-12 bg-white">
-        <div className="max-w-7xl px-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center">
+        <div className="max-w-5xl px-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col ">
             <div className="mb-4">
               <img
                 src="https://via.placeholder.com/64"
@@ -66,7 +66,7 @@ export default function ChatPage() {
               your journey.
             </p>
           </div>
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col ">
             <div className="mb-4">
               <img
                 src="https://via.placeholder.com/64"
@@ -82,7 +82,7 @@ export default function ChatPage() {
               same direction.
             </p>
           </div>
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col">
             <div className="mb-4">
               <img
                 src="https://via.placeholder.com/64"
