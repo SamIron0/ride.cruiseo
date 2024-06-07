@@ -32,7 +32,7 @@ export default function ChatPage() {
             <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
               Share Your Journey, Share the Cost
             </h1>
-            <p className="text-lg lg:text-xl mb-8 text-zinc-500">
+            <p className="text-md lg:text-xl mb-8 text-zinc-500">
               Book a trip to your destination and let others join in. Travel
               together, save together.
             </p>
@@ -74,10 +74,10 @@ export default function ChatPage() {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">
                 Easy Booking
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-md">
                 Quickly book your trip with a few clicks, and get ready to share
                 your journey.
               </p>
@@ -101,10 +101,10 @@ export default function ChatPage() {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">
                 Cost Sharing
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-md">
                 Save money by sharing the travel costs with others heading in
                 the same direction.
               </p>
@@ -128,10 +128,10 @@ export default function ChatPage() {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">
                 Safe and Reliable
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-md">
                 Travel with verified drivers and passengers for a safe and
                 reliable experience.
               </p>
