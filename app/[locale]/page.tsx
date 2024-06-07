@@ -58,7 +58,7 @@ export default function ChatPage() {
                 className="w-16 h-16"
               />
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Easy Booking
             </h2>
             <p className="text-gray-600">
@@ -74,7 +74,7 @@ export default function ChatPage() {
                 className="w-16 h-16"
               />{" "}
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Cost Sharing
             </h2>
             <p className="text-gray-600">
@@ -90,7 +90,7 @@ export default function ChatPage() {
                 className="w-16 h-16"
               />
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Safe and Reliable
             </h2>
             <p className="text-gray-600">
