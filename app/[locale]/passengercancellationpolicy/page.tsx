@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function PassengerCancellationPolicy() {
   return (
     <div className="max-w-2xl mx-auto p-6">
@@ -51,7 +53,14 @@ export default function PassengerCancellationPolicy() {
       <ul className="list-disc list-inside mt-2">
         <li>
           You will receive a full refund, including the booking fee. Please see
-          our driver cancellation policy for more details.
+          our driver
+          <Link
+            href={"/drivercancellationpolicy"}
+            className="text-blue-500 ml-1 underline"
+          >
+            cancellation
+          </Link>{" "}
+          policy for more details.
         </li>
       </ul>
     </div>
