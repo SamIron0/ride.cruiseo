@@ -64,7 +64,7 @@ export default function ChatPage() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
-                  stroke="text-gray-800"
+                  stroke="gray-800"
                   className="size-8"
                 >
                   <path
@@ -91,7 +91,7 @@ export default function ChatPage() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
-                  stroke="text-gray-800"
+                  stroke="gray-800"
                   className="size-8"
                 >
                   <path
@@ -118,7 +118,7 @@ export default function ChatPage() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
-                  stroke="text-gray-800"
+                  stroke="gray-800"
                   className="size-8"
                 >
                   <path
