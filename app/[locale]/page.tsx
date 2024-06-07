@@ -32,7 +32,7 @@ export default function ChatPage() {
             <h1 className="text-4xl text-zinc-200 lg:text-5xl font-bold mb-8">
               Share Your Journey, Share the Cost
             </h1>
-            <p className="text-md lg:text-xl mb-4 text-zinc-500">
+            <p className="text-md lg:text-lg mb-4 text-zinc-500">
               Book a trip to your destination and let others join in. Travel
               together, save together.
             </p>
