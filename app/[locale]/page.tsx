@@ -56,86 +56,80 @@ export default function ChatPage() {
       </div>
       <section className="md:px-12 lg:px-16 py-16 bg-white w-full">
         <div className="max-w-5xl px-6 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className=" flex justify-center">
-            <div className="flex flex-col ">
-              <div className="mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#1F2937"
-                  className="size-8"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                Easy Booking
-              </h2>
-              <p className="text-gray-600 text-md">
-                Quickly book your trip with a few clicks, and get ready to share
-                your journey.
-              </p>
+          <div className="flex flex-col ">
+            <div className="mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#1F2937"
+                className="size-8"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z"
+                />
+              </svg>
             </div>
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              Easy Booking
+            </h2>
+            <p className="text-gray-600 text-md">
+              Quickly book your trip with a few clicks, and get ready to share
+              your journey.
+            </p>
           </div>
-          <div className="flex justify-center">
-            <div className="flex flex-col ">
-              <div className="mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#1F2937"
-                  className="size-8"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                Cost Sharing
-              </h2>
-              <p className="text-gray-600 text-md">
-                Save money by sharing the travel costs with others heading in
-                the same direction.
-              </p>
+          <div className="flex flex-col ">
+            <div className="mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#1F2937"
+                className="size-8"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
+                />
+              </svg>
             </div>
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              Cost Sharing
+            </h2>
+            <p className="text-gray-600 text-md">
+              Save money by sharing the travel costs with others heading in the
+              same direction.
+            </p>
           </div>
-          <div className="flex justify-center">
-            <div className="flex flex-col">
-              <div className="mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#1F2937"
-                  className="size-8"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                Safe and Reliable
-              </h2>
-              <p className="text-gray-600 text-md">
-                Travel with verified drivers and passengers for a safe and
-                reliable experience.
-              </p>
+          <div className="flex flex-col">
+            <div className="mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#1F2937"
+                className="size-8"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
+                />
+              </svg>
             </div>
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              Safe and Reliable
+            </h2>
+            <p className="text-gray-600 text-md">
+              Travel with verified drivers and passengers for a safe and
+              reliable experience.
+            </p>
           </div>
         </div>
       </section>
@@ -146,16 +140,29 @@ export default function ChatPage() {
           className="w-full mx-auto max-w-3xl px-6"
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionTrigger>How do I book a ride?</AccordionTrigger>
             <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
+              You can book a carpool ride on our mobile app, or on
+              blablacar.com. Simply search for your destination, choose the date
+              you want to travel and pick the carpool that suits you best! Some
+              rides can be booked instantly, while other rides require manual
+              approval from the driver. Either way, booking a carpool ride is
+              fast, simple and easy.{" "}
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionTrigger>
+              How do I publish a carpool ride??
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It comes with default styles that matches the other
-              components&apos; aesthetic.
+              Offering a carpool ride on BlaBlaCar is easy. To publish your
+              ride, use our mobile app or blablacar.com. Indicate your departure
+              and arrival points, the date and time of your departure, how many
+              passengers you can take and the price per seat. You&apos;ll also
+              need to choose how you want to accept bookings (either
+              automatically or manually), and you have the option of adding any
+              important details you think your passengers should know about.
+              Then tap &apos;Publish ride&apos; and you&apos;re done!
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
