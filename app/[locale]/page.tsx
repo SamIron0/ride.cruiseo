@@ -54,7 +54,7 @@ export default function ChatPage() {
           </div>
         </section>
       </div>
-      <section className="md:px-12 lg:px-16 py-12 bg-white w-full">
+      <section className="md:px-12 lg:px-16 py-16 bg-white w-full">
         <div className="max-w-5xl px-6 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className=" flex justify-center">
             <div className="flex flex-col ">
