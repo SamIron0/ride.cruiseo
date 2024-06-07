@@ -29,10 +29,10 @@ export default function ChatPage() {
       <div className="mt-16 px-6 ">
         <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
           <div className="lg:w-1/2 lg:pr-12">
-            <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
+            <h1 className="text-4xl text-zinc-200 lg:text-5xl font-bold mb-8">
               Share Your Journey, Share the Cost
             </h1>
-            <p className="text-md lg:text-xl mb-8 text-zinc-500">
+            <p className="text-md lg:text-xl mb-4 text-zinc-500">
               Book a trip to your destination and let others join in. Travel
               together, save together.
             </p>
