@@ -156,7 +156,7 @@ export default function ChatPage() {
           </div>
         </div>
       </section>
-      <section className="md:px-12 lg:px-16 py-12  w-full">
+      <section className="md:px-12 lg:px-16 py-20  w-full">
         <Accordion
           type="single"
           collapsible
