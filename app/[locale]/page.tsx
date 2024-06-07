@@ -10,10 +10,32 @@ import {
   AccordionContent
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import { CruiseoContext } from "@/context/context"
+import { getProfileByUserId } from "@/db/profile"
+import { supabase } from "@/lib/supabase/browser-client"
 import { createClient } from "@/lib/supabase/client"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useContext, useEffect } from "react"
 
-export default function ChatPage() {
+export default function HomePage() {
+  const router = useRouter()
+  const { setProfile } = useContext(CruiseoContext)
+  useEffect(() => {
+    ;(async () => {
+      const session = (await supabase.auth.getSession()).data.session
+      if (!session) {
+        router.push("/login")
+        return
+      }
+      const prof = await getProfileByUserId(session.user.id)
+      setProfile(prof)
+
+      if (!prof?.has_onboarded) {
+        router.push("/setup")
+      }
+    })()
+  }, [])
   return (
     <>
       <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
@@ -37,11 +59,14 @@ export default function ChatPage() {
               together, save together.
             </p>
             <div className="flex flex-row gap-4">
-              <Link href={"https://drive.cruiseo.xyz"} className="bg-blue-600 text-sm hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
+              <Link
+                href={"https://cruiseo.xyz/login"}
+                className="bg-blue-600 text-sm hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg"
+              >
                 Sign up to ride
               </Link>
               <Link
-                href={"https://drive.cruiseo.xyz"}
+                href={"https://drive.cruiseo.xyz/login"}
                 className="bg-white hover:bg-zinc-300  text-sm text-black font-semibold py-3 px-5 rounded-lg"
               >
                 Apply to drive
@@ -150,7 +175,7 @@ export default function ChatPage() {
             </p>
             <div className="flex flex-row gap-4">
               <Link
-                href="https://drive.cruiseo.xyz"
+                href={"https://drive.cruiseo.xyz/login"}
                 className="bg-blue-600 text-sm hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg"
               >
                 Get Started
