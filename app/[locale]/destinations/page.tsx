@@ -2,7 +2,6 @@
 import { Grid } from "@/components/Grid"
 import Navbar from "@/components/navbar/NavBar"
 import { CruiseoContext } from "@/context/context"
-import { createClient } from "@/lib/supabase/server"
 import { useContext, useEffect } from "react"
 import { supabase } from "@/lib/supabase/browser-client"
 import { getProfileByUserId } from "@/db/profile"
