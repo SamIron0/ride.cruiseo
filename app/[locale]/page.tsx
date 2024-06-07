@@ -29,7 +29,7 @@ export default function ChatPage() {
       <div className="mt-16 px-6 ">
         <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
           <div className="lg:w-1/2 lg:pr-12">
-            <h1 className="text-4xl text-zinc-200 lg:text-5xl font-bold mb-8">
+            <h1 className="text-4xl text-zinc-200 md:text-5xl font-bold mb-8">
               Share Your Journey, Share the Cost
             </h1>
             <p className="text-md max-w-lg lg:text-lg mb-4 text-zinc-500">
@@ -37,12 +37,12 @@ export default function ChatPage() {
               together, save together.
             </p>
             <div className="flex flex-row gap-4">
-              <button className="bg-blue-600 text-md hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
+              <button className="bg-blue-600 text-sm hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
                 Sign up to ride
               </button>
               <Link
                 href={"https://drive.cruiseo.xyz"}
-                className="bg-white hover:bg-zinc-300  text-md text-black font-semibold py-3 px-5 rounded-lg"
+                className="bg-white hover:bg-zinc-300  text-sm text-black font-semibold py-3 px-5 rounded-lg"
               >
                 Apply to drive
               </Link>
