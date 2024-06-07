@@ -132,6 +132,30 @@ export default function ChatPage() {
             </p>
           </div>
         </div>
+        <div className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
+          <div className="lg:w-1/2 mt-8 lg:mt-0">
+            <img
+              src="/driver.jpg"
+              alt=" driver image"
+              className="rounded-lg shadow-lg"
+            />
+          </div>
+          <div className="lg:w-1/2 lg:pr-12">
+            <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
+              Earn Flexibly, Keep More
+            </h1>
+            <p className="text-md lg:text-xl mb-8 text-zinc-500">
+              Drive on your own time, keep a higher percentage of each fare, and
+              enjoy the freedom to choose your rides. Your car, your schedule,
+              your profits.
+            </p>
+            <div className="flex flex-row gap-4">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
+                Apply to drive
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
       <section className="md:px-12 lg:px-16 py-12  w-full">
         <Accordion
