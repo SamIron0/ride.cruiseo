@@ -65,7 +65,7 @@ export default function ChatPage() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-16"
+                  className="size-12"
                 >
                   <path
                     stroke-linecap="round"
@@ -92,7 +92,7 @@ export default function ChatPage() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-10"
+                  className="size-12"
                 >
                   <path
                     stroke-linecap="round"
@@ -119,7 +119,7 @@ export default function ChatPage() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-16"
+                  className="size-12"
                 >
                   <path
                     stroke-linecap="round"
