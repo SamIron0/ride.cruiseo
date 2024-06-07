@@ -200,20 +200,39 @@ export default function HomePage() {
             <AccordionTrigger>
               How do I get paired with other passengers?
             </AccordionTrigger>
-            <AccordionContent>&apos;</AccordionContent>
+            <AccordionContent>
+              There are two booking options: you can either join an existing
+              trip and automatically get paired with other riders, or you can
+              create a new trip if you don't see any you like. Once you create a
+              new trip, it will be visible to other users who can then join your
+              trip.
+            </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
             <AccordionTrigger>How do I apply to drive?</AccordionTrigger>
             <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
+              You can apply by following the link on the homepage and creating a
+              driver account. Once you&apos;ve completed your application,
+              simply wait to be contacted.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
             <AccordionTrigger>How does the pricing work?</AccordionTrigger>
             <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
+              Prices are calculated using a combination of factors such as the
+              distance of the trip, the time of departure, and additional
+              variables to ensure fairness and accuracy. Unlike other services,
+              we do not use surge pricing. Additionally, the price is reduced as
+              more people join the trip, making it more affordable for everyone
+              involved.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-5">
+            <AccordionTrigger>How do I cancel my ride?</AccordionTrigger>
+            <AccordionContent>
+              To cancel a trip, go to your account page, select the trip, and
+              click on "cancel." For further details about cancellations, please
+              review our cancellation policy.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
