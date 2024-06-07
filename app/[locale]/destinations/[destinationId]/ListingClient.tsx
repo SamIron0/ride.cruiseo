@@ -64,7 +64,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [distance, setDistance] = useState(null)
   const onSearchClick = async () => {
     await getTrips()
-    setSelectedTrip(availableTrips[0])
 
     const fetchPrice = async (trip: Tables<"trips">) => {
       const response = await fetch("/api/price", {
@@ -89,6 +88,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       return { ...trip, price }
     })
     setAvailableTrips(updatedTrips)
+    setSelectedTrip(availableTrips[0])
     return
   }
 
