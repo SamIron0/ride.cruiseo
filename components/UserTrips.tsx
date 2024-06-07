@@ -29,7 +29,7 @@ export const UserTrips = ({ trips, onCancelTrip }: UserTripsProps) => {
     <div className="p-4 w-full mb-20 mt-12 flex flex-col  max-w-3xl">
       <p className="text-2xl  mb-4">Welcome back to Cruiseo</p>
       <Link
-        href="/"
+        href="/destinations"
         className="px-4 w-32 py-2 mb-8 flex justify-center border border-input bg-background rounded-xl"
       >
         New Trip

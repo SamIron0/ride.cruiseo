@@ -10,13 +10,17 @@ import Link from "next/link"
 export default function ChatPage() {
   return (
     <>
-      <Container>
-        <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
-          <Logo />
-          <UserMenu />
+      <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
+        <div className="py-4 sm:px-4 border-[#232325] border-b-[1px]">
+          <Container>
+            <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+              <Logo />
+              <UserMenu />
+            </div>
+          </Container>
         </div>
-      </Container>
-      <div className=" px-6 ">
+      </div>
+      <div className=" ">
         <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
           <div className="lg:w-1/2 lg:pr-12">
             <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
@@ -43,75 +47,59 @@ export default function ChatPage() {
             />
           </div>
         </section>
-        <section className="md:px-12 lg:px-16 py-12 bg-white">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4">
-                <img
-                  src="https://via.placeholder.com/64"
-                  alt="Icon 1"
-                  className="w-16 h-16"
-                />
-              </div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                Easy Booking
-              </h2>
-              <p className="text-gray-600">
-                Quickly book your trip with a few clicks, and get ready to share
-                your journey.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4">
-                <img
-                  src="https://via.placeholder.com/64"
-                  alt="Icon 2"
-                  className="w-16 h-16"
-                />{" "}
-              </div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                Cost Sharing
-              </h2>
-              <p className="text-gray-600">
-                Save money by sharing the travel costs with others heading in
-                the same direction.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4">
-                <img
-                  src="https://via.placeholder.com/64"
-                  alt="Icon 3"
-                  className="w-16 h-16"
-                />
-              </div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                Safe and Reliable
-              </h2>
-              <p className="text-gray-600">
-                Travel with verified drivers and passengers for a safe and
-                reliable experience.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4">
-                <img
-                  src="https://via.placeholder.com/64"
-                  alt="Icon 4"
-                  className="w-16 h-16"
-                />
-              </div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                Eco-Friendly
-              </h2>
-              <p className="text-gray-600">
-                Reduce your carbon footprint by sharing rides and promoting
-                sustainable travel.
-              </p>
-            </div>
-          </div>
-        </section>
       </div>
+      <section className="md:px-12 lg:px-16 py-12 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-4">
+              <img
+                src="https://via.placeholder.com/64"
+                alt="Icon 1"
+                className="w-16 h-16"
+              />
+            </div>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+              Easy Booking
+            </h2>
+            <p className="text-gray-600">
+              Quickly book your trip with a few clicks, and get ready to share
+              your journey.
+            </p>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-4">
+              <img
+                src="https://via.placeholder.com/64"
+                alt="Icon 2"
+                className="w-16 h-16"
+              />{" "}
+            </div>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+              Cost Sharing
+            </h2>
+            <p className="text-gray-600">
+              Save money by sharing the travel costs with others heading in the
+              same direction.
+            </p>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-4">
+              <img
+                src="https://via.placeholder.com/64"
+                alt="Icon 3"
+                className="w-16 h-16"
+              />
+            </div>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+              Safe and Reliable
+            </h2>
+            <p className="text-gray-600">
+              Travel with verified drivers and passengers for a safe and
+              reliable experience.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
