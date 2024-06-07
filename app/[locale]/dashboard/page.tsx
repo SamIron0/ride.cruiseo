@@ -63,16 +63,9 @@ export default function Dashboard() {
         }
 
         const storedTrip = window.localStorage.getItem("selectedTrip")
-        
+
         if (storedTrip) {
           //create a usertrip
-          const x  = JSON.parse(storedTrip)
-          const u_trip: TablesInsert<"usertrips"> = {
-            id: uuid(),
-            uid: profile?.id || "",
-            status: "pending",
-            origin:x.origin,
-            destination:x.destination,          }
           const response = await fetch("/api/saveTrip", {
             method: "POST",
             headers: {

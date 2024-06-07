@@ -22,7 +22,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Trips } from "@/components/ui/trips"
 import { Checkout } from "@/components/checkout"
-import { Tables } from "@/supabase/types"
+import { Tables, TablesInsert } from "@/supabase/types"
 import axios from "axios"
 import { calculatePrice } from "@/utils/helpers"
 interface ListingClientProps {
@@ -31,6 +31,7 @@ interface ListingClientProps {
 
 const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [origin, setOrigin] = useState<string>("")
+  const [destination, setDestination] = useState<string>(listing?.address)
   const [dateTime, setDateTime] = useState({
     date: "",
     hour: "",
@@ -56,7 +57,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         price: 0,
         route: [origin, listing?.address],
         status: "pending",
-        destination: listing?.address,
+        destination: destination,
         riders: [profile?.id || ""]
       }
     ])
@@ -107,17 +108,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       }).then(res => res.json())
 
       if (!trips) return
-      let retrievedTrips: any[] = []
+      let retrievedTrips: Tables<"trips">[] = []
       for (let trip of trips) {
         retrievedTrips.push({
-          id: uuidv4(),
-          uid: profile?.id || "",
-          tripid: trip.id,
-          price: 25,
-          pickup: trip.start,
-          origin: listing.address,
-          destination: listing.address,
-          status: "available"
+          ...trip,
+          start: dateTime,
+          route: [origin, destination],
+          destination: destination,
+          riders: [profile?.id || ""]
         })
       }
       setAvailableTrips(availableTrips.concat(retrievedTrips))

@@ -86,8 +86,9 @@ async function markSessionIdAsUsed(sessionId: string): Promise<void> {
   }
 }
 export const saveTrip = async (
-  trip: Tables<"usertrips">,
-  sessionId: string
+  trip: Tables<"trips">,
+  sessionId: string,
+  user_id: string
 ) => {
   await markSessionIdAsUsed(sessionId)
 
@@ -95,7 +96,7 @@ export const saveTrip = async (
   const { data: tripVal, error: getUserTripsError } = await supabaseAdmin
     .from("trips")
     .select("*")
-    .eq("id", trip.tripid)
+    .eq("id", trip.id)
     .single()
 
   if (tripVal) {
@@ -104,9 +105,12 @@ export const saveTrip = async (
       .from("trips")
       .update({
         id: tripVal.id,
-        riders: tripVal.riders?.concat(trip.uid),
+        riders: tripVal.riders?.concat(trip?.riders ? trip?.riders[0] : ""),
         price: tripVal?.price + trip?.price,
-        route: tripVal.route?.concat(trip?.origin, trip?.destination)
+        route: tripVal.route?.concat(
+          trip?.route ? trip?.route[0] : "",
+          trip?.route ? trip?.route[1] : ""
+        )
       })
       .eq("id", tripVal.id)
       .select("id")
@@ -119,17 +123,9 @@ export const saveTrip = async (
 
     tripID = id.id
   } else {
-    const { data: id, error: createTripError } = await supabaseAdmin
+    const { data: idData, error: createTripError } = await supabaseAdmin
       .from("trips")
-      .insert({
-        id: uuid(),
-        riders: [trip?.uid],
-        price: trip?.price,
-        route: [trip?.origin, trip?.destination],
-        status: "pending",
-        destination: trip?.destination,
-        start: trip?.pickup
-      })
+      .insert(trip)
       .select("id")
       .single()
 
@@ -138,7 +134,7 @@ export const saveTrip = async (
       return null
     }
 
-    tripID = id.id
+    tripID = idData.id
   }
 
   // next, create usertrips entry
@@ -146,12 +142,12 @@ export const saveTrip = async (
     .from("usertrips")
     .insert({
       id: trip?.id,
-      uid: trip?.uid,
+      uid: user_id,
       tripid: tripID,
-      origin: trip?.origin,
-      destination: trip?.destination,
+      origin: trip?.route?.[0],
+      destination: trip?.route?.[1],
       price: trip?.price,
-      pickup: trip?.pickup,
+      pickup: trip?.start,
       status: "pending"
     })
 
