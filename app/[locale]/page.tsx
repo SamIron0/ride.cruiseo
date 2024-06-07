@@ -146,9 +146,12 @@ export default function ChatPage() {
               your profits.
             </p>
             <div className="flex flex-row gap-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg">
+              <Link
+                href="drive.cruiseo.xyz"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded-lg"
+              >
                 Apply to drive
-              </button>
+              </Link>
             </div>
           </div>
         </div>
