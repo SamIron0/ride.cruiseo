@@ -164,7 +164,7 @@ export default function HomePage() {
             <h1 className="text-4xl text-gray-800 font-bold mb-4">
               Earn Flexibly, Keep More
             </h1>
-            <p className="text-md max-w-xl mb-8 text-zinc-500">
+            <p className="text-md max-w-lg mb-8 text-zinc-500">
               Drive on your own time, keep a higher percentage of each fare, and
               enjoy the freedom to choose your rides. Your car, your schedule,
               your profits.
@@ -209,7 +209,7 @@ export default function HomePage() {
               prefer.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-3">
+          <AccordionItem value="item-4">
             <AccordionTrigger>How does the pricing work?</AccordionTrigger>
             <AccordionContent>
               Yes. It&apos;s animated by default, but you can disable it if you
