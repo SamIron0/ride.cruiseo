@@ -202,12 +202,19 @@ export default function HomePage() {
           </AccordionItem>
           <AccordionItem value="item-2">
             <AccordionTrigger>
-              How do I get paired with other passengers??
+              How do I get paired with other passengers?
             </AccordionTrigger>
             <AccordionContent>&apos;</AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionTrigger>How do I apply to drive?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It&apos;s animated by default, but you can disable it if you
+              prefer.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>How does the pricing work?</AccordionTrigger>
             <AccordionContent>
               Yes. It&apos;s animated by default, but you can disable it if you
               prefer.
