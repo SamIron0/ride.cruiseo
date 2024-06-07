@@ -189,7 +189,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
                   </DrawerHeader>
                   <Trips
                     selectedTrip={selectedTrip}
-                    onSelectTrip={setSelectedTrip}
+                    onSelectTrip={(trip: Tables<"trips">) =>
+                      setSelectedTrip({
+                        ...trip,
+                        riders: [profile?.id || ""],
+                        route: [origin, destination],
+                        start: dateTime
+                      })
+                    }
                     trips={availableTrips}
                   />
                   <DrawerFooter>
