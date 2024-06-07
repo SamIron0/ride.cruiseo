@@ -91,7 +91,7 @@ export default function UserMenu() {
             absolute 
             rounded-xl 
             shadow-md
-            w-[40vw]
+            w-[200px]
             md:w-3/4 
             overflow-hidden 
             right-0 
