@@ -8,7 +8,7 @@ import { redirect } from "next/navigation"
 
 export default async function ChatPage() {
   return (
-    <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen px-4 lg:px-12 py-12">
+    <section className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen px-6 md:px-10 lg:px-16 py-12">
       <div className="lg:w-1/2 lg:pr-12">
         <h1 className="text-4xl lg:text-6xl font-bold mb-4">
           Share Your Journey, Share the Cost
@@ -17,8 +17,11 @@ export default async function ChatPage() {
           Book a trip to your destination and let others join in. Travel
           together, save together.
         </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-lg">
-          Book Your Trip
+        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
+          Sign up to ride
+        </button>
+        <button className="bg-white hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
+          Apply to drive
         </button>
       </div>
       <div className="lg:w-1/2 mt-8 lg:mt-0">
