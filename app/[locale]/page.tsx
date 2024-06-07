@@ -24,11 +24,7 @@ export default function HomePage() {
   useEffect(() => {
     ;(async () => {
       const session = (await supabase.auth.getSession()).data.session
-      if (!session) {
-        router.push("/login")
-        return
-      }
-      const prof = await getProfileByUserId(session.user.id)
+      const prof = await getProfileByUserId(session?.user.id as string)
       setProfile(prof)
 
       if (!prof?.has_onboarded) {
