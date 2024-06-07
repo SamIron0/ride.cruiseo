@@ -106,7 +106,7 @@ export default function ChatPage() {
           </div>
         </div>
       </section>
-      <section className="md:px-12 mb-12  lg:px-16 py-12white w-full">
+      <section className="md:px-12 lg:px-16 py-12  w-full">
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it accessible?</AccordionTrigger>
