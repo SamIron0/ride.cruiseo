@@ -18,12 +18,13 @@ export default async function ChatPage() {
           together, save together.
         </p>
         <div className="flex flex-row gap-4">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
-          Sign up to ride
-        </button>
-        <button className="bg-white hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
-          Apply to drive
-        </button>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
+            Sign up to ride
+          </button>
+          <button className="bg-white hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
+            Apply to drive
+          </button>
+        </div>
       </div>
       <div className="lg:w-1/2 mt-8 lg:mt-0">
         <img
