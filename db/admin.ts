@@ -67,13 +67,12 @@ export async function hasSessionIdBeenUsed(
     .from("stripe_sessions")
     .select("*")
     .eq("session_id", sessionId)
-    .single()
 
   if (error) {
     console.error("Error checking if session ID has been used:", error)
+    return false
   }
-
-  return data !== null
+  return data.length > 0
 }
 
 // Function to mark a session ID as used
