@@ -94,7 +94,6 @@ export default function UserMenu() {
             w-[200px]
             overflow-hidden 
             right-0 
-            top-12 
             text-sm
           "
         >
