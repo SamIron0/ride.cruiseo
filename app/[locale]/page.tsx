@@ -132,19 +132,15 @@ export default function ChatPage() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
-          <div className="lg:w-1/2 mt-8 lg:mt-0">
-            <img
-              src="/driver.jpg"
-              alt=" driver image"
-              className="rounded-lg shadow-lg"
-            />
+        <div className="px-6 flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
+          <div className="lg:w-1/2 w-full mt-8 lg:mt-0 md:pr-12">
+            <img src="/driver.jpg" alt=" driver image" className="max-w-md" />
           </div>
-          <div className="lg:w-1/2 lg:pr-12">
-            <h1 className="text-4xl text-zinc-200 lg:text-6xl font-bold mb-4">
+          <div className="lg:w-1/2 text-gray-600 ">
+            <h1 className="text-4xl text-gray-800 font-bold mb-4">
               Earn Flexibly, Keep More
             </h1>
-            <p className="text-md lg:text-xl mb-8 text-zinc-500">
+            <p className="text-md mb-8 text-zinc-500">
               Drive on your own time, keep a higher percentage of each fare, and
               enjoy the freedom to choose your rides. Your car, your schedule,
               your profits.
