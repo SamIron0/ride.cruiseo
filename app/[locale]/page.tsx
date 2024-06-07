@@ -135,9 +135,9 @@ export default function ChatPage() {
             </p>
           </div>
         </div>
-        <div className="px-6 flex flex-col lg:flex-row items-center lg:justify-between lg:h-screen md:px-12 lg:px-16 py-12">
-          <div className="lg:w-1/2 w-full mt-8 lg:mt-0 md:pr-12">
-            <img src="/driver.jpg" alt=" driver image" className="max-w-md" />
+        <div className="px-6 flex flex-col md:flex-row items-center md:justify-between md:h-screen md:px-12 md:px-16 py-12">
+          <div className="lg:w-1/2 w-full max-w-md mt-8 lg:mt-0 md:pr-12">
+            <img src="/driver.jpg" alt=" driver image" />
           </div>
           <div className="lg:w-1/2 w-full text-gray-600 ">
             <h1 className="text-4xl text-gray-800 font-bold mb-4">
