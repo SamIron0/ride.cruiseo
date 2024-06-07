@@ -193,28 +193,18 @@ export default function HomePage() {
           <AccordionItem value="item-1">
             <AccordionTrigger>How do I book a ride?</AccordionTrigger>
             <AccordionContent>
-              You can book a carpool ride on our mobile app, or on
-              blablacar.com. Simply search for your destination, choose the date
-              you want to travel and pick the carpool that suits you best! Some
-              rides can be booked instantly, while other rides require manual
-              approval from the driver. Either way, booking a carpool ride is
-              fast, simple and easy.{" "}
+              You can book a ride here on cruiseo.xyz. Simply search for your
+              destination,select the date and time of departure and select a
+              trip from the available trip options. Most rides require manual
+              approval from the driver while some rides can be booked instantly.
+              Either way, booking a carpool ride is fast, simple and easy.{" "}
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
             <AccordionTrigger>
-              How do I publish a carpool ride??
+              How do I get paired with other passengers??
             </AccordionTrigger>
-            <AccordionContent>
-              Offering a carpool ride on BlaBlaCar is easy. To publish your
-              ride, use our mobile app or blablacar.com. Indicate your departure
-              and arrival points, the date and time of your departure, how many
-              passengers you can take and the price per seat. You&apos;ll also
-              need to choose how you want to accept bookings (either
-              automatically or manually), and you have the option of adding any
-              important details you think your passengers should know about.
-              Then tap &apos;Publish ride&apos; and you&apos;re done!
-            </AccordionContent>
+            <AccordionContent>&apos;</AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
             <AccordionTrigger>Is it animated?</AccordionTrigger>
