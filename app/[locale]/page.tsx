@@ -17,6 +17,7 @@ export default async function ChatPage() {
           Book a trip to your destination and let others join in. Travel
           together, save together.
         </p>
+        <div className="flex flex-row gap-4">
         <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg">
           Sign up to ride
         </button>
