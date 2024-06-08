@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabase/browser-client';
 
 export default function Navbar() {
   return (
-    <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
+    <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-background">
       <div>
         <div className="py-4 sm:px-4 border-[#232325] border-b-[1px]">
           <Container>
