@@ -32,6 +32,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
     // Update localStorage when selectedTrip changes
     if (typeof window !== "undefined") {
       if (selectedTrip) {
+        console.log("updated local storage")
         window.localStorage.setItem(
           "selectedTrip",
           JSON.stringify(selectedTrip)

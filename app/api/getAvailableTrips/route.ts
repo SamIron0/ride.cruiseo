@@ -25,6 +25,7 @@ export async function POST(req: Request) {
       }
       // Extract the id from the request body
       const { destination, dateTime } = body
+      
       const trips = await getAvailableTrips(
         session.user.id,
         dateTime.date,
