@@ -7,9 +7,24 @@ import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
 import DateTimePicker from "../dateTimePicker/dateTimePicker"
 import { Button } from "../button"
-import { Drawer, DrawerTrigger } from "../drawer"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
+} from "../drawer"
+import { Tables } from "@/supabase/types"
+import { Trips } from "../trips"
+import { Checkout } from "@/components/checkout"
 interface CarpoolFormProps {
   origin: string
+  step: number
+  selectedTrip: Tables<"trips"> | null
+  destination: string
+
   dateTime: {
     date: string
     hour: string
@@ -24,33 +39,27 @@ interface CarpoolFormProps {
     minute: string
   }) => void
   onSearchClick: any
+  setStep: (step: number) => void
+  availableTrips: Tables<"trips">[]
+  profile: Tables<"profiles"> | null
+  setSelectedTrip: (trip: Tables<"trips">) => void
 }
 
 export const CarpoolForm = ({
+  step,
+  destination,
+  selectedTrip,
   origin,
   dateTime,
   onSetOrigin,
+  setSelectedTrip,
+  availableTrips,
+  profile,
+  setStep,
   onSetDateTime,
   onSearchClick
 }: CarpoolFormProps) => {
-  const submitRef = useRef<React.ElementRef<"button">>(null)
-  const [token, setToken] = useState("")
-  const [isOpen, setIsOpen] = useState(false)
-  const [price, setPrice] = useState("")
-  const [originIsValid, setOriginIsValid] = useState(true)
-  const [destination, setDestination] = useState()
-  const [destinationIsValid, setDestinationIsValid] = useState(true)
-  const [name, setName] = useState("")
-  const [nameIsValid, setNameIsValid] = useState(true)
-  const [status, setStatus] = useState("Active")
-  const [emailIsValid, setEmailIsValid] = useState(true)
-  const [number, setNumber] = useState("")
-  const [numberIsValid, setNumberIsValid] = useState(true)
-  const [dateIsValid, setDateIsValid] = useState(true)
   const [originSuggestionIsOpen, setOriginSuggestionIsOpen] = useState(true)
-  const [destinationSuggestionIsOpen, setDestinationSuggestionIsOpen] =
-    useState(true)
-  const adminEmail = "samuelironkwec@gmail.com"
   const [originIsOpen, setOriginIsOpen] = useState(true)
   const [destinationIsOpen, setDestinationIsOpen] = useState(true)
   const [dateIsOpen, setDateIsOpen] = useState(false)
@@ -69,14 +78,6 @@ export const CarpoolForm = ({
 
   const handleTripDetailsSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
-    setIsOpen(true)
-  }
-
-  let confirm = true
-  const router = useRouter()
-
-  function clearForm() {
-    onSetOrigin("")
   }
 
   let formattedOriginOptions = formatOptions(originPredictions)
@@ -91,31 +92,10 @@ export const CarpoolForm = ({
     onSetOrigin(value)
     setOriginSuggestionIsOpen(false)
   }
-  function onDestinationSuggestionClick(value: any) {
-    setDestination(value)
-    setDestinationSuggestionIsOpen(false)
-  }
+
   const destinationRef = useRef<any>()
   const originRef = useRef<any>()
-  useEffect(() => {
-    const handleOutsideDestinationClick = (event: any) => {
-      if (
-        destinationRef.current &&
-        !(destinationRef.current as HTMLElement).contains(event.target)
-      ) {
-        // Clicked outside the destination suggestion, close it
-        setDestinationSuggestionIsOpen(false)
-      }
-    }
 
-    // Add event listener when the component mounts
-    document.addEventListener("click", handleOutsideDestinationClick)
-
-    // Remove event listener when the component unmounts
-    return () => {
-      document.removeEventListener("click", handleOutsideDestinationClick)
-    }
-  }, [])
   useEffect(() => {
     const handleOutsideOriginClick = (event: any) => {
       if (
@@ -200,17 +180,18 @@ export const CarpoolForm = ({
               ))}
             </div>
           )}
-
-          <Button
-            onClick={() => {
-              setDateIsOpen(false)
-              setOriginIsOpen(true)
-            }}
-            className="bg-white hover:bg-zinc-300 mt-3 text-sm text-black font-semibold py-3 px-5 rounded-lg"
-            disabled={origin === ""}
-          >
-            Proceed
-          </Button>
+          <div className="w-full justify-end">
+            <Button
+              onClick={() => {
+                setDateIsOpen(false)
+                setOriginIsOpen(true)
+              }}
+              className="bg-white hover:bg-zinc-300 mt-3 text-sm text-black font-semibold py-3 px-5 rounded-lg"
+              disabled={origin === ""}
+            >
+              Proceed
+            </Button>
+          </div>
         </div>
       ) : (
         <div
@@ -233,15 +214,72 @@ export const CarpoolForm = ({
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
           <DateTimePicker setDateTime={onSetDateTime} dateTime={dateTime} />
-          <Drawer>
-            <DrawerTrigger
-              disabled={origin == "" || dateTime.date == ""}
-              onClick={() => onSearchClick()}
-              className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
-            >
-              Search
-            </DrawerTrigger>
-          </Drawer>
+          <div className="w-full justify-end">
+            <Drawer>
+              <DrawerTrigger
+                disabled={origin == "" || dateTime.date == ""}
+                onClick={() => onSearchClick()}
+                className=" rounded-lg py-2 px-8 bg-white text-black text-md"
+              >
+                Search
+              </DrawerTrigger>
+
+              <DrawerContent>
+                {step == 0 ? (
+                  <div className="max-w-3xl w-full mx-auto flex flex-col">
+                    <DrawerHeader>
+                      <DrawerTitle>
+                        <div>
+                          <h1 className="text-2xl font-bold w-full">Results</h1>
+                        </div>
+                      </DrawerTitle>
+                    </DrawerHeader>
+                    <Trips
+                      selectedTrip={selectedTrip}
+                      onSelectTrip={(trip: Tables<"trips">) =>
+                        setSelectedTrip({
+                          ...trip,
+                          riders: [profile?.id || ""],
+                          route: [origin, destination],
+                          start: dateTime
+                        })
+                      }
+                      trips={availableTrips}
+                    />
+                    <DrawerFooter>
+                      <Button onClick={() => setStep(2)}>Book</Button>
+                      <DrawerClose>
+                        <Button
+                          onClick={() => setStep(0)}
+                          className="w-full "
+                          variant="outline"
+                        >
+                          Cancel
+                        </Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </div>
+                ) : (
+                  <div className="max-w-3xl w-full mx-auto flex flex-col ">
+                    <DrawerHeader>
+                      <DrawerTitle>
+                        <div>
+                          <h1 className="text-2xl font-bold w-full">
+                            Checkout
+                          </h1>
+                        </div>
+                      </DrawerTitle>
+                    </DrawerHeader>
+
+                    <Checkout
+                      selectedTrip={selectedTrip}
+                      onBackClick={() => setStep(0)}
+                    />
+                  </div>
+                )}
+              </DrawerContent>
+            </Drawer>
+          </div>{" "}
         </div>
       ) : (
         <div
