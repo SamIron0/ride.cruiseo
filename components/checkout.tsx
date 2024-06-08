@@ -19,7 +19,6 @@ interface CheckoutProps {
 }
 
 export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
-
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
     return fetch("/api/checkout_sessions", {
@@ -28,6 +27,9 @@ export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
       .then(res => res.json())
       .then(data => data.clientSecret)
   }, [])
+  const storedTrip = window.localStorage.getItem("selectedTrip")
+
+  console.log(storedTrip)
 
   const options = { fetchClientSecret }
 
