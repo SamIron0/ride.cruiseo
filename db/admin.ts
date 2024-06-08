@@ -164,7 +164,7 @@ export const getAvailableTrips = async (
     // where status is pending / accepted
     .eq("status", ["pending", "accepted"])
     .eq("destination", destination)
-    .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
+  //  .eq("start->>date", date) // Extract the text value of the date field from the JSONB column
   //  .contains("riders", [])
   // .not("riders", "cs", `{${uid}}`) // Properly format the uid for the array contains check
   if (error) {
