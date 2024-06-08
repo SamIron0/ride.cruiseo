@@ -6,6 +6,8 @@ import React from "react"
 import getAddressPredictions from "./getAddressPredictions"
 import { toast } from "sonner"
 import DateTimePicker from "../dateTimePicker/dateTimePicker"
+import { Button } from "../button"
+import { Drawer, DrawerTrigger } from "../drawer"
 interface CarpoolFormProps {
   origin: string
   dateTime: {
@@ -21,13 +23,15 @@ interface CarpoolFormProps {
     ampm: string
     minute: string
   }) => void
+  onSearchClick: any
 }
 
 export const CarpoolForm = ({
   origin,
   dateTime,
   onSetOrigin,
-  onSetDateTime
+  onSetDateTime,
+  onSearchClick
 }: CarpoolFormProps) => {
   const submitRef = useRef<React.ElementRef<"button">>(null)
   const [token, setToken] = useState("")
@@ -139,7 +143,7 @@ export const CarpoolForm = ({
       {originIsOpen ? (
         <div className="flex flex-col mb-4 border-input  border w-full p-6 lg:p-12 h-lg shadow-lg rounded-xl bg-background">
           <h1 className=" font-medium   text-lg">Pickup from</h1>
-          <div className="mt-2 border border-input rounded-xl relative">
+          <div className="mt-5   border border-input rounded-xl relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
                 className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -196,6 +200,17 @@ export const CarpoolForm = ({
               ))}
             </div>
           )}
+
+          <Button
+            onClick={() => {
+              setDateIsOpen(false)
+              setOriginIsOpen(true)
+            }}
+            className="bg-white hover:bg-zinc-300 mt-3 text-sm text-black font-semibold py-3 px-5 rounded-lg"
+            disabled={origin === ""}
+          >
+            Proceed
+          </Button>
         </div>
       ) : (
         <div
@@ -218,6 +233,15 @@ export const CarpoolForm = ({
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
           <DateTimePicker setDateTime={onSetDateTime} dateTime={dateTime} />
+          <Drawer>
+            <DrawerTrigger
+              disabled={origin == "" || dateTime.date == ""}
+              onClick={() => onSearchClick()}
+              className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
+            >
+              Search
+            </DrawerTrigger>
+          </Drawer>
         </div>
       ) : (
         <div

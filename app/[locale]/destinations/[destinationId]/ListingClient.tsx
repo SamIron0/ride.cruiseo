@@ -175,69 +175,60 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
             dateTime={dateTime}
             onSetOrigin={setOrigin}
             onSetDateTime={setDateTime}
+            onSearchClick={onSearchClick}
           />
+          <DrawerContent>
+            {step == 0 ? (
+              <div className="max-w-3xl w-full mx-auto flex flex-col">
+                <DrawerHeader>
+                  <DrawerTitle>
+                    <div>
+                      <h1 className="text-2xl font-bold w-full">Results</h1>
+                    </div>
+                  </DrawerTitle>
+                </DrawerHeader>
+                <Trips
+                  selectedTrip={selectedTrip}
+                  onSelectTrip={(trip: Tables<"trips">) =>
+                    setSelectedTrip({
+                      ...trip,
+                      riders: [profile?.id || ""],
+                      route: [origin, destination],
+                      start: dateTime
+                    })
+                  }
+                  trips={availableTrips}
+                />
+                <DrawerFooter>
+                  <Button onClick={() => setStep(2)}>Book</Button>
+                  <DrawerClose>
+                    <Button
+                      onClick={() => setStep(0)}
+                      className="w-full "
+                      variant="outline"
+                    >
+                      Cancel
+                    </Button>
+                  </DrawerClose>
+                </DrawerFooter>
+              </div>
+            ) : (
+              <div className="max-w-3xl w-full mx-auto flex flex-col ">
+                <DrawerHeader>
+                  <DrawerTitle>
+                    <div>
+                      <h1 className="text-2xl font-bold w-full">Checkout</h1>
+                    </div>
+                  </DrawerTitle>
+                </DrawerHeader>
 
-          <Drawer>
-            <DrawerTrigger
-              disabled={origin == "" || dateTime.date == ""}
-              onClick={() => onSearchClick()}
-              className=" rounded-lg py-2 px-8 bg-blue-500 text-md max-w-xl"
-            >
-              Search
-            </DrawerTrigger>
-            <DrawerContent>
-              {step == 0 ? (
-                <div className="max-w-3xl w-full mx-auto flex flex-col">
-                  <DrawerHeader>
-                    <DrawerTitle>
-                      <div>
-                        <h1 className="text-2xl font-bold w-full">Results</h1>
-                      </div>
-                    </DrawerTitle>
-                  </DrawerHeader>
-                  <Trips
-                    selectedTrip={selectedTrip}
-                    onSelectTrip={(trip: Tables<"trips">) =>
-                      setSelectedTrip({
-                        ...trip,
-                        riders: [profile?.id || ""],
-                        route: [origin, destination],
-                        start: dateTime
-                      })
-                    }
-                    trips={availableTrips}
-                  />
-                  <DrawerFooter>
-                    <Button onClick={() => setStep(2)}>Book</Button>
-                    <DrawerClose>
-                      <Button
-                        onClick={() => setStep(0)}
-                        className="w-full "
-                        variant="outline"
-                      >
-                        Cancel
-                      </Button>
-                    </DrawerClose>
-                  </DrawerFooter>
-                </div>
-              ) : (
-                <div className="max-w-3xl w-full mx-auto flex flex-col ">
-                  <DrawerHeader>
-                    <DrawerTitle>
-                      <div>
-                        <h1 className="text-2xl font-bold w-full">Checkout</h1>
-                      </div>
-                    </DrawerTitle>
-                  </DrawerHeader>
-
-                  <Checkout
-                    selectedTrip={selectedTrip}
-                    onBackClick={() => setStep(0)}
-                  />
-                </div>
-              )}
-            </DrawerContent>
-          </Drawer>
+                <Checkout
+                  selectedTrip={selectedTrip}
+                  onBackClick={() => setStep(0)}
+                />
+              </div>
+            )}
+          </DrawerContent>
         </div>
       </div>
     </Container>
