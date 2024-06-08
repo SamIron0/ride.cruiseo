@@ -235,7 +235,7 @@ export default function HomePage() {
               review our
               <Link
                 href="/passengercancellationpolicy"
-                className="text-blue-600 ml-1 border-b border-input"
+                className="text-blue-600 border-b border-blue-600"
               >
                 {" "}
                 cancellation
