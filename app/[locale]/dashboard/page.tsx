@@ -65,6 +65,7 @@ export default function Dashboard() {
         }
         const storedTrip = window.localStorage.getItem("selectedTrip")
 
+        console.log(storedTrip)
         if (storedTrip) {
           console.log(storedTrip)
           //create a usertrip
