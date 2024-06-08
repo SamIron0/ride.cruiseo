@@ -72,7 +72,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   }, [dateTime.date, origin])
   const [distance, setDistance] = useState(null)
   const onSearchClick = async () => {
-    await getTrips()
+    const trips = await getTrips()
+    if (!trips) return
     // setAvailableTrips(availableTrips)
 
     const fetchPrice = async (trip: Tables<"trips">) => {
@@ -89,8 +90,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       })
       return response.json()
     }
-    console.log('t',availableTrips)
-    const pricePromises = availableTrips.map(trip => fetchPrice(trip))
+    console.log("t", trips)
+    const pricePromises = trips?.map(trip => fetchPrice(trip))
     const prices = await Promise.all(pricePromises)
 
     const updatedTrips = availableTrips.map((trip: Tables<"trips">, index) => {
@@ -128,9 +129,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       }
       setAvailableTrips(availableTrips.concat(retrievedTrips))
       setSelectedTrip(availableTrips[0])
+      return availableTrips.concat(retrievedTrips)
     } catch {
       console.error("An error occurred while fetching trips")
     }
+    return null
   }
   const [step, setStep] = useState(0)
   return (
