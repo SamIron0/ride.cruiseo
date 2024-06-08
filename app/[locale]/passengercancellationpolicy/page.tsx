@@ -4,7 +4,7 @@ import UserMenu from "@/components/navbar/UserMenu"
 
 export default function PassengerCancellationPolicy() {
   return (
-    <div>
+    <>
       <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
         <div className="py-4 sm:px-4 border-[#232325] border-b-[1px]">
           <Container>
@@ -70,6 +70,6 @@ export default function PassengerCancellationPolicy() {
           <li>You will receive a full refund, including the booking fee.</li>
         </ul>
       </div>
-    </div>
+    </>
   )
 }
