@@ -137,7 +137,7 @@ export const saveTrip = async (trip: Tables<"trips">, sessionId: string) => {
   const { data: userTrip, error: createUserTripError } = await supabaseAdmin
     .from("usertrips")
     .insert({
-      id: trip?.id,
+      id: uuid(),
       uid: trip?.riders ? trip?.riders[0] : "",
       tripid: tripID,
       origin: trip?.route?.[0],
