@@ -27,7 +27,7 @@ const DateTimePicker = ({ setDateTime, dateTime }) => {
     }
   })
 
-  const [date, setDate] = useState(dateTime.date)
+  const [date, setDate] = useState(dateItems[currentDaysInMonth].value)
   const [hour, setHour] = useState(dateTime.hour)
   const [minute, setMinute] = useState(dateTime.minute)
   const [ampm, setAmpm] = useState(dateTime.ampm)
