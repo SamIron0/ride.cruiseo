@@ -51,7 +51,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     ampm: ampm,
     minute: minute
   })
-  useEffect(() => {
+  const [distance, setDistance] = useState(null)
+  const onSearchClick = async () => {
     setStep(0)
     setAvailableTrips([
       {
@@ -69,12 +70,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         riders: [profile?.id || ""]
       }
     ])
-  }, [dateTime.date, origin])
-  const [distance, setDistance] = useState(null)
-  const onSearchClick = async () => {
     const trips = await getTrips()
     if (!trips) return
-    // setAvailableTrips(availableTrips)
 
     const fetchPrice = async (trip: Tables<"trips">) => {
       const response = await fetch("/api/price", {
@@ -94,7 +91,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     const pricePromises = trips?.map(trip => fetchPrice(trip))
     const prices = await Promise.all(pricePromises)
 
-    const updatedTrips =  trips.map((trip: Tables<"trips">, index) => {
+    const updatedTrips = trips.map((trip: Tables<"trips">, index) => {
       const price = prices[index]
       return { ...trip, price }
     })
