@@ -14,7 +14,7 @@ interface UserMenuProps {}
 export default function UserMenu() {
   const supabase = createClient()
   const router = useRouter()
-  const { profile,setProfile } = useContext(CruiseoContext)
+  const { profile, setProfile } = useContext(CruiseoContext)
   // get session from api
   const signOut = async () => {
     try {
@@ -56,7 +56,7 @@ export default function UserMenu() {
             cursor-pointer
           "
         >
-          How it works
+          Contact
         </div>
         <div
           onClick={toggleOpen}

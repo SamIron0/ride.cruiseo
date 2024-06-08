@@ -51,12 +51,12 @@ export default function Footer() {
                 Contact Us
               </Link>
             </li>
-            <li className="py-1 md:py-0 md:pb-4">
+              <li className="py-1 md:py-0 md:pb-4">
               <Link
-                href="/contactus"
+                href="/passengercancellationpolicy"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
-                How it Works
+                Cancellation Policy
               </Link>
             </li>
           </ul>
