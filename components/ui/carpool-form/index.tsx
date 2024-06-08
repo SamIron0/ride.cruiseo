@@ -217,7 +217,7 @@ export const CarpoolForm = ({
           <div className="w-full flex flex-col justify-center">
             <h1 className=" font-medium   text-lg ">When?</h1>
           </div>
-          <DateTimePicker setDateTime={onSetDateTime} />
+          <DateTimePicker setDateTime={onSetDateTime} dateTime={dateTime} />
         </div>
       ) : (
         <div

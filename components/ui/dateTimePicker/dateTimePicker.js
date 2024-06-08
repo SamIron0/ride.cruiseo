@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import {WheelPicker} from "./wheelPicker";
-import "./styles.css";
-const DateTimePicker = ({setDateTime}) => {
+import { useEffect, useState } from "react"
+import dayjs from "dayjs"
+import { WheelPicker } from "./wheelPicker"
+import "./styles.css"
+const DateTimePicker = ({ setDateTime, dateTime }) => {
   const hourItems = Array.from({ length: 12 }, (_, index) => ({
     value: index + 1,
     label: index + 1
@@ -27,10 +27,10 @@ const DateTimePicker = ({setDateTime}) => {
     }
   })
 
-  const [date, setDate] = useState(dateItems[currentDaysInMonth].value)
-  const [hour, setHour] = useState(hourItems[5].value)
-  const [minute, setMinute] = useState(minuteItems[2].value)
-  const [ampm, setAmpm] = useState(ampmItems[0].value)
+  const [date, setDate] = useState(dateTime.date)
+  const [hour, setHour] = useState(dateTime.hour)
+  const [minute, setMinute] = useState(dateTime.minute)
+  const [ampm, setAmpm] = useState(dateTime.ampm)
 
   useEffect(() => {
     setDateTime({
@@ -42,7 +42,6 @@ const DateTimePicker = ({setDateTime}) => {
   }, [date, hour, minute, ampm])
   return (
     <div className="App flex items-center ">
-     
       <WheelPicker
         dateItems={dateItems}
         dateValue={date}

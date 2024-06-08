@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
-import { Date, Destination, Trip } from "@/types"
+import { Destination, Trip } from "@/types"
 import Container from "@/components/Container"
 import ListingHead from "@/components/listings/ListingHead"
 import { useContext } from "react"
@@ -32,17 +32,25 @@ interface ListingClientProps {
 const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [origin, setOrigin] = useState<string>("")
   const [destination, setDestination] = useState<string>(listing?.address)
-  const [dateTime, setDateTime] = useState({
-    date: "",
-    hour: "",
-    ampm: "",
-    minute: ""
-  })
   const { profile, selectedTrip, setSelectedTrip } = useContext(CruiseoContext)
   const [isLoading, setIsLoading] = useState(false)
   const [priceIsLoading, setPriceIsLoading] = useState(false)
   const [loadedPrices, setLoadedPrices] = useState(new Map<string, number>())
   const [availableTrips, setAvailableTrips] = useState<Tables<"trips">[]>([])
+  const now = new Date()
+
+  const date = now.toISOString().split("T")[0] // YYYY-MM-DD format
+  const hours = now.getHours()
+  const hour = hours % 12 || 12 // Convert to 12-hour format
+  const minute = now.getMinutes().toString().padStart(2, "0") // Add leading zero if needed
+  const ampm = hours >= 12 ? "PM" : "AM"
+
+  const [dateTime, setDateTime] = useState({
+    date: date,
+    hour: hour.toString(),
+    ampm: ampm,
+    minute: minute
+  })
   useEffect(() => {
     setStep(0)
     setAvailableTrips([

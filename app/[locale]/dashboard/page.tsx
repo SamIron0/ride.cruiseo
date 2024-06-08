@@ -59,6 +59,7 @@ export default function Dashboard() {
         getUsersTrips()
 
         if (!sessionId) {
+          router.push("/login")
           return
         }
 
