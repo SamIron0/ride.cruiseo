@@ -232,7 +232,15 @@ export default function HomePage() {
             <AccordionContent>
               To cancel a trip, go to your account page, select the trip, and
               click on "cancel." For further details about cancellations, please
-              review our cancellation policy.
+              review our
+              <Link
+                href="/passengercancellationpolicy"
+                className="text-blue-600 ml-1 border-b border-input"
+              >
+                {" "}
+                cancellation
+              </Link>{" "}
+              policy.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
