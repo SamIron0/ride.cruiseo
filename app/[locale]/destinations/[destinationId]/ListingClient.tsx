@@ -98,7 +98,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       const price = prices[index]
       return { ...trip, price }
     })
-    // setAvailableTrips(updatedTrips)
+    setAvailableTrips(updatedTrips)
     // setSelectedTrip(updatedTrips[0])
     return
   }
