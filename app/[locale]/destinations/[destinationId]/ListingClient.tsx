@@ -99,6 +99,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     })
     setAvailableTrips(updatedTrips)
     setSelectedTrip(updatedTrips[0])
+    console.log("set to", availableTrips)
     return
   }
 

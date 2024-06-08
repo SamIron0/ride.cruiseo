@@ -19,13 +19,6 @@ interface CheckoutProps {
 }
 
 export const Checkout = ({ selectedTrip, onBackClick }: CheckoutProps) => {
-  const { setSelectedTrip } = useContext(CruiseoContext)
-
-  useEffect(() => {
-    if (selectedTrip) {
-      setSelectedTrip(selectedTrip)
-    }
-  }, [selectedTrip, setSelectedTrip])
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
