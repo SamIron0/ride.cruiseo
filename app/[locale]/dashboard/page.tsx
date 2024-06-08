@@ -66,6 +66,7 @@ export default function Dashboard() {
         const storedTrip = window.localStorage.getItem("selectedTrip")
 
         if (storedTrip) {
+          console.log(storedTrip)
           //create a usertrip
           const response = await fetch("/api/saveTrip", {
             method: "POST",
