@@ -220,7 +220,7 @@ export const CarpoolForm = ({
                 disabled={origin == "" || dateTime.date == ""}
                 onClick={() => onSearchClick()}
                 className="bg-white hover:bg-zinc-300 mt-3 text-sm text-black font-semibold py-3 px-5 rounded-lg"
-                >
+              >
                 Search
               </DrawerTrigger>
 
