@@ -74,7 +74,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const onSearchClick = async () => {
     await getTrips()
     // setAvailableTrips(availableTrips)
-    setSelectedTrip(availableTrips[0])
 
     const fetchPrice = async (trip: Tables<"trips">) => {
       const response = await fetch("/api/price", {
@@ -128,6 +127,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         })
       }
       setAvailableTrips(availableTrips.concat(retrievedTrips))
+      setSelectedTrip(availableTrips[0])
+
     } catch {
       console.error("An error occurred while fetching trips")
     }
