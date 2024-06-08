@@ -24,9 +24,7 @@ export const GlobalState: FC<GlobalStateProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [trip, setTrip] = useState<Trip | null>(null)
 
-  const [selectedTrip, setSelectedTrip] = useState<Tables<"trips"> | null>(
-    null
-  )
+  const [selectedTrip, setSelectedTrip] = useState<Tables<"trips"> | null>(null)
 
   useEffect(() => {
     // Update localStorage when selectedTrip changes
@@ -36,10 +34,6 @@ export const GlobalState: FC<GlobalStateProps> = ({
           "selectedTrip",
           JSON.stringify(selectedTrip)
         )
-      }
-
-      if (!selectedTrip) {
-        window.localStorage.removeItem("selectedTrip")
       }
     }
   }, [selectedTrip])
