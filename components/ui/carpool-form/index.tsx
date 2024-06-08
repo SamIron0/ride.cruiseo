@@ -183,8 +183,8 @@ export const CarpoolForm = ({
           <div className="w-full justify-end">
             <Button
               onClick={() => {
-                setDateIsOpen(false)
-                setOriginIsOpen(true)
+                setDateIsOpen(true)
+                setOriginIsOpen(false)
               }}
               className="bg-white hover:bg-zinc-300 mt-3 text-sm text-black font-semibold py-3 px-5 rounded-lg"
               disabled={origin === ""}
