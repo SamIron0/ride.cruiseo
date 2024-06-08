@@ -51,10 +51,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
     ampm: ampm,
     minute: minute
   })
+  useEffect(() => {}, [dateTime.date, origin])
   const [distance, setDistance] = useState(null)
   const onSearchClick = async () => {
     setStep(0)
-    setAvailableTrips([
+
+    const res = await getTrips()
+    if (res === null || res === undefined) return
+    let trips: Tables<"trips">[] = [
       {
         id: uuidv4(),
         start: {
@@ -69,9 +73,11 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
         destination: destination,
         riders: [profile?.id || ""]
       }
-    ])
-    const trips = await getTrips()
-    if (!trips) return
+    ]
+
+    trips = trips.concat(res)
+    setAvailableTrips(trips.concat(res))
+    setSelectedTrip(trips[0])
 
     const fetchPrice = async (trip: Tables<"trips">) => {
       const response = await fetch("/api/price", {
@@ -96,7 +102,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       return { ...trip, price }
     })
     setAvailableTrips(updatedTrips)
-    // setSelectedTrip(updatedTrips[0])
+    setSelectedTrip(updatedTrips[0])
+
     return
   }
 
@@ -124,9 +131,9 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           riders: [profile?.id || ""]
         })
       }
-      setAvailableTrips(availableTrips.concat(retrievedTrips))
-      setSelectedTrip(availableTrips[0])
-      return availableTrips.concat(retrievedTrips)
+      // setAvailableTrips(availableTrips.concat(retrievedTrips))
+      // setSelectedTrip(availableTrips[0])
+      return retrievedTrips
     } catch {
       console.error("An error occurred while fetching trips")
     }
