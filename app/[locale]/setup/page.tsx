@@ -82,7 +82,7 @@ export default function SetupPage() {
     // updaate local and db settings
     setProfile(updatedProfile)
 
-    return router.push(`/`)
+    return router.push(`/destinations`)
   }
 
   const renderStep = (stepNum: number) => {

@@ -14,7 +14,7 @@ interface UserMenuProps {}
 export default function UserMenu() {
   const supabase = createClient()
   const router = useRouter()
-  const { profile } = useContext(CruiseoContext)
+  const { profile,setProfile } = useContext(CruiseoContext)
   // get session from api
   const signOut = async () => {
     try {
@@ -22,6 +22,7 @@ export default function UserMenu() {
       if (error) {
         toast.error(error.message)
       } else {
+        setProfile(null)
         router.push("/")
         toast.success("Signed Out")
       }

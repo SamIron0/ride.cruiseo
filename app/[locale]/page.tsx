@@ -24,6 +24,9 @@ export default function HomePage() {
   useEffect(() => {
     ;(async () => {
       const session = (await supabase.auth.getSession()).data.session
+      if (!session) {
+        return
+      }
       const prof = await getProfileByUserId(session?.user.id as string)
       setProfile(prof)
 
