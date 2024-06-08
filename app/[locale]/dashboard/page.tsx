@@ -58,11 +58,11 @@ export default function Dashboard() {
         const sessionId = urlParams.get("session_id")
         getUsersTrips()
 
-        if (!profile?.id) {
-          router.push("/login")
+        const session = await supabase.auth.getSession()
+
+        if (!session) {
           return
         }
-
         const storedTrip = window.localStorage.getItem("selectedTrip")
 
         if (storedTrip) {
