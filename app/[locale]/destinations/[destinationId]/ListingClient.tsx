@@ -73,7 +73,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const [distance, setDistance] = useState(null)
   const onSearchClick = async () => {
     await getTrips()
-    setAvailableTrips(availableTrips)
+    // setAvailableTrips(availableTrips)
     setSelectedTrip(availableTrips[0])
 
     const fetchPrice = async (trip: Tables<"trips">) => {
@@ -98,8 +98,8 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       const price = prices[index]
       return { ...trip, price }
     })
-    setAvailableTrips(updatedTrips)
-    setSelectedTrip(updatedTrips[0])
+    // setAvailableTrips(updatedTrips)
+    // setSelectedTrip(updatedTrips[0])
     return
   }
 
