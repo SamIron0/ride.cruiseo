@@ -6,6 +6,7 @@ import { Database } from "@/supabase/types"
 import { createServerClient } from "@supabase/ssr"
 import { Metadata } from "next"
 import { cookies, headers } from "next/headers"
+import Link from "next/link"
 import { redirect } from "next/navigation"
 import { toast } from "sonner"
 
@@ -101,8 +102,10 @@ export default async function Login({
   }
 
   return (
-    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 pt-20 pb-28 sm:max-w-md">
-      <span className="pb-8 text-2xl mx-auto font-semibold  ">Cruiseo</span>
+    <div className="flex w-full flex-1 flex-col justify-center gap-2 px-8 py-32 sm:max-w-md">
+      <Link href="/" className="pb-4 text-3xl mx-auto font-semibold  ">
+        Cruiseo
+      </Link>
 
       <form
         className="flex w-full flex-1 flex-col justify-center gap-2 text-foreground animate-in"
