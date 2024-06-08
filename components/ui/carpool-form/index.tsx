@@ -219,8 +219,8 @@ export const CarpoolForm = ({
               <DrawerTrigger
                 disabled={origin == "" || dateTime.date == ""}
                 onClick={() => onSearchClick()}
-                className=" rounded-lg py-2 px-8 bg-white text-black text-md"
-              >
+                className="bg-white hover:bg-zinc-300 mt-3 text-sm text-black font-semibold py-3 px-5 rounded-lg"
+                >
                 Search
               </DrawerTrigger>
 
