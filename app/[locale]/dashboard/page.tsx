@@ -58,7 +58,7 @@ export default function Dashboard() {
         const sessionId = urlParams.get("session_id")
         getUsersTrips()
 
-        if (!sessionId) {
+        if (!profile?.id) {
           router.push("/login")
           return
         }
