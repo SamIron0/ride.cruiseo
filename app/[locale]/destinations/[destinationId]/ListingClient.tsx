@@ -89,7 +89,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       })
       return response.json()
     }
-
+    console.log('t',availableTrips)
     const pricePromises = availableTrips.map(trip => fetchPrice(trip))
     const prices = await Promise.all(pricePromises)
 
@@ -128,7 +128,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
       }
       setAvailableTrips(availableTrips.concat(retrievedTrips))
       setSelectedTrip(availableTrips[0])
-
     } catch {
       console.error("An error occurred while fetching trips")
     }
