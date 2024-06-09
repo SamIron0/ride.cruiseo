@@ -60,13 +60,16 @@ export const getDestinationById = async (id: string) => {
   return destination
 }
 export async function hasSessionIdBeenUsed(
-  sessionId: string
+  sessionId: string | null
 ): Promise<boolean> {
   // Query your database to see if the session ID exists
+  if (sessionId === null) {
+    return false
+  }
   const { data, error } = await supabaseAdmin
     .from("stripe_sessions")
     .select("*")
-    .eq("id", sessionId)
+    .eq("session_id", sessionId)
 
   if (error) {
     console.error("Error checking if session ID has been used:", error)
