@@ -25,49 +25,42 @@ export default function PassengerCancellationPolicy() {
         </p>
 
         <h2 className="text-xl font-semibold mt-6">
-          Withdrawing a Booking Request or When it Expires
+          Withdrawing a Booking Request before it is accepted by a driver or
+          when it expires
         </h2>
         <ul className="list-disc list-inside mt-2">
-          <li>You receive a full refund (100%).</li>
-          <li>The booking fee is also refunded.</li>
+          <li>You receive a full refund.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6">
           Cancelling a Booking Less than 24 Hours Before Departure
         </h2>
         <ul className="list-disc list-inside mt-2">
-          <li>You receive a 50% refund (excluding the booking fee).</li>
+          <li>You receive a 50% refund.</li>
           <li>The driver is compensated with 50% of the seat price.</li>
-          <li>
-            An automatic "late cancellation" review will be added to your
-            profile.
-          </li>
         </ul>
         <p className="mt-2">
           Note: If the driver cancels the trip afterwards, you will get the
-          remaining 50% refunded (excluding the booking fee).
+          remaining 50% refunded.
         </p>
 
         <h2 className="text-xl font-semibold mt-6">
           Cancelling a Booking More than 24 Hours Before Departure
         </h2>
         <ul className="list-disc list-inside mt-2">
-          <li>You receive a full refund (excluding the booking fee).</li>
+          <li>You receive a full refund.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6">No Show</h2>
         <ul className="list-disc list-inside mt-2">
-          <li>
-            No refund will be provided. Please refer to our passenger no-show
-            policy.
-          </li>
+          <li>No refund will be provided.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6">
           When the Driver Cancels Your Trip
         </h2>
         <ul className="list-disc list-inside mt-2">
-          <li>You will receive a full refund, including the booking fee.</li>
+          <li>You will receive a full refund.</li>
         </ul>
       </div>
     </>
