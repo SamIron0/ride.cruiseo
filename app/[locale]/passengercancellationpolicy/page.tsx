@@ -15,8 +15,8 @@ export default function PassengerCancellationPolicy() {
           </Container>
         </div>
       </div>
-      <div className=" w-full bg-white p-6  py-28 text-gray-800">
-        <div className="max-w-2xl mx-auto">
+      <div className=" w-full bg-white py-28 text-gray-800">
+        <div className="max-w-2xl mx-auto  p-6 ">
           <h1 className="text-4xl font-bold mb-4">
             Passenger Cancellation Policy
           </h1>
