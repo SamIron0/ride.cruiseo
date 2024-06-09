@@ -4,7 +4,7 @@ import axios from "axios"
 const apiKey = "AIzaSyBrJKwpf7vX885NfARu7oCex9q0s3r0SuM"
 
 export async function getLatLong(
-  address: string,
+  address: string
 ): Promise<[number, number] | null> {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`
   const response = await axios.get(url)
@@ -15,7 +15,6 @@ export async function getLatLong(
   return null
 }
 const calculateDistance = async (origin?: string, destination?: string) => {
-  
   const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apiKey}`
 
   try {
@@ -36,8 +35,9 @@ export async function calculatePrice(
   // Example values
   let distanceInMiles = await calculateDistance(origin, destination)
 
-  const res = calculateTripPrice(distanceInMiles, wait || 0)
-  return { res }
+  let res = calculateTripPrice(distanceInMiles, wait || 0)
+  const price = res.toFixed(2)
+  return { price }
 }
 function calculateTripPrice(distance: number, waitTime: number): number {
   return (
