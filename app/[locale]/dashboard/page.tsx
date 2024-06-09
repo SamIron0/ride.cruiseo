@@ -66,7 +66,7 @@ export default function Dashboard() {
         const storedTrip = window.localStorage.getItem("selectedTrip")
 
         //console.log(storedTrip)
-        if (storedTrip) {
+        if (storedTrip && sessionId) {
           //console.log(storedTrip)
           //create a usertrip
           const response = await fetch("/api/saveTrip", {
@@ -89,7 +89,7 @@ export default function Dashboard() {
           )
 
           const data = await response.json()
-          console.log(data)
+          //console.log(data)
           setStatus(data.status)
           getUsersTrips()
         }

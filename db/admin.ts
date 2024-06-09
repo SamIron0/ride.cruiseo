@@ -66,7 +66,7 @@ export async function hasSessionIdBeenUsed(
   const { data, error } = await supabaseAdmin
     .from("stripe_sessions")
     .select("*")
-    .eq("session_id", sessionId)
+    .eq("id", sessionId)
 
   if (error) {
     console.error("Error checking if session ID has been used:", error)
