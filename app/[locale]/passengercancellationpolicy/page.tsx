@@ -16,7 +16,7 @@ export default function PassengerCancellationPolicy() {
         </div>
       </div>
       <div className="max-w-2xl mx-auto p-6 my-28 text-gray-700">
-        <h1 className="text-2xl font-bold mb-4">
+        <h1 className="text-4xl font-bold mb-4">
           Passenger Cancellation Policy
         </h1>
         <p>
