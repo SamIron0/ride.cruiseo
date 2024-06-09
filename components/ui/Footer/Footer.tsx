@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Footer() {
   return (
     <footer className="mx-auto w-full border-t border-input max-w-[1920px] px-6 bg-background">
-      <div className="grid grid-cols-1 gap-8 py-6 text-white transition-colors duration-150 border-b lg:grid-cols-6 border-input bg-black">
+      <div className="grid grid-cols-1 gap-8 py-6 text-white transition-colors duration-150 border-b lg:grid-cols-6 border-input ">
         <div className="col-span-1 lg:mt-3 lg:pr-2 lg:col-span-2">
           <Link
             href="/"
@@ -85,7 +85,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-between py-6 md:flex-row bg-black">
+      <div className="flex flex-col items-center justify-between py-6 md:flex-row ">
         <div className="text-white">
           <span>
             &copy; {new Date().getFullYear()} cruiseo. All rights reserved.
