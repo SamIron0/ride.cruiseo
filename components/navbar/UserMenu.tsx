@@ -41,7 +41,7 @@ export default function UserMenu() {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => router.push("/contact")}
+          onClick={() => router.push("/contactus")}
           className="
             hidden
             md:block
