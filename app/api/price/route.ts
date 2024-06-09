@@ -13,13 +13,9 @@ export async function POST(req: Request) {
     try {
       const { origin, destination, trip } = await req.json()
 
-      const { distanceInMiles, res } = await calculatePrice(
-        origin,
-        destination,
-        trip
-      )
-      console.log('aaa',res)
-      console.log('ba',distanceInMiles)
+      console.log("origin", origin)
+      console.log("destination", destination)
+      const { res } = await calculatePrice(origin, destination, trip)
 
       return new Response(JSON.stringify(res), {
         status: 200

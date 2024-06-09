@@ -1,8 +1,20 @@
 import { Tables } from "@/supabase/types"
 import axios from "axios"
 
+const apiKey = "AIzaSyBrJKwpf7vX885NfARu7oCex9q0s3r0SuM"
+
+export async function getLatLong(
+  address: string,
+): Promise<[number, number] | null> {
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`
+  const response = await axios.get(url)
+  if (response.data.status === "OK") {
+    const location = response.data.results[0].geometry.location
+    return [location.lat, location.lng]
+  }
+  return null
+}
 const calculateDistance = async (origin1?: string, destination1?: string) => {
-  const apiKey = "AIzaSyBrJKwpf7vX885NfARu7oCex9q0s3r0SuM"
   const origin = "37.7749,-122.4194" // San Francisco
   const destination = "34.0522,-118.2437" // Los Angeles
 
@@ -20,43 +32,19 @@ const calculateDistance = async (origin1?: string, destination1?: string) => {
 export async function calculatePrice(
   origin?: string,
   destination?: string,
-  trip?: Tables<"trips">
+  trip?: Tables<"trips">,
+  wait?: number
 ) {
   // Example values
   let distanceInMiles = await calculateDistance(origin, destination)
-  let baseFare = 2.5
-  let costPerMile = 1.25
-  let costPerMinute = 0.2
-  let estimatedDurationMinutes = 20 // This would be the estimated duration
-  let minimumFare = 5.0
-  const res = calculateTripPrice(
-    baseFare,
-    costPerMile,
-    distanceInMiles,
-    costPerMinute,
-    estimatedDurationMinutes,
-    minimumFare
-  )
-  return {distanceInMiles,res}
+
+  const res = calculateTripPrice(distanceInMiles, wait || 0)
+  return { res }
 }
-function calculateTripPrice(
-  baseFare: number,
-  costPerMile: number,
-  distanceInMiles: number,
-  costPerMinute: number,
-  estimatedDurationMinutes: number,
-  minimumFare: number
-) {
-  // Calculate the total fare
-  let totalFare =
-    baseFare +
-    costPerMile * distanceInMiles +
-    costPerMinute * estimatedDurationMinutes
-
-  // Apply the minimum fare rule
-  if (totalFare < minimumFare) {
-    totalFare = minimumFare
-  }
-
-  return totalFare
+function calculateTripPrice(distance: number, waitTime: number): number {
+  return (
+    3.95 +
+    Math.floor(distance / 100) * 0.19 +
+    Math.floor((waitTime * 60) / 20) * 0.19
+  )
 }

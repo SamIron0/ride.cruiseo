@@ -24,7 +24,7 @@ import { Trips } from "@/components/ui/trips"
 import { Checkout } from "@/components/checkout"
 import { Tables, TablesInsert } from "@/supabase/types"
 import axios from "axios"
-import { calculatePrice } from "@/utils/helpers"
+import { calculatePrice, getLatLong } from "@/utils/helpers"
 interface ListingClientProps {
   listing: Destination
 }
@@ -56,6 +56,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
   const onSearchClick = async () => {
     setStep(0)
 
+    let latLong = await getLatLong(origin)
     const res = await getTrips()
     if (res === null || res === undefined) return
     let trips: Tables<"trips">[] = [
@@ -86,14 +87,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing }) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          origin: origin,
-          destination: trip?.destination,
+          origin: ` ${latLong?.[0]}, ${latLong?.[1]}`,
+          destination: ` ${listing?.coordinates?.lat}, ${listing?.coordinates?.lon}`,
           trip: trip
         })
       })
       return response.json()
     }
-    console.log("t", trips)
+
     const pricePromises = trips?.map(trip => fetchPrice(trip))
     const prices = await Promise.all(pricePromises)
 
