@@ -169,8 +169,9 @@ export default async function Login({
           <Label className="text-md mt-4" htmlFor="email">
             Email
           </Label>
-          <Input
+          <input
             className="mb-3 rounded-md border bg-background  px-4 py-2 text-[16px]"
+            type="email"
             name="email"
             placeholder="you@example.com"
             required
@@ -179,8 +180,9 @@ export default async function Login({
           <Label className="text-md" htmlFor="password">
             Password
           </Label>
-          <Input
+          <input
             className="mb-6 rounded-md border bg-background px-4 py-2 text-[16px]"
+            type="password"
             name="password"
             placeholder="••••••••"
           />
