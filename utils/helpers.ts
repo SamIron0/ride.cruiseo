@@ -14,10 +14,8 @@ export async function getLatLong(
   }
   return null
 }
-const calculateDistance = async (origin1?: string, destination1?: string) => {
-  const origin = "37.7749,-122.4194" // San Francisco
-  const destination = "34.0522,-118.2437" // Los Angeles
-
+const calculateDistance = async (origin?: string, destination?: string) => {
+  
   const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apiKey}`
 
   try {
