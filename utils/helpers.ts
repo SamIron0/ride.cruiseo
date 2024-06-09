@@ -35,9 +35,9 @@ export async function calculatePrice(
   // Example values
   let distanceInMiles = await calculateDistance(origin, destination)
 
-  let res = calculateTripPrice(distanceInMiles, wait || 0)
-  const price = res.toFixed(2)
-  return { price }
+  let price = calculateTripPrice(distanceInMiles, wait || 0)
+  const res = price.toFixed(2)
+  return { res }
 }
 function calculateTripPrice(distance: number, waitTime: number): number {
   return (
