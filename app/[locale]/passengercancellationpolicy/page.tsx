@@ -5,7 +5,7 @@ import UserMenu from "@/components/navbar/UserMenu"
 export default function PassengerCancellationPolicy() {
   return (
     <>
-      <div className="fixed w-full z-10 shadow-sm  shrink-0 bg-white text-gray-800">
+      <div className="fixed w-full z-10 shadow-sm  shrink-0  ">
         <div className="py-4 sm:px-4 border-[#232325] border-b-[1px]">
           <Container>
             <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
@@ -15,7 +15,7 @@ export default function PassengerCancellationPolicy() {
           </Container>
         </div>
       </div>
-      <div className="max-w-2xl mx-auto p-6 my-28 text-gray-700">
+      <div className="max-w-2xl mx-auto bg-white p-6 my-28 text-gray-700">
         <h1 className="text-4xl font-bold mb-4">
           Passenger Cancellation Policy
         </h1>
