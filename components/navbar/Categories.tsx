@@ -28,11 +28,6 @@ export const categories = [
     label: "School",
     icon: TbSchool,
     description: "This property is in the countryside!"
-  },
-  {
-    label: "Cinema",
-    icon: TbMovie,
-    description: "Wanna see a movie?!"
   }
 ]
 
